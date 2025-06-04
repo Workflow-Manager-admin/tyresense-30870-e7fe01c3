@@ -1,0 +1,219 @@
+:root {
+  --ts-dark-bg: #17181d;
+  --ts-neon-yellow: #ffe600;
+  --ts-deep-charcoal: #232326;
+  --ts-accent: #ffe600;
+  --ts-card-bg: #232328;
+  --ts-text: #fff;
+  --ts-secondary: #252536;
+  --ts-border: rgba(255,230,0,0.1);
+}
+
+.tyresense-main {
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--ts-dark-bg) 75%, #111217 100%);
+  color: var(--ts-text);
+  font-family: 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+/* --- Section Containers --- */
+.ts-section {
+  padding: 56px 0 32px 0;
+  margin: 0 auto;
+  max-width: 940px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.ts-section:not(:first-child) {
+  border-top: 2px solid var(--ts-border);
+}
+
+.ts-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* --- Animated Tyre Intro --- */
+.ts-intro-section {
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ts-animated-tyre {
+  width: 164px;
+  height: 164px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--ts-neon-yellow) 40%, var(--ts-dark-bg) 100%);
+  box-shadow: 0 0 34px 5px var(--ts-neon-yellow), 0 8px 24px 2px #00000091;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ts-float 2.5s ease-in-out infinite alternate;
+  position: relative;
+}
+.ts-tyre-intro-text {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: var(--ts-deep-charcoal);
+  position: absolute;
+  bottom: -2.4rem;
+  left: 22%;
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 28px var(--ts-neon-yellow);
+}
+@keyframes ts-float {
+  0% { transform: translateY(0);}
+  100% { transform: translateY(18px);}
+}
+
+/* --- Car Input --- */
+.ts-car-input-section {
+  display: flex;
+  gap: 36px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.ts-car-input-form {
+  background: var(--ts-card-bg);
+  border-radius: 12px;
+  padding: 36px 32px 24px 32px;
+  box-shadow: 0 2px 16px 2px #00000033;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  min-width: 340px;
+}
+.ts-car-img-placeholder {
+  width: 110px;
+  height: 54px;
+  background: var(--ts-secondary);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ts-accent);
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1.5px dashed var(--ts-accent);
+}
+
+.ts-input {
+  background: #24252d;
+  border: 1px solid var(--ts-accent);
+  border-radius: 5px;
+  padding: 8px 13px;
+  margin: 5px 0;
+  color: var(--ts-text);
+  font-size: 1rem;
+  outline: none;
+  margin-right: 7px;
+  min-width: 100px;
+}
+.ts-input:disabled {
+  opacity: 0.6;
+}
+
+/* --- Tyre Recommendation/Filter --- */
+.ts-tyre-recommend-section {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.ts-tyre-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.ts-btn {
+  background: var(--ts-neon-yellow);
+  color: #222;
+  border-radius: 6px;
+  border: none;
+  padding: 8px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 0 6px 1.5px var(--ts-neon-yellow);
+  cursor: not-allowed;
+  filter: grayscale(0.7);
+  opacity: 0.74;
+}
+.ts-btn-filter {
+  min-width: 70px;
+}
+.ts-tyre-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+.ts-tyre-card {
+  width: 122px;
+  height: 122px;
+  background: var(--ts-card-bg);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ts-card-placeholder {
+  opacity: 0.5;
+  border: 2.5px dashed var(--ts-accent);
+}
+
+/* --- Map Section --- */
+.ts-map-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ts-map-placeholder {
+  width: 96%;
+  height: 170px;
+  background: var(--ts-secondary);
+  border-radius: 10px;
+  border: 2px dashed var(--ts-accent);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--ts-neon-yellow);
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+/* --- Reminders / Notifications --- */
+.ts-reminder-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ts-popup-reminder {
+  min-width: 260px;
+  min-height: 43px;
+  background: #222328;
+  color: var(--ts-accent);
+  border-radius: 7px;
+  border: 2px dotted var(--ts-accent);
+  padding: 12px 13px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 1px 5px 1px #ffe60046;
+}
+
+/* --- Hidden User Data Section --- */
+.ts-hidden-userdata {
+  display: none;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 720px) {
+  .ts-section { padding: 32px 0 20px 0; }
+  .ts-car-input-form { flex-direction: column; gap: 18px; padding: 18px 11px 12px 11px; }
+  .ts-tyre-list { gap: 8px; }
+  .ts-tyre-card { width: 87px; height: 87px; }
+  .ts-map-placeholder { height: 100px; font-size: 1rem; }
+}
