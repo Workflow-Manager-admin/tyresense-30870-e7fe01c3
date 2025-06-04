@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./TyreSenseMain.css";
+import AnimatedCarIntro from "./AnimatedCarIntro";
 
 // PUBLIC_INTERFACE
 function TyreSenseMain() {
