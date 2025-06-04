@@ -32,11 +32,11 @@
 }
 
 .ts-animated-tyre {
-  width: 178px;
-  height: 178px;
+  width: 165px;
+  height: 180px;
   border-radius: 56% 44% 60% 40%/60% 57% 43% 40%;
-  background: linear-gradient(128deg, var(--ts-red-main) 41%, var(--ts-grad-red-1) 80%, var(--ts-dark-bg) 100%);
-  box-shadow: 0 0 44px 12px var(--ts-grad-red-1), 0 8px 34px 8px #a10813de;
+  background: linear-gradient(131deg, var(--ts-grad-red-1) 0%, var(--ts-red-main) 75%, var(--ts-dark-bg) 100%);
+  box-shadow: 0 0 54px 10px var(--ts-red-main)cc, 0 8px 34px 8px #a1081399, 0 2px 20px 4px #82132166;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,14 +44,15 @@
   position: relative;
 }
 .ts-tyre-intro-text {
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: var(--ts-red-main);
+  font-size: 2.55rem;
+  font-weight: 800;
+  color: #fff;
   position: absolute;
-  bottom: -2.7rem;
-  left: 19%;
+  bottom: -2.8rem;
+  left: 20%;
   letter-spacing: 0.16em;
-  text-shadow: 0 0 32px var(--ts-grad-red-1), 0 2px 10px #000;
+  text-shadow: 0 0 36px var(--ts-red-main), 0 2px 10px #3f0d1a;
+  font-family: 'Inter', 'Roboto', Arial, sans-serif;
 }
 
 .ts-main-content {
