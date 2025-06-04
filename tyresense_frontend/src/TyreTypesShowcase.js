@@ -54,23 +54,23 @@ function TyreTypesShowcase({ onBrandSelect }) {
             tabIndex={0}
           >
             <div className="tyre-brand-logo">
-              {/* Placeholder for logo, can enhance with SVG or import */}
+              {/* Brand name as main premium title – no initial letter */}
               <span
-                className="tyre-brand-initial"
+                className="tyre-brand-name"
                 aria-hidden="true"
                 style={{
-                  color: "#ffe600",
-                  fontWeight: 700,
-                  fontSize: "2.7rem",
+                  color: "#fff",
+                  fontWeight: 800,
+                  fontSize: "2.3rem",
                   fontFamily: "Inter, Arial, sans-serif",
-                  lineHeight: 1,
-                  opacity: 0.87,
+                  lineHeight: 1.08,
+                  textShadow: "0 0 22px #ff3a3a70, 0 1.5px 9px #000000b2",
+                  letterSpacing: ".11em"
                 }}
               >
-                {brand.name.charAt(0)}
+                {brand.name}
               </span>
             </div>
-            <span className="tyre-brand-name">{brand.name}</span>
             {brand.tagline && (
               <span className="tyre-brand-tagline">{brand.tagline}</span>
             )}
