@@ -1,86 +1,96 @@
 .ts-tyre-brands-showcase {
-  background: transparent;
-  padding-top: 48px;
-  padding-bottom: 44px;
+  background: linear-gradient(126deg, #8A0717 18%, #220006 92%);
+  padding-top: 56px;
+  padding-bottom: 48px;
   width: 100%;
-  max-width: 960px;
+  max-width: 1040px;
   margin: 0 auto;
+  border-radius: 24px;
 }
 
 .tyre-showcase-header {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 26px;
+  gap: 9px;
+  margin-bottom: 28px;
 }
 
 .tyre-showcase-header h2 {
   margin: 0;
-  color: #ffe600;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: .03em;
+  color: #ff3a3a;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: .025em;
   font-family: 'Inter', 'Roboto', Arial, sans-serif;
+  text-shadow: 0 2px 18px #90121311;
 }
 
 .tyre-showcase-desc {
-  color: rgba(255,255,255,0.66);
-  font-size: 1.12rem;
+  color: #ffc4cb;
+  font-size: 1.13rem;
   margin: 0;
+  font-weight: 500;
+  opacity: 0.75;
 }
 
 .tyre-brands-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 40px 38px;
+  gap: 54px 44px;
   width: 100%;
 }
 
 .tyre-brand-card {
-  background: linear-gradient(136deg, #20202A 83%, #18181d 100%);
-  border: 1.5px solid rgba(255,230,0,.12);
-  border-radius: 17px;
-  box-shadow: 0 1.5px 20px 1px #ffe60027, 0 2px 20px 2px #00000048;
-  color: #ffe600;
+  background: linear-gradient(121deg, #ff3a3a 0%, #a30518 80%, #350411 100%);
+  border: 2.3px solid #e54b5e44;
+  border-radius: 24px;
+  box-shadow: 0 4.5px 40px 2px #d2001a44, 0 2px 40px 2px #7e041919;
+  color: #fff;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 30px 28px 22px 28px;
-  gap: 13px;
-  min-height: 120px;
+  justify-content: center;
+  padding: 44px 36px 33px 36px;
+  gap: 15px;
+  min-height: 170px;
+  min-width: 320px;
+  max-width: 510px;
   transition: box-shadow 0.22s, border 0.17s, background 0.17s;
   cursor: pointer;
   outline: none;
-  border-bottom: 2.5px solid transparent;
+  border-bottom: 4px solid transparent;
+  filter: drop-shadow(0 5px 10px #ff000050);
 }
 .tyre-brand-card:focus,
 .tyre-brand-card:hover {
-  background: linear-gradient(133deg, #27282F 85%, #242328 100%);
-  border: 1.5px solid #ffe600af;
-  box-shadow: 0 3.7px 36px 2px #ffe6005c, 0 4px 42px 4px #00000080;
-  border-bottom: 2.5px solid #ffe600;
+  background: linear-gradient(121deg, #d60022 0%, #ff3a3a 60%, #bc0734 100%);
+  border: 2.3px solid #ff3a3a;
+  box-shadow: 0 8px 48px 5px #d2001ad1, 0 6px 64px 17px #ff3a3a61;
+  border-bottom: 4px solid #fff;
 }
 
 .tyre-brand-logo {
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .tyre-brand-name {
-  font-size: 1.37rem;
-  font-weight: 600;
-  color: #fffef0;
-  margin-bottom: 0.1em;
-  letter-spacing: .07em;
+  font-size: 2.09rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.15em;
+  letter-spacing: .11em;
   font-family: 'Inter', 'Roboto', Arial, sans-serif;
+  line-height: 1.12;
+  text-shadow: 0px 1.5px 20px #ff3838a6, 0 2px 8.5px #00000873;
 }
 
 .tyre-brand-tagline {
-  font-size: 1.02rem;
-  color: #ffe600b9;
-  opacity: 0.88;
+  font-size: 1.13rem;
+  color: #ffb7bd;
+  opacity: 0.90;
   font-weight: 400;
-  letter-spacing: 0.005em;
+  letter-spacing: 0.01em;
   margin-top: 2px;
   font-family: 'Inter', Arial, sans-serif;
 }
@@ -88,13 +98,17 @@
 @media (max-width: 760px) {
   .tyre-brands-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 25px;
   }
   .ts-tyre-brands-showcase {
-    padding-left: 7px;
-    padding-right: 7px;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 10px;
   }
   .tyre-brand-card {
-    padding: 26px 15px 18px 15px;
+    padding: 26px 9px 17px 11px;
+    min-width: 0;
+    max-width: 98vw;
+    min-height: 105px;
   }
 }
