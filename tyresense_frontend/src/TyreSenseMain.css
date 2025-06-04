@@ -1,17 +1,19 @@
 :root {
-  --ts-dark-bg: #17181d;
-  --ts-neon-yellow: #ffe600;
-  --ts-deep-charcoal: #232326;
-  --ts-accent: #ffe600;
-  --ts-card-bg: #232328;
+  --ts-dark-bg: #1a0308;   /* deep dark red background */
+  --ts-red-main: #D2001A;  /* rich vivid red */
+  --ts-grad-red-1: #ff3a3a;
+  --ts-grad-red-2: #8A0717;
+  --ts-deep-charcoal: #2a1b1f;
+  --ts-accent: #ff3a3a;
+  --ts-card-bg: #29090f;
   --ts-text: #fff;
-  --ts-secondary: #252536;
-  --ts-border: rgba(255,230,0,0.1);
+  --ts-secondary: #831f2c;
+  --ts-border: rgba(243,18,66,0.13);
 }
 
 .tyresense-main {
   min-height: 100vh;
-  background: linear-gradient(180deg, var(--ts-dark-bg) 75%, #111217 100%);
+  background: linear-gradient(145deg, var(--ts-grad-red-2) 0%, var(--ts-dark-bg) 100%);
   color: var(--ts-text);
   font-family: 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif;
 }
