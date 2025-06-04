@@ -1,11 +1,12 @@
 .ts-tyre-brands-showcase {
-  background: linear-gradient(126deg, #8A0717 18%, #220006 92%);
+  background: linear-gradient(131deg, #be0946 8%, #3f060f 92%);
   padding-top: 56px;
-  padding-bottom: 48px;
+  padding-bottom: 54px;
   width: 100%;
   max-width: 1040px;
   margin: 0 auto;
-  border-radius: 24px;
+  border-radius: 26px;
+  box-shadow: 0 7px 35px 2.5px #c7003251;
 }
 
 .tyre-showcase-header {
