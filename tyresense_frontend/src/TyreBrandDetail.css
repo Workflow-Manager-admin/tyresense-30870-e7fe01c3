@@ -1,0 +1,140 @@
+.ts-brand-detail-outer {
+  min-height: 100vh;
+  background: linear-gradient(128deg, #500313 0%, #210109 100%);
+  padding-bottom: 44px;
+}
+
+.ts-detail-back-btn {
+  margin: 34px 0 0 52px;
+  background: linear-gradient(91deg, #ff3a3a 60%, #c90122 100%);
+  color: #fff;
+  font-size: 1.19rem;
+  font-weight: 700;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px 2px #d2001a59;
+  cursor: pointer;
+  letter-spacing: .04em;
+  transition: background 0.11s, color 0.12s;
+  margin-bottom: 16px;
+}
+
+.ts-detail-back-btn:hover {
+  background: linear-gradient(90deg, #e6001b 30%, #900513 99%);
+  color: #fff;
+}
+
+.ts-brand-detail-container {
+  margin: 0 auto;
+  max-width: 786px;
+  min-height: 84vh;
+  background: linear-gradient(121deg, #3d0e1c 11%, #be0946 82%, #370208 110%);
+  border-radius: 32px;
+  box-shadow: 0 9px 34px 6px #a108138e, 0 2px 20px 4px #82132142;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
+  position: relative;
+  padding: 40px 32px 54px 32px;
+}
+
+.ts-brand-tyre-hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  top: -32px;
+  margin-bottom: -13px;
+  width: 242px;
+  height: 242px;
+  z-index: 10;
+  background: none;
+  filter: drop-shadow(0 9px 38px #d2001a95);
+  will-change: transform;
+}
+
+.ts-brand-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+}
+
+.ts-brand-name {
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: .15em;
+  text-shadow: 0 1.5px 24px #ff3838a5, 0 2px 17px #410101a7;
+  margin-bottom: 0.25em;
+  margin-top: .41em;
+  font-family: 'Inter', 'Roboto', Arial, sans-serif;
+}
+
+.ts-brand-tagline {
+  font-size: 1.43rem;
+  color: #ffb7bd;
+  opacity: 0.96;
+  font-weight: 600;
+  font-family: 'Inter', 'Arial', sans-serif;
+  margin-bottom: .51em;
+}
+
+.ts-brand-desc {
+  color: #ffd9e3;
+  font-size: 1.13rem;
+  line-height: 1.62;
+  font-weight: 400;
+  margin-bottom: 30px;
+  width: 100%;
+  text-align: left;
+  position: relative;
+  z-index: 2;
+}
+
+.ts-gradient-divider {
+  margin: 25px auto;
+  width: 93%;
+  height: 6px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #ff3a3a 5%, #8A0717 50%, #ea3857 100%);
+  opacity: 0.85;
+  box-shadow: 0 2px 6px #d2001a57;
+}
+
+.ts-brand-placeholder-data {
+  color: #fff;
+  font-size: 1.03rem;
+  margin-top: 11px;
+}
+
+.ts-detail-buy-btn {
+  margin-top: 18px;
+  background: linear-gradient(92deg, #ff3a3a 0%, #d2001a 94%);
+  color: #fff;
+  padding: 10px 32px;
+  border-radius: 17px;
+  border: none;
+  font-weight: 800;
+  font-size: 1.04rem;
+  cursor: pointer;
+  box-shadow: 0 2px 18px #d2001a4c;
+  letter-spacing: .08em;
+  transition: background 0.13s;
+}
+.ts-detail-buy-btn:hover {
+  background: linear-gradient(92deg, #d2001a 0%, #ff3a3a 90%);
+  color: #fff;
+}
+
+@media (max-width: 800px) {
+  .ts-brand-detail-container {
+    padding: 20px 2vw 24px 2vw;
+    border-radius: 16px;
+  }
+  .ts-brand-name { font-size: 2.2rem; }
+  .ts-brand-tyre-hero { width: 168px; height: 168px; }
+}
