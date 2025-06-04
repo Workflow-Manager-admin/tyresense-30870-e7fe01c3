@@ -158,16 +158,33 @@
 }
 .ts-tyre-card {
   width: 122px;
-  height: 122px;
-  background: var(--ts-card-bg);
-  border-radius: 14px;
+  height: 140px;
+  background: linear-gradient(121deg, var(--ts-card-bg) 28%, #bc0932 99%);
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 12px #c6203045;
+  transition: box-shadow .17s;
 }
 .ts-card-placeholder {
-  opacity: 0.5;
+  opacity: 0.53;
   border: 2.5px dashed var(--ts-accent);
+  background: none;
+}
+
+.ts-btn {
+  background: linear-gradient(92deg, var(--ts-grad-red-1) 0%, var(--ts-red-main) 70%);
+  color: #fff;
+  border-radius: 7px;
+  border: none;
+  padding: 8px 20px;
+  font-size: 1.03rem;
+  font-weight: 700;
+  box-shadow: 0 0 10px 1.5px var(--ts-grad-red-1)66, 0 1px 6px #a108136d;
+  cursor: not-allowed;
+  filter: grayscale(0.11) brightness(1.11);
+  opacity: 0.91;
 }
 
 /* --- Map Section --- */
@@ -221,6 +238,6 @@
   .ts-section { padding: 32px 0 20px 0; }
   .ts-car-input-form { flex-direction: column; gap: 18px; padding: 18px 11px 12px 11px; }
   .ts-tyre-list { gap: 8px; }
-  .ts-tyre-card { width: 87px; height: 87px; }
+  .ts-tyre-card { width: 92px; height: 100px; }
   .ts-map-placeholder { height: 100px; font-size: 1rem; }
 }
