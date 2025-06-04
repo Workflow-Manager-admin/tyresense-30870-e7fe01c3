@@ -102,25 +102,25 @@
   flex-wrap: wrap;
 }
 .ts-car-input-form {
-  background: var(--ts-card-bg);
-  border-radius: 12px;
-  padding: 36px 32px 24px 32px;
-  box-shadow: 0 2px 16px 2px #00000033;
+  background: linear-gradient(120deg, var(--ts-grad-red-2), var(--ts-card-bg) 85%);
+  border-radius: 16px;
+  padding: 40px 38px 24px 38px;
+  box-shadow: 0 4px 32px 4px #e6202c39;
   display: flex;
-  gap: 40px;
+  gap: 44px;
   align-items: center;
   min-width: 340px;
 }
 .ts-car-img-placeholder {
   width: 110px;
-  height: 54px;
+  height: 56px;
   background: var(--ts-secondary);
-  border-radius: 8px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--ts-accent);
-  font-size: 0.85rem;
+  font-size: 0.89rem;
   font-weight: 500;
   border: 1.5px dashed var(--ts-accent);
 }
