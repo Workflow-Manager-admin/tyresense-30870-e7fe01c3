@@ -154,17 +154,17 @@
   margin-bottom: 12px;
 }
 .ts-btn {
-  background: var(--ts-neon-yellow);
-  color: #222;
-  border-radius: 6px;
+  background: linear-gradient(93deg, var(--ts-grad-red-1), var(--ts-red-main) 50%);
+  color: #fff;
+  border-radius: 7px;
   border: none;
-  padding: 8px 18px;
-  font-size: 1rem;
-  font-weight: 600;
-  box-shadow: 0 0 6px 1.5px var(--ts-neon-yellow);
+  padding: 8px 20px;
+  font-size: 1.03rem;
+  font-weight: 700;
+  box-shadow: 0 0 10px 1.5px var(--ts-grad-red-1)66, 0 1px 6px #a108136d;
   cursor: not-allowed;
-  filter: grayscale(0.7);
-  opacity: 0.74;
+  filter: grayscale(0.19) brightness(1.12);
+  opacity: 0.87;
 }
 .ts-btn-filter {
   min-width: 70px;
