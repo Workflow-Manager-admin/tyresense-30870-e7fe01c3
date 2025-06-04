@@ -179,15 +179,16 @@
 .ts-map-placeholder {
   width: 96%;
   height: 170px;
-  background: var(--ts-secondary);
-  border-radius: 10px;
-  border: 2px dashed var(--ts-accent);
+  background: linear-gradient(120deg, var(--ts-secondary) 2%, #410d18 71%);
+  border-radius: 13px;
+  border: 2.1px dashed var(--ts-accent);
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--ts-neon-yellow);
+  color: #fff;
   font-size: 1.15rem;
   font-weight: 500;
+  box-shadow: 0 4.5px 35px 1.5px #d2001a35;
 }
 
 /* --- Reminders / Notifications --- */
