@@ -200,15 +200,15 @@
 .ts-popup-reminder {
   min-width: 260px;
   min-height: 43px;
-  background: #222328;
+  background: linear-gradient(128deg, #410d18, var(--ts-card-bg) 78%);
   color: var(--ts-accent);
-  border-radius: 7px;
-  border: 2px dotted var(--ts-accent);
+  border-radius: 11px;
+  border: 2.4px dotted var(--ts-accent);
   padding: 12px 13px;
   text-align: center;
-  font-size: 0.95rem;
-  font-weight: 500;
-  box-shadow: 0 1px 5px 1px #ffe60046;
+  font-size: 1.05rem;
+  font-weight: 600;
+  box-shadow: 0 1.5px 13px 2.5px #ff3a3a33;
 }
 
 /* --- Hidden User Data Section --- */
