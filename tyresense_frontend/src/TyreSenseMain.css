@@ -1,15 +1,16 @@
 :root {
-  --ts-dark-bg: #1a0308;   /* deep dark red background */
-  --ts-red-main: #D2001A;  /* rich vivid red */
+  --ts-dark-bg: #1a0308;           /* deep dark red background */
+  --ts-red-main: #D2001A;          /* rich vivid red */
   --ts-grad-red-1: #ff3a3a;
   --ts-grad-red-2: #8A0717;
-  --ts-deep-charcoal: #2a1b1f;
-  --ts-accent: #ff3a3a;
-  --ts-card-bg: #29090f;
+  --ts-red-3: #ba0934;
+  --ts-accent: #ff2848;            /* accent for gradient stops */
+  --ts-card-bg: #401018;           /* premium card bg */
   --ts-text: #fff;
-  --ts-secondary: #831f2c;
-  --ts-border: rgba(243,18,66,0.13);
+  --ts-secondary: #84001d;
+  --ts-border: rgba(231,34,62,0.18);
 }
+
 
 .tyresense-main {
   min-height: 100vh;
