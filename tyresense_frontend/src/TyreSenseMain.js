@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./TyreSenseMain.css";
 import AnimatedCarIntro from "./AnimatedCarIntro";
+import TyreTypesShowcase from "./TyreTypesShowcase";
 
 /**
  * TyreSenseMain - Main container for TyreSense app UI, including animated car intro.
@@ -47,6 +48,10 @@ function TyreSenseMain() {
                 </form>
               </div>
             </section>
+
+            {/* --- Tyre Brands Showcase Section --- */}
+            <TyreTypesShowcase onBrandSelect={() => {}} />
+
 
             {/* --- Recommendation & Filtering Section --- */}
             <section className="ts-section ts-tyre-recommend-section">
