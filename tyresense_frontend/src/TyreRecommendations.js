@@ -218,15 +218,15 @@ function TyreRecommendations({ car, userLocation, onSetReminder, userTyreData, p
                   ease: "linear",
                 }}
               />
-              <div style={{ color: "#ffe600", fontWeight: 700, fontSize: "1.07rem" }}>
+              <div style={{ color: "#b4081b", fontWeight: 700, fontSize: "1.03rem" }}>
                 {tyre.brand}
               </div>
-              <div style={{ color: "#fff", fontWeight: 600, fontSize: "0.99rem" }}>
+              <div style={{ color: "#edeef0", fontWeight: 600, fontSize: "0.98rem" }}>
                 {tyre.model}
               </div>
-              <div style={{ color: "#00fff9", fontSize: "0.92rem" }}>{tyre.size}</div>
-              <div style={{ color: "#fff", marginBottom: 3 }}>{tyre.type}</div>
-              <div style={{ color: "#ffe600", fontWeight: 700 }}>
+              <div style={{ color: "#7d7d85", fontSize: "0.91rem" }}>{tyre.size}</div>
+              <div style={{ color: "#edeef0", marginBottom: 3 }}>{tyre.type}</div>
+              <div style={{ color: "#b4081b", fontWeight: 800 }}>
                 £{tyre.price}
               </div>
               <button
@@ -234,14 +234,13 @@ function TyreRecommendations({ car, userLocation, onSetReminder, userTyreData, p
                 style={{
                   marginTop: 7,
                   fontSize: "0.97rem",
-                  borderRadius: 8,
-                  border: "none",
-                  background:
-                    "linear-gradient(92deg, #121d47 6%, #00fff9 97%)",
-                  color: "#18181f",
-                  fontWeight: 800,
-                  padding: "6px 16px",
-                  boxShadow: "0 2px 9px #00fff93a",
+                  borderRadius: 7,
+                  border: "1.2px solid #2f2f33",
+                  background: "#232327",
+                  color: "#b4081b",
+                  fontWeight: 700,
+                  padding: "6px 14px",
+                  boxShadow: "none",
                   cursor: "pointer",
                 }}
                 onClick={() => window.open(tyre.url, "_blank")}
@@ -251,14 +250,14 @@ function TyreRecommendations({ car, userLocation, onSetReminder, userTyreData, p
               <button
                 className="ts-btn"
                 style={{
-                  background: "none",
-                  border: "1.8px solid #ffe600",
-                  color: "#ffe600",
+                  background: "#18181b",
+                  border: "1.2px solid #7d7d85",
+                  color: "#7d7d85",
                   marginTop: 3,
-                  fontWeight: 700,
-                  fontSize: "0.94rem",
-                  borderRadius: 7,
-                  boxShadow: "0 1px 8px #ffe60044",
+                  fontWeight: 600,
+                  fontSize: "0.92rem",
+                  borderRadius: 6,
+                  boxShadow: "none",
                   cursor: "pointer",
                 }}
                 onClick={(e) => {
