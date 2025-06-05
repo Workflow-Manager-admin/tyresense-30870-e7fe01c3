@@ -7,94 +7,124 @@ import "./AnimatedCarIntro.css";
  * This is a true, crisp, side-on SVG representation of a Ferrari F1 car (2022+ era vibe, stylized for clarity and visual impact).
  * Proportions, lines, and shadows improved for a much more "real", visually rich appearance.
  */
-// PUBLIC_INTERFACE
+/**
+ * PUBLIC_INTERFACE
+ * FerrariF1SideSVG: Now featuring an ultra-polished, highly detailed Ferrari F1 car (side view, 2022+), with more realistic wheels, correct "shark" nose, accurate halo, subtle sponsor/numbering, intense paint, and pro motorsport touches. Optimized for scale and dark backgrounds.
+ */
 function FerrariF1SideSVG({ style, ...props }) {
-  // A clean, visually enhanced Ferrari F1 side-view SVG, with sharper proportions and race-ready accents.
-  // Key features: visually precise low nose, cockpit airbox, halo, realistic wheels/tyre shading, DRS, Ferrari shield.
   return (
     <svg
-      viewBox="0 0 380 109"
+      viewBox="0 0 420 120"
       fill="none"
       width="300"
-      height="90"
+      height="95"
       style={style}
       {...props}
-      aria-label="High-quality side view Ferrari F1 car"
+      aria-label="Ultra-premium Ferrari F1 2022+ side profile"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
     >
       <defs>
-        <linearGradient id="ferrariRed" x1="0" y1="0" x2="0" y2="115" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#D50A13" />
-          <stop offset="1" stopColor="#960A12" />
+        <linearGradient id="ferrariRedGrad" x1="0" y1="0" x2="0" y2="120" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#D50317" />
+          <stop offset="1" stopColor="#84030C" />
         </linearGradient>
-        <linearGradient id="ferrariBody" x1="0" y1="60" x2="380" y2="60" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#C10D10"/>
-          <stop offset="0.49" stopColor="#F40C1E"/>
-          <stop offset="0.96" stopColor="#900a13"/>
+        <linearGradient id="mainBodyRed" x1="30" y1="80" x2="340" y2="80" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#C30410"/>
+          <stop offset="0.6" stopColor="#f0101a"/>
+          <stop offset="1" stopColor="#65040C"/>
         </linearGradient>
-        <linearGradient id="tyreBlack" x1="0" y1="0" x2="0" y2="36" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#454649" />
-          <stop offset="1" stopColor="#0D0D12" />
+        <linearGradient id="matteBlack" x1="0" y1="0" x2="0" y2="32" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#3b3c41" />
+          <stop offset="1" stopColor="#19161d" />
         </linearGradient>
-        <radialGradient id="tyreRimGloss" cx="50%" cy="40%" r="64%">
-          <stop offset="0.16" stopColor="#FFD700" stopOpacity="0.99"/>
-          <stop offset="0.63" stopColor="#FFF6D2" stopOpacity="0.29"/>
-          <stop offset="1" stopColor="#FFD700" stopOpacity="0.12"/>
+        <radialGradient id="carbonGloss" cx="48%" cy="29%" r="61%">
+          <stop offset="0.19" stopColor="#F6D944" stopOpacity="0.95"/>
+          <stop offset="0.48" stopColor="#FFFBE6" stopOpacity="0.37"/>
+          <stop offset="1" stopColor="#F6D944" stopOpacity="0.11"/>
         </radialGradient>
-        <radialGradient id="carShadow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#222" stopOpacity="0.31" />
-          <stop offset="100%" stopColor="#000" stopOpacity="0.03" />
+        <radialGradient id="tyreShadow" cx="50%" cy="50%" r="65%">
+          <stop offset="0%" stopColor="#2a090c" stopOpacity="0.31" />
+          <stop offset="100%" stopColor="#121210" stopOpacity="0.13" />
+        </radialGradient>
+        <radialGradient id="mainShadow" cx="50%" cy="62%" r="78%">
+          <stop offset="0.11" stopColor="#410d19" stopOpacity="0.31" />
+          <stop offset="1" stopColor="#000" stopOpacity="0.09" />
         </radialGradient>
       </defs>
-      {/* Car shadow */}
-      <ellipse cx="190" cy="103" rx="138" ry="6.7" fill="url(#carShadow)" opacity="0.24" />
-      {/* Rear Wing (flat DRS) */}
-      <rect x="340" y="38" width="29" height="7.6" rx="3.8" fill="#11131C" />
-      <rect x="340.6" y="34" width="28" height="3.2" rx="1.6" fill="#FFE600" opacity="0.83" />
-      {/* Rear Wheel */}
-      <ellipse cx="333" cy="87.5" rx="20.5" ry="20.8" fill="url(#tyreBlack)" stroke="#E6E6E6" strokeWidth="4.2"/>
-      <ellipse cx="333" cy="87.5" rx="10.7" ry="10.8" fill="url(#tyreRimGloss)" />
-      {/* Front Wheel */}
-      <ellipse cx="52.5" cy="87.7" rx="19.5" ry="19.8" fill="url(#tyreBlack)" stroke="#DADADA" strokeWidth="4.2"/>
-      <ellipse cx="52.5" cy="87.7" rx="10.2" ry="10" fill="url(#tyreRimGloss)" />
-      {/* Main body */}
-      <rect x="66" y="55" width="255" height="27.5" rx="13.6" fill="url(#ferrariBody)" stroke="#FFE600" strokeWidth="1.92"/>
-      {/* Cockpit "bubble" */}
-      <rect x="168" y="19" width="51" height="45" rx="18.5" fill="url(#ferrariRed)" stroke="#FFE600" strokeWidth="1.4"/>
+      {/* Main car shadow */}
+      <ellipse cx="202" cy="113" rx="144" ry="7.5" fill="url(#mainShadow)" opacity="0.19" />
+      {/* Rear wing endplate, main (black/red) */}
+      <rect x="352" y="38" width="30" height="38" rx="5" fill="#2C1519" />
+      <rect x="350" y="36" width="33" height="9" rx="2.5" fill="#EC1A20" />
+      {/* DRS pod (hint) */}
+      <rect x="349" y="32" width="34" height="4.3" rx="2.15" fill="#FFE600" opacity="0.97" />
+      {/* Rear tyre group */}
+      <g>
+        <ellipse cx="355" cy="91.5" rx="22" ry="22.5" fill="url(#matteBlack)" stroke="#EEEEEC" strokeWidth="5"/>
+        <ellipse cx="355" cy="91.5" rx="12.2" ry="12.7" fill="url(#carbonGloss)" />
+        <ellipse cx="355" cy="91.5" rx="16" ry="16.7" fill="url(#tyreShadow)" opacity="0.16"/>
+      </g>
+      {/* Front tyre group */}
+      <g>
+        <ellipse cx="78.5" cy="94.2" rx="21.2" ry="21.4" fill="url(#matteBlack)" stroke="#D3DAE1" strokeWidth="4.5"/>
+        <ellipse cx="78.5" cy="94.2" rx="11.4" ry="12" fill="url(#carbonGloss)" />
+        <ellipse cx="78.5" cy="94.2" rx="14.2" ry="14.9" fill="url(#tyreShadow)" opacity="0.13"/>
+      </g>
+      {/* Floor/undertray */}
+      <rect x="84" y="103.2" width="241" height="11.4" rx="6.5" fill="#23262A" opacity="0.62" stroke="#36353f" strokeWidth="1.2"/>
+      {/* Sidepod and floor edges */}
+      <rect x="94" y="84.5" width="219" height="21.6" rx="11.2" fill="url(#mainBodyRed)" stroke="#FFE600" strokeWidth="2"/>
+      <rect x="244" y="84.5" width="61" height="21.6" rx="10.5" fill="#d20516" stroke="#FFE600" strokeWidth="1.1"/>
+
+      {/* Main Ferrari body */}
+      <rect x="78" y="48" width="224" height="36" rx="18.5"
+        fill="url(#mainBodyRed)" stroke="#FFE600" strokeWidth="2.2"/>
+      {/* Cockpit glass */}
+      <rect x="180" y="18.5" width="61" height="38.5" rx="19.5"
+        fill="url(#ferrariRedGrad)" stroke="#FFE600" strokeWidth="1.8"/>
       {/* Halo */}
-      <rect x="208" y="16" width="14.5" height="7.1" rx="3" fill="#111119" stroke="#FFE600" strokeWidth="0.6"/>
-      {/* Airbox/Air intake */}
-      <ellipse cx="196" cy="13.2" rx="7.6" ry="4" fill="#FFE600" stroke="#AAAA00" strokeWidth="0.38"/>
-      {/* Headrest/roll bar behind head */}
-      <rect x="222" y="32" width="8.8" height="20" rx="4" fill="#0f0e13" />
-      {/* Undertray/floor */}
-      <rect x="70" y="81" width="244" height="10.8" rx="5.1" fill="#101019" opacity=".62" stroke="#343335" strokeWidth="1.09"/>
-      {/* Sidepod air inlets */}
-      <rect x="270" y="66.2" width="23" height="5" rx="2.1" fill="#ffe600" opacity="0.63" />
-      <rect x="84" y="67" width="17" height="6.1" rx="1.4" fill="#ffe600" opacity="0.47" />
-      {/* Ferrari shield (simplified) */}
-      <rect x="255" y="65" width="13.2" height="11.7" rx="3.2" fill="#ffe600" stroke="#111" strokeWidth="0.42"/>
-      <text x="261.2" y="76" fontSize="7.7" fontWeight="bold" fill="#1a1a1a" style={{ fontFamily: 'monospace' }}>SF</text>
-      {/* Driver helmet */}
-      <ellipse cx="177" cy="36.2" rx="9.3" ry="9.0" fill="#e5e5e5" stroke="#D50A13" strokeWidth="2.1"/>
-      <ellipse cx="179.5" cy="36.2" rx="3.7" ry="4.7" fill="#222" />
-      {/* Side mirrors */}
-      <rect x="160" y="45" width="7" height="3.5" rx="1.1" fill="#ffe600"/>
-      <rect x="246" y="44.8" width="6" height="3.3" rx="1.2" fill="#ffe600"/>
-      {/* Front wing mainplate/base */}
-      <rect x="14" y="67.3" width="48" height="5.9" rx="3.2" fill="#22222b" />
-      <rect x="10" y="74.2" width="53" height="3.4" rx="1.9" fill="#ffe600" opacity="0.91"/>
-      {/* Nose */}
-      <rect x="26" y="59.5" width="15" height="10.6" rx="4.1" fill="#ffe600" stroke="#AAA920" strokeWidth="0.39"/>
-      {/* Front winglets (splitters/endplates) */}
-      <rect x="19.6" y="74.6" width="12.1" height="4.4" rx="2.0" fill="#ffe600" opacity=".85"/>
-      {/* Branding text and model */}
-      <text x="222" y="71.5" fontSize="12.5" fontWeight="bold" fill="#1a1a1a" style={{ fontFamily: 'monospace' }}>SF-75</text>
-      {/* Under-body accent shadow */}
-      <ellipse cx="190" cy="90.3" rx="90" ry="4.7" fill="#e80b1b" opacity="0.14" />
+      <rect x="236" y="16" width="18" height="8.7" rx="3.6"
+        fill="#19171d" stroke="#FFE600" strokeWidth="0.7"/>
+      {/* Halo double supports */}
+      <rect x="248" y="24" width="5" height="16" rx="1.5" fill="#ffe600" opacity="0.85" />
+      <rect x="208" y="24" width="4.6" height="15.4" rx="1.27" fill="#ffe600" opacity="0.5" />
+      {/* Airbox/intake */}
+      <ellipse cx="215" cy="14.4" rx="8" ry="4.3" fill="#FFE600" stroke="#DAAC13" strokeWidth="0.41"/>
+      {/* Chassis/engine cover */}
+      <rect x="256" y="28" width="22" height="23.5" rx="4.6" fill="#0f0e13"/>
+      <rect x="289" y="35.2" width="13.5" height="12.7" rx="3.1" fill="#ffe60066"/>
+      {/* "Shark" extended nose (modern F1 highlight) */}
+      <rect x="42" y="65" width="46" height="13.6" rx="6.8" fill="#FFE600" stroke="#C9C143" strokeWidth="0.41"/>
+      {/* Driver helmet + seat */}
+      <ellipse cx="195" cy="36.1" rx="9.1" ry="8.7" fill="#f8e8e8" stroke="#DD0D19" strokeWidth="2.2"/>
+      <ellipse cx="198" cy="36.1" rx="3.6" ry="4.5" fill="#362022" />
+      {/* Roll hoop */}
+      <rect x="237" y="26.2" width="7.7" height="19.3" rx="3.8" fill="#111a1d" />
+      {/* Mirrors */}
+      <rect x="158" y="49" width="7.5" height="4.1" rx="1.45" fill="#ffe600"/>
+      <rect x="287" y="47" width="6.2" height="3.6" rx="1.1" fill="#ffe600"/>
+      {/* Ferrari shield (SVG-optimized, stylized) */}
+      <rect x="276" y="74.1" width="15" height="13.5" rx="3.1"
+        fill="#FFE600" stroke="#191a1a" strokeWidth="0.38"/>
+      <text x="280.5" y="85.5" fontSize="8.5" fontWeight="bold"
+        fill="#111a1a" style={{fontFamily: 'monospace'}}>SF</text>
+      {/* Branding text/number model number */}
+      <text x="260" y="71" fontSize="14.3" fontWeight="bold"
+        fill="#1a1a1a" style={{ fontFamily: 'monospace' }}>75</text>
+      {/* Front wing mainplate (multi-segment for F1 2022+) */}
+      <rect x="22" y="75.5" width="60" height="7" rx="3.3" fill="#22222b" />
+      <rect x="17" y="82.8" width="64" height="4" rx="2.4" fill="#ffe600" opacity="0.96"/>
+      {/* Front winglets (modern swept flow) */}
+      <rect x="31.3" y="90" width="11.5" height="2.2" rx="1.1" fill="#ffe600" opacity="0.74"/>
+      <rect x="46" y="90.8" width="10.1" height="2" rx="0.85" fill="#ffe600" opacity="0.74"/>
       {/* Subtle body highlight */}
-      <ellipse cx="225" cy="54" rx="65" ry="18" fill="#fff" opacity="0.14" />
+      <ellipse cx="185" cy="60" rx="72" ry="19" fill="#fff" opacity="0.10" />
+      {/* Tire rakes/wheel highlights */}
+      <ellipse cx="78.5" cy="94.2" rx="8.5" ry="7.5" fill="#ffe600" opacity="0.11" />
+      <ellipse cx="355" cy="91.5" rx="8.5" ry="7.5" fill="#ffe600" opacity="0.11" />
+      {/* Rear number/ferrari accent bar */}
+      <rect x="345" y="78" width="20" height="6" rx="2.5" fill="#ffe600" opacity="0.85" />
     </svg>
   );
 }
