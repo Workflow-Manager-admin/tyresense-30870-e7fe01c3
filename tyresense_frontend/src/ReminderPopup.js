@@ -49,16 +49,16 @@ function ReminderPopup({ tyre, userEmail, onClose }) {
     <div
       className="ts-popup-reminder"
       style={{
-        minWidth: 270,
-        background: "linear-gradient(138deg,#191932 14%,#ffe60032 87%)",
-        color: "#ffe600",
+        minWidth: 240,
+        background: "linear-gradient(137deg,#232327 24%,#19181b 93%)",
+        color: "#edeef0",
         textAlign: "center",
-        borderRadius: 13,
-        border: "2.8px dotted #00fff9",
+        borderRadius: 11,
+        border: "1.4px solid #2f2f33",
         fontWeight: 600,
-        fontSize: "1.08rem",
-        boxShadow: "0 1.5px 13px 2.5px #ff3a3a33",
-        padding: "18px 17px",
+        fontSize: "1.04rem",
+        boxShadow: "0 2px 8px #b4081b17",
+        padding: "13px 13px",
         zIndex: 9009,
         position: "fixed",
         left: "50%",
@@ -74,10 +74,10 @@ function ReminderPopup({ tyre, userEmail, onClose }) {
             className="ts-bounce"
             style={{
               display: "inline-block",
-              fontSize: "1.19em",
+              fontSize: "1.09em",
               animation: "ts-pop .8s infinite alternate",
-              marginLeft: 12,
-              color: "#00fff9",
+              marginLeft: 8,
+              color: "#b4081b",
             }}
           >
             ⏳
@@ -92,16 +92,17 @@ function ReminderPopup({ tyre, userEmail, onClose }) {
         className="ts-btn"
         onClick={onClose}
         style={{
-          background: "none",
-          color: "#ffe600",
-          border: "1.8px solid #ffe600",
-          borderRadius: 7,
+          background: "#232327",
+          color: "#b4081b",
+          border: "1.2px solid #b4081b",
+          borderRadius: 5,
           fontWeight: 700,
-          marginTop: 9,
+          marginTop: 7,
           marginLeft: 3,
-          fontSize: "0.97rem",
-          boxShadow: "0 1px 8px #ffe60044",
-          padding: "3px 14px",
+          fontSize: "0.96rem",
+          boxShadow: "none",
+          padding: "4px 13px",
+          cursor: "pointer"
         }}
       >
         Close
