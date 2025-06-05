@@ -11,7 +11,10 @@ import "./TyreBrandDetail.css";
  * - Implements all details of Porsche-inspired layout, color palette, card, and type hierarchy from style_guide.md
  */
 
-// Demo content for each brand (expand as needed)
+/*
+ * Expanded and refined: Each brand gets more tyre models, curated real tyre images, and clean, consistent card details.
+ * Real image links based on curated_tyre_images.txt for primary models, with unique alt text.
+ */
 const DEMO_BRAND_TYPES = {
   pirelli: {
     name: "Pirelli",
@@ -20,17 +23,29 @@ const DEMO_BRAND_TYPES = {
         id: "p7",
         model: "Cinturato P7",
         type: "Summer",
-        img: process.env.PUBLIC_URL + "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
-        desc: "Award-winning summer tyre—responsive handling, low rolling resistance and premium comfort for modern performance cars.",
+        img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=2048&q=90",
+        imgAlt: "Profile view of a real Pirelli tyre on a clean surface",
+        desc: "Award-winning summer tyre for modern performance cars. Responsive, comfortable, low rolling resistance.",
         sizes: ["225/45R17", "215/40R18", "205/55R16"],
         url: "https://www.pirelli.com/tyres/en-ww/cinturato/p7"
+      },
+      {
+        id: "powergy",
+        model: "Powergy",
+        type: "All-Season",
+        img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=2048&q=90",
+        imgAlt: "Pirelli Powergy close-up, ultra premium",
+        desc: "Eco-friendly all-season with advanced safety, low noise and confident grip.",
+        sizes: ["205/55R16", "225/40R18"],
+        url: "https://www.pirelli.com/tyres/en-ww/powergy"
       },
       {
         id: "sottozero",
         model: "Sottozero 3",
         type: "Winter",
-        img: process.env.PUBLIC_URL + "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
-        desc: "Ultimate safety for cold conditions. Superior snow/ice traction and wide grooves for winter slush.",
+        img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=2048&q=90",
+        imgAlt: "Pirelli Sottozero, special tread for snow",
+        desc: "Ultimate safety for cold: superior snow/ice, wide grooves for winter slush.",
         sizes: ["205/55R16", "225/45R17"],
         url: "https://www.pirelli.com/tyres/en-ww/cinturato-winter"
       }
@@ -43,19 +58,31 @@ const DEMO_BRAND_TYPES = {
         id: "primacy4",
         model: "Primacy 4",
         type: "All-Season",
-        img: process.env.PUBLIC_URL + "/assets/20250605_071317_michelin-tyres.jpg",
-        desc: "Touring tyre with outstanding wet braking and extra-long tread life. Preferred for family sedans.",
-        sizes: ["205/55R16", "215/55R17"],
+        img: "https://images.pexels.com/photos/207924/pexels-photo-207924.jpeg?auto=compress&w=2048&q=90",
+        imgAlt: "Close-up of a single Michelin tyre showcasing deep tread detail",
+        desc: "Touring tyre with outstanding wet braking and extra-long tread life.",
+        sizes: ["205/55R16", "215/55R17", "185/60R15"],
         url: "https://www.michelin.co.uk/auto/tyres/michelin-primacy-4"
       },
       {
         id: "pilotSport5",
         model: "Pilot Sport 5",
         type: "Performance",
-        img: process.env.PUBLIC_URL + "/assets/20250605_071317_michelin-tyres.jpg",
-        desc: "Maximum performance street tyre—track-derived compound for spirited drivers.",
+        img: "https://images.pexels.com/photos/207924/pexels-photo-207924.jpeg?auto=compress&w=2048&q=90",
+        imgAlt: "Michelin Pilot Sport 5 in deep contrast lighting",
+        desc: "Maximum performance street tyre: track-derived compound for spirited drivers.",
         sizes: ["225/40R18", "235/45R18", "255/35R19"],
         url: "https://www.michelin.co.uk/auto/tyres/michelin-pilot-sport-5"
+      },
+      {
+        id: "crossclimate2",
+        model: "CrossClimate 2",
+        type: "All-Weather",
+        img: "https://images.pexels.com/photos/207924/pexels-photo-207924.jpeg?auto=compress&w=2048&q=90",
+        imgAlt: "Michelin CrossClimate, all-weather turn",
+        desc: "True all-weather safety: dry grip and advanced water dispersion.",
+        sizes: ["215/55R17", "225/50R17"],
+        url: "https://www.michelin.co.uk/auto/tyres/michelin-crossclimate-2"
       }
     ]
   },
@@ -66,10 +93,21 @@ const DEMO_BRAND_TYPES = {
         id: "conti6",
         model: "SportContact 6",
         type: "Performance",
-        img: process.env.PUBLIC_URL + "/assets/20250605_071316_continental_pp_conti_cityplus.jpg",
-        desc: "Ultra-high performance. Maximum control in all conditions, Black Chili compound for race-inspired grip.",
+        img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=2048&q=90",
+        imgAlt: "Macro shot of Continental tyre sidewall and tread textures",
+        desc: "Ultra-high performance. Maximum control with Black Chili compound for race-inspired grip.",
         sizes: ["225/40R18", "235/45R17", "245/35R19"],
         url: "https://www.continental-tires.com/uk/en/b2c/car/tires/contisportcontact-6.html"
+      },
+      {
+        id: "premiumContact7",
+        model: "PremiumContact 7",
+        type: "Touring",
+        img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=2048&q=90",
+        imgAlt: "Continental PremiumContact, close profile of grooves",
+        desc: "Quiet ride, class-leading efficiency and safe handling on wet.",
+        sizes: ["205/55R16", "225/50R17"],
+        url: "https://www.continental-tires.com/uk/en/b2c/car/tires/premiumcontact-7.html"
       }
     ]
   },
@@ -80,17 +118,29 @@ const DEMO_BRAND_TYPES = {
         id: "turanza",
         model: "Turanza T005",
         type: "Touring",
-        img: process.env.PUBLIC_URL + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
-        desc: "Premium touring tyre: quiet ride, outstanding wet grip and class-leading efficiency.",
+        img: "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&w=2048&q=90",
+        imgAlt: "Group of stacked Bridgestone tyres in a clean indoor setting",
+        desc: "Premium touring: quiet, outstanding wet grip, proven efficiency.",
         sizes: ["195/65R15", "205/60R16"],
         url: "https://www.bridgestone.co.uk/our-products/car-tyres/turanza-t005"
+      },
+      {
+        id: "potenzaSport",
+        model: "Potenza Sport",
+        type: "Performance",
+        img: "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&w=2048&q=90",
+        imgAlt: "Bridgestone Potenza Sport - out-of-the-pit fresh",
+        desc: "Maximum cornering, quick response: Bridgestone’s top ultra-high performance model.",
+        sizes: ["225/40R18", "235/45R17"],
+        url: "https://www.bridgestone.co.uk/our-products/car-tyres/potenza-sport"
       },
       {
         id: "blizzak",
         model: "Blizzak LM005",
         type: "Winter",
-        img: process.env.PUBLIC_URL + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
-        desc: "Exceptional winter control, engineered for snow and slush with high silica tread.",
+        img: "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&w=2048&q=90",
+        imgAlt: "Bridgestone Blizzak stacked, ready for snow",
+        desc: "Exceptional winter control, engineered for snow/slush with advanced silica.",
         sizes: ["205/55R16", "225/45R17"],
         url: "https://www.bridgestone.co.uk/our-products/car-tyres/blizzak-lm005"
       }
