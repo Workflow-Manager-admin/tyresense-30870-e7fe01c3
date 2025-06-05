@@ -1,4 +1,18 @@
 /* CAR DETAILS FORM - Dark/Neon Luxe Apple/Richard Mille Minimalist */
+/* -- Modernized accent classes for extra polish -- */
+.neon-accent { color: #00fff9 !important; text-shadow: 0 0 12px #00fff999, 0 3px 12px #18193277; font-weight: 950;}
+.neon-gold { color: #ffe600 !important; text-shadow: 0 0 13px #ffe600a0, 0 4px 12px #19193270; font-weight: 950;}
+.modern-car-form { padding-bottom: 30px !important; }
+.modern-form-group { margin-bottom: 0 !important; }
+.ts-car-form-fields-container { display: flex; flex-wrap: wrap; gap: 3vw 4vw; justify-content: flex-start; align-items: flex-end; width: 100%; }
+.modern-car-form-row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: flex-start; gap: 2vw 50px; margin-top: 66px; }
+@media (max-width: 1100px) {
+  .ts-car-form-fields-container, .modern-car-form-row {
+    flex-direction: column;
+    gap: 14px;
+    align-items: stretch;
+  }
+}
 
 .ts-car-input-form {
   --form-dark-bg: #16161c;
