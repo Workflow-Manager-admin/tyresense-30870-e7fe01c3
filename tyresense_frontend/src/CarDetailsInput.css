@@ -2,38 +2,47 @@
 
 .ts-car-input-form {
   --form-dark-bg: #16161c;
-  --form-dark-grad: linear-gradient(125deg, #191924 85%, #101019 100%);
-  --form-card-shadow: 0 8px 48px 4px #00fff933, 0 1.5px 12px #ffe60024;
+  --form-dark-grad: linear-gradient(128deg, #18181f 74%, #101019 100%);
+  --form-card-shadow: 0 10px 58px 7px #00fff958, 0 4px 23px #ffe60022, 0 1.5px 22px #354de924;
   --neon-yellow: #ffe600;
   --neon-cyan: #00fff9;
-  --form-border: 2.3px solid #23253f;
-  --input-border-radius: 19px;
-  --input-bg: #15151d;
-  --input-border: 2.3px solid #212147;
+  --form-border: 2.8px solid #23253f;
+  --input-border-radius: 22px;
+  --input-bg: #191928;
+  --input-border: 2.4px solid #23253f;
   --input-text: #ffe600;
   --input-highlight: #00fff9;
   --label-text: #ffe600;
   --label-text-secondary: #fff;
   --label-bold: 950;
-  --btn-bg-grad: linear-gradient(98deg, #ffe600 71%, #00fff9 133%);
+  --btn-bg-grad: linear-gradient(97deg, #ffe600 68%, #00fff9 144%);
   --btn-hover: #191932;
-  --box-radius: 38px;
+  --box-radius: 41px;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   background: var(--form-dark-grad);
   border-radius: var(--box-radius);
   box-shadow: var(--form-card-shadow);
-  padding: 64px 54px 50px 54px;
-  margin-bottom: 53px;
-  margin-top: 34px;
+  padding: 86px 62px 46px 62px;
+  margin-bottom: 68px;
+  margin-top: 28px;
   position: relative;
   border: var(--form-border);
   min-width: 0;
-  gap: 52px 46px;
-  max-width: 980px;
-  width: 99%;
+  gap: 63px 54px;
+  max-width: 900px;
+  width: 97%;
   justify-content: flex-start;
+  transition: box-shadow 0.23s, border 0.19s, background 0.14s;
+  filter: brightness(1.12);
+}
+.ts-car-input-form.ts-premium {
+  background: linear-gradient(123deg, #1b1b25 78%, #101019 100%);
+  box-shadow: 0 13px 73px 11px #00fff936, 0 7px 40px #ffe60025, 0 3.5px 16px #23253f44;
+  border-radius: 41px;
+  border: 2.8px solid #00fff92a;
+  filter: brightness(1.125) blur(.01px);
 }
 @media (max-width: 950px) {
   .ts-car-input-form {
