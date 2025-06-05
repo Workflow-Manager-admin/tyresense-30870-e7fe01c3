@@ -45,6 +45,26 @@ const DEMO_BRAND_TYPES = {
         desc: "Ultimate safety for cold: superior snow/ice, wide grooves for winter slush.",
         sizes: ["205/55R16", "225/45R17"],
         url: "https://www.pirelli.com/tyres/en-ww/cinturato-winter"
+      },
+      {
+        id: "pzero",
+        model: "P Zero",
+        type: "Performance",
+        img: "https://images.unsplash.com/photo-1523960623072-693d371ad3bd?auto=format&fit=crop&w=1200&q=90",
+        imgAlt: "Pirelli P Zero, performance summer tyre close-up",
+        desc: "High-end UHP tyre, excellent for sporty handling and control at speed.",
+        sizes: ["225/40R18", "245/35R19", "255/30R20"],
+        url: "https://www.pirelli.com/tyres/en-ww/pzero"
+      },
+      {
+        id: "cinturatoAllSeason",
+        model: "Cinturato All Season SF2",
+        type: "All-Season",
+        img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=90",
+        imgAlt: "Pirelli Cinturato All Season, wet road photo",
+        desc: "Versatile year-round tyre: strong wet road grip and winter safety.",
+        sizes: ["205/55R16", "215/50R17"],
+        url: "https://www.pirelli.com/tyres/en-ww/cinturato/all-season"
       }
     ]
   },
@@ -65,8 +85,8 @@ const DEMO_BRAND_TYPES = {
         id: "pilotSport5",
         model: "Pilot Sport 5",
         type: "Performance",
-        img: "https://images.pexels.com/photos/207924/pexels-photo-207924.jpeg?auto=compress&w=2048&q=90",
-        imgAlt: "Michelin Pilot Sport 5 in deep contrast lighting",
+        img: "https://images.pexels.com/photos/7272630/pexels-photo-7272630.jpeg?auto=compress&w=2048&q=90",
+        imgAlt: "Michelin Pilot Sport 5, deep tread, sidewall contrast",
         desc: "Maximum performance street tyre: track-derived compound for spirited drivers.",
         sizes: ["225/40R18", "235/45R18", "255/35R19"],
         url: "https://www.michelin.co.uk/auto/tyres/michelin-pilot-sport-5"
@@ -75,11 +95,31 @@ const DEMO_BRAND_TYPES = {
         id: "crossclimate2",
         model: "CrossClimate 2",
         type: "All-Weather",
-        img: "https://images.pexels.com/photos/207924/pexels-photo-207924.jpeg?auto=compress&w=2048&q=90",
-        imgAlt: "Michelin CrossClimate, all-weather turn",
+        img: "https://images.pexels.com/photos/1715194/pexels-photo-1715194.jpeg?auto=compress&w=2048&q=90",
+        imgAlt: "Michelin CrossClimate tread macro close-up",
         desc: "True all-weather safety: dry grip and advanced water dispersion.",
         sizes: ["215/55R17", "225/50R17"],
         url: "https://www.michelin.co.uk/auto/tyres/michelin-crossclimate-2"
+      },
+      {
+        id: "alpin6",
+        model: "Alpin 6",
+        type: "Winter",
+        img: "https://images.pexels.com/photos/1679648/pexels-photo-1679648.jpeg?auto=compress&w=2048&q=90",
+        imgAlt: "Michelin Alpin 6 tyre ready for snowy roads",
+        desc: "Winter tyre for cold, snow, and ice; best-in-class braking when worn.",
+        sizes: ["205/55R16", "225/45R17"],
+        url: "https://www.michelin.co.uk/auto/tyres/michelin-alpin-6"
+      },
+      {
+        id: "primacyTouring",
+        model: "Primacy 3",
+        type: "Touring",
+        img: "https://images.pexels.com/photos/207924/pexels-photo-207924.jpeg?auto=compress&w=2048&q=90",
+        imgAlt: "Close-up of Michelin Primacy 3 for touring use",
+        desc: "Smooth, quiet ride and reduced fuel consumption, ideal for everyday comfort.",
+        sizes: ["195/65R15", "205/60R16"],
+        url: "https://www.michelin.co.uk/auto/tyres/michelin-primacy-3"
       }
     ]
   },
@@ -105,6 +145,26 @@ const DEMO_BRAND_TYPES = {
         desc: "Quiet ride, class-leading efficiency and safe handling on wet.",
         sizes: ["205/55R16", "225/50R17"],
         url: "https://www.continental-tires.com/uk/en/b2c/car/tires/premiumcontact-7.html"
+      },
+      {
+        id: "allSeasonContact",
+        model: "AllSeasonContact 2",
+        type: "All-Season",
+        img: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1200&q=90",
+        imgAlt: "Continental AllSeasonContact, detailed tread and groove shot",
+        desc: "Advanced all-season with high mileage and wet safety.",
+        sizes: ["205/55R16", "225/45R17"],
+        url: "https://www.continental-tires.com/uk/en/b2c/car/tires/allseasoncontact-2.html"
+      },
+      {
+        id: "winterContactTS870",
+        model: "WinterContact TS 870",
+        type: "Winter",
+        img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=2048&q=90",
+        imgAlt: "Continental WinterContact, winter tread on snowy background",
+        desc: "Superb winter braking and snow handling, for confidence in cold.",
+        sizes: ["195/65R15", "205/60R16"],
+        url: "https://www.continental-tires.com/uk/en/b2c/car/tires/wintercontact-ts870.html"
       }
     ]
   },
@@ -125,8 +185,8 @@ const DEMO_BRAND_TYPES = {
         id: "potenzaSport",
         model: "Potenza Sport",
         type: "Performance",
-        img: "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&w=2048&q=90",
-        imgAlt: "Bridgestone Potenza Sport - out-of-the-pit fresh",
+        img: "https://images.pexels.com/photos/1707826/pexels-photo-1707826.jpeg?auto=compress&w=2048&q=90",
+        imgAlt: "Bridgestone Potenza Sport macro UHP tyre",
         desc: "Maximum cornering, quick response: Bridgestone’s top ultra-high performance model.",
         sizes: ["225/40R18", "235/45R17"],
         url: "https://www.bridgestone.co.uk/our-products/car-tyres/potenza-sport"
@@ -135,11 +195,21 @@ const DEMO_BRAND_TYPES = {
         id: "blizzak",
         model: "Blizzak LM005",
         type: "Winter",
-        img: "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&w=2048&q=90",
-        imgAlt: "Bridgestone Blizzak stacked, ready for snow",
+        img: "https://images.pexels.com/photos/1183504/pexels-photo-1183504.jpeg?auto=compress&w=2048&q=90",
+        imgAlt: "Bridgestone Blizzak close-up with winter context",
         desc: "Exceptional winter control, engineered for snow/slush with advanced silica.",
         sizes: ["205/55R16", "225/45R17"],
         url: "https://www.bridgestone.co.uk/our-products/car-tyres/blizzak-lm005"
+      },
+      {
+        id: "weatherControlA005",
+        model: "Weather Control A005",
+        type: "All-Season",
+        img: "https://images.pexels.com/photos/2884685/pexels-photo-2884685.jpeg?auto=compress&w=2048&q=90",
+        imgAlt: "Bridgestone Weather Control A005, profile on wet road",
+        desc: "All-season performance with advanced silica for wet & winter.",
+        sizes: ["205/55R16", "215/50R17"],
+        url: "https://www.bridgestone.co.uk/our-products/car-tyres/weather-control-a005"
       }
     ]
   }
