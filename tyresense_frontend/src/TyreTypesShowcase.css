@@ -44,10 +44,10 @@
 
 .tyre-brand-card,
 .premium-brand-container {
-  background: linear-gradient(120deg, #1c2241 14%, #191932 77%, #212147 100%);
-  border: 2.4px solid #00fff949;
-  border-radius: 39px;
-  box-shadow: 0 8.5px 44px 3.8px #00fff948, 0 2px 21px 4px #fff60018;
+  background: #232327;
+  border: 1.7px solid #2f2f33;
+  border-radius: 18px;
+  box-shadow: 0 6px 28px 3px #18181c25;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -55,14 +55,14 @@
   justify-content: flex-end;
   padding: 0;
   overflow: hidden;
-  min-height: 295px;
-  min-width: 410px;
+  min-height: 235px;
+  min-width: 230px;
   max-width: 620px;
-  transition: box-shadow 0.22s, border 0.17s, background 0.17s;
+  transition: box-shadow 0.16s, border 0.14s, background 0.12s;
   cursor: pointer;
   outline: none;
-  border-bottom: 6px solid transparent;
-  filter: drop-shadow(0 5px 17px #00fff952);
+  border-bottom: 3px solid transparent;
+  filter: none;
   position: relative;
   z-index: 1;
 }
