@@ -101,9 +101,9 @@
   letter-spacing: 0.07em;
   display: block;
   margin-bottom: 7px;
-  text-shadow: 0 0 24px #ffe60075, 0 3px 22px #00fff943, 0 0 4px #ffe60023;
+  text-shadow: none;
   font-family: 'Inter', 'Roboto', Arial, sans-serif;
-  filter: brightness(1.15) blur(.01px);
+  filter: brightness(1.07);
 }
 .ts-car-input-instruction-desc {
   display: block;
