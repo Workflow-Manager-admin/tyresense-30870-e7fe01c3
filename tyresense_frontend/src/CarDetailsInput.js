@@ -141,21 +141,7 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
 
   // UX: Instructions block
   const uxInstruction = (
-    <div
-      style={{
-        background: "rgba(255,230,0,0.09)",
-        borderRadius: 10,
-        color: "#ffe600",
-        fontWeight: 600,
-        fontSize: "1.08rem",
-        marginBottom: 14,
-        marginTop: -10,
-        padding: "8px 17px",
-        textAlign: "left",
-        boxShadow: "0 1.5px 8px #ffe60027",
-        maxWidth: 480,
-      }}
-    >
+    <div className="ts-car-input-instruction">
       <span>Enter your car details for personalized tyre recommendations & image preview.</span>
     </div>
   );
@@ -163,84 +149,27 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
   return (
     <form
       className="ts-car-input-form"
-      style={{
-        display: "flex",
-        alignItems: "flex-end",
-        gap: 34,
-        flexWrap: "wrap",
-        background: "linear-gradient(130deg, #18181f 78%, #191932 100%)",
-        borderRadius: 20,
-        boxShadow: "0 2px 18px #00fff91e, 0 1.5px 10px #ffe60019",
-        padding: "38px 32px 28px 32px",
-        marginBottom: 40,
-        marginTop: 22,
-        position: "relative",
-        border: "1.5px solid #232f5c",
-        minWidth: 0
-      }}
       onSubmit={handleSubmit}
       autoComplete="on"
       aria-label="Car details entry form"
     >
-      <div style={{ position: "absolute", left: 36, top: 12, right: 36 }}>
+      <div style={{ position: "absolute", left: 18, top: 10, right: 18 }}>
         {uxInstruction}
       </div>
       {/* Manufacturer field */}
-      <div style={{
-        flex: "1 1 220px",
-        minWidth: 130,
-        marginTop: 57
-      }}>
-        <label
-          className="ts-label"
-          htmlFor="car-manufacturer"
-          style={{
-            fontWeight: 800,
-            color: "#ffe600",
-            fontSize: "1.13rem",
-            marginBottom: 6,
-            letterSpacing: ".045em",
-            display: "block",
-            marginLeft: 1,
-          }}
-        >
+      <fieldset className="ts-car-form-group" style={{ marginTop: 74 }}>
+        <label htmlFor="car-manufacturer">
           Car Manufacturer
-          <span style={{
-            color: "#fff",
-            opacity: 0.62,
-            fontWeight: 400,
-            fontSize: "0.97em",
-            marginLeft: 7,
-          }}>(brand)</span>
+          <span className="ts-label-sub">(brand)</span>
         </label>
         <select
           className="ts-input"
           id="car-manufacturer"
           value={CAR_BRANDS.includes(manufacturer) ? manufacturer : (manufacturer ? "Other" : "")}
-          onChange={(e) => {
-            if (e.target.value === "Other") {
-              setManufacturer("");
-            } else {
-              setManufacturer(e.target.value);
-            }
-          }}
+          onChange={e => setManufacturer(e.target.value === "Other" ? "" : e.target.value)}
           required
           autoComplete="on"
           aria-label="Car manufacturer (brand)"
-          style={{
-            borderRadius: 11,
-            border: "1px solid #ffe60066",
-            marginBottom: 3,
-            fontWeight: 600,
-            fontSize: "1.10rem",
-            background: "#18181f",
-            color: "#ffe600",
-            padding: "7.5px 8.5px",
-            marginTop: 2,
-            width: "100%",
-            minHeight: 37,
-            appearance: "none"
-          }}
         >
           <option value="">Select manufacturer...</option>
           {CAR_BRANDS.map((brand) => (
@@ -256,94 +185,38 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             type="text"
             placeholder="Type manufacturer name"
             value={manufacturer}
-            onChange={(e) => setManufacturer(e.target.value)}
+            onChange={e => setManufacturer(e.target.value)}
             required
             autoComplete="on"
             aria-label="Car manufacturer (other)"
-            style={{
-              borderRadius: 11,
-              border: "1px solid #ffe60066",
-              marginBottom: 1,
-              fontWeight: 600,
-              fontSize: "1.10rem",
-              background: "#18181f",
-              color: "#ffe600",
-              marginTop: 5,
-              width: "100%",
-              padding: "7.5px 8.5px",
-            }}
             inputMode="text"
           />
         )}
-        <span
-          style={{
-            display: "block",
-            color: "#ffe600a0",
-            fontSize: ".94em",
-            marginTop: 4,
-            marginBottom: 2,
-            fontWeight: 400,
-            opacity: 0.82
-          }}
-        >
+        <span className="ts-label-instruction">
           Choose your car's manufacturer or select "Other" to enter it manually.
         </span>
-      </div>
+      </fieldset>
 
       {/* Model field */}
-      <div style={{
-        flex: "1 1 190px",
-        minWidth: 100,
-        marginTop: 57
-      }}>
-        <label
-          className="ts-label"
-          htmlFor="car-model"
-          style={{
-            fontWeight: 700,
-            color: "#ffe600cc",
-            fontSize: "1.07rem",
-            marginBottom: 5,
-            letterSpacing: ".03em",
-            display: "block"
-          }}
-        >
+      <fieldset className="ts-car-form-group" style={{ marginTop: 74 }}>
+        <label htmlFor="car-model">
           Model
         </label>
         {/* Model as dropdown if brand is known, else input */}
-        {manufacturer && CAR_MODELS_BY_BRAND[manufacturer] && (
+        {manufacturer && CAR_MODELS_BY_BRAND[manufacturer] ? (
           <select
             className="ts-input"
             id="car-model"
+            key={manufacturer}
             value={
               model && CAR_MODELS_BY_BRAND[manufacturer].includes(model)
                 ? model
                 : ""
             }
-            onChange={(e) => {
-              if (e.target.value === "Other") {
-                setModel("");
-              } else {
-                setModel(e.target.value);
-              }
-            }}
+            onChange={e => setModel(e.target.value === "Other" ? "" : e.target.value)}
             required
             autoComplete="on"
             aria-label="Car model"
-            style={{
-              borderRadius: 11,
-              border: "1px solid #ffe60033",
-              marginBottom: 2,
-              fontWeight: 600,
-              fontSize: "1.08rem",
-              background: "#18181f",
-              color: "#ffe600",
-              padding: "7.5px 8.5px",
-              width: "100%",
-              appearance: "none",
-              marginTop: 2,
-            }}
-            key={manufacturer}
           >
             <option value="">Select model...</option>
             {CAR_MODELS_BY_BRAND[manufacturer].map((mod) => (
@@ -353,13 +226,11 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             ))}
             <option value="Other">Other (enter manually)</option>
           </select>
-        )}
-
+        ) : null}
         {/* If user selects "Other", or brand has no models, show a manual model input */}
         {(!manufacturer ||
           !CAR_MODELS_BY_BRAND[manufacturer] ||
-          (manufacturer &&
-            CAR_MODELS_BY_BRAND[manufacturer] &&
+          (manufacturer && CAR_MODELS_BY_BRAND[manufacturer] &&
             (model === "Other" ||
               !CAR_MODELS_BY_BRAND[manufacturer].includes(model)))) && (
           <input
@@ -372,129 +243,49 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
                 : "e.g. Civic, F-150, Model 3"
             }
             value={model === "Other" ? "" : model}
-            onChange={(e) => setModel(e.target.value)}
+            onChange={e => setModel(e.target.value)}
             required
             autoComplete="on"
             aria-label="Car model"
-            style={{
-              borderRadius: 11,
-              border: "1px solid #ffe60033",
-              marginBottom: 2,
-              fontWeight: 600,
-              fontSize: "1.06rem",
-              background: "#18181f",
-              color: "#ffe600",
-              padding: "7.5px 8.5px",
-              width: "100%",
-              marginTop: 5,
-            }}
             inputMode="text"
           />
         )}
-
-        <span
-          style={{
-            display: "block",
-            color: "#ffe600a1",
-            fontSize: "0.91em",
-            marginTop: 4,
-            fontWeight: 400,
-            opacity: 0.82
-          }}
-        >
+        <span className="ts-label-instruction">
           {manufacturer && CAR_MODELS_BY_BRAND[manufacturer]
             ? 'Choose your car\'s model or select "Other" to enter it manually.'
             : 'Enter your car\'s model, e.g. "Corolla", "Mustang", "A-Class".'}
         </span>
-      </div>
+      </fieldset>
 
       {/* Year field as dropdown */}
-      <div style={{
-        flex: "1 1 90px",
-        minWidth: 65,
-        marginTop: 57
-      }}>
-        <label
-          className="ts-label"
-          htmlFor="car-year"
-          style={{
-            fontWeight: 700,
-            color: "#ffe600aa",
-            fontSize: "1.03rem",
-            marginBottom: 4,
-            letterSpacing: ".03em",
-            display: "block"
-          }}
-        >
+      <fieldset className="ts-car-form-group" style={{ maxWidth: 140, marginTop: 74 }}>
+        <label htmlFor="car-year">
           Year
         </label>
         <select
           className="ts-input"
           id="car-year"
           value={year}
-          onChange={(e) => setYear(e.target.value)}
+          onChange={e => setYear(e.target.value)}
           required
           autoComplete="on"
           aria-label="Car model year"
-          style={{
-            borderRadius: 11,
-            border: "1px solid #ffe60033",
-            fontWeight: 600,
-            fontSize: "1.04rem",
-            background: "#18181f",
-            color: "#ffe600",
-            padding: "7.5px 8.5px",
-            width: "100%",
-            appearance: "none",
-            marginBottom: 2
-          }}
         >
           <option value="">Select year...</option>
           {getYearOptions().map((y) => (
             <option key={y} value={String(y)}>{y}</option>
           ))}
         </select>
-        <span
-          style={{
-            display: "block",
-            color: "#ffe60070",
-            fontSize: "0.89em",
-            marginTop: 3,
-            fontWeight: 400,
-            opacity: 0.83
-          }}
-        >
+        <span className="ts-label-instruction">
           Car's registration year (choose from list)
         </span>
-      </div>
+      </fieldset>
 
       {/* Submit button */}
-      <div style={{
-        flex: "0 1 150px",
-        alignSelf: "center",
-        marginTop: 73,
-        display: "flex",
-        flexDirection: "column",
-        gap: 4
-      }}>
+      <div className="ts-car-form-submit">
         <button
           type="submit"
           className="btn btn-large"
-          style={{
-            background:
-              "linear-gradient(91deg,#ffe600 80%,#00fff9 125%)",
-            color: "#191a1a",
-            fontWeight: 700,
-            borderRadius: 13,
-            padding: "13px 29px",
-            boxShadow: "0 2.5px 11px #00fff916, 0 1.5px 8px #ffe60019",
-            minWidth: 86,
-            minHeight: 46,
-            fontSize: "1.13rem",
-            border: "none",
-            outline: "none",
-            transition: "background 0.18s, box-shadow 0.18s"
-          }}
           aria-label="Save car details"
         >
           Save Car →
@@ -502,73 +293,25 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
       </div>
 
       {/* Car image preview */}
-      <div
-        style={{
-          flex: "0 0 128px",
-          marginLeft: 6,
-          alignSelf: "center",
-          position: "relative",
-          marginTop: 56
-        }}
-      >
-        <div
-          style={{
-            width: 110,
-            height: 63,
-            borderRadius: 12,
-            background: "#232f5c22",
-            boxShadow: "0 3px 18px #00fff94a, 0 2px 8px #ffe60017",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            overflow: "hidden",
-            position: "relative",
-          }}
-        >
+      <div className="ts-car-img-preview">
+        <div className="ts-car-img-preview-box">
           {loadingImg ? (
-            <span style={{ color: "#ffe600" }}>Loading...</span>
+            <span className="ts-car-img-loading">Loading...</span>
           ) : carImg ? (
             <img
               src={carImg}
               alt="Auto-fetched preview illustration of your car"
-              style={{
-                width: 108,
-                height: 61,
-                objectFit: "contain",
-                borderRadius: 8,
-                filter: "drop-shadow(0 0 12px #00fff98c) brightness(1.12)",
-                background: "#111",
-                userSelect: "none",
-                pointerEvents: "none",
-              }}
               draggable={false}
             />
           ) : (
-            <span
-              style={{
-                color: "#ffe600b7",
-                textAlign: "center",
-                fontWeight: 500,
-                fontSize: "1.013rem",
-                padding: 7,
-                opacity: 0.88,
-              }}
-            >
+            <span>
               Car image
               <br />
               (auto)
             </span>
           )}
         </div>
-        <span
-          style={{
-            color: "#ffe60084",
-            fontSize: ".89em",
-            textAlign: "center",
-            marginTop: 3,
-            display: "block"
-          }}
-        >
+        <span className="ts-car-img-preview-label">
           Image is a visual demo, based on your entries.
         </span>
       </div>
