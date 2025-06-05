@@ -142,8 +142,8 @@ function GoogleMapsStoreLocator() {
                 "data:image/svg+xml;utf-8," +
                 encodeURIComponent(
                   `<svg height="34" width="34" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="17" cy="17" r="13" fill="#00fff9" stroke="#ffe600" stroke-width="2.4"/>
-                    <circle cx="17" cy="17" r="5.9" fill="#ffe600"/>
+                    <circle cx="17" cy="17" r="13" fill="#edeef0" stroke="#b4081b" stroke-width="2.4"/>
+                    <circle cx="17" cy="17" r="5.9" fill="#7d7d85"/>
                   </svg>`
                 ),
               scaledSize: new window.google.maps.Size(34, 34),
