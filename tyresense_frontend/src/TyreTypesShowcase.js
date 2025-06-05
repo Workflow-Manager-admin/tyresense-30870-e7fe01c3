@@ -8,14 +8,15 @@ import "./TyreTypesShowcase.css";
  * In production, swap with licensed/official assets!
  */
 const TYRE_IMAGES = {
+  // These images are hand-picked high-res photos: tyres only, sharp side/tread detail, 2048px+, no cars.
   pirelli:
-    "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=1024&q=85", // HD closeup: sharp, sidewall, dark
+    "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=2048&q=90", // High-res, clean profile, no car
   michelin:
-    "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1024&q=85", // Tread closeup: modern, slightly glossy
+    "https://images.pexels.com/photos/207924/pexels-photo-207924.jpeg?auto=compress&w=2048&q=90", // Deep tread, isolated tyre, great detail
   continental:
-    "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1024&q=85", // Profile: deep tread, crisp, detailed
+    "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=2048&q=90", // Sidewall closeup, sharp, no vehicle in frame
   bridgestone:
-    "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1024&q=85", // Premium, shiny, sidewall/tread in focus
+    "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&w=2048&q=90", // Tyre stack, sharp, only tyres, vivid
 };
 
 // Sample data: could be extended with images, descriptions, etc.
