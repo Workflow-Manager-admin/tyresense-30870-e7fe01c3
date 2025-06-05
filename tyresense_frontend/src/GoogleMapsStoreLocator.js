@@ -35,20 +35,24 @@ function GoogleMapsStoreLocator() {
 
   // Load Google Maps JS API (idempotent for SPA)
   useEffect(() => {
+    const MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || "<YOUR_GOOGLE_MAPS_KEY>";
+
+    // If missing or left as placeholder, show a user-friendly, production-safe message (no stacktrace!)
+    if (!MAPS_API_KEY || MAPS_API_KEY.includes("<YOUR_GOOGLE_MAPS_KEY>")) {
+      // Only set a controlled friendly error
+      setError("Map unavailable - please contact support or check configuration");
+      return;
+    }
+
+    // If maps already loaded (SPA hot reload defense)
     if (window.google && window.google.maps) {
       setScriptLoaded(true);
       return;
     }
-    const MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || "<YOUR_GOOGLE_MAPS_KEY>";
-
-    // If missing or left as placeholder, show a user-friendly, production-safe message
-    if (!MAPS_API_KEY || MAPS_API_KEY.includes("<YOUR_GOOGLE_MAPS_KEY>")) {
-      setError("Map unavailable – please contact support or check configuration.");
-      return;
-    }
     if (document.getElementById("google-maps-js")) {
-      // Already loading elsewhere
-      window.gm_authFailure = () => setError("Google Maps authentication failed. Check your API key.");
+      // Already loading elsewhere, still set up error catch handler
+      window.gm_authFailure = () =>
+        setError("Map unavailable - please contact support or check configuration");
       return;
     }
     const script = document.createElement("script");
@@ -57,11 +61,13 @@ function GoogleMapsStoreLocator() {
     script.defer = true;
     script.type = "text/javascript";
     script.src = `https://maps.googleapis.com/maps/api/js?key=${MAPS_API_KEY}&callback=initMapGoogleTyreSense&libraries=places`;
-    window.gm_authFailure = () => setError("Google Maps authentication failed. Check your API key.");
+    window.gm_authFailure = () =>
+      setError("Map unavailable - please contact support or check configuration");
     window.initMapGoogleTyreSense = () => setScriptLoaded(true);
-    script.onerror = () => setError("Failed to load Google Maps JS API");
+    script.onerror = () =>
+      setError("Map unavailable - please contact support or check configuration");
     document.body.appendChild(script);
-    // Clean up on unmount
+    // Clean up on unmount so no lingering handlers
     return () => {
       window.initMapGoogleTyreSense = undefined;
       window.gm_authFailure = undefined;
