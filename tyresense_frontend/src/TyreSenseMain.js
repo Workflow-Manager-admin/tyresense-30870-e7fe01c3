@@ -76,12 +76,26 @@ function TyreSenseMain() {
     <div className="tyresense-main" style={{ position: "relative", minHeight: "100vh" }}>
       {/* Persistent logo mark (car + TyreSense name) as navbar logo after intro */}
       {showNavbarLogo && (
-        <nav className="navbar" style={{ position: "fixed", top: 0, left: 0, width: "100%", zIndex: 100, background: "var(--base-dark, #18181f)", borderBottom: "1px solid var(--border-color, #222)" }}>
-          <div className="logo" style={{ display: "flex", alignItems: "center", gap: 18, height: 76, minHeight: 60, userSelect: "none" }}>
-            <AnimatedCarIntro
-              asLogo
-              visible={false} // ensures it is only present as logo, not in the intro state
-            />
+        <nav className="navbar" style={{
+          position: "fixed", top: 0, left: 0, width: "100%", zIndex: 100,
+          background: "var(--base-dark, #18181f)", borderBottom: "1px solid var(--border-color, #222)",
+          display: "flex", justifyContent: "center", alignItems: "center"
+        }}>
+          <div
+            className="logo"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 0,
+              height: 70,
+              minHeight: 39,
+              userSelect: "none",
+              width: "100%",
+              justifyContent: "center",
+              position: "relative",
+            }}
+          >
+            <AnimatedCarIntro asLogo visible={false} />
           </div>
         </nav>
       )}
