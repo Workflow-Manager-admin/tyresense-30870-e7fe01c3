@@ -82,8 +82,7 @@ function TyreTypesShowcase({ onBrandSelect }) {
                 minHeight: 98,
                 maxWidth: 164,
                 margin: "0 0 0 14px",
-                background:
-                  "radial-gradient(ellipse at center, #212147 60%, #13131a 100%)",
+                background: "#18181f",
                 boxShadow:
                   "0 0 24px #00fff984, 0 4px 24px #142 0 12px 36px #1919323f",
                 display: "flex",
@@ -101,10 +100,14 @@ function TyreTypesShowcase({ onBrandSelect }) {
                   objectFit: "cover",
                   objectPosition: "center",
                   display: "block",
-                  borderRadius: "32px",
+                  borderRadius: "inherit",
                   boxShadow: "0 0 18px #00fff954, 0 2px 14px #111a",
                   transition: "transform .25s cubic-bezier(.68,-0.35,.32,1.35)",
+                  background: "#222",
+                  pointerEvents: "none",
+                  userSelect: "none"
                 }}
+                draggable={false}
               />
             </div>
             {/* Info on left */}
