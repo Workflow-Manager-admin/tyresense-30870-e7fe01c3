@@ -3,26 +3,29 @@
   width: 100vw;
   height: 100vh;
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
+  align-items: center; /* Vertically center car+text in intro */
+  justify-content: center; /* Horizontally center them */
   position: fixed;
   top: 0; left: 0;
   z-index: 1200;
   overflow: hidden;
   pointer-events: none;
 }
+
 .ts-animated-car {
-  position: absolute;
-  bottom: 10vh;
-  left: 0; /* Once parked, logo always docks exactly at left edge */
-  min-width: 250px;
+  position: relative;
   display: flex;
-  align-items: center;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 250px;
+  max-width: 92vw;
   gap: 0;
   user-select: none;
   pointer-events: none;
   transition: left 0.22s, bottom 0.22s;
+  z-index: 12;
 }
 
 .ts-animated-car-fixed {
@@ -37,10 +40,10 @@
   flex-direction: row;
 }
 
-/* For initial off-screen entry */
 .ts-animated-car-offscreen {
   left: -110vw;
 }
+
 .ts-animated-car-title {
   font-size: 2.25rem;
   font-weight: 700;
@@ -51,9 +54,84 @@
   font-family: 'Inter', 'Roboto', Arial, sans-serif;
   filter: brightness(1.2) blur(0.1px);
   text-align: right;
+  line-height: 1.08;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  vertical-align: middle;
 }
 
+/* Persistent logo mark (navbar/topbar): ALWAYS horizontally centered, never overlaps, always inline */
+.ts-animated-car-navbar {
+  max-width: 390px;
+  min-width: 123px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 12;
+  margin: 0 auto;
+  padding: 0 6px 0 3px;
+  gap: 0;
+  position: relative;
+}
+.ts-animated-car-navbar .ts-animated-car-title {
+  font-size: 1.53rem !important;
+  color: #ffe600 !important;
+  text-shadow: 0 0 11px #ffe60062;
+  letter-spacing: 0.13em;
+  line-height: 1;
+  font-weight: 800;
+  filter: brightness(1.2) blur(.01px);
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 900px) {
+  .ts-animated-car-navbar {
+    max-width: 269px;
+    height: 40px;
+  }
+  .ts-animated-car-navbar .ts-animated-car-title {
+    font-size: 1.01rem !important;
+  }
+}
+@media (max-width: 520px) {
+  .ts-animated-car-navbar {
+    max-width: 176px;
+    height: 27px;
+  }
+  .ts-animated-car-navbar .ts-animated-car-title {
+    font-size: 0.78rem !important;
+  }
+}
+
+/* Responsive intro animation: scale car+text without overlap, visually centered at all widths */
 @media (max-width: 600px) {
-  .ts-animated-car { min-width: 78px; }
-  .ts-animated-car-title { font-size: 1.1rem; }
+  .ts-animated-car {
+    min-width: 88px;
+    max-width: 99vw;
+  }
+  .ts-animated-car-title {
+    font-size: 1.16rem;
+  }
+}
+
+/* Prevent SVG/logo and text from ever overlapping or crowding in any context */
+.ts-animated-car svg,
+.ts-animated-car-navbar svg {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fine-tune spacing for all logos: responsive, no overlap */
+.ts-animated-car,
+.ts-animated-car-navbar {
+  gap: 0;
 }
