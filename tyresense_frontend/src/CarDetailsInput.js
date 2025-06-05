@@ -269,7 +269,7 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
         {/* Year */}
         <fieldset className="ts-car-form-group modern-form-group" style={{ maxWidth: 170, marginTop: 72 }}>
           <label htmlFor="car-year">
-            <span className="car-label-title neon-gold">Year</span>
+            <span className="car-label-title" style={{ color: "#edeef0", fontWeight: 800 }}>Year</span>
           </label>
           <select
             className="ts-input"
@@ -286,7 +286,7 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             ))}
           </select>
           <span className="ts-label-instruction">
-            <span className="neon-gold">Registration year</span>
+            <span style={{ color: "#7d7d85", fontWeight: 700 }}>Registration year</span>
           </span>
         </fieldset>
       </div>
