@@ -211,14 +211,8 @@ function TyreSenseMain() {
                     persistCar={saveCarToLS}
                   />
                 </section>
-                {/* Tyre recommendations */}
-                <TyreRecommendations
-                  car={userCar}
-                  userLocation={userLocation}
-                  onSetReminder={handleSetReminder}
-                  userTyreData={userTyreData}
-                  persistTyreData={handleTyreDataUpdate}
-                />
+                {/* Explore Tyre Brands */}
+                <TyreTypesShowcase onBrandSelect={handleBrandSelect} />
                 {/* Map: store locator */}
                 <section className="ts-section ts-map-section">
                   <GoogleMapsStoreLocator />
