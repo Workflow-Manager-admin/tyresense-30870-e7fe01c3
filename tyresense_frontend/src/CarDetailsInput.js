@@ -83,14 +83,15 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
         alignItems: "flex-end",
         gap: 34,
         flexWrap: "wrap",
-        background: "linear-gradient(132deg, #191932 88%, #18181f 100%)",
-        borderRadius: 26,
-        boxShadow: "0 6px 29px #00fff92c, 0 3px 12px #ffe60029",
-        padding: "40px 44px",
+        background: "linear-gradient(130deg, #18181f 78%, #191932 100%)",
+        borderRadius: 20,
+        boxShadow: "0 2px 18px #00fff91e, 0 1.5px 10px #ffe60019",
+        padding: "38px 32px 28px 32px",
         marginBottom: 40,
-        marginTop: 14,
+        marginTop: 22,
         position: "relative",
-        border: "2.4px solid #ffe60055"
+        border: "1.5px solid #232f5c",
+        minWidth: 0
       }}
       onSubmit={handleSubmit}
       autoComplete="on"
