@@ -319,7 +319,7 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             )}
           </div>
           <span className="ts-car-img-preview-label modern-preview-label">
-            <span className="neon-accent" style={{ fontWeight: 800 }}>Live visual:</span> based on your details.
+            <span style={{ color: "#b4081b", fontWeight: 800 }}>Live visual:</span> based on your details.
           </span>
         </div>
         {/* Save Button */}
