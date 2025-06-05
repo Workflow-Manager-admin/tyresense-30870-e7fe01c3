@@ -9,7 +9,8 @@ import "./AnimatedCarIntro.css";
  * The design is logo-like and scale-agnostic, with thick outlines and neon accents, suitable for memorable branding.
  */
 function TyreSenseLogoCarSVG({ style, ...props }) {
-  // SVG: side-view, stylized coupe with bold lines, circular wheels and neon highlights (yellow & cyan).
+  // SVG: side-view, stylized coupe with bold lines, circular wheels, and premium muted highlights.
+  // All former neon/cyan/yellow accents replaced with Porsche-styled, muted analogues; subtle accents only.
   return (
     <svg
       width={style?.width || 230}
@@ -24,86 +25,86 @@ function TyreSenseLogoCarSVG({ style, ...props }) {
     >
       <defs>
         <radialGradient id="ts-carBody" cx="49%" cy="52%" r="78%">
-          <stop offset="0.02" stopColor="#ffe600" stopOpacity="0.92"/>
-          <stop offset="0.54" stopColor="#232441" stopOpacity="1"/>
-          <stop offset="1" stopColor="#191928" stopOpacity="1"/>
+          <stop offset="0.02" stopColor="#b6b3a7" stopOpacity="0.72"/>
+          <stop offset="0.54" stopColor="#232327" stopOpacity="1"/>
+          <stop offset="1" stopColor="#18181c" stopOpacity="1"/>
         </radialGradient>
         <linearGradient id="ts-roof" x1="42" y1="16" x2="220" y2="9" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#FFE600"/>
-          <stop offset="0.8" stopColor="#8ddfff"/>
+          <stop stopColor="#7d7d85"/>
+          <stop offset="0.8" stopColor="#edeef0"/>
         </linearGradient>
         <radialGradient id="ts-wheel-dark" cx="49%" cy="48%" r="51%">
-          <stop offset="0.29" stopColor="#505050"/>
-          <stop offset="0.77" stopColor="#16171d"/>
-          <stop offset="1" stopColor="#000006"/>
+          <stop offset="0.29" stopColor="#4e5355"/>
+          <stop offset="0.77" stopColor="#232327"/>
+          <stop offset="1" stopColor="#0c0c0e"/>
         </radialGradient>
         <radialGradient id="ts-wheel-gloss" cx="62%" cy="40%" r="66%">
-          <stop offset="0.48" stopColor="#ffe600" stopOpacity="0.21"/>
-          <stop offset="0.96" stopColor="#ffe600" stopOpacity="0.00"/>
+          <stop offset="0.48" stopColor="#b6b3a7" stopOpacity="0.09"/>
+          <stop offset="0.96" stopColor="#edeef0" stopOpacity="0.04"/>
         </radialGradient>
       </defs>
 
       {/* Shadow */}
-      <ellipse cx="160" cy="88" rx="92" ry="5.5" fill="#1c1403" opacity="0.25"/>
+      <ellipse cx="160" cy="88" rx="92" ry="5.5" fill="#18181c" opacity="0.18"/>
       {/* Rear wheel */}
       <g>
         <circle cx="60" cy="71" r="19.4" fill="url(#ts-wheel-dark)" />
-        <circle cx="60" cy="71" r="13" fill="#19192a" />
+        <circle cx="60" cy="71" r="13" fill="#18181c" />
         <circle cx="60" cy="71" r="17" fill="url(#ts-wheel-gloss)" />
-        <circle cx="60" cy="71" r="5.8" fill="#ffe600" opacity="0.11"/>
-        {/* Neon stylized highlight */}
-        <ellipse cx="56" cy="61" rx="6" ry="2.6" fill="#00fff9" opacity="0.12"/>
+        <circle cx="60" cy="71" r="5.8" fill="#edeef0" opacity="0.08"/>
+        {/* Muted highlight */}
+        <ellipse cx="56" cy="61" rx="6" ry="2.6" fill="#7d7d85" opacity="0.07"/>
       </g>
       {/* Front wheel */}
       <g>
         <circle cx="232" cy="71" r="18" fill="url(#ts-wheel-dark)" />
-        <circle cx="232" cy="71" r="12" fill="#262634" />
+        <circle cx="232" cy="71" r="12" fill="#232327" />
         <circle cx="232" cy="71" r="15" fill="url(#ts-wheel-gloss)" />
-        <circle cx="232" cy="71" r="6" fill="#ffe600" opacity="0.09"/>
-        {/* Neon stylized highlight */}
-        <ellipse cx="229" cy="61" rx="6" ry="2.5" fill="#00fff9" opacity="0.14"/>
+        <circle cx="232" cy="71" r="6" fill="#edeef0" opacity="0.05"/>
+        {/* Muted highlight */}
+        <ellipse cx="229" cy="61" rx="6" ry="2.5" fill="#7d7d85" opacity="0.07"/>
       </g>
       {/* Car body main shape (front to tail, stylized and logo-like) */}
       <path
         d="M43 66 Q54 22 124 24 Q136 4 200 7 Q255 8 278 29 Q312 35 321 64 Q326 66 329 68 Q314 72 238 67 Q131 65 75 73 Q48 69 43 66 Z"
         fill="url(#ts-carBody)"
-        stroke="#ffe600"
-        strokeWidth="3.1"
+        stroke="#7d7d85"
+        strokeWidth="2.7"
         opacity="1"
       />
       {/* Roof - stylized highlight */}
       <path
         d="M99 27 Q113 13 197 13 Q238 15 258 28"
         stroke="url(#ts-roof)"
-        strokeWidth="4.5"
+        strokeWidth="2.8"
         fill="none"
-        opacity="0.7"
+        opacity="0.35"
         strokeLinecap="round"
       />
-      {/* Window gloss - neon accent */}
+      {/* Window gloss - muted accent */}
       <path
         d="M118 22 Q135 13 205 16 Q240 20 247 30"
-        stroke="#00fff9"
-        strokeWidth="2.1"
+        stroke="#edeef0"
+        strokeWidth="1.7"
         fill="none"
-        opacity="0.17"
+        opacity="0.07"
         strokeLinecap="round"
       />
       {/* Undercarriage */}
-      <rect x="54" y="67.5" width="190" height="7.1" rx="3.8" fill="#191d24" />
-      {/* Door handle - neon mini bar */}
-      <rect x="135" y="49" width="26" height="2.2" rx="1.1" fill="#ffe600" opacity="0.66"/>
+      <rect x="54" y="67.5" width="190" height="7.1" rx="3.8" fill="#18181c" />
+      {/* Door handle - muted mini bar */}
+      <rect x="135" y="49" width="26" height="2.2" rx="1.1" fill="#edeef0" opacity="0.11"/>
       {/* Rear "fin" - thicker stylized bar */}
-      <rect x="41.3" y="54" width="7.1" height="15" rx="3.5" fill="#ffe600" opacity="0.54"/>
+      <rect x="41.3" y="54" width="7.1" height="15" rx="3.5" fill="#edeef0" opacity="0.07"/>
       {/* Short vertical antenna */}
-      <rect x="137" y="12" width="2.9" height="13" rx="1.7" fill="#ffe600" opacity="0.59"/>
-      {/* Neon speedline (stylized motion effect) */}
-      <rect x="86" y="41" width="33" height="2" rx="1" fill="#00fff9" opacity="0.16"/>
-      <rect x="220" y="21" width="23" height="2" rx="1" fill="#00fff9" opacity="0.15"/>
+      <rect x="137" y="12" width="2.9" height="13" rx="1.7" fill="#edeef0" opacity="0.11"/>
+      {/* Muted speedline (stylized motion effect) */}
+      <rect x="86" y="41" width="33" height="2" rx="1" fill="#7d7d85" opacity="0.08"/>
+      <rect x="220" y="21" width="23" height="2" rx="1" fill="#7d7d85" opacity="0.09"/>
       {/* TyreSense badge (logo dot, subtle) */}
       <g>
-        <circle cx="242.5" cy="62.5" r="8" fill="#ffe600" stroke="#ffe600" strokeWidth="1.8"/>
-        <path d="M237 63 Q242.7 56 248 63 Q243 67 237 65 Z" fill="#fff" opacity="0.8"/>
+        <circle cx="242.5" cy="62.5" r="8" fill="#edeef0" stroke="#edeef0" strokeWidth="1.1"/>
+        <path d="M237 63 Q242.7 56 248 63 Q243 67 237 65 Z" fill="#fff" opacity="0.41"/>
       </g>
     </svg>
   );
