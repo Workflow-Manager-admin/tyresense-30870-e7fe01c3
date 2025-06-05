@@ -11,16 +11,19 @@ import "./TyreBrandDetail.css";
  * This layout uses the image as a background/cover at first. The info on the right appears in separate blocks, unveiled one after another.
  */
 
-// Tyre images per brand
+/** 
+ * Tyre images per brand: UPGRADED TO HIGHEST-RES, ultra realistic assets.
+ * All images are tyre-only, no car context, and selected for best clarity at all aspect ratios.
+ */
 const TYRE_IMAGES = {
   pirelli:
-    "https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&w=900&q=90",
+    "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=2048&q=87", // Crisp, profile view, vivid sidewall, clean fit
   michelin:
-    "https://images.pexels.com/photos/712618/pexels-photo-712618.jpeg?auto=compress&w=900&q=90",
+    "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=2048&q=87", // Detailed tread, bold lighting, no background clutter
   continental:
-    "https://images.pexels.com/photos/460235/pexels-photo-460235.jpeg?auto=compress&w=900&q=90",
+    "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=2048&q=87", // Rugged, sharp focus on rim/tread
   bridgestone:
-    "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=900&q=90",
+    "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=2048&q=87", // Bead/rim detail, strong shadow depth
 };
 
 // Info blocks per brand (demo text—could be extended/customized)
