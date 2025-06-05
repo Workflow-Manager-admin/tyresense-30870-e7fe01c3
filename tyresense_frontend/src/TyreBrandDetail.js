@@ -232,13 +232,13 @@ function TyreBrandDetail({ brand, onBack }) {
             src={TYRE_IMAGES[brand.id] || TYRE_IMAGES["pirelli"]}
             alt={
               brand.id === "pirelli"
-                ? "Studio-lit close-up of a Pirelli racing tyre with dramatic tread highlight and water droplets"
+                ? "Profile view of a real Pirelli tyre on a clean surface"
                 : brand.id === "michelin"
-                ? "Top-down photo of a stack of Michelin high-performance tyres in a spotless warehouse"
+                ? "Close-up of a single Michelin tyre showcasing deep tread detail"
                 : brand.id === "continental"
-                ? "Macro detail showing Continental tyre bead and pronounced sidewall lettering"
+                ? "Macro shot of Continental tyre sidewall and tread textures"
                 : brand.id === "bridgestone"
-                ? "Single Bridgestone tyre illuminated by strong side light, showing detailed rubber pattern"
+                ? "Group of stacked Bridgestone tyres in a clean indoor setting"
                 : `Photograph of a real ${brand.name} tyre`
             }
             style={{
