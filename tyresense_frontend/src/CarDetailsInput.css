@@ -39,25 +39,25 @@
   background: var(--form-dark-grad);
   border-radius: var(--box-radius);
   box-shadow: var(--form-card-shadow);
-  padding: 86px 62px 46px 62px;
-  margin-bottom: 68px;
-  margin-top: 28px;
+  padding: 54px 36px 28px 36px;
+  margin-bottom: 31px;
+  margin-top: 17px;
   position: relative;
   border: var(--form-border);
   min-width: 0;
-  gap: 63px 54px;
+  gap: 31px 21px;
   max-width: 900px;
   width: 97%;
   justify-content: flex-start;
-  transition: box-shadow 0.23s, border 0.19s, background 0.14s;
-  filter: brightness(1.12);
+  transition: box-shadow 0.21s, border 0.17s, background 0.12s;
+  filter: brightness(1.03);
 }
 .ts-car-input-form.ts-premium {
-  background: linear-gradient(123deg, #1b1b25 78%, #101019 100%);
-  box-shadow: 0 13px 73px 11px #00fff936, 0 7px 40px #ffe60025, 0 3.5px 16px #23253f44;
-  border-radius: 41px;
-  border: 2.8px solid #00fff92a;
-  filter: brightness(1.125) blur(.01px);
+  background: linear-gradient(123deg, #18181b 81%, #232327 100%);
+  box-shadow: 0 7px 32px 7px #18181c44, 0 2px 9px #b4081b14, 0 1.5px 11px #23253f12;
+  border-radius: var(--box-radius);
+  border: 2.1px solid #b4081b33;
+  filter: brightness(1.05) blur(.00px);
 }
 @media (max-width: 950px) {
   .ts-car-input-form {
