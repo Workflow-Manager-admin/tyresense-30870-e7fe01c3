@@ -71,10 +71,10 @@
 .tyre-brand-card:hover,
 .premium-brand-container:focus,
 .premium-brand-container:hover {
-  background: linear-gradient(118deg, #242b4b 7%, #191932 63%, #00fff956 122%);
-  border: 2.7px solid #ffe600;
-  box-shadow: 0 15px 64px 8px #00fff93c, 0 7px 84px 19px #00fff98a;
-  border-bottom: 7px solid #ffe600;
+  background: #232327;
+  border: 2.7px solid #b4081b;
+  box-shadow: 0 13px 48px 8px #b4081b1b, 0 7px 84px 11px #b4081b21;
+  border-bottom: 7px solid #b4081b;
 }
 
 /* Cover background for full image impact */
@@ -103,7 +103,7 @@
   object-position: center !important;
   border-radius: inherit;
   background: #191932;
-  filter: brightness(1.12) contrast(1.07) drop-shadow(0 0 38px #00fff981);
+  filter: brightness(1.08) contrast(1.04) drop-shadow(0 0 14px #b4081b40);
   transition: transform .22s cubic-bezier(.68,-0.35,.32,1.35);
   image-rendering: -webkit-optimize-contrast;
   user-select: none;
