@@ -20,6 +20,25 @@ function GoogleMapsStoreLocator() {
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [error, setError] = useState(null);
 
+  // DIAGNOSTIC: Log what key is found (DEV ONLY: Remove after fix)
+  useEffect(() => {
+    // eslint-disable-next-line
+    // Only for debugging API key issue in dev: log to console
+    if (window && process && process.env) {
+      // This will often show undefined if running in a build where env is not injected properly
+      // The actual injected key shows up in the built code as REACT_APP_GOOGLE_MAPS_API_KEY
+      // (In dev, .env variables prefixed REACT_APP_ are available in process.env)
+      // Log value but mask after first 5 chars
+      const maskedKey =
+        (process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+          ? process.env.REACT_APP_GOOGLE_MAPS_API_KEY.substr(0, 5) + '...'
+          : String(process.env.REACT_APP_GOOGLE_MAPS_API_KEY));
+      // Friendly browser console note
+      // eslint-disable-next-line no-console
+      console.log('[TyreSense] REACT_APP_GOOGLE_MAPS_API_KEY from env:', maskedKey);
+    }
+  }, []);
+
   // Default to Central London if no location found (Trafalgar Square)
   const DEFAULT_CENTER = { lat: 51.5081, lng: -0.1281 };
   const DEFAULT_ZOOM = 13;
