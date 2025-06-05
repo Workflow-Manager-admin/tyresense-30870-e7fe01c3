@@ -50,14 +50,14 @@ function ReminderPopup({ tyre, userEmail, onClose }) {
       className="ts-popup-reminder"
       style={{
         minWidth: 240,
-        background: "linear-gradient(137deg,#232327 24%,#19181b 93%)",
+        background: "#232327",
         color: "#edeef0",
         textAlign: "center",
         borderRadius: 11,
-        border: "1.4px solid #2f2f33",
+        border: "1.5px solid #b4081b",
         fontWeight: 600,
         fontSize: "1.04rem",
-        boxShadow: "0 2px 8px #b4081b17",
+        boxShadow: "0 2px 13px #b4081b33",
         padding: "13px 13px",
         zIndex: 9009,
         position: "fixed",
