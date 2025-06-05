@@ -27,29 +27,50 @@ function AnimatedCarIntro({ visible, onAnimationComplete }) {
             transition={{ duration: 2.5, ease: [0.67, 0, 0.33, 1] }}
             onAnimationComplete={onAnimationComplete}
           >
-            {/* Simple SVG Car - Minimal silhouette, fits neon dark theme */}
+            {/* SVG Car from Top-Down (Aerial) View */}
             <svg
-              width="128"
-              height="50"
-              style={{ filter: "drop-shadow(0 0 24px #ffe600)"}}
-              viewBox="0 0 128 50"
+              width="108"
+              height="64"
+              style={{ filter: "drop-shadow(0 0 22px #ffe600a8)" }}
+              viewBox="0 0 108 64"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              {/* Car body */}
-              <rect x="16" y="18" width="80" height="25" rx="13" fill="#242528" />
-              <rect x="32" y="9" width="48" height="14" rx="7" fill="#3b3c46" />
-              {/* Front/back neon highlight */}
-              <ellipse cx="17" cy="33" rx="8" ry="6" fill="#ffe600cc"/>
-              <ellipse cx="95" cy="33" rx="8" ry="6" fill="#ffe600cc"/>
-              {/* Wheels */}
-              <ellipse cx="32" cy="42" rx="9" ry="9" fill="#10f9d8" />
-              <ellipse cx="82" cy="42" rx="9" ry="9" fill="#10f9d8" />
-              {/* Tyre */}
-              <ellipse cx="32" cy="42" rx="6" ry="6" fill="#1B1B22" />
-              <ellipse cx="82" cy="42" rx="6" ry="6" fill="#1B1B22" />
-              {/* Window */}
-              <rect x="45" y="12" width="18" height="9" rx="3.5" fill="#00fff9" opacity="0.37"/>
+              {/* Car outline body */}
+              <rect x="24" y="8" width="60" height="48" rx="16" fill="#242528" stroke="#ffe600b0" strokeWidth="2.8"/>
+              {/* Central roof/cabin */}
+              <rect x="37" y="16" width="34" height="30" rx="10" fill="#35364a" stroke="#22232b" strokeWidth="1.7"/>
+              {/* Windshield (front, top) */}
+              <rect x="43" y="8.7" width="22" height="8" rx="3.5" fill="#00fff9" opacity="0.31"/>
+              {/* Rear windshield */}
+              <rect x="43.2" y="47.6" width="22" height="7" rx="3.2" fill="#00fff9" opacity="0.19"/>
+              {/* Car hood highlight line */}
+              <rect x="47.5" y="8.6" width="13" height="2.7" rx="1.13" fill="#ffe600" opacity="0.18"/>
+              {/* Doors dividing line */}
+              <rect x="53" y="16.5" width="2" height="31" rx="1" fill="#ffe600" opacity="0.06"/>
+              {/* Headlights */}
+              <ellipse cx="30" cy="13.2" rx="4.9" ry="2.1" fill="#ffe600"/>
+              <ellipse cx="78" cy="13.2" rx="4.9" ry="2.1" fill="#ffe600"/>
+
+              {/* Tail lights */}
+              <ellipse cx="30" cy="50.5" rx="4.2" ry="2.1" fill="#ff3566a5"/>
+              <ellipse cx="78" cy="50.5" rx="4.2" ry="2.1" fill="#ff3566a5"/>
+
+              {/* Side mirrors (stylized) */}
+              <rect x="19.8" y="17" width="3.4" height="10" rx="2" fill="#ffe600" opacity="0.6" />
+              <rect x="84.8" y="17" width="3.4" height="10" rx="2" fill="#ffe600" opacity="0.6" />
+
+              {/* Wheels (aerial/vertical) */}
+              <rect x="14.4" y="45" width="6" height="19" rx="3" fill="#10f9d8" stroke="#1B1B22" strokeWidth="2"/>
+              <rect x="87.6" y="45" width="6" height="19" rx="3" fill="#10f9d8" stroke="#1B1B22" strokeWidth="2"/>
+              <rect x="14.4" y="0" width="6" height="19" rx="3" fill="#10f9d8" stroke="#1B1B22" strokeWidth="2"/>
+              <rect x="87.6" y="0" width="6" height="19" rx="3" fill="#10f9d8" stroke="#1B1B22" strokeWidth="2"/>
+
+              {/* Tyre hub highlight */}
+              <ellipse cx="17.4" cy="9.2" rx="1.4" ry="2.6" fill="#ffe600"/>
+              <ellipse cx="17.4" cy="54.7" rx="1.4" ry="2.6" fill="#ffe600"/>
+              <ellipse cx="90.6" cy="9.2" rx="1.4" ry="2.6" fill="#ffe600"/>
+              <ellipse cx="90.6" cy="54.7" rx="1.4" ry="2.6" fill="#ffe600"/>
             </svg>
             <span className="ts-animated-car-title">TyreSense</span>
           </motion.div>
