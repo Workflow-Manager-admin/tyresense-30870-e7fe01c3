@@ -206,42 +206,66 @@ function TyreBrandDetail({ brand, onBack }) {
                 onKeyDown={e => {
                   if (e.key === "Enter" || e.key === " ") setSelected(type.id);
                 }}
+                style={{
+                  background: "#fff", // Ensures Porsche card bg
+                  boxShadow: "0 5px 22px #cfd2d651"
+                }}
               >
-                <div className="porsche-type-card-img-row">
+                <div className="porsche-type-card-img-row" style={{ background: "#edeef0" }}>
                   <img
                     src={type.img}
-                    alt={`${name} ${type.model} tyre`}
+                    alt={type.imgAlt || `${name} ${type.model} tyre`}
                     className="porsche-type-card-img"
                     loading="lazy"
                     draggable={false}
+                    style={{ borderRadius: '16px', maxWidth: '78%', maxHeight: 146 }}
                   />
                 </div>
-                <div className="porsche-type-card-info-row">
-                  <span className="porsche-type-model">{type.model}</span>
-                  <span className="porsche-type-kind">{type.type}</span>
-                  <span className="porsche-type-desc">{type.desc}</span>
-                  <span className="porsche-type-sizes">{type.sizes.join(", ")}</span>
-                  <button
-                    className="porsche-type-select-btn"
-                    tabIndex={0}
-                    style={selected === type.id ? { border: "1.7px solid #b4081b", color: "#b4081b" } : undefined}
-                    onClick={e => {
-                      e.stopPropagation();
-                      setSelected(type.id);
-                    }}
-                    aria-label={`Show details for ${type.model} ${type.type}`}
-                  >
-                    {selected === type.id ? "Selected" : "Show details"}
-                  </button>
-                  {selected === type.id && (
-                    <span
-                      className="porsche-type-buy-btn"
-                      tabIndex={-1}
-                      aria-disabled="true"
-                    >
-                      Buy Now (In-app only)
-                    </span>
-                  )}
+                <div className="porsche-type-card-info-row" style={{ padding: "25px 18px 18px 18px", gap: "7px" }}>
+                  <div style={{ display: "flex", flexDirection: "row", alignItems: "baseline", gap: 8 }}>
+                    <span className="porsche-type-model" style={{
+                      fontSize: "1.1rem",
+                      fontWeight: 700,
+                      letterSpacing: "0.05em"
+                    }}>{type.model}</span>
+                    <span className="porsche-type-kind" style={{
+                      color: "#b4081b",
+                      fontWeight: 700,
+                      fontSize: "1rem"
+                    }}>{type.type}</span>
+                  </div>
+                  <div className="porsche-type-desc" style={{
+                    color: "#7d7d85",
+                    fontWeight: 420,
+                    fontSize: "0.97rem",
+                    marginBottom: 0
+                  }}>{type.desc}</div>
+                  <span className="porsche-type-sizes" style={{
+                    color: "#232327",
+                    fontWeight: 560,
+                    fontSize: "0.98rem",
+                  }}>
+                    {type.sizes.join(" • ")}
+                  </span>
+                  <div style={{ marginTop: 11, display: "flex", flexDirection: "row", alignItems: "center", gap: 16 }}>
+                    <a href={type.url} target="_blank" rel="noopener noreferrer"
+                      className="porsche-type-select-btn"
+                      style={{
+                        background: "#fff",
+                        color: selected === type.id ? "#b4081b" : "#111216",
+                        border: selected === type.id ? "1.7px solid #b4081b" : "1.3px solid #111216",
+                        fontWeight: 600,
+                        textTransform: "uppercase",
+                        letterSpacing: ".07em",
+                        padding: "8px 21px",
+                        fontFamily: "inherit",
+                        fontSize: "1rem"
+                      }}
+                      tabIndex={0}
+                      aria-label={`Go to official details/buy for ${type.model} ${type.type}`}
+                      onClick={e => e.stopPropagation()}
+                    >{selected === type.id ? "Official Site" : "Details"}</a>
+                  </div>
                 </div>
               </motion.div>
             ))}
