@@ -250,34 +250,34 @@
 /* Model title */
 .porsche-type-model {
   color: var(--porsche-black);
-  font-size: 1.19rem;
-  font-weight: 600;
+  font-size: 1.12rem;
+  font-weight: 700;
   font-family: var(--porsche-font-main);
-  letter-spacing: 0.11em;
-  margin-bottom: 1px;
-  line-height: 1.1;
+  letter-spacing: 0.06em;
+  margin-bottom: 0;
+  line-height: 1.09;
   text-shadow: none;
 }
 
-/* Tyre Type (eg Summer) */
 .porsche-type-kind {
   color: var(--porsche-accent-red);
-  font-size: 1rem;
+  font-size: 0.98rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  margin-bottom: 2px;
-  margin-top: 2px;
+  letter-spacing: 0.075em;
+  margin-bottom: 0;
+  margin-left: 5px;
+  margin-top: 0;
   line-height: 1.01;
   text-shadow: none;
 }
 
-/* Description blok */
 .porsche-type-desc {
   color: var(--porsche-grey-mid);
   font-size: 0.97rem;
-  font-weight: 450;
-  line-height: 1.45;
-  margin-bottom: 3px;
+  font-weight: 430;
+  line-height: 1.41;
+  margin-bottom: 2px;
+  letter-spacing: 0.01em;
   text-shadow: none;
 }
 
