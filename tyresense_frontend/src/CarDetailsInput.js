@@ -326,17 +326,36 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
         <div className="ts-car-form-submit modern-form-submit">
           <button
             type="submit"
-            className="btn btn-large neon-premium-btn"
+            className="btn btn-large"
             aria-label="Save car details"
+            style={{
+              background: "#b4081b",
+              color: "#fff",
+              fontWeight: 800,
+              borderRadius: "18px",
+              padding: "15px 45px",
+              boxShadow: "none",
+              minWidth: "110px",
+              minHeight: "46px",
+              fontSize: "1.13rem",
+              letterSpacing: "0.13em",
+              border: "1.4px solid #b4081b",
+              outline: "none",
+              transition: "background 0.18s, box-shadow 0.13s, filter 0.08s, color 0.10s",
+              fontFamily: "inherit",
+              filter: "none",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
           >
             <span style={{
               letterSpacing: "0.13em",
               fontWeight: 900,
-              color: "#181924",
-              textShadow: "0 0 12px #00fff92c"
+              color: "#fff"
             }}>Save Car</span>
             <span style={{
-              color: "#00fff9",
+              color: "#fff",
               fontWeight: 800,
               paddingLeft: 8,
               fontSize: "1.42em",
