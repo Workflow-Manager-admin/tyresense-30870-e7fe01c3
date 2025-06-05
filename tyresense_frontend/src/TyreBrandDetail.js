@@ -2,71 +2,72 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./TyreBrandDetail.css";
 
-// Placeholder tyre SVG: stylized for hero image
+/**
+ * Neutral, neon/cyan tyre SVG for new theme
+ */
 function TyreSVG({ style }) {
   return (
     <svg
-      width="230"
-      height="230"
-      viewBox="0 0 230 230"
+      width="305"
+      height="305"
+      viewBox="0 0 305 305"
       fill="none"
       style={style}
       aria-hidden="true"
     >
       <ellipse
-        cx="115"
-        cy="115"
-        rx="99"
-        ry="99"
-        fill="url(#tyre-red-gradient)"
-        style={{ filter: "drop-shadow(0 0 40px #f33a3a66)" }}
+        cx="152.5"
+        cy="152.5"
+        rx="136"
+        ry="136"
+        fill="url(#tyre-dark-neon-detail)"
+        style={{ filter: "drop-shadow(0 0 42px #00fff993)" }}
       />
       <ellipse
-        cx="115"
-        cy="115"
-        rx="81"
-        ry="81"
-        fill="#181114"
-        opacity="0.35"
+        cx="152.5"
+        cy="152.5"
+        rx="115"
+        ry="115"
+        fill="#18181f"
+        opacity="0.27"
       />
       <circle
-        cx="115"
-        cy="115"
-        r="58"
-        stroke="#fff"
-        strokeWidth="11"
-        opacity="0.12"
+        cx="152.5"
+        cy="152.5"
+        r="82"
+        stroke="#00fff9"
+        strokeWidth="16"
+        opacity="0.21"
       />
       <ellipse
-        cx="115"
-        cy="115"
-        rx="39"
-        ry="39"
-        fill="#1a0308"
-        filter="blur(1.2px)"
-        opacity="0.91"
+        cx="152.5"
+        cy="152.5"
+        rx="62"
+        ry="62"
+        fill="#212147"
+        opacity="0.92"
       />
-      {/* Central highlight */}
+      {/* Centre highlight */}
       <ellipse
-        cx="115"
-        cy="110"
-        rx="23"
-        ry="9"
-        fill="#fff"
-        opacity="0.06"
+        cx="152.5"
+        cy="145"
+        rx="32"
+        ry="12"
+        fill="#ffe600"
+        opacity="0.11"
       />
       <defs>
         <radialGradient
-          id="tyre-red-gradient"
+          id="tyre-dark-neon-detail"
           cx="0"
           cy="0"
           r="1"
-          gradientTransform="translate(130 112) rotate(131.26) scale(124 123.9)"
+          gradientTransform="translate(182 154) rotate(123.1) scale(169 171.1)"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.16" stopColor="#FD222D" />
-          <stop offset="0.6" stopColor="#B80031" />
-          <stop offset="1" stopColor="#6e0720" />
+          <stop offset="0.17" stopColor="#00fff9" />
+          <stop offset="0.7" stopColor="#20273c" />
+          <stop offset="1" stopColor="#18181f" />
         </radialGradient>
       </defs>
     </svg>
@@ -76,20 +77,26 @@ function TyreSVG({ style }) {
 // PUBLIC_INTERFACE
 function TyreBrandDetail({ brand, onBack }) {
   /**
-   * Detail page for tyre brand/type, with scroll-based zoom-out animation.
-   * @param {object} brand - Selected brand {id, name, tagline}
-   * @param {function} onBack - Handler for back navigation
+   * Brand detail view: tyre zooms out to right, info slides in from left.
+   * @param {object} brand - e.g. {id, name, tagline}
+   * @param {function} onBack
    */
   const ref = useRef(null);
-  // Track scroll progress within component
+
+  // Track scroll progress within the container
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end end"],
   });
-  // Animate scale from 1.14 at top to 0.67 at bottom
-  const scale = useTransform(scrollYProgress, [0, 0.6], [1.14, 0.67]);
-  // Animate vertical y from 0 to 110px down
-  const y = useTransform(scrollYProgress, [0, 1], [0, 110]);
+
+  // Tyre animation: scale decreases, translateX increases, y stays almost unchanged
+  const scale = useTransform(scrollYProgress, [0, 0.45], [1.15, 0.68]);
+  const x = useTransform(scrollYProgress, [0, 1], [0, 180]); // to right
+  const y = useTransform(scrollYProgress, [0, 1], [0, 14]);  // slight downward
+
+  // Info card animation: opacity from 0.2 -> 1, translateX from -110px -> 0 (left to center)
+  const infoOpacity = useTransform(scrollYProgress, [0, 0.23, 0.6], [0.15, 0.86, 1]);
+  const infoX = useTransform(scrollYProgress, [0, 0.22, 1], [-110, 0, 0]);
 
   return (
     <div className="ts-brand-detail-outer">
@@ -101,28 +108,38 @@ function TyreBrandDetail({ brand, onBack }) {
           className="ts-brand-tyre-hero"
           style={{
             scale,
+            x,
             y,
-            zIndex: 15,
-            boxShadow:
-              "0 12px 80px 7px #ff3a3acc, 0 0px 44px 10px #d2001a51",
+            zIndex: 25,
           }}
         >
           <TyreSVG />
         </motion.div>
-        <div className="ts-brand-info">
+        <motion.div
+          className="ts-brand-info"
+          style={{
+            opacity: infoOpacity,
+            x: infoX,
+            zIndex: 30,
+          }}
+        >
           <h1 className="ts-brand-name">{brand.name}</h1>
-          <h3 className="ts-brand-tagline">{brand.tagline || "Premium Tyres"}</h3>
+          <h3 className="ts-brand-tagline">
+            {brand.tagline || "Premium Tyres"}
+          </h3>
           <section className="ts-brand-desc">
             <p>
               <span>
                 {brand.name} brings industry-leading technology and craftsmanship for a sublime driving experience.
-              </span><br /><br />
+              </span>
+              <br />
+              <br />
               <span>
                 <b>Highlights:</b>
                 <ul>
                   <li>Maximum grip, low rolling resistance</li>
                   <li>Enhanced durability with unique tread design</li>
-                  <li>Engineered for performance & safety on all roads</li>
+                  <li>Engineered for performance &amp; safety on all roads</li>
                 </ul>
               </span>
             </p>
@@ -133,14 +150,18 @@ function TyreBrandDetail({ brand, onBack }) {
               <button
                 className="ts-detail-buy-btn"
                 onClick={() =>
-                  window.open("https://www.google.com/search?q=" + encodeURIComponent(brand.name + " tyres"), "_blank")
+                  window.open(
+                    "https://www.google.com/search?q=" +
+                      encodeURIComponent(brand.name + " tyres"),
+                    "_blank"
+                  )
                 }
               >
                 Buy Now &rarr;
               </button>
             </div>
           </section>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
