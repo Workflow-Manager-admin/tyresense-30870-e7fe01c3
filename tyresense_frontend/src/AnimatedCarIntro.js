@@ -127,13 +127,13 @@ function AnimatedCarIntro({ visible, onAnimationComplete }) {
           <motion.div
             className="ts-animated-car"
             initial={{
-              x: "-50vw",
-              scale: 1.3,
-              rotate: -8,
+              x: "-100vw", // Start fully off-screen for a visible entrance
+              scale: 1.18,
+              rotate: -10,
               opacity: 1
             }}
             animate={{
-              x: 0,           // parks at position 0 in flex row (left of TyreSense)
+              x: "0vw", // Stop fully visible and precisely beside text
               scale: 1,
               rotate: 0,
               opacity: 1
@@ -142,16 +142,19 @@ function AnimatedCarIntro({ visible, onAnimationComplete }) {
               scale: 0.95, y: 32, opacity: 0
             }}
             transition={{
-              duration: 2.4,
-              ease: [0.74, 0.02, 0.25, 1]
+              duration: 2.28, // Slightly shorter, feels snappier across full width
+              ease: [0.72, 0.03, 0.22, 1.01]
             }}
             onAnimationComplete={onAnimationComplete}
             style={{
               flexDirection: "row",
-              minWidth: 200,
+              minWidth: 250,
               alignItems: "center",
               justifyContent: "flex-start",
-              pointerEvents: "none"
+              pointerEvents: "none",
+              left: "0vw", // Always dock left after parking
+              bottom: "10vh", // Ensures visibility on various screens
+              position: "absolute"
             }}
           >
             <FerrariF1AerialSVG
