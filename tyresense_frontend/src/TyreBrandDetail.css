@@ -162,6 +162,7 @@
     height: 66vw;
     max-width: 99vw;
     border-radius: 28px;
+    margin-top: 15px;
   }
   .ts-brand-info-panes {
     padding-left: 15vw !important;
@@ -175,6 +176,22 @@
     padding: 19px 3vw 16px 7vw;
     margin: 22px 0 10px 0;
   }
+  .ts-brand-detail-topbar {
+    min-height: 56px;
+    padding-top: 9px;
+  }
+  .ts-brand-detail-topbar .ts-animated-car-navbar {
+    max-width: 180px;
+    height: 31px;
+    margin-left: 5px;
+    min-width: 59px;
+  }
+  .ts-detail-back-btn {
+    padding: 8px 18px 8px 11px;
+    font-size: 1.03rem;
+    min-height: 38px;
+    min-width: 60px;
+  }
 }
 
 @media (max-width: 700px) {
@@ -183,14 +200,30 @@
     height: 58vw;
     border-radius: 14px;
     padding: 0 !important;
+    margin-top: 11px;
   }
   .ts-brand-info-panes {
-    padding-left: 4vw !important;
+    padding-left: 3vw !important;
     align-items: stretch !important;
   }
   .ts-brand-info-block {
     padding: 14px 2vw 12px 3vw;
     border-radius: 10px;
+  }
+  .ts-brand-detail-topbar {
+    min-height: 43px;
+    padding-top: 3px;
+  }
+  .ts-brand-detail-topbar .ts-animated-car-navbar {
+    max-width: 95px;
+    height: 18px;
+    min-width: 38px;
+  }
+  .ts-detail-back-btn {
+    padding: 7px 8px 7px 7px;
+    font-size: 0.93rem;
+    min-height: 25px;
+    min-width: 41px;
   }
 }
 
