@@ -185,34 +185,40 @@ function GoogleMapsStoreLocator() {
 
   return (
     <div className="ts-map-container">
-      {error && (
+      {error ? (
         <div className="ts-map-error" style={{
           color: "#ffe600",
           background: "#191932",
           border: "2px solid #ffe600",
           borderRadius: "14px",
-          padding: "13px 18px",
+          padding: "22px 18px",
           fontWeight: 600,
-          marginBottom: "7px",
+          minHeight: "110px",
+          fontSize: "1.14rem",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          margin: 0,
           textAlign: "center"
         }}>
           {error}
         </div>
+      ) : (
+        <div
+          ref={mapRef}
+          className="ts-map-canvas"
+          style={{
+            width: "100%",
+            height: "100%",
+            minHeight: "170px",
+            borderRadius: "13px",
+            boxShadow: "0 5px 34px #00fff934, 0 4px 34px #ffe60012",
+            background: "#18181f"
+          }}
+          aria-label="Nearby tyre stores map"
+          tabIndex={0}
+        ></div>
       )}
-      <div
-        ref={mapRef}
-        className="ts-map-canvas"
-        style={{
-          width: "100%",
-          height: "100%",
-          minHeight: "170px",
-          borderRadius: "13px",
-          boxShadow: "0 5px 34px #00fff934, 0 4px 34px #ffe60012",
-          background: "#18181f"
-        }}
-        aria-label="Nearby tyre stores map"
-        tabIndex={0}
-      ></div>
       {/* Key: You must provide your Google Maps API key via .env as REACT_APP_GOOGLE_MAPS_API_KEY */}
     </div>
   );
