@@ -16,14 +16,15 @@ import "./TyreBrandDetail.css";
  * All images are tyre-only, no car context, and selected for best clarity at all aspect ratios.
  */
 const TYRE_IMAGES = {
+  // Matched to main showcase: ultra high-res, strictly tyre photos, vivid and crisp
   pirelli:
-    "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=2048&q=87", // Crisp, profile view, vivid sidewall, clean fit
+    "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=2048&q=90",
   michelin:
-    "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=2048&q=87", // Detailed tread, bold lighting, no background clutter
+    "https://images.pexels.com/photos/207924/pexels-photo-207924.jpeg?auto=compress&w=2048&q=90",
   continental:
-    "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=2048&q=87", // Rugged, sharp focus on rim/tread
+    "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=2048&q=90",
   bridgestone:
-    "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=2048&q=87", // Bead/rim detail, strong shadow depth
+    "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&w=2048&q=90",
 };
 
 // Info blocks per brand (demo text—could be extended/customized)

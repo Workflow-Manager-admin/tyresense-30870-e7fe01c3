@@ -129,8 +129,8 @@
 .tyre-brand-tyre-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  object-fit: cover !important;
+  object-position: center !important;
   display: block;
   border-radius: inherit;
   box-shadow: 0 0 18px #00fff954, 0 2px 14px #111a;
@@ -139,6 +139,9 @@
   user-select: none;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+  /* Always use maximum source resolution for clarity */
+  max-width: unset;
+  max-height: unset;
 }
 
 @media (max-width: 960px) {
