@@ -103,7 +103,7 @@ function TyreTypesShowcase({ onBrandSelect }) {
                     ? "Macro shot of Continental tyre sidewall and tread textures"
                     : brand.id === "bridgestone"
                     ? "Group of stacked Bridgestone tyres in a clean indoor setting"
-                    : `Real-life ${brand.name} tyre`
+                    : `Photograph of a real ${brand.name} tyre`
                 }
                 loading="lazy"
                 style={{
