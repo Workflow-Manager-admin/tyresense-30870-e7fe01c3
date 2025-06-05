@@ -2,77 +2,13 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./TyreBrandDetail.css";
 
-/**
- * Neutral, neon/cyan tyre SVG for new theme
- */
-function TyreSVG({ style }) {
-  return (
-    <svg
-      width="305"
-      height="305"
-      viewBox="0 0 305 305"
-      fill="none"
-      style={style}
-      aria-hidden="true"
-    >
-      <ellipse
-        cx="152.5"
-        cy="152.5"
-        rx="136"
-        ry="136"
-        fill="url(#tyre-dark-neon-detail)"
-        style={{ filter: "drop-shadow(0 0 42px #00fff993)" }}
-      />
-      <ellipse
-        cx="152.5"
-        cy="152.5"
-        rx="115"
-        ry="115"
-        fill="#18181f"
-        opacity="0.27"
-      />
-      <circle
-        cx="152.5"
-        cy="152.5"
-        r="82"
-        stroke="#00fff9"
-        strokeWidth="16"
-        opacity="0.21"
-      />
-      <ellipse
-        cx="152.5"
-        cy="152.5"
-        rx="62"
-        ry="62"
-        fill="#212147"
-        opacity="0.92"
-      />
-      {/* Centre highlight */}
-      <ellipse
-        cx="152.5"
-        cy="145"
-        rx="32"
-        ry="12"
-        fill="#ffe600"
-        opacity="0.11"
-      />
-      <defs>
-        <radialGradient
-          id="tyre-dark-neon-detail"
-          cx="0"
-          cy="0"
-          r="1"
-          gradientTransform="translate(182 154) rotate(123.1) scale(169 171.1)"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset="0.17" stopColor="#00fff9" />
-          <stop offset="0.7" stopColor="#20273c" />
-          <stop offset="1" stopColor="#18181f" />
-        </radialGradient>
-      </defs>
-    </svg>
-  );
-}
+// Placeholder/photo URLs for tyre brand images (same as in TyreTypesShowcase).
+const TYRE_IMAGES = {
+  pirelli: "https://images.unsplash.com/photo-1519681393-2de5e0f0c81b?auto=format&fit=crop&w=330&q=80", // Unsplash - represents a tyre
+  michelin: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=330&q=80",
+  continental: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=330&q=80",
+  bridgestone: "https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=330&q=80",
+};
 
 // PUBLIC_INTERFACE
 function TyreBrandDetail({ brand, onBack }) {
@@ -113,7 +49,19 @@ function TyreBrandDetail({ brand, onBack }) {
             zIndex: 25,
           }}
         >
-          <TyreSVG />
+          <img
+            src={TYRE_IMAGES[brand.id] || TYRE_IMAGES["pirelli"]}
+            alt={`Real-life ${brand.name} tyre`}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+              borderRadius: "31px",
+              backgroundColor: "#191932",
+              boxShadow: "0 0 32px #00fff978, 0 4px 24px #1119",
+            }}
+            loading="lazy"
+          />
         </motion.div>
         <motion.div
           className="ts-brand-info"
