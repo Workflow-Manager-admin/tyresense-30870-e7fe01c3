@@ -3,128 +3,98 @@ import { motion, AnimatePresence } from "framer-motion";
 import "./AnimatedCarIntro.css";
 
 /**
- * Ferrari F1 Side View SVG (Visual Upgrade)
- * This is a true, crisp, side-on SVG representation of a Ferrari F1 car (2022+ era vibe, stylized for clarity and visual impact).
- * Proportions, lines, and shadows improved for a much more "real", visually rich appearance.
- */
-/**
  * PUBLIC_INTERFACE
- * FerrariF1SideSVG: Now featuring an ultra-polished, highly detailed Ferrari F1 car (side view, 2022+), with more realistic wheels, correct "shark" nose, accurate halo, subtle sponsor/numbering, intense paint, and pro motorsport touches. Optimized for scale and dark backgrounds.
+ * TyreSenseLogoCarSVG: Modern, logo-like, bold and minimal side-view car SVG for TyreSense, optimized for animation, branding, and clarity.
+ * Clean shapes, dark and neon scheme, visually distinctive, always displays well on dark backgrounds and scales cleanly.
  */
-function FerrariF1SideSVG({ style, ...props }) {
+function TyreSenseLogoCarSVG({ style, ...props }) {
   return (
     <svg
-      viewBox="0 0 420 120"
+      viewBox="0 0 360 100"
       fill="none"
-      width="300"
-      height="95"
+      width={style?.width || 240}
+      height={style?.height || 70}
       style={style}
       {...props}
-      aria-label="Ultra-premium Ferrari F1 2022+ side profile"
+      aria-label="TyreSense logo stylized side-view car"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
     >
       <defs>
-        <linearGradient id="ferrariRedGrad" x1="0" y1="0" x2="0" y2="120" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#D50317" />
-          <stop offset="1" stopColor="#84030C" />
+        <linearGradient id="ts-car-body" x1="0" y1="41" x2="300" y2="59" gradientUnits="userSpaceOnUse">
+          <stop offset="0.03" stopColor="#222444" />
+          <stop offset="0.45" stopColor="#ffe600" />
+          <stop offset="0.61" stopColor="#f6d944" />
+          <stop offset="1" stopColor="#ffe600" />
         </linearGradient>
-        <linearGradient id="mainBodyRed" x1="30" y1="80" x2="340" y2="80" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#C30410"/>
-          <stop offset="0.6" stopColor="#f0101a"/>
-          <stop offset="1" stopColor="#65040C"/>
-        </linearGradient>
-        <linearGradient id="matteBlack" x1="0" y1="0" x2="0" y2="32" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#3b3c41" />
-          <stop offset="1" stopColor="#19161d" />
-        </linearGradient>
-        <radialGradient id="carbonGloss" cx="48%" cy="29%" r="61%">
-          <stop offset="0.19" stopColor="#F6D944" stopOpacity="0.95"/>
-          <stop offset="0.48" stopColor="#FFFBE6" stopOpacity="0.37"/>
-          <stop offset="1" stopColor="#F6D944" stopOpacity="0.11"/>
+        <radialGradient id="ts-tyre-outer" cx="49%" cy="45%" r="52%">
+          <stop offset="0.16" stopColor="#535353"/>
+          <stop offset="0.67" stopColor="#151719"/>
+          <stop offset="1" stopColor="#0e0e12"/>
         </radialGradient>
-        <radialGradient id="tyreShadow" cx="50%" cy="50%" r="65%">
-          <stop offset="0%" stopColor="#2a090c" stopOpacity="0.31" />
-          <stop offset="100%" stopColor="#121210" stopOpacity="0.13" />
-        </radialGradient>
-        <radialGradient id="mainShadow" cx="50%" cy="62%" r="78%">
-          <stop offset="0.11" stopColor="#410d19" stopOpacity="0.31" />
-          <stop offset="1" stopColor="#000" stopOpacity="0.09" />
+        <radialGradient id="ts-tyre-gloss" cx="56%" cy="36%" r="65%">
+          <stop offset="0.38" stopColor="#ffe600" stopOpacity="0.23"/>
+          <stop offset="0.7" stopColor="#ffe600" stopOpacity="0.01"/>
+          <stop offset="1" stopColor="#ffe600" stopOpacity="0"/>
         </radialGradient>
       </defs>
-      {/* Main car shadow */}
-      <ellipse cx="202" cy="113" rx="144" ry="7.5" fill="url(#mainShadow)" opacity="0.19" />
-      {/* Rear wing endplate, main (black/red) */}
-      <rect x="352" y="38" width="30" height="38" rx="5" fill="#2C1519" />
-      <rect x="350" y="36" width="33" height="9" rx="2.5" fill="#EC1A20" />
-      {/* DRS pod (hint) */}
-      <rect x="349" y="32" width="34" height="4.3" rx="2.15" fill="#FFE600" opacity="0.97" />
-      {/* Rear tyre group */}
-      <g>
-        <ellipse cx="355" cy="91.5" rx="22" ry="22.5" fill="url(#matteBlack)" stroke="#EEEEEC" strokeWidth="5"/>
-        <ellipse cx="355" cy="91.5" rx="12.2" ry="12.7" fill="url(#carbonGloss)" />
-        <ellipse cx="355" cy="91.5" rx="16" ry="16.7" fill="url(#tyreShadow)" opacity="0.16"/>
-      </g>
-      {/* Front tyre group */}
-      <g>
-        <ellipse cx="78.5" cy="94.2" rx="21.2" ry="21.4" fill="url(#matteBlack)" stroke="#D3DAE1" strokeWidth="4.5"/>
-        <ellipse cx="78.5" cy="94.2" rx="11.4" ry="12" fill="url(#carbonGloss)" />
-        <ellipse cx="78.5" cy="94.2" rx="14.2" ry="14.9" fill="url(#tyreShadow)" opacity="0.13"/>
-      </g>
-      {/* Floor/undertray */}
-      <rect x="84" y="103.2" width="241" height="11.4" rx="6.5" fill="#23262A" opacity="0.62" stroke="#36353f" strokeWidth="1.2"/>
-      {/* Sidepod and floor edges */}
-      <rect x="94" y="84.5" width="219" height="21.6" rx="11.2" fill="url(#mainBodyRed)" stroke="#FFE600" strokeWidth="2"/>
-      <rect x="244" y="84.5" width="61" height="21.6" rx="10.5" fill="#d20516" stroke="#FFE600" strokeWidth="1.1"/>
 
-      {/* Main Ferrari body */}
-      <rect x="78" y="48" width="224" height="36" rx="18.5"
-        fill="url(#mainBodyRed)" stroke="#FFE600" strokeWidth="2.2"/>
-      {/* Cockpit glass */}
-      <rect x="180" y="18.5" width="61" height="38.5" rx="19.5"
-        fill="url(#ferrariRedGrad)" stroke="#FFE600" strokeWidth="1.8"/>
-      {/* Halo */}
-      <rect x="236" y="16" width="18" height="8.7" rx="3.6"
-        fill="#19171d" stroke="#FFE600" strokeWidth="0.7"/>
-      {/* Halo double supports */}
-      <rect x="248" y="24" width="5" height="16" rx="1.5" fill="#ffe600" opacity="0.85" />
-      <rect x="208" y="24" width="4.6" height="15.4" rx="1.27" fill="#ffe600" opacity="0.5" />
-      {/* Airbox/intake */}
-      <ellipse cx="215" cy="14.4" rx="8" ry="4.3" fill="#FFE600" stroke="#DAAC13" strokeWidth="0.41"/>
-      {/* Chassis/engine cover */}
-      <rect x="256" y="28" width="22" height="23.5" rx="4.6" fill="#0f0e13"/>
-      <rect x="289" y="35.2" width="13.5" height="12.7" rx="3.1" fill="#ffe60066"/>
-      {/* "Shark" extended nose (modern F1 highlight) */}
-      <rect x="42" y="65" width="46" height="13.6" rx="6.8" fill="#FFE600" stroke="#C9C143" strokeWidth="0.41"/>
-      {/* Driver helmet + seat */}
-      <ellipse cx="195" cy="36.1" rx="9.1" ry="8.7" fill="#f8e8e8" stroke="#DD0D19" strokeWidth="2.2"/>
-      <ellipse cx="198" cy="36.1" rx="3.6" ry="4.5" fill="#362022" />
-      {/* Roll hoop */}
-      <rect x="237" y="26.2" width="7.7" height="19.3" rx="3.8" fill="#111a1d" />
-      {/* Mirrors */}
-      <rect x="158" y="49" width="7.5" height="4.1" rx="1.45" fill="#ffe600"/>
-      <rect x="287" y="47" width="6.2" height="3.6" rx="1.1" fill="#ffe600"/>
-      {/* Ferrari shield (SVG-optimized, stylized) */}
-      <rect x="276" y="74.1" width="15" height="13.5" rx="3.1"
-        fill="#FFE600" stroke="#191a1a" strokeWidth="0.38"/>
-      <text x="280.5" y="85.5" fontSize="8.5" fontWeight="bold"
-        fill="#111a1a" style={{fontFamily: 'monospace'}}>SF</text>
-      {/* Branding text/number model number */}
-      <text x="260" y="71" fontSize="14.3" fontWeight="bold"
-        fill="#1a1a1a" style={{ fontFamily: 'monospace' }}>75</text>
-      {/* Front wing mainplate (multi-segment for F1 2022+) */}
-      <rect x="22" y="75.5" width="60" height="7" rx="3.3" fill="#22222b" />
-      <rect x="17" y="82.8" width="64" height="4" rx="2.4" fill="#ffe600" opacity="0.96"/>
-      {/* Front winglets (modern swept flow) */}
-      <rect x="31.3" y="90" width="11.5" height="2.2" rx="1.1" fill="#ffe600" opacity="0.74"/>
-      <rect x="46" y="90.8" width="10.1" height="2" rx="0.85" fill="#ffe600" opacity="0.74"/>
-      {/* Subtle body highlight */}
-      <ellipse cx="185" cy="60" rx="72" ry="19" fill="#fff" opacity="0.10" />
-      {/* Tire rakes/wheel highlights */}
-      <ellipse cx="78.5" cy="94.2" rx="8.5" ry="7.5" fill="#ffe600" opacity="0.11" />
-      <ellipse cx="355" cy="91.5" rx="8.5" ry="7.5" fill="#ffe600" opacity="0.11" />
-      {/* Rear number/ferrari accent bar */}
-      <rect x="345" y="78" width="20" height="6" rx="2.5" fill="#ffe600" opacity="0.85" />
+      {/* Ground shadow */}
+      <ellipse cx="170" cy="97" rx="96" ry="6" fill="#221" opacity="0.22"/>
+      {/* Rear wheel */}
+      <g>
+        <ellipse cx="62" cy="80" rx="23" ry="23" fill="url(#ts-tyre-outer)" />
+        <ellipse cx="62" cy="80" rx="13" ry="13" fill="#191922" />
+        <ellipse cx="62" cy="80" rx="20" ry="20" fill="url(#ts-tyre-gloss)" />
+        <ellipse cx="62" cy="80" rx="6.7" ry="6.7" fill="#ffe600" opacity="0.13"/>
+      </g>
+      {/* Front wheel */}
+      <g>
+        <ellipse cx="255" cy="80" rx="21" ry="21" fill="url(#ts-tyre-outer)" />
+        <ellipse cx="255" cy="80" rx="12" ry="12" fill="#232332" />
+        <ellipse cx="255" cy="80" rx="17" ry="17" fill="url(#ts-tyre-gloss)" />
+        <ellipse cx="255" cy="80" rx="6.7" ry="6.4" fill="#ffe600" opacity="0.08"/>
+      </g>
+      {/* Floor/undercarriage simplified */}
+      <rect x="44" y="75" width="235" height="9.3" rx="4.5" fill="#1c2233" />
+      {/* Car body */}
+      <path
+        d="M41 72 Q50 35 107 36 Q113 23 170 23 Q202 22 227 33 Q275 46 277 72 Q293 72 293 68 Q300 58 321 60 Q326 60 336 74 Q318 76 255 75 Q209 74 134 76 Q74 77 60 72 Z"
+        fill="url(#ts-car-body)"
+        stroke="#ffe600"
+        strokeWidth="2.1"
+        opacity="1"
+        />
+      {/* Cabin/B pillar line, stylized */}
+      <path
+        d="M112 38 Q120 26 171 28 Q211 31 220 46"
+        stroke="#ffe600"
+        strokeWidth="2.2"
+        fill="none"
+        opacity="0.95"
+      />
+      {/* Window highlight */}
+      <path
+        d="M127 34 Q138 27 170 27 Q194 28 211 38"
+        stroke="#fff"
+        strokeWidth="1.2"
+        fill="none"
+        opacity="0.28"
+      />
+      {/* Neon accent speed lines */}
+      <rect x="62" y="51" width="22" height="3.3" rx="1.6" fill="#00fff9" opacity="0.27"/>
+      <rect x="140" y="31" width="22" height="2.1" rx="1.1" fill="#00fff9" opacity="0.20"/>
+      {/* Door handle */}
+      <rect x="141" y="51" width="16" height="2.3" rx="1.15" fill="#ffe600" opacity="0.8"/>
+      {/* Rear "fin" stylized */}
+      <rect x="40.2" y="62" width="8" height="17" rx="4" fill="#ffe600" opacity="0.63"/>
+      {/* Short antenna */}
+      <rect x="137" y="18" width="4" height="13" rx="1.9" fill="#ffe600" opacity="0.68"/>
+      {/* TyreSense glyph badge - small logo detail */}
+      <g>
+        <circle cx="264" cy="68" r="8.4" fill="#ffe600" stroke="#ffe600" strokeWidth="1.7"/>
+        <path d="M258 69 Q263 62 270 68 Q263 75 256 70 Z" fill="#fff" opacity="0.77"/>
+      </g>
     </svg>
   );
 }
