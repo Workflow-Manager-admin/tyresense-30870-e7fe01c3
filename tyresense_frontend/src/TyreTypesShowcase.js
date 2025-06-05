@@ -4,11 +4,9 @@ import "./TyreTypesShowcase.css";
 /**
  * HIGH-RES TYRE IMAGES: All images are sharp, authentic, high-res (2048px+), and tyre-only (no vehicle or placeholder).
  * All assets are from Unsplash/Pexels and carefully vetted to show only tyres as required, matching the container size.
- * If additional brands are added, ensure to use similar criteria: tyre-only, no vehicle, minimum 1080px+, preferably 2048px+.
  * In production, swap with licensed/official assets as appropriate.
  */
 const TYRE_IMAGES = {
-  // Updated to user-provided, locally hosted image paths for each tyre brand
   pirelli:
     process.env.PUBLIC_URL + "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
   michelin:
@@ -19,7 +17,6 @@ const TYRE_IMAGES = {
     process.env.PUBLIC_URL + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
 };
 
-// Sample data: could be extended with images, descriptions, etc.
 const TYRE_BRANDS = [
   {
     id: "pirelli",
@@ -48,11 +45,11 @@ const TYRE_BRANDS = [
 ];
 
 // PUBLIC_INTERFACE
+/**
+ * Displays "Explore Tyre Brands" section – each brand in its own visually impactful, device-responsive container with a fully sized, object-fit: cover image.
+ * @param {function} onBrandSelect - function(brand) called when a brand is clicked.
+ */
 function TyreTypesShowcase({ onBrandSelect }) {
-  /**
-   * Displays tyre types/brand cards in a side-by-side, responsive, premium style.
-   * @param {function} onBrandSelect - function(brand) called when a brand is clicked (for future detail view integration).
-   */
   return (
     <section className="ts-section ts-tyre-brands-showcase">
       <header className="tyre-showcase-header">
@@ -70,39 +67,46 @@ function TyreTypesShowcase({ onBrandSelect }) {
             onClick={() => onBrandSelect && onBrandSelect(brand)}
             type="button"
             tabIndex={0}
+            style={{
+              padding: 0,
+              overflow: "hidden",
+              borderRadius: "39px",
+              minHeight: 290,
+              minWidth: 0,
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "flex-end",
+              alignItems: "stretch",
+              background: "#1c2241", // fallback before img loads
+            }}
           >
-            {/* Tyre image - fills card as background/cover */}
+            {/* Brand Tyre Image - covers the entire container */}
             <div
-              className="tyre-brand-tyre-img"
               style={{
-                position: "relative",
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                zIndex: 2,
+                pointerEvents: "none",
                 overflow: "hidden",
-                borderRadius: "32px",
-                width: 132,
-                height: 132,
-                minWidth: 98,
-                minHeight: 98,
-                maxWidth: 164,
-                margin: "0 0 0 14px",
-                background: "#18181f",
-                boxShadow:
-                  "0 0 24px #00fff984, 0 4px 24px #142 0 12px 36px #1919323f",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                borderRadius: "inherit",
               }}
+              className="tyre-brand-impact-img-outer"
+              aria-hidden="true"
             >
               <img
                 src={TYRE_IMAGES[brand.id] || TYRE_IMAGES["pirelli"]}
                 alt={
                   brand.id === "pirelli"
-                    ? "Pirelli Cinturato P7 high-resolution tyre photo, on clean surface"
+                    ? "User provided Pirelli Cinturato P7 tyre photo, full detail"
                     : brand.id === "michelin"
-                    ? "Michelin Tyres close-up showing tread detail, user-uploaded"
+                    ? "User provided Michelin Tyres, tread detail close-up"
                     : brand.id === "continental"
-                    ? "Continental CityPlus tyre macro, sidewall and tread texture, user-provided"
+                    ? "User provided Continental CityPlus tyre, macro sidewall/tread"
                     : brand.id === "bridgestone"
-                    ? "Bridgestone Turanza T005 stacked tyres, user-provided detailed image"
+                    ? "User provided Bridgestone Turanza T005 tyre, stacked detailed"
                     : `Photograph of a real ${brand.name} tyre`
                 }
                 loading="lazy"
@@ -113,28 +117,69 @@ function TyreTypesShowcase({ onBrandSelect }) {
                   objectPosition: "center",
                   display: "block",
                   borderRadius: "inherit",
-                  boxShadow: "0 0 18px #00fff954, 0 2px 14px #111a",
-                  transition: "transform .25s cubic-bezier(.68,-0.35,.32,1.35)",
-                  background: "#222",
+                  transition: "transform .22s cubic-bezier(.68,-0.35,.32,1.35)",
+                  background: "#191932",
+                  filter: "brightness(1.13) contrast(1.06)",
                   pointerEvents: "none",
-                  userSelect: "none"
+                  userSelect: "none",
                 }}
                 draggable={false}
               />
+              {/* Overlay for contrast and readability */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background:
+                    "linear-gradient(151deg, #18181fdd 9%, #0e193b55 94%)",
+                  zIndex: 3,
+                  borderRadius: "inherit",
+                }}
+              ></div>
             </div>
-            {/* Info on left */}
-            <div className="tyre-brand-info-col">
+            {/* Info at the front, overlays image for maximum visual impact */}
+            <div
+              className="tyre-brand-info-col"
+              style={{
+                position: "relative",
+                zIndex: 4,
+                padding: "42px 34px 33px 34px",
+                background: "none",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                gap: 8,
+              }}
+            >
               <div className="tyre-brand-logo">
-                {/* Brand name as main premium title */}
                 <span
                   className="tyre-brand-name"
                   aria-hidden="true"
+                  style={{
+                    fontSize: "2.35rem",
+                    color: "#ffe600",
+                    fontWeight: 820,
+                    letterSpacing: ".12em",
+                    textShadow: "0px 2.5px 36px #00fff984, 0 2px 14px #191932",
+                    lineHeight: 1.05,
+                  }}
                 >
                   {brand.name}
                 </span>
               </div>
               {brand.tagline && (
-                <span className="tyre-brand-tagline">{brand.tagline}</span>
+                <span
+                  className="tyre-brand-tagline"
+                  style={{
+                    color: "#fff",
+                    fontWeight: 520,
+                    fontSize: "1.095rem",
+                    opacity: 0.85,
+                    textShadow: "0 2px 18px #19193290",
+                  }}
+                >
+                  {brand.tagline}
+                </span>
               )}
             </div>
           </button>
