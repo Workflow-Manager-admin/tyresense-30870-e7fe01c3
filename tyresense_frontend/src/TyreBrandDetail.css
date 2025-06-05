@@ -189,15 +189,15 @@
 .porsche-type-card {
   background: var(--porsche-white);
   border-radius: var(--porsche-card-radius);
-  box-shadow: 0 5px 22px #cfd2d651;
-  border: 1.67px solid var(--porsche-border-light);
+  box-shadow: 0 11px 40px 0 #cfd2d62a, 0 2.3px 13px #cccccc12;
+  border: 1.19px solid var(--porsche-border-light);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  transition: box-shadow .16s, border .14s, transform .10s;
+  transition: box-shadow .17s, border .15s, transform .12s;
   cursor: pointer;
-  min-height: 315px;
+  min-height: 329px;
   max-width: 355px;
   width: 100%;
   position: relative;
