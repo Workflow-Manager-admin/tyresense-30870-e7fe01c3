@@ -24,6 +24,39 @@ body {
   flex-direction: column;
 }
 
+/* Blackout overlay for staged intro - covers all content initially */
+.blackout-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #08080B;
+  opacity: 1;
+  z-index: 2000;
+  pointer-events: all;
+  will-change: opacity;
+  transition: opacity 540ms cubic-bezier(.71,0,.38,1);
+}
+
+/* Logo navbar mini style */
+.ts-animated-car-navbar {
+  max-width: 350px;
+  min-width: 165px;
+  height: 63px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 12;
+}
+
+.ts-animated-car-navbar .ts-animated-car-title {
+  font-size: 1.6rem !important;
+  color: #ffe600 !important;
+  text-shadow: 0 0 11px #ffe6006c;
+  letter-spacing: 0.11em;
+  line-height: 1.1;
+}
+
 .navbar {
   background-color: var(--base-dark);
   padding: 16px;

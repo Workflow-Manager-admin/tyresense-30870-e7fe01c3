@@ -124,13 +124,22 @@ function FerrariF1SideSVG({ style, ...props }) {
  *   - visible: boolean, controls whether the animation runs
  *   - onAnimationComplete: function, fired once intro finishes
  */
-// PUBLIC_INTERFACE
-function AnimatedCarIntro({ visible, onAnimationComplete }) {
+/**
+ * AnimatedCarIntro:
+ * - Animates a detailed Ferrari F1 side-view car and "TyreSense" brand name to the center (intro mode).
+ * - In logo mode (`asLogo`), shows a horizontally condensed, fixed car+name logo (e.g., inside navbar).
+ *
+ * Props:
+ *   - visible: boolean, controls whether the intro animation runs (centered, big)
+ *   - asLogo: boolean, if true, renders as a persistent logo (small, inline for navbar)
+ *   - onAnimationComplete: function, fired once intro finishes
+ */
+function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
   // State to track when the animation (entry) is over.
   const [hasEntered, setHasEntered] = useState(false);
   const doneOnce = useRef(false);
 
-  // "visible" triggers the entry animation; after, persist both car and logo in parked center form.
+  // "visible" triggers the entry animation; after, signal completion.
   useEffect(() => {
     if (hasEntered && typeof onAnimationComplete === "function" && !doneOnce.current) {
       onAnimationComplete();
@@ -138,10 +147,55 @@ function AnimatedCarIntro({ visible, onAnimationComplete }) {
     }
   }, [hasEntered, onAnimationComplete]);
 
-  // Animations:
-  // - Car + logo block slides from offscreen left to center, parks (visible).
-  // - After intro: car + logo remain centered, visually identical to the parked animation.
-  // - No dock to side: after intro, they stay centered/fixed.
+  // If asLogo is enabled, render an always present car+TyreSense mark (small/in-navbar).
+  if (asLogo) {
+    return (
+      <div
+        className="ts-animated-car ts-animated-car-navbar"
+        style={{
+          position: "relative",
+          left: 0,
+          top: "0",
+          transform: "translate(0,0)",
+          minWidth: 165,
+          maxWidth: 370,
+          zIndex: 11,
+          pointerEvents: "none",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          height: 63
+        }}
+      >
+        <FerrariF1SideSVG
+          style={{
+            width: 97,
+            height: 30,
+            marginRight: 11,
+            marginLeft: 3,
+            filter: "drop-shadow(0 0 28px #ffe60043)"
+          }}
+        />
+        <span
+          className="ts-animated-car-title"
+          style={{
+            marginLeft: 0,
+            fontSize: "1.6rem",
+            whiteSpace: "nowrap",
+            letterSpacing: "0.13em",
+            filter: "brightness(1.18) blur(.01px)",
+            color: "#ffe600",
+            textShadow: "0 0 10px #ffe60085",
+            fontWeight: 800,
+            lineHeight: "1.1"
+          }}
+        >
+          TyreSense
+        </span>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -151,7 +205,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete }) {
             className="ts-animated-car-intro-bg"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0, transition: { duration: 0.33 } }}
+            exit={{ opacity: 0, transition: { duration: 0.22 } }}
             style={{
               position: "fixed",
               inset: 0,
@@ -160,10 +214,10 @@ function AnimatedCarIntro({ visible, onAnimationComplete }) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              background: "linear-gradient(150deg, #18181f 85%, #101019 98%)"
+              background: "transparent" // Blackout handled by parent overlay now
             }}
           >
-            {/* Animated car + logo center block */}
+            {/* Animated car + logo in center */}
             <motion.div
               className="ts-animated-car"
               initial={{
@@ -185,7 +239,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete }) {
                 opacity: 1
               }}
               transition={{
-                duration: 1.4,
+                duration: 1.3,
                 ease: [0.81, 0.03, 0.28, 0.99]
               }}
               style={{
@@ -206,7 +260,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete }) {
                   height: 88,
                   maxWidth: "46vw",
                   marginRight: 36,
-                  filter: "drop-shadow(0 0 60px #ffe60099)"
+                  filter: "drop-shadow(0 0 68px #ffe60099)"
                 }}
               />
               {/* "TyreSense" appears just after car centers */}
@@ -215,7 +269,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete }) {
                   className="ts-animated-car-title"
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.46, delay: 0.06, ease: [0.71, 0.01, 0.18, 1] }}
+                  transition={{ duration: 0.38, delay: 0.05, ease: [0.71, 0.01, 0.18, 1] }}
                   style={{
                     marginLeft: 0,
                     fontSize: "2.9rem",
@@ -234,50 +288,6 @@ function AnimatedCarIntro({ visible, onAnimationComplete }) {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* After intro: persist car and logo parked at dead center forever */}
-      {!visible && hasEntered && (
-        <div
-          className="ts-animated-car ts-animated-car-fixed"
-          style={{
-            position: "fixed",
-            left: "50%",
-            top: "49%",
-            transform: "translate(-50%, -50%)",
-            minWidth: 238,
-            zIndex: 100,
-            pointerEvents: "none",
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center"
-          }}
-        >
-          <FerrariF1SideSVG
-            style={{
-              width: 285,
-              height: 88,
-              maxWidth: "46vw",
-              marginRight: 36,
-              filter: "drop-shadow(0 0 60px #ffe60065)"
-            }}
-          />
-          <span
-            className="ts-animated-car-title"
-            style={{
-              marginLeft: 0,
-              fontSize: "2.9rem",
-              whiteSpace: "nowrap",
-              letterSpacing: "0.13em",
-              filter: "brightness(1.25) blur(.01px)",
-              color: "#ffe600",
-              textShadow: "0 0 17px #ffe60085, 0 2px 12px #191B",
-              fontWeight: 800
-            }}
-          >
-            TyreSense
-          </span>
-        </div>
-      )}
     </>
   );
 }
