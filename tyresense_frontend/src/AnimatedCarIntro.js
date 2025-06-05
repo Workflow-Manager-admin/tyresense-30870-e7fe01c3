@@ -214,7 +214,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              background: "transparent" // Blackout handled by parent overlay now
+              background: "transparent",
             }}
           >
             {/* Animated car + logo in center */}
@@ -224,23 +224,23 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                 x: "-90vw",
                 scale: 1.05,
                 rotate: -7,
-                opacity: 1
+                opacity: 1,
               }}
               animate={{
                 x: "0vw",
                 scale: 1,
                 rotate: 0,
-                opacity: 1
+                opacity: 1,
               }}
               exit={{
                 x: "0vw",
                 scale: 1,
                 rotate: 0,
-                opacity: 1
+                opacity: 1,
               }}
               transition={{
                 duration: 1.3,
-                ease: [0.81, 0.03, 0.28, 0.99]
+                ease: [0.81, 0.03, 0.28, 0.99],
               }}
               style={{
                 display: "flex",
@@ -248,19 +248,26 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                 alignItems: "center",
                 justifyContent: "center",
                 minWidth: 238,
+                maxWidth: "92vw",
                 pointerEvents: "none",
                 position: "relative",
-                zIndex: 12
+                zIndex: 12,
+                width: "100%",
               }}
               onAnimationComplete={() => setHasEntered(true)}
             >
               <TyreSenseLogoCarSVG
                 style={{
-                  width: 285,
-                  height: 88,
-                  maxWidth: "46vw",
-                  marginRight: 36,
-                  filter: "drop-shadow(0 0 68px #ffe60099)"
+                  width: "21vw",
+                  minWidth: 146,
+                  maxWidth: 330,
+                  height: "11vw",
+                  minHeight: 38,
+                  maxHeight: 92,
+                  marginRight: "3vw",
+                  filter: "drop-shadow(0 0 58px #ffe60079)",
+                  display: "inline-block",
+                  verticalAlign: "middle",
                 }}
               />
               {/* "TyreSense" appears just after car centers */}
@@ -269,16 +276,23 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                   className="ts-animated-car-title"
                   initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.38, delay: 0.05, ease: [0.71, 0.01, 0.18, 1] }}
+                  transition={{
+                    duration: 0.38,
+                    delay: 0.05,
+                    ease: [0.71, 0.01, 0.18, 1],
+                  }}
                   style={{
                     marginLeft: 0,
-                    fontSize: "2.9rem",
+                    fontSize: "clamp(1.7rem, 5vw, 2.9rem)",
                     whiteSpace: "nowrap",
                     letterSpacing: "0.13em",
-                    filter: "brightness(1.34) blur(.03px)",
+                    filter: "brightness(1.34) blur(.015px)",
                     color: "#ffe600",
                     textShadow: "0 0 22px #ffe600a4, 0 2px 13px #000",
-                    fontWeight: 800
+                    fontWeight: 800,
+                    lineHeight: 1,
+                    display: "inline-block",
+                    verticalAlign: "middle",
                   }}
                 >
                   TyreSense
