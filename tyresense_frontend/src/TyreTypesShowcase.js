@@ -8,15 +8,15 @@ import "./TyreTypesShowcase.css";
  * In production, swap with licensed/official assets as appropriate.
  */
 const TYRE_IMAGES = {
-  // All images: newly curated, real high-resolution tyres only, no vehicles, no placeholders. Fresh selection below.
+  // Updated to user-provided, locally hosted image paths for each tyre brand
   pirelli:
-    "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=2048&q=90", // Profile view of a real Pirelli tyre on a clean surface
+    process.env.PUBLIC_URL + "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
   michelin:
-    "https://images.pexels.com/photos/207924/pexels-photo-207924.jpeg?auto=compress&w=2048&q=90", // Close-up of a single Michelin tyre showcasing deep tread detail
+    process.env.PUBLIC_URL + "/assets/20250605_071317_michelin-tyres.jpg",
   continental:
-    "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=2048&q=90", // Macro shot of Continental tyre sidewall and tread textures
+    process.env.PUBLIC_URL + "/assets/20250605_071316_continental_pp_conti_cityplus.jpg",
   bridgestone:
-    "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&w=2048&q=90", // Group of stacked Bridgestone tyres in a clean indoor setting
+    process.env.PUBLIC_URL + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
 };
 
 // Sample data: could be extended with images, descriptions, etc.
