@@ -135,21 +135,27 @@
 
 /* === Headings and Breadcrumb === */
 .brand-detail-headline {
-  font-size: 2rem;
+  font-size: 2.18rem;
   font-family: var(--porsche-font-main);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--porsche-black);
-  letter-spacing: 0.01em;
-  margin-left: 5vw;
-  margin-bottom: 0.44em;
-  line-height: 1.16;
+  letter-spacing: 0.04em;
+  margin-left: 4vw;
+  margin-top: 0;
+  margin-bottom: 1.1em;
+  line-height: 1.09;
+  text-shadow: none;
 }
 .brand-detail-breadcrumb {
-  font-size: 1rem;
+  font-size: 1.07rem;
   color: var(--porsche-grey-mid);
   font-family: var(--porsche-font-main);
-  margin-left: 5vw;
+  margin-left: 4vw;
+  font-weight: 500;
   margin-bottom: 8px;
+  margin-top: 0.5em;
+  opacity: 0.95;
+  letter-spacing: 0.03em;
 }
 
 .porsche-type-card-grid {
@@ -157,11 +163,11 @@
   width: 100%;
   max-width: 1020px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(270px, 1fr));
-  gap: 42px 42px;
+  grid-template-columns: repeat(3, minmax(266px, 1fr));
+  gap: 38px 36px;
   align-items: stretch;
   justify-items: center;
-  padding: 12px 38px 43px 38px;
+  padding: 2px 42px 39px 42px;
 }
 
 @media (max-width: 1040px) {
