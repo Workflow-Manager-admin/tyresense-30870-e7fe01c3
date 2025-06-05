@@ -28,7 +28,7 @@ function GoogleMapsStoreLocator() {
   const TYRE_STORES = [
     { name: "QuickFit Tyres", lat: 51.511, lng: -0.1208 },
     { name: "Urban Tyre Centre", lat: 51.503, lng: -0.1357 },
-    { name: "Neon Wheels Ltd.", lat: 51.51, lng: -0.142 },
+    { name: "Prestige Wheels", lat: 51.51, lng: -0.142 },
     { name: "Rapid Tyre Services", lat: 51.506, lng: -0.129 },
     { name: "City Tyre Pros", lat: 51.514, lng: -0.122 },
   ];
