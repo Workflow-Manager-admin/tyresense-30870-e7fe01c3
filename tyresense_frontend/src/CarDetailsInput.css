@@ -293,12 +293,17 @@
 .ts-car-form-submit .btn:hover,
 .ts-car-form-submit .btn:focus,
 .ts-car-form-submit .neon-premium-btn:hover,
-.ts-car-form-submit .neon-premium-btn:focus {
-  filter: brightness(1.09) blur(.01px) contrast(1.05);
-  background: linear-gradient(100deg, #00fff9 46%, #ffe600 123%);
-  box-shadow: 0 14px 48px #00fff98c, 0 8px 17px #ffe60047;
+.ts-car-form-submit .neon-premium-btn:focus,
+.modern-form-submit .btn:hover,
+.modern-form-submit .btn:focus,
+.modern-form-submit .neon-premium-btn:hover,
+.modern-form-submit .neon-premium-btn:focus {
+  filter: brightness(1.18) blur(.01px) contrast(1.07);
+  background: linear-gradient(98deg, #00fff9 48%, #ffe600 132%);
+  box-shadow: 0 19px 66px #00fff9bf, 0 13px 37px #ffe60053;
   color: #191932;
-  outline: none;
+  outline: 2.2px solid #00fff9;
+  outline-offset: 2px;
 }
 
 /* Car image preview block - bold, clean container, vivid placeholder bg */
