@@ -1,5 +1,6 @@
 import React, { useRef, useMemo } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import AnimatedCarIntro from "./AnimatedCarIntro";
 import "./TyreBrandDetail.css";
 
 /**
