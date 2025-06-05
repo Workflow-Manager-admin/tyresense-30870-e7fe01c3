@@ -4,7 +4,8 @@ import AnimatedCarIntro from "./AnimatedCarIntro";
 import ReminderPopup from "./ReminderPopup";
 import CarDetailsInput from "./CarDetailsInput";
 import GoogleMapsStoreLocator from "./GoogleMapsStoreLocator";
-
+import TyreTypesShowcase from "./TyreTypesShowcase";
+import TyreBrandDetail from "./TyreBrandDetail";
 /**
  * Remove all neon styling, use only Porsche.com palette and minimalist structure.
  * Use a dual card/grid main layout with a looping video background hero,
