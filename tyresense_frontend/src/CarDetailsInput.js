@@ -207,7 +207,7 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
         {/* Car Model */}
         <fieldset className="ts-car-form-group ts-car-model-group modern-form-group" style={{ marginTop: 72 }}>
           <label htmlFor="car-model">
-            <span className="car-label-title neon-accent">Model</span>
+            <span className="car-label-title" style={{ color: "#b4081b", fontWeight: 800 }}>Model</span>
           </label>
           {/* Model as dropdown if brand is known, else input */}
           {manufacturer && CAR_MODELS_BY_BRAND[manufacturer] ? (
@@ -260,8 +260,8 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
           )}
           <span className="ts-label-instruction">
             {manufacturer && CAR_MODELS_BY_BRAND[manufacturer]
-              ? <span><span style={{ color: "#ffe600" }}>Choose your model</span> or <span className="neon-accent">type manually</span>.</span>
-              : <span>Enter your car's <span className="neon-accent">model</span>, e.g. "Corolla", "Mustang", "A-Class".</span>
+              ? <span><span style={{ color: "#b4081b", fontWeight: 700 }}>Choose your model</span> or <span style={{ color: "#b4081b", fontWeight: 600 }}>type manually</span>.</span>
+              : <span>Enter your car's <span style={{ color: "#b4081b", fontWeight: 700 }}>model</span>, e.g. "Corolla", "Mustang", "A-Class".</span>
             }
           </span>
         </fieldset>
