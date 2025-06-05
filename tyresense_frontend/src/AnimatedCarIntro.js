@@ -143,46 +143,52 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
 
   // If asLogo is enabled, render an always present car+TyreSense mark (small/in-navbar).
   if (asLogo) {
+    // Always horizontally center: logo SVG + TyreSense text with proper spacing, size for all breakpoints, visually balanced
     return (
       <div
         className="ts-animated-car ts-animated-car-navbar"
         style={{
           position: "relative",
-          left: 0,
+          left: "50%",
           top: "0",
-          transform: "translate(0,0)",
+          transform: "translateX(-50%)", // center in parent horizontally
           minWidth: 165,
-          maxWidth: 370,
+          maxWidth: 390,
           zIndex: 11,
           pointerEvents: "none",
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          justifyContent: "flex-start",
-          height: 63
+          justifyContent: "center", // ensure logo mark and text are centered together
+          height: 63,
+          width: "auto",
         }}
       >
         <TyreSenseLogoCarSVG
           style={{
-            width: 97,
-            height: 30,
-            marginRight: 11,
-            marginLeft: 3,
-            filter: "drop-shadow(0 0 28px #ffe60043)"
+            width: 92,
+            height: 31,
+            marginRight: 13,
+            marginLeft: 2,
+            filter: "drop-shadow(0 0 18px #ffe60033)",
+            flex: "0 0 auto",
           }}
         />
         <span
           className="ts-animated-car-title"
           style={{
             marginLeft: 0,
-            fontSize: "1.6rem",
+            fontSize: "1.53rem",
+            lineHeight: "1",
             whiteSpace: "nowrap",
             letterSpacing: "0.13em",
             filter: "brightness(1.18) blur(.01px)",
             color: "#ffe600",
             textShadow: "0 0 10px #ffe60085",
             fontWeight: 800,
-            lineHeight: "1.1"
+            flex: "0 0 auto",
+            display: "inline-block",
+            verticalAlign: "middle",
           }}
         >
           TyreSense
