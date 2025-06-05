@@ -222,7 +222,7 @@ function TyreSenseMain() {
                   <div className="porsche-card-gradient-hover" />
                 </div>
               ))}
-              {/* 'All tyres' special card */}
+              {/* 'All tyres' special card - the only primary action */}
               <div className="porsche-tyre-card porsche-tyre-card-all" tabIndex={0} role="button" aria-label="Show all tyres" onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" })}>
                 <div className="porsche-tyre-card-all-content">
                   <span className="porsche-tyre-card-all-title">All Tyres</span>
@@ -234,8 +234,9 @@ function TyreSenseMain() {
                 <div className="porsche-card-gradient-hover" />
               </div>
             </section>
+            {/* Remove buy now or other buttons from grid cells below */}
             <div style={{ margin: "48px 0 0 0" }} />
-            {/* Next grid row: more tyres */}
+            {/* Next grid row: more tyres (no primary action/buttons) */}
             <section className="porsche-dual-grid" style={{ marginTop: 0 }}>
               {MAIN_TYRES.slice(2, 4).map((tyre) => (
                 <div key={tyre.id} className="porsche-tyre-card" tabIndex={0} role="region" aria-label={`Brand: ${tyre.brand}`}>
