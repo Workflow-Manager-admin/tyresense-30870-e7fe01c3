@@ -19,12 +19,12 @@
 
 .tyre-showcase-header h2 {
   margin: 0;
-  color: #ffe600;
+  color: #b4081b;
   font-size: 2.19rem;
   font-weight: 800;
   letter-spacing: .025em;
   font-family: 'Inter', 'Roboto', Arial, sans-serif;
-  text-shadow: 0 2px 17px #00fff943;
+  text-shadow: none;
 }
 
 .tyre-showcase-desc {
