@@ -29,6 +29,76 @@ const TYRE_BRANDS = [
   },
 ];
 
+function TyreSVG({ style }) {
+  return (
+    <svg
+      width="104"
+      height="104"
+      viewBox="0 0 120 120"
+      fill="none"
+      style={style}
+      aria-hidden="true"
+      className="tyre-svg-img"
+    >
+      <ellipse
+        cx="60"
+        cy="60"
+        rx="55"
+        ry="54"
+        fill="url(#tyre-dark-neon)"
+        style={{ filter: "drop-shadow(0 0 16px #00fff96b)" }}
+      />
+      <ellipse
+        cx="60"
+        cy="60"
+        rx="43"
+        ry="43"
+        fill="#18181f"
+        opacity="0.35"
+      />
+      <circle
+        cx="60"
+        cy="60"
+        r="29"
+        stroke="#00fff9"
+        strokeWidth="6"
+        opacity="0.22"
+      />
+      <ellipse
+        cx="60"
+        cy="60"
+        rx="22"
+        ry="22"
+        fill="#212147"
+        opacity="0.92"
+      />
+      {/* Centre highlight */}
+      <ellipse
+        cx="60"
+        cy="57"
+        rx="11"
+        ry="4"
+        fill="#fff"
+        opacity="0.09"
+      />
+      <defs>
+        <radialGradient
+          id="tyre-dark-neon"
+          cx="0"
+          cy="0"
+          r="1"
+          gradientTransform="translate(78 63) rotate(121.14) scale(68 73.7)"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0.17" stopColor="#00fff9" />
+          <stop offset="0.7" stopColor="#20273c" />
+          <stop offset="1" stopColor="#18181f" />
+        </radialGradient>
+      </defs>
+    </svg>
+  );
+}
+
 // PUBLIC_INTERFACE
 function TyreTypesShowcase({ onBrandSelect }) {
   /**
@@ -53,27 +123,25 @@ function TyreTypesShowcase({ onBrandSelect }) {
             type="button"
             tabIndex={0}
           >
-            <div className="tyre-brand-logo">
-              {/* Brand name as main premium title – no initial letter */}
-              <span
-                className="tyre-brand-name"
-                aria-hidden="true"
-                style={{
-                  color: "#fff",
-                  fontWeight: 800,
-                  fontSize: "2.3rem",
-                  fontFamily: "Inter, Arial, sans-serif",
-                  lineHeight: 1.08,
-                  textShadow: "0 0 22px #ff3a3a70, 0 1.5px 9px #000000b2",
-                  letterSpacing: ".11em"
-                }}
-              >
-                {brand.name}
-              </span>
+            {/* Tyre image on right side */}
+            <div className="tyre-brand-tyre-img">
+              <TyreSVG />
             </div>
-            {brand.tagline && (
-              <span className="tyre-brand-tagline">{brand.tagline}</span>
-            )}
+            {/* Info on left */}
+            <div className="tyre-brand-info-col">
+              <div className="tyre-brand-logo">
+                {/* Brand name as main premium title */}
+                <span
+                  className="tyre-brand-name"
+                  aria-hidden="true"
+                >
+                  {brand.name}
+                </span>
+              </div>
+              {brand.tagline && (
+                <span className="tyre-brand-tagline">{brand.tagline}</span>
+              )}
+            </div>
           </button>
         ))}
       </div>
