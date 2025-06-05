@@ -287,12 +287,23 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
           Model
         </label>
         {/* Dynamically render Model as dropdown if brand is known, else text input */}
-        {manufacturer && CAR_MODELS_BY_BRAND[manufacturer] ? (
+        {/* Model dropdown updates dynamically for selected brand only */}
+        {manufacturer && CAR_MODELS_BY_BRAND[manufacturer] && (
           <select
             className="ts-input"
             id="car-model"
-            value={model && CAR_MODELS_BY_BRAND[manufacturer].includes(model) ? model : ""}
-            onChange={(e) => setModel(e.target.value)}
+            value={
+              model && CAR_MODELS_BY_BRAND[manufacturer].includes(model)
+                ? model
+                : ""
+            }
+            onChange={(e) => {
+              if (e.target.value === "Other") {
+                setModel("");
+              } else {
+                setModel(e.target.value);
+              }
+            }}
             required
             autoComplete="on"
             aria-label="Car model"
@@ -318,11 +329,15 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             ))}
             <option value="Other">Other (enter manually)</option>
           </select>
-        ) : null}
+        )}
 
-        {/* If brand is known & user chose "Other", or if no dropdown, show a manual input */}
-        {(!manufacturer || !CAR_MODELS_BY_BRAND[manufacturer]) ||
-         (manufacturer && CAR_MODELS_BY_BRAND[manufacturer] && (model === "Other" || !CAR_MODELS_BY_BRAND[manufacturer].includes(model))) ? (
+        {/* If user selects "Other", or brand has no models, show a manual model input */}
+        {(!manufacturer ||
+          !CAR_MODELS_BY_BRAND[manufacturer] ||
+          (manufacturer &&
+            CAR_MODELS_BY_BRAND[manufacturer] &&
+            (model === "Other" ||
+              !CAR_MODELS_BY_BRAND[manufacturer].includes(model)))) && (
           <input
             className="ts-input"
             id="car-model-other"
@@ -351,7 +366,7 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             }}
             inputMode="text"
           />
-        ) : null}
+        )}
 
         <span
           style={{
