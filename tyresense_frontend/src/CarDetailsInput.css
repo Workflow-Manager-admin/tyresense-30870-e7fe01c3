@@ -159,31 +159,31 @@
 .ts-car-form-group select {
   border-radius: var(--input-border-radius);
   border: var(--input-border);
-  margin-bottom: 3px;
-  font-weight: 790;
-  font-size: 1.15rem;
+  margin-bottom: 3.5px;
+  font-weight: 820;
+  font-size: 1.19rem;
   background: var(--input-bg);
   color: var(--input-text);
-  padding: 14px 15px 14px 20px;
-  margin-top: 7px;
+  padding: 17px 19px 18px 22px;
+  margin-top: 9px;
   width: 100%;
-  min-height: 54px;
+  min-height: 60px;
   outline: none;
-  box-shadow: 0 0 0px 3px #ffe60012 inset, 0 0 34px #00fff909;
-  transition: border 0.17s, box-shadow 0.15s, background 0.13s, filter 0.13s;
+  box-shadow: 0 0 0px 4px #00fff91a inset, 0 0 33px #ffe60023;
+  transition: border 0.16s, box-shadow 0.14s, background 0.12s, filter 0.12s;
   appearance: none;
-  letter-spacing: 0.01em;
-  border-width: 2.1px;
+  letter-spacing: 0.03em;
+  border-width: 2.4px;
   font-family: 'Inter', 'SF Pro', Arial, sans-serif;
-  filter: brightness(1.22) blur(.05px);
+  filter: brightness(1.19) blur(.03px);
 }
-
 .ts-car-form-group .ts-input:focus,
 .ts-car-form-group select:focus {
-  border: 2.8px solid var(--neon-yellow);
-  background: #24252f;
-  box-shadow: 0 0 18px #ffe60093, 0 3px 17px #00fff93d;
-  filter: brightness(1.32);
+  border: 2.8px solid var(--neon-cyan);
+  background: #232337;
+  box-shadow: 0 0 26px #00fff9af, 0 3px 23px #ffe60032;
+  filter: brightness(1.32) blur(.01px);
+  color: #fff;
 }
 
 /* Placeholders neon & subtle underline/minimalist */
