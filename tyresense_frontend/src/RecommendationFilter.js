@@ -32,7 +32,7 @@ function RecommendationFilter({
         value={filters.brand || ""}
         onChange={(e) => handleChange("brand", e.target.value)}
         className="ts-input"
-        style={{ minWidth: 83, borderRadius: 10, fontWeight: 700 }}
+        style={{ minWidth: 83, borderRadius: 7, fontWeight: 600, background: "#232327", color: "#edeef0", border: "1.2px solid #2f2f33" }}
         aria-label="Brand"
       >
         <option value="">All Brands</option>
@@ -46,7 +46,7 @@ function RecommendationFilter({
         value={filters.size || ""}
         onChange={(e) => handleChange("size", e.target.value)}
         className="ts-input"
-        style={{ minWidth: 88, borderRadius: 10, fontWeight: 700 }}
+        style={{ minWidth: 88, borderRadius: 7, fontWeight: 600, background: "#232327", color: "#edeef0", border: "1.2px solid #2f2f33" }}
         aria-label="Size"
       >
         <option value="">All Sizes</option>
@@ -60,13 +60,13 @@ function RecommendationFilter({
         value={filters.budget || ""}
         onChange={(e) => handleChange("budget", e.target.value)}
         className="ts-input"
-        style={{ minWidth: 73, borderRadius: 10, fontWeight: 700 }}
+        style={{ minWidth: 73, borderRadius: 7, fontWeight: 600, background: "#232327", color: "#edeef0", border: "1.2px solid #2f2f33" }}
         aria-label="Budget"
       >
         <option value="">All Budgets</option>
         {budgetOptions.map((b) => (
           <option key={b} value={b}>
-            {b}
+            {b.charAt(0).toUpperCase() + b.slice(1)}
           </option>
         ))}
       </select>
