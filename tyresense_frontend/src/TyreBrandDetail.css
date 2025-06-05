@@ -1,6 +1,6 @@
 .ts-brand-detail-outer {
   min-height: 100vh;
-  background: linear-gradient(136deg, #18181f 25%, #0c1026 100%);
+  background: linear-gradient(136deg, #18181f 23%, #0c1026 100%);
   padding-bottom: 44px;
 }
 
@@ -19,119 +19,98 @@
   transition: background 0.15s, color 0.13s;
   margin-bottom: 16px;
   border-bottom: 2.5px solid var(--ts-neon-yellow, #ffe600);
+  z-index: 9;
+  position: relative;
 }
 .ts-detail-back-btn:hover {
   background: linear-gradient(87deg, #232f5c 33%, #00fff980 115%);
   color: #fff;
 }
 
+/* Main scroll-animated container */
 .ts-brand-detail-container {
   margin: 0 auto;
   max-width: 1040px;
   min-height: 78vh;
-  background: linear-gradient(121deg, #20273c 7%, #232f5c 81%, #23233b 100%);
-  border-radius: 42px;
+  height: 71vh;
+  border-radius: 39px;
   box-shadow: 0 9px 34px 13px #00fff93a, 0 2px 20px 4px #19193269;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: stretch;
-  gap: 0px;
   position: relative;
-  padding: 50px 48px 64px 48px;
-  overflow: visible;
-}
-
-.ts-brand-tyre-hero {
-  flex: 0 0 340px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  position: sticky;
-  top: 80px;
-  min-width: 305px;
-  min-height: 305px;
-  width: 340px;
-  height: 340px;
-  z-index: 10;
+  /* No overflow: hidden. Animation handles overflow, background is image. */
   background: none;
-  filter: drop-shadow(0 9px 44px #00fff9cc);
-  will-change: transform;
-  transition: box-shadow 0.26s;
+  display: block;
+  padding: 0;
+  min-width: 0;
 }
 
-.ts-brand-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 24px;
-  width: 100%;
-  min-width: 320px;
-  min-height: 320px;
-  height: 340px;
-  padding-left: 0;
-  transition: box-shadow 0.17s, background 0.19s;
+/* Background image block is absolutely positioned */
+.ts-brand-tyre-bg {
+  pointer-events: none;
+  user-select: none;
 }
 
-.ts-brand-name {
-  font-size: 3.18rem;
-  font-weight: 900;
-  color: #fff;
-  letter-spacing: .15em;
-  text-shadow: 0 1.5px 21px #00fff9bb, 0 2px 20px #14148e71;
-  margin-bottom: 0.25em;
-  margin-top: 0.41em;
+/* Container for staged info blocks */
+.ts-brand-info-panes {
+  /* Position, padding, and alignment set by inline style */
+}
+
+.ts-brand-info-block {
+  background: rgba(31,31,67, 0.92);
+  border-radius: 22px;
+  box-shadow: 0 1.5px 13px #00fff924;
+  padding: 28px 28px 19px 32px;
+  margin: 26px 0 12px 0;
+  min-width: 280px;
+  max-width: 480px;
+  width: 87%;
   font-family: 'Inter', 'Roboto', Arial, sans-serif;
-}
-.ts-brand-tagline {
-  font-size: 1.39rem;
-  color: #ffe600;
-  opacity: 0.92;
-  font-weight: 600;
-  font-family: 'Inter', 'Arial', sans-serif;
-  margin-bottom: .37em;
-  letter-spacing: 0.03em;
-}
-.ts-brand-desc {
-  color: #c4d8ff;
-  font-size: 1.13rem;
-  line-height: 1.68;
-  font-weight: 400;
-  margin-bottom: 30px;
-  width: 100%;
-  text-align: left;
+  transition: background 0.21s, box-shadow 0.19s, filter 0.16s;
+  filter: brightness(1.07);
+  z-index: 5;
   position: relative;
-  z-index: 2;
-  filter: brightness(1.04);
+}
+.ts-brand-info-block:first-child {
+  background: linear-gradient(91deg,#191932 68%, #ffe60026 150%);
+  color: #ffe600;
+  box-shadow: 0 1.5px 27px #ffe60055, 0 4px 18px #00fff933;
+}
+.ts-brand-block-title {
+  font-size: 1.43rem;
+  font-weight: 700;
+  color: #ffe600;
+  letter-spacing: .04em;
+  margin-top: 0;
+  margin-bottom: 0.37em;
+  text-shadow: 0 1.5px 20px #00fff986;
 }
 
-.ts-gradient-divider {
-  margin: 25px auto;
-  width: 93%;
-  height: 6px;
-  border-radius: 6px;
-  background: linear-gradient(90deg, #00fff9 5%, #ffe600 51%, #00fff9 100%);
-  opacity: 0.84;
-  box-shadow: 0 2px 7px #00fff98f;
-}
-
-.ts-brand-placeholder-data {
+.ts-brand-block-content {
   color: #fff;
   font-size: 1.08rem;
-  margin-top: 13px;
-  text-shadow: 0 0 6px #18181f77;
+  line-height: 1.62;
+  margin-bottom: 0.7em;
+  filter: brightness(1.07);
+  text-shadow: 0 0 5px #21214722;
+}
+.ts-brand-info-block ul,
+.ts-brand-info-block li {
+  color: #ffe600;
+  font-weight: 510;
+  font-size: 1.08em;
+  margin-left: 0;
+  margin-top: 0.25em;
+  padding-left: 1.22em;
 }
 
 .ts-detail-buy-btn {
-  margin-top: 18px;
+  margin-top: 13px;
   background: linear-gradient(92deg, #121d47 6%, #00fff9 97%);
   color: #18181f;
   padding: 10px 32px;
   border-radius: 17px;
   border: none;
   font-weight: 800;
-  font-size: 1.09rem;
+  font-size: 1.08rem;
   cursor: pointer;
   box-shadow: 0 2px 18px #00fff94c;
   letter-spacing: .09em;
@@ -144,22 +123,43 @@
 
 @media (max-width: 1040px) {
   .ts-brand-detail-container {
-    flex-direction: column;
-    align-items: center;
-    padding: 21px 2vw 20px 2vw;
+    min-height: 73vw;
+    height: 66vw;
+    max-width: 99vw;
     border-radius: 28px;
   }
-
-  .ts-brand-tyre-hero {
-    position: relative;
-    top: 0;
-    width: 170px;
-    height: 170px;
-    min-width: 170px;
-    min-height: 170px;
-    margin: 0 auto 8px auto;
+  .ts-brand-info-panes {
+    padding-left: 15vw !important;
+    min-width: 0;
+    align-items: center !important;
   }
-  .ts-brand-name { font-size: 2.16rem; }
-  .ts-brand-info { align-items: center; min-width: 0; padding-left: 0; }
+  .ts-brand-info-block {
+    width: 98vw;
+    min-width: 0;
+    max-width: 99vw;
+    padding: 19px 3vw 16px 7vw;
+    margin: 22px 0 10px 0;
+  }
 }
 
+@media (max-width: 700px) {
+  .ts-brand-detail-container {
+    min-height: 65vw;
+    height: 58vw;
+    border-radius: 14px;
+    padding: 0 !important;
+  }
+  .ts-brand-info-panes {
+    padding-left: 4vw !important;
+    align-items: stretch !important;
+  }
+  .ts-brand-info-block {
+    padding: 14px 2vw 12px 3vw;
+    border-radius: 10px;
+  }
+}
+
+/* Hide scrollbars for a cleaner look */
+.ts-brand-detail-container::-webkit-scrollbar {
+  display: none;
+}
