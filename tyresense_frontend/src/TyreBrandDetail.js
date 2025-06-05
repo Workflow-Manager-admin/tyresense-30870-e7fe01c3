@@ -113,17 +113,16 @@ function TyreBrandDetail({ brand, onBack }) {
   );
   // Opacity: always 1
 
-  // INFO BLOCKS STAGING
-  // For each info block, calculate transform hooks at top level (not in any closure/callback)
-  const band = 0.16;
-  const infoBlockOpacities = [];
-  const infoBlockYs = [];
-  for (let i = 0; i < infoBlocks.length; ++i) {
-    const start = 0.22 + i * band;
-    const end = start + band * 0.95;
-    infoBlockOpacities.push(useTransform(scrollYProgress, [0, start, end], [0, 0, 1]));
-    infoBlockYs.push(useTransform(scrollYProgress, [0, start, end], [48, 44, 0]));
-  }
+  // INFO BLOCKS STAGING (no hooks in loops, call hooks directly and unconditionally)
+  // Assuming there are always 4 info blocks
+  const block0_opacity = useTransform(scrollYProgress, [0, 0.22, 0.22 + 0.16 * 0.95], [0, 0, 1]);
+  const block0_y = useTransform(scrollYProgress, [0, 0.22, 0.22 + 0.16 * 0.95], [48, 44, 0]);
+  const block1_opacity = useTransform(scrollYProgress, [0, 0.22 + 0.16, 0.22 + 0.16 * 2 * 0.95], [0, 0, 1]);
+  const block1_y = useTransform(scrollYProgress, [0, 0.22 + 0.16, 0.22 + 0.16 * 2 * 0.95], [48, 44, 0]);
+  const block2_opacity = useTransform(scrollYProgress, [0, 0.22 + 0.32, 0.22 + 0.16 * 3 * 0.95], [0, 0, 1]);
+  const block2_y = useTransform(scrollYProgress, [0, 0.22 + 0.32, 0.22 + 0.16 * 3 * 0.95], [48, 44, 0]);
+  const block3_opacity = useTransform(scrollYProgress, [0, 0.22 + 0.48, 0.22 + 0.16 * 4 * 0.95], [0, 0, 1]);
+  const block3_y = useTransform(scrollYProgress, [0, 0.22 + 0.48, 0.22 + 0.16 * 4 * 0.95], [48, 44, 0]);
 
   // Container style: full height, relative + overflow hidden
   return (
