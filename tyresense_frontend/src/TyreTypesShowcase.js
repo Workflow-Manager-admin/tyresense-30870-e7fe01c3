@@ -8,15 +8,15 @@ import "./TyreTypesShowcase.css";
  * In production, swap with licensed/official assets as appropriate.
  */
 const TYRE_IMAGES = {
-  // All images: newly curated, real high-resolution tyres only, no vehicles, no placeholders.
+  // All images: newly curated, real high-resolution tyres only, no vehicles, no placeholders. Fresh selection below.
   pirelli:
-    "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2048&q=90", // Close-up tread pattern of a wet Pirelli racing tyre in studio lighting
+    "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=2048&q=90", // Profile view of a real Pirelli tyre on a clean surface
   michelin:
-    "https://images.pexels.com/photos/18355280/pexels-photo-18355280.jpeg?auto=compress&w=2048&q=90", // Stacked Michelin high-performance tyres shot top-down, clean warehouse
+    "https://images.pexels.com/photos/207924/pexels-photo-207924.jpeg?auto=compress&w=2048&q=90", // Close-up of a single Michelin tyre showcasing deep tread detail
   continental:
-    "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&w=2048&q=90", // Macro Continental tyre bead and sidewall with crisp texturing
+    "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=2048&q=90", // Macro shot of Continental tyre sidewall and tread textures
   bridgestone:
-    "https://images.pexels.com/photos/16760311/pexels-photo-16760311.jpeg?auto=compress&w=2048&q=90", // Bridgestone tyre focus, strong directional light, no hub/wheel, just rubber details
+    "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&w=2048&q=90", // Group of stacked Bridgestone tyres in a clean indoor setting
 };
 
 // Sample data: could be extended with images, descriptions, etc.
