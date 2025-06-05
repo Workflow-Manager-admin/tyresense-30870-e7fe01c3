@@ -153,21 +153,18 @@
 .ts-car-form-group label,
 .modern-form-group label,
 .car-label-title {
-  font-weight: 950;
+  font-weight: 700;
   color: var(--label-text);
-  font-size: 1.43rem;
-  margin-bottom: 8.5px;
-  letter-spacing: 0.14em;
+  font-size: 1.23rem;
+  margin-bottom: 7px;
+  letter-spacing: 0.09em;
   display: block;
   margin-left: 0;
-  text-shadow:
-    0 0 25px #ffe60063,
-    0 4.5px 36px #00fff966,
-    0 0 11px #00fff931;
+  text-shadow: none;
   font-family: 'Inter', 'SF Pro', Arial, sans-serif;
-  filter: brightness(1.24) blur(.01px);
-  line-height: 1.13;
-  transition: color 0.17s, text-shadow 0.19s, filter .14s;
+  filter: none;
+  line-height: 1.15;
+  transition: color 0.14s, text-shadow .15s, filter .11s;
 }
 
 /* Highlight sub-label (brand) */
