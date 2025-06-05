@@ -142,24 +142,48 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
   // UX: Instructions block
   const uxInstruction = (
     <div className="ts-car-input-instruction">
-      <span>Enter your car details for personalized tyre recommendations & image preview.</span>
+      <span>
+        <span style={{
+          fontWeight: 920,
+          fontSize: "1.22em",
+          letterSpacing: "0.06em",
+          textShadow:
+            "0 0 19px #ffe60055, 0 1.5px 15px #00fff943, 0 0 3px #ffe60013"
+        }}>
+          Enter your car details for <span style={{ color: "#00fff9" }}>personalized tyre recommendations</span>
+        </span>
+        <span style={{
+          display: "block", marginTop: 9, fontWeight: 450,
+          fontSize: "1.02em", color: "#fff8", letterSpacing: "0.02em"
+        }}>
+          Save your car to preview, and get a live image demo.
+        </span>
+      </span>
     </div>
   );
 
   return (
     <form
-      className="ts-car-input-form"
+      className="ts-car-input-form ts-premium"
       onSubmit={handleSubmit}
       autoComplete="on"
       aria-label="Car details entry form"
     >
-      <div style={{ position: "absolute", left: 18, top: 10, right: 18 }}>
+      <div
+        style={{
+          position: "absolute",
+          left: 32,
+          top: 0,
+          right: 32,
+          zIndex: 2
+        }}
+      >
         {uxInstruction}
       </div>
       {/* Manufacturer field */}
-      <fieldset className="ts-car-form-group" style={{ marginTop: 74 }}>
+      <fieldset className="ts-car-form-group" style={{ marginTop: 96 }}>
         <label htmlFor="car-manufacturer">
-          Car Manufacturer
+          Car <span style={{ color: "#00fff9", fontWeight: 950 }}>Manufacturer</span>
           <span className="ts-label-sub">(brand)</span>
         </label>
         <select
@@ -190,17 +214,18 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             autoComplete="on"
             aria-label="Car manufacturer (other)"
             inputMode="text"
+            style={{ border: "2.6px solid #00fff9" }}
           />
         )}
         <span className="ts-label-instruction">
-          Choose your car's manufacturer or select "Other" to enter it manually.
+          <span style={{ color: "#ffe600" }}>Select car brand</span> or <span style={{ color: "#00fff9" }}>type manually</span>.
         </span>
       </fieldset>
 
       {/* Model field */}
-      <fieldset className="ts-car-form-group" style={{ marginTop: 74 }}>
+      <fieldset className="ts-car-form-group ts-car-model-group" style={{ marginTop: 96 }}>
         <label htmlFor="car-model">
-          Model
+          <span style={{ color: "#00fff9" }}>Model</span>
         </label>
         {/* Model as dropdown if brand is known, else input */}
         {manufacturer && CAR_MODELS_BY_BRAND[manufacturer] ? (
@@ -248,19 +273,21 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             autoComplete="on"
             aria-label="Car model"
             inputMode="text"
+            style={{ border: "2.6px solid #00fff9" }}
           />
         )}
         <span className="ts-label-instruction">
           {manufacturer && CAR_MODELS_BY_BRAND[manufacturer]
-            ? 'Choose your car\'s model or select "Other" to enter it manually.'
-            : 'Enter your car\'s model, e.g. "Corolla", "Mustang", "A-Class".'}
+            ? <span><span style={{ color: "#ffe600" }}>Choose your model</span> or <span style={{ color: "#00fff9" }}>type manually</span>.</span>
+            : <span>Enter your car's <span style={{ color: "#00fff9" }}>model</span>, e.g. "Corolla", "Mustang", "A-Class".</span>
+          }
         </span>
       </fieldset>
 
       {/* Year field as dropdown */}
-      <fieldset className="ts-car-form-group" style={{ maxWidth: 140, marginTop: 74 }}>
+      <fieldset className="ts-car-form-group" style={{ maxWidth: 156, marginTop: 96 }}>
         <label htmlFor="car-year">
-          Year
+          <span style={{ color: "#ffe600" }}>Year</span>
         </label>
         <select
           className="ts-input"
@@ -271,13 +298,13 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
           autoComplete="on"
           aria-label="Car model year"
         >
-          <option value="">Select year...</option>
+          <option value="">Year…</option>
           {getYearOptions().map((y) => (
             <option key={y} value={String(y)}>{y}</option>
           ))}
         </select>
         <span className="ts-label-instruction">
-          Car's registration year (choose from list)
+          <span style={{ color: "#ffe600" }}>Registration year</span>
         </span>
       </fieldset>
 
@@ -285,10 +312,19 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
       <div className="ts-car-form-submit">
         <button
           type="submit"
-          className="btn btn-large"
+          className="btn btn-large neon-premium-btn"
           aria-label="Save car details"
         >
-          Save Car →
+          <span style={{
+            letterSpacing: "0.13em", fontWeight: 900, color: "#181924",
+            textShadow: "0 0 12px #00fff92c"
+          }}>Save Car</span>
+          <span style={{
+            color: "#00fff9",
+            fontWeight: 800, paddingLeft: 8, fontSize: "1.42em", verticalAlign: "middle"
+          }}>
+            →
+          </span>
         </button>
       </div>
 
@@ -296,7 +332,7 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
       <div className="ts-car-img-preview">
         <div className="ts-car-img-preview-box">
           {loadingImg ? (
-            <span className="ts-car-img-loading">Loading...</span>
+            <span className="ts-car-img-loading">Loading…</span>
           ) : carImg ? (
             <img
               src={carImg}
@@ -305,14 +341,14 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             />
           ) : (
             <span>
-              Car image
+              <span style={{ color: "#ffe600", fontWeight: 820 }}>Car image</span>
               <br />
-              (auto)
+              <span style={{ color: "#00fff9", opacity: 0.9, fontWeight: 600 }}>(auto)</span>
             </span>
           )}
         </div>
         <span className="ts-car-img-preview-label">
-          Image is a visual demo, based on your entries.
+          <span style={{ color: "#00fff9", fontWeight: 800 }}>Live visual:</span> based on your details.
         </span>
       </div>
     </form>
