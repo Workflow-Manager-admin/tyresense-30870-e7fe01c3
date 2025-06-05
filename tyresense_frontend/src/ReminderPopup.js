@@ -92,17 +92,18 @@ function ReminderPopup({ tyre, userEmail, onClose }) {
         className="ts-btn"
         onClick={onClose}
         style={{
-          background: "#232327",
-          color: "#b4081b",
-          border: "1.2px solid #b4081b",
-          borderRadius: 5,
-          fontWeight: 700,
-          marginTop: 7,
+          background: "#b4081b",
+          color: "#fff",
+          border: "1.5px solid #b4081b",
+          borderRadius: 6,
+          fontWeight: 800,
+          marginTop: 10,
           marginLeft: 3,
-          fontSize: "0.96rem",
+          fontSize: "0.99rem",
           boxShadow: "none",
-          padding: "4px 13px",
-          cursor: "pointer"
+          padding: "6px 15px",
+          cursor: "pointer",
+          transition: "background 0.14s, color 0.13s, border 0.13s"
         }}
       >
         Close
