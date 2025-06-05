@@ -143,7 +143,7 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
   const uxInstruction = (
     <div className="ts-car-input-instruction">
       <span className="ts-car-input-instruction-title">
-        Enter your car details for <span className="neon-accent">personalized tyre recommendations</span>
+        Enter your car details for <span style={{ color: "#b4081b", fontWeight: 800 }}>personalized tyre recommendations</span>
       </span>
       <span className="ts-car-input-instruction-desc">
         Save your car to preview, and get a live image demo.
@@ -164,7 +164,7 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
         <fieldset className="ts-car-form-group modern-form-group" style={{ marginTop: 72 }}>
           <label htmlFor="car-manufacturer">
             <span className="car-label-title">
-              Car <span className="neon-accent">Manufacturer</span>
+              Car <span style={{ color: "#b4081b", fontWeight: 800 }}>Manufacturer</span>
             </span>
             <span className="ts-label-sub">(brand)</span>
           </label>
@@ -196,11 +196,11 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
               autoComplete="on"
               aria-label="Car manufacturer (other)"
               inputMode="text"
-              style={{ border: "2.6px solid #00fff9" }}
+              style={{ border: "2.1px solid #b4081b" }}
             />
           )}
           <span className="ts-label-instruction">
-            <span style={{ color: "#ffe600" }}>Select car brand</span> or <span className="neon-accent">type manually</span>.
+            <span style={{ color: "#b4081b", fontWeight: 700 }}>Select car brand</span> or <span style={{ color: "#b4081b", fontWeight: 600 }}>type manually</span>.
           </span>
         </fieldset>
 
@@ -255,7 +255,7 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
               autoComplete="on"
               aria-label="Car model"
               inputMode="text"
-              style={{ border: "2.6px solid #00fff9" }}
+              style={{ border: "2.1px solid #b4081b" }}
             />
           )}
           <span className="ts-label-instruction">
