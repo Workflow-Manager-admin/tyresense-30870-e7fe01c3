@@ -112,11 +112,11 @@
   margin: 0 auto;
   width: 100%;
   max-width: 1080px;
-  min-height: 70vh;
+  min-height: 73vh;
   background: var(--porsche-white);
   border-radius: var(--porsche-card-radius);
-  box-shadow: var(--porsche-card-shadow);
-  padding: 36px 0 24px 0;
+  box-shadow: 0 18px 38px 2px #cfd2d62b, 0 3.5px 19px #18181c0a;
+  padding: 52px 0 38px 0;
   display: flex;
   flex-direction: column;
   gap: 0;
