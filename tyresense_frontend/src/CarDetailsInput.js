@@ -23,7 +23,6 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
     ) {
       setModel("");
     }
-    // If manufacturer is empty or not known, retain model (manual entry may occur)
     // eslint-disable-next-line
   }, [manufacturer]);
 
@@ -96,7 +95,6 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
     Proton: ["Saga", "Persona", "Iriz"],
     Rivian: ["R1T", "R1S"],
     Dacia: ["Duster", "Sandero", "Logan"],
-    // ...add more as needed
   };
 
   // Fetch car image for preview based on manufacturer/model/year
@@ -129,6 +127,16 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
     onSubmit(car);
     if (persistCar) persistCar(car);
   }
+
+  // Generate years list (descending, newest to oldest)
+  const getYearOptions = () => {
+    const yearList = [];
+    const curr = new Date().getFullYear();
+    for (let y = curr; y >= 1990; y--) {
+      yearList.push(y);
+    }
+    return yearList;
+  };
 
   // UX: Instructions block
   const uxInstruction = (
@@ -176,7 +184,7 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
       <div style={{ position: "absolute", left: 36, top: 12, right: 36 }}>
         {uxInstruction}
       </div>
-      {/* Leave top margin for instructions on desktop */}
+      {/* Manufacturer field */}
       <div style={{
         flex: "1 1 220px",
         minWidth: 130,
@@ -280,6 +288,8 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
           Choose your car's manufacturer or select "Other" to enter it manually.
         </span>
       </div>
+
+      {/* Model field */}
       <div style={{
         flex: "1 1 190px",
         minWidth: 100,
@@ -299,8 +309,7 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
         >
           Model
         </label>
-        {/* Dynamically render Model as dropdown if brand is known, else text input */}
-        {/* Model dropdown updates dynamically for selected brand only */}
+        {/* Model as dropdown if brand is known, else input */}
         {manufacturer && CAR_MODELS_BY_BRAND[manufacturer] && (
           <select
             className="ts-input"
@@ -333,7 +342,6 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
               appearance: "none",
               marginTop: 2,
             }}
-            // Key property for select: ensures re-mount/reset when brand changes for accessibility/focus.
             key={manufacturer}
           >
             <option value="">Select model...</option>
@@ -398,6 +406,8 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             : 'Enter your car\'s model, e.g. "Corolla", "Mustang", "A-Class".'}
         </span>
       </div>
+
+      {/* Year field as dropdown */}
       <div style={{
         flex: "1 1 90px",
         minWidth: 65,
@@ -417,13 +427,9 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
         >
           Year
         </label>
-        <input
+        <select
           className="ts-input"
           id="car-year"
-          type="number"
-          min="1970"
-          max={new Date().getFullYear()}
-          placeholder="e.g. 2020"
           value={year}
           onChange={(e) => setYear(e.target.value)}
           required
@@ -437,11 +443,16 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             background: "#18181f",
             color: "#ffe600",
             padding: "7.5px 8.5px",
-            width: "100%"
+            width: "100%",
+            appearance: "none",
+            marginBottom: 2
           }}
-          inputMode="numeric"
-          pattern="[0-9]*"
-        />
+        >
+          <option value="">Select year...</option>
+          {getYearOptions().map((y) => (
+            <option key={y} value={String(y)}>{y}</option>
+          ))}
+        </select>
         <span
           style={{
             display: "block",
@@ -452,9 +463,11 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             opacity: 0.83
           }}
         >
-          Car's registration year (4 digits)
+          Car's registration year (choose from list)
         </span>
       </div>
+
+      {/* Submit button */}
       <div style={{
         flex: "0 1 150px",
         alignSelf: "center",
@@ -486,6 +499,8 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
           Save Car →
         </button>
       </div>
+
+      {/* Car image preview */}
       <div
         style={{
           flex: "0 0 128px",
