@@ -205,9 +205,9 @@
 .porsche-type-card.selected,
 .porsche-type-card:focus,
 .porsche-type-card:hover {
-  border: 2.1px solid var(--porsche-accent-red);
-  box-shadow: 0 12px 46px 2.5px #b4081b19, 0 11px 24px 14px #2323272a;
-  transform: translateY(-2px) scale(1.008);
+  border: 2.3px solid var(--porsche-accent-red);
+  box-shadow: 0 17px 54px 7px #b4081b0d, 0 8px 22px 8px #2424290c;
+  transform: translateY(-2.5px) scale(1.011);
   z-index: 7;
 }
 
