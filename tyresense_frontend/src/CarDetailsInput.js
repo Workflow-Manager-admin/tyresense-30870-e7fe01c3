@@ -306,12 +306,12 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             ) : (
               <span>
                 <span style={{
-                  color: "#ffe600",
+                  color: "#b4081b",
                   fontWeight: 820
                 }}>Car image</span>
                 <br />
                 <span style={{
-                  color: "#00fff9",
+                  color: "#7d7d85",
                   opacity: 0.9,
                   fontWeight: 600
                 }}>(auto)</span>
