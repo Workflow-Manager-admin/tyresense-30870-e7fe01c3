@@ -14,6 +14,19 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
   const [carImg, setCarImg] = useState(initialCar?.carImg || null);
   const [loadingImg, setLoadingImg] = useState(false);
 
+  // When manufacturer changes, reset model unless it is valid for the selected brand.
+  useEffect(() => {
+    if (
+      manufacturer &&
+      CAR_MODELS_BY_BRAND[manufacturer] &&
+      !CAR_MODELS_BY_BRAND[manufacturer].includes(model)
+    ) {
+      setModel("");
+    }
+    // If manufacturer is empty or not known, retain model (manual entry may occur)
+    // eslint-disable-next-line
+  }, [manufacturer]);
+
   // Popular car brands list (expansive, includes global brands; can be extended further)
   const CAR_BRANDS = [
     "Toyota", "Honda", "Ford", "Chevrolet", "Volkswagen", "BMW", "Mercedes-Benz", "Audi", "Nissan", "Hyundai",
