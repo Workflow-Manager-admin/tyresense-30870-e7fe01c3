@@ -4,96 +4,106 @@ import "./AnimatedCarIntro.css";
 
 /**
  * PUBLIC_INTERFACE
- * TyreSenseLogoCarSVG: Modern, logo-like, bold and minimal side-view car SVG for TyreSense, optimized for animation, branding, and clarity.
- * Clean shapes, dark and neon scheme, visually distinctive, always displays well on dark backgrounds and scales cleanly.
+ * TyreSenseLogoCarSVG
+ * Purpose: Bold, premium side-view car SVG with stylized, minimal lines for branding and animation.
+ * The design is logo-like and scale-agnostic, with thick outlines and neon accents, suitable for memorable branding.
  */
 function TyreSenseLogoCarSVG({ style, ...props }) {
+  // SVG: side-view, stylized coupe with bold lines, circular wheels and neon highlights (yellow & cyan).
   return (
     <svg
-      viewBox="0 0 360 100"
+      width={style?.width || 230}
+      height={style?.height || 68}
+      viewBox="0 0 340 90"
       fill="none"
-      width={style?.width || 240}
-      height={style?.height || 70}
       style={style}
       {...props}
-      aria-label="TyreSense logo stylized side-view car"
+      aria-label="TyreSense brand logo car"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
     >
       <defs>
-        <linearGradient id="ts-car-body" x1="0" y1="41" x2="300" y2="59" gradientUnits="userSpaceOnUse">
-          <stop offset="0.03" stopColor="#222444" />
-          <stop offset="0.45" stopColor="#ffe600" />
-          <stop offset="0.61" stopColor="#f6d944" />
-          <stop offset="1" stopColor="#ffe600" />
-        </linearGradient>
-        <radialGradient id="ts-tyre-outer" cx="49%" cy="45%" r="52%">
-          <stop offset="0.16" stopColor="#535353"/>
-          <stop offset="0.67" stopColor="#151719"/>
-          <stop offset="1" stopColor="#0e0e12"/>
+        <radialGradient id="ts-carBody" cx="49%" cy="52%" r="78%">
+          <stop offset="0.02" stopColor="#ffe600" stopOpacity="0.92"/>
+          <stop offset="0.54" stopColor="#232441" stopOpacity="1"/>
+          <stop offset="1" stopColor="#191928" stopOpacity="1"/>
         </radialGradient>
-        <radialGradient id="ts-tyre-gloss" cx="56%" cy="36%" r="65%">
-          <stop offset="0.38" stopColor="#ffe600" stopOpacity="0.23"/>
-          <stop offset="0.7" stopColor="#ffe600" stopOpacity="0.01"/>
-          <stop offset="1" stopColor="#ffe600" stopOpacity="0"/>
+        <linearGradient id="ts-roof" x1="42" y1="16" x2="220" y2="9" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#FFE600"/>
+          <stop offset="0.8" stopColor="#8ddfff"/>
+        </linearGradient>
+        <radialGradient id="ts-wheel-dark" cx="49%" cy="48%" r="51%">
+          <stop offset="0.29" stopColor="#505050"/>
+          <stop offset="0.77" stopColor="#16171d"/>
+          <stop offset="1" stopColor="#000006"/>
+        </radialGradient>
+        <radialGradient id="ts-wheel-gloss" cx="62%" cy="40%" r="66%">
+          <stop offset="0.48" stopColor="#ffe600" stopOpacity="0.21"/>
+          <stop offset="0.96" stopColor="#ffe600" stopOpacity="0.00"/>
         </radialGradient>
       </defs>
 
-      {/* Ground shadow */}
-      <ellipse cx="170" cy="97" rx="96" ry="6" fill="#221" opacity="0.22"/>
+      {/* Shadow */}
+      <ellipse cx="160" cy="88" rx="92" ry="5.5" fill="#1c1403" opacity="0.25"/>
       {/* Rear wheel */}
       <g>
-        <ellipse cx="62" cy="80" rx="23" ry="23" fill="url(#ts-tyre-outer)" />
-        <ellipse cx="62" cy="80" rx="13" ry="13" fill="#191922" />
-        <ellipse cx="62" cy="80" rx="20" ry="20" fill="url(#ts-tyre-gloss)" />
-        <ellipse cx="62" cy="80" rx="6.7" ry="6.7" fill="#ffe600" opacity="0.13"/>
+        <circle cx="60" cy="71" r="19.4" fill="url(#ts-wheel-dark)" />
+        <circle cx="60" cy="71" r="13" fill="#19192a" />
+        <circle cx="60" cy="71" r="17" fill="url(#ts-wheel-gloss)" />
+        <circle cx="60" cy="71" r="5.8" fill="#ffe600" opacity="0.11"/>
+        {/* Neon stylized highlight */}
+        <ellipse cx="56" cy="61" rx="6" ry="2.6" fill="#00fff9" opacity="0.12"/>
       </g>
       {/* Front wheel */}
       <g>
-        <ellipse cx="255" cy="80" rx="21" ry="21" fill="url(#ts-tyre-outer)" />
-        <ellipse cx="255" cy="80" rx="12" ry="12" fill="#232332" />
-        <ellipse cx="255" cy="80" rx="17" ry="17" fill="url(#ts-tyre-gloss)" />
-        <ellipse cx="255" cy="80" rx="6.7" ry="6.4" fill="#ffe600" opacity="0.08"/>
+        <circle cx="232" cy="71" r="18" fill="url(#ts-wheel-dark)" />
+        <circle cx="232" cy="71" r="12" fill="#262634" />
+        <circle cx="232" cy="71" r="15" fill="url(#ts-wheel-gloss)" />
+        <circle cx="232" cy="71" r="6" fill="#ffe600" opacity="0.09"/>
+        {/* Neon stylized highlight */}
+        <ellipse cx="229" cy="61" rx="6" ry="2.5" fill="#00fff9" opacity="0.14"/>
       </g>
-      {/* Floor/undercarriage simplified */}
-      <rect x="44" y="75" width="235" height="9.3" rx="4.5" fill="#1c2233" />
-      {/* Car body */}
+      {/* Car body main shape (front to tail, stylized and logo-like) */}
       <path
-        d="M41 72 Q50 35 107 36 Q113 23 170 23 Q202 22 227 33 Q275 46 277 72 Q293 72 293 68 Q300 58 321 60 Q326 60 336 74 Q318 76 255 75 Q209 74 134 76 Q74 77 60 72 Z"
-        fill="url(#ts-car-body)"
+        d="M43 66 Q54 22 124 24 Q136 4 200 7 Q255 8 278 29 Q312 35 321 64 Q326 66 329 68 Q314 72 238 67 Q131 65 75 73 Q48 69 43 66 Z"
+        fill="url(#ts-carBody)"
         stroke="#ffe600"
-        strokeWidth="2.1"
+        strokeWidth="3.1"
         opacity="1"
-        />
-      {/* Cabin/B pillar line, stylized */}
-      <path
-        d="M112 38 Q120 26 171 28 Q211 31 220 46"
-        stroke="#ffe600"
-        strokeWidth="2.2"
-        fill="none"
-        opacity="0.95"
       />
-      {/* Window highlight */}
+      {/* Roof - stylized highlight */}
       <path
-        d="M127 34 Q138 27 170 27 Q194 28 211 38"
-        stroke="#fff"
-        strokeWidth="1.2"
+        d="M99 27 Q113 13 197 13 Q238 15 258 28"
+        stroke="url(#ts-roof)"
+        strokeWidth="4.5"
         fill="none"
-        opacity="0.28"
+        opacity="0.7"
+        strokeLinecap="round"
       />
-      {/* Neon accent speed lines */}
-      <rect x="62" y="51" width="22" height="3.3" rx="1.6" fill="#00fff9" opacity="0.27"/>
-      <rect x="140" y="31" width="22" height="2.1" rx="1.1" fill="#00fff9" opacity="0.20"/>
-      {/* Door handle */}
-      <rect x="141" y="51" width="16" height="2.3" rx="1.15" fill="#ffe600" opacity="0.8"/>
-      {/* Rear "fin" stylized */}
-      <rect x="40.2" y="62" width="8" height="17" rx="4" fill="#ffe600" opacity="0.63"/>
-      {/* Short antenna */}
-      <rect x="137" y="18" width="4" height="13" rx="1.9" fill="#ffe600" opacity="0.68"/>
-      {/* TyreSense glyph badge - small logo detail */}
+      {/* Window gloss - neon accent */}
+      <path
+        d="M118 22 Q135 13 205 16 Q240 20 247 30"
+        stroke="#00fff9"
+        strokeWidth="2.1"
+        fill="none"
+        opacity="0.17"
+        strokeLinecap="round"
+      />
+      {/* Undercarriage */}
+      <rect x="54" y="67.5" width="190" height="7.1" rx="3.8" fill="#191d24" />
+      {/* Door handle - neon mini bar */}
+      <rect x="135" y="49" width="26" height="2.2" rx="1.1" fill="#ffe600" opacity="0.66"/>
+      {/* Rear "fin" - thicker stylized bar */}
+      <rect x="41.3" y="54" width="7.1" height="15" rx="3.5" fill="#ffe600" opacity="0.54"/>
+      {/* Short vertical antenna */}
+      <rect x="137" y="12" width="2.9" height="13" rx="1.7" fill="#ffe600" opacity="0.59"/>
+      {/* Neon speedline (stylized motion effect) */}
+      <rect x="86" y="41" width="33" height="2" rx="1" fill="#00fff9" opacity="0.16"/>
+      <rect x="220" y="21" width="23" height="2" rx="1" fill="#00fff9" opacity="0.15"/>
+      {/* TyreSense badge (logo dot, subtle) */}
       <g>
-        <circle cx="264" cy="68" r="8.4" fill="#ffe600" stroke="#ffe600" strokeWidth="1.7"/>
-        <path d="M258 69 Q263 62 270 68 Q263 75 256 70 Z" fill="#fff" opacity="0.77"/>
+        <circle cx="242.5" cy="62.5" r="8" fill="#ffe600" stroke="#ffe600" strokeWidth="1.8"/>
+        <path d="M237 63 Q242.7 56 248 63 Q243 67 237 65 Z" fill="#fff" opacity="0.8"/>
       </g>
     </svg>
   );
