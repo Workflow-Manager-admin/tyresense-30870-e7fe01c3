@@ -2,12 +2,19 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./TyreBrandDetail.css";
 
-// Placeholder/photo URLs for tyre brand images (same as in TyreTypesShowcase).
+/**
+ * UPDATE: Use high-resolution, realistic, royalty-free tyre images for demo.
+ * Should match the ones in TyreTypesShowcase.js!
+ */
 const TYRE_IMAGES = {
-  pirelli: "https://images.unsplash.com/photo-1519681393-2de5e0f0c81b?auto=format&fit=crop&w=330&q=80", // Unsplash - represents a tyre
-  michelin: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=330&q=80",
-  continental: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=330&q=80",
-  bridgestone: "https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=330&q=80",
+  pirelli:
+    "https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&w=600&q=90", // Demo purpose
+  michelin:
+    "https://images.pexels.com/photos/712618/pexels-photo-712618.jpeg?auto=compress&w=600&q=90",
+  continental:
+    "https://images.pexels.com/photos/460235/pexels-photo-460235.jpeg?auto=compress&w=600&q=90",
+  bridgestone:
+    "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=600&q=90",
 };
 
 // PUBLIC_INTERFACE
