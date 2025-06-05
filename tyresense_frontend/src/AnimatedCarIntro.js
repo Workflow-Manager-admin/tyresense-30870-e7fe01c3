@@ -3,64 +3,122 @@ import { motion, AnimatePresence } from "framer-motion";
 import "./AnimatedCarIntro.css";
 
 /**
- * Ferrari F1 Side View SVG (SF90/SF-23 style) - modern, sleek, side-on silhouette.
- * Used as the animated car intro and persistent logo.
+ * Ferrari F1 Side View SVG (detailed, higher-fidelity, scalable vector).
+ * This SVG is more premium, smooth, and visually rich.
  */
 // PUBLIC_INTERFACE
 function FerrariF1SideSVG({ style, ...props }) {
-  // Car body: red main, dark undertray, gold/black wheels, fluo yellow details, outlined for contrast.
+  // Enhanced SVG: clean, high-detail, gradients, improved wheels/body/light
   return (
     <svg
-      width="240"
-      height="82"
-      viewBox="0 0 240 82"
+      width="300"
+      height="90"
+      viewBox="0 0 300 90"
       fill="none"
       style={style}
       {...props}
-      aria-label="Side view Ferrari F1 Car"
+      aria-label="High-quality side view Ferrari F1 car"
       xmlns="http://www.w3.org/2000/svg"
+      role="img"
     >
-      <ellipse cx="120" cy="77.5" rx="98" ry="4.2" fill="#222" opacity="0.19" />
-      <rect x="2" y="37" width="19.5" height="9" rx="2.9" fill="#21212a" />
-      <rect x="2" y="46" width="17.5" height="3.7" rx="1.6" fill="#ffe600" />
-      <ellipse cx="37" cy="66" rx="13" ry="13.2" fill="#18181c" stroke="#bababa" strokeWidth="3.2" />
-      <ellipse cx="37" cy="66" rx="7.7" ry="7.9" fill="#FFD874" />
-      <rect x="16.3" y="70.1" width="192" height="7.2" rx="3.1" fill="#232229" stroke="#232229" strokeWidth="1"/>
-      <rect x="23" y="56" width="168" height="15.6" rx="7.9" fill="#ed0b1b" stroke="#ffe600" strokeWidth="1.6"/>
-      <rect x="86" y="27.8" width="42.5" height="36.8" rx="17.3" fill="#ed0b1b" stroke="#ffe600" strokeWidth="1.45" />
-      <rect x="109.5" y="22" width="11.5" height="10" rx="5" fill="#222630" stroke="#ffe600" strokeWidth="0.9"/>
-      <rect x="114" y="35.5" width="3.6" height="11.4" rx="1.4" fill="#1b1b1b" />
-      <rect x="184.5" y="66" width="18" height="3" rx="1.5" fill="#232229" />
-      <rect x="48.2" y="69.5" width="122" height="3.1" rx="1.5" fill="#b70413" opacity="0.14"/>
-      <rect x="119" y="58.7" width="20.2" height="7.6" rx="1.88" fill="#ffe600" stroke="#18181f" strokeWidth="0.8"/>
-      <text x="126" y="64.3" fontSize="6.1" fontWeight="bold" fill="#1a1a1a">SF</text>
-      <ellipse cx="120" cy="27.5" rx="7.5" ry="3.3" fill="#ffe600" opacity="0.74" />
-      <rect x="190.6" y="45" width="39.2" height="11.2" rx="5.4" fill="#ed0b1b" stroke="#ffe600" strokeWidth="1"/>
-      <rect x="223.2" y="48.4" width="11.0" height="4.5" rx="2.4" fill="#ffe600" stroke="#a39917" strokeWidth="0.38"/>
-      <rect x="228.5" y="40.1" width="8.6" height="1.7" rx="0.9" fill="#ffe600"/>
-      <rect x="228.9" y="41.8" width="8.6" height="1.7" rx="0.8" fill="#ffe600"/>
-      <rect x="228" y="55.6" width="9.4" height="1.5" rx="0.7" fill="#ffe600"/>
-      <ellipse cx="210" cy="67" rx="13" ry="13.2" fill="#18181c" stroke="#bababa" strokeWidth="3.2" />
-      <ellipse cx="210" cy="67" rx="7.7" ry="7.9" fill="#FFD874" />
-      <ellipse cx="37" cy="74.2" rx="8.9" ry="2.1" fill="#000" opacity="0.19" />
-      <ellipse cx="210" cy="74.2" rx="8.9" ry="2.1" fill="#000" opacity="0.19" />
-      <ellipse cx="108.5" cy="74.1" rx="56" ry="2.5" fill="#ed0b1b" opacity="0.18" />
-      <rect x="101" y="45.9" width="37" height="5.5" rx="2.5" fill="#efe600" opacity="0.18"/>
-      <ellipse cx="115.2" cy="29.1" rx="1.6" ry="0.8" fill="#18181c" />
-      <ellipse cx="124.7" cy="29.1" rx="1.6" ry="0.8" fill="#18181c" />
-      <rect x="73.2" y="43.1" width="6.3" height="1.2" rx="0.52" fill="#ffe600"/>
-      <rect x="168.5" y="43.3" width="6.3" height="1.2" rx="0.52" fill="#ffe600"/>
-      <rect x="110.4" y="37.7" width="14.4" height="4.4" rx="1.2" fill="#ffe600" opacity="0.72" />
-      <text x="113.4" y="41.3" fontSize="3.1" fontWeight="bold" fill="#ed0b1b">F1</text>
+      <defs>
+        <linearGradient id="ferrariRed" x1="0" x2="0" y1="0" y2="90" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#E30717" />
+          <stop offset="0.82" stopColor="#B50015" />
+        </linearGradient>
+        <radialGradient id="bodyShine" cx="60%" cy="55%" r="60%" fx="75%" fy="45%">
+          <stop offset="0%" stopColor="#fff" stopOpacity="0.14" />
+          <stop offset="100%" stopColor="#B50015" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id="tyreGloss" x1="0" y1="0" x2="0" y2="34" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#555" />
+          <stop offset="1" stopColor="#18181c" />
+        </linearGradient>
+      </defs>
+      {/* Shadow */}
+      <ellipse cx="150" cy="88" rx="124" ry="4.3" fill="#222" opacity="0.21" />
+      {/* Left Front Wing */}
+      <rect x="10" y="48" width="29" height="5.8" rx="2.7" fill="#22212b" />
+      <rect x="8" y="54.2" width="31.6" height="3.2" rx="1.6" fill="#ffe600" opacity="0.90"/>
+      {/* Left Wheel */}
+      <ellipse
+        cx="44"
+        cy="72"
+        rx="17"
+        ry="17.3"
+        fill="url(#tyreGloss)"
+        stroke="#bababa"
+        strokeWidth="3.8"
+      />
+      <ellipse cx="44" cy="72" rx="10" ry="10.3" fill="#FFD874" />
+      {/* Main Body */}
+      <rect
+        x="32"
+        y="46"
+        width="202"
+        height="20.8"
+        rx="10.2"
+        fill="url(#ferrariRed)"
+        stroke="#ffe600"
+        strokeWidth="2.5"
+      />
+      {/* Cockpit */}
+      <rect
+        x="101"
+        y="22.8"
+        width="51"
+        height="34.5"
+        rx="15.1"
+        fill="url(#ferrariRed)"
+        stroke="#ffe600"
+        strokeWidth="1.9"
+      />
+      {/* Halo */}
+      <rect x="138" y="18" width="12" height="5.4" rx="2.6" fill="#222630" stroke="#ffe600" strokeWidth="0.9"/>
+      {/* Headrest */}
+      <rect x="151.7" y="34" width="5.5" height="16.5" rx="2.75" fill="#1a191c" />
+      {/* Floor/Undertray */}
+      <rect x="37" y="66.5" width="196" height="8" rx="4" fill="#18181f" opacity=".65" stroke="#232229" strokeWidth="1" />
+      {/* Nose tip */}
+      <rect x="14" y="42.2" width="17.2" height="8.3" rx="3" fill="#ffe600" opacity=".97" stroke="#a39917" strokeWidth="0.41"/>
+      {/* Front winglets */}
+      <rect x="24" y="56.7" width="12.1" height="4.6" rx="2.0" fill="#ffe600" opacity=".84"/>
+      {/* Rear Pod */}
+      <rect x="228" y="38" width="61" height="16.4" rx="8.2" fill="url(#ferrariRed)" stroke="#ffe600" strokeWidth="2.1"/>
+      {/* Rear light */}
+      <ellipse cx="289.8" cy="46.1" rx="3.7" ry="4.9" fill="#E30717" stroke="#ffe600" strokeWidth="0.95"/>
+      {/* DRS Wing */}
+      <rect x="249.2" y="31" width="32" height="4.1" rx="1.9" fill="#ffe600"/>
+      {/* Rear wheels */}
+      <ellipse
+        cx="262"
+        cy="73"
+        rx="17"
+        ry="17.3"
+        fill="url(#tyreGloss)"
+        stroke="#bababa"
+        strokeWidth="3.8"
+      />
+      <ellipse cx="262" cy="73" rx="10" ry="10.3" fill="#FFD874" />
+      {/* Wheel shadows */}
+      <ellipse cx="44" cy="80.7" rx="10" ry="2.5" fill="#000" opacity="0.16" />
+      <ellipse cx="262" cy="80.7" rx="10" ry="2.5" fill="#000" opacity="0.16" />
+      <ellipse cx="150" cy="80.9" rx="69" ry="3.5" fill="#ed0b1b" opacity="0.14" />
+      {/* Air inlets */}
+      <rect x="190.8" y="54.9" width="24" height="4.8" rx="2.1" fill="#ffe600" opacity="0.64" />
+      {/* Branding */}
+      <text x="160" y="62.8" fontSize="11" fontWeight="bold" fill="#1a1a1a" style={{ fontFamily: 'monospace' }}>SF90</text>
+      <text x="121" y="48.5" fontSize="8" fontWeight="bold" fill="#ed0b1b">F1</text>
+      {/* Shine overlay for dynamism */}
+      <ellipse cx="180" cy="52" rx="72" ry="17" fill="url(#bodyShine)" />
     </svg>
   );
 }
 
 /**
- * AnimatedCarIntro controls the animated intro:
- * - Car starts off-screen, slides solo into center, parks.
- * - Only after car is centered, "TyreSense" appears to its right.
- * - Both stay perfectly centered during the intro, then (afterwards) slide down left and persist there as overlay.
+ * AnimatedCarIntro:
+ * - Animates a detailed Ferrari F1 side-view car and "TyreSense" brand name to the center.
+ * - After the animation, both persist, always parked and centered in the viewport.
  *
  * Props:
  *   - visible: boolean, controls whether the animation runs
@@ -68,11 +126,11 @@ function FerrariF1SideSVG({ style, ...props }) {
  */
 // PUBLIC_INTERFACE
 function AnimatedCarIntro({ visible, onAnimationComplete }) {
-  // State to track animation
+  // State to track when the animation (entry) is over.
   const [hasEntered, setHasEntered] = useState(false);
   const doneOnce = useRef(false);
 
-  // Only calls onAnimationComplete the first time the animation finishes
+  // "visible" triggers the entry animation; after, persist both car and logo in parked center form.
   useEffect(() => {
     if (hasEntered && typeof onAnimationComplete === "function" && !doneOnce.current) {
       onAnimationComplete();
@@ -80,9 +138,10 @@ function AnimatedCarIntro({ visible, onAnimationComplete }) {
     }
   }, [hasEntered, onAnimationComplete]);
 
-  // During the intro:
-  // - "visible" is true, car slides in alone, then the TyreSense fades in statically.
-  // After: both are docked fixed at bottom left as the app's persistent logo.
+  // Animations:
+  // - Car + logo block slides from offscreen left to center, parks (visible).
+  // - After intro: car + logo remain centered, visually identical to the parked animation.
+  // - No dock to side: after intro, they stay centered/fixed.
 
   return (
     <>
@@ -92,7 +151,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete }) {
             className="ts-animated-car-intro-bg"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0, transition: { duration: 0.31 } }}
+            exit={{ opacity: 0, transition: { duration: 0.33 } }}
             style={{
               position: "fixed",
               inset: 0,
@@ -100,128 +159,119 @@ function AnimatedCarIntro({ visible, onAnimationComplete }) {
               pointerEvents: "none",
               display: "flex",
               alignItems: "center",
-              justifyContent: "center"
+              justifyContent: "center",
+              background: "linear-gradient(150deg, #18181f 85%, #101019 98%)"
             }}
           >
-            {/* The animated car block & brand name, perfectly centered ("main container center") */}
-            <div
+            {/* Animated car + logo center block */}
+            <motion.div
+              className="ts-animated-car"
+              initial={{
+                x: "-90vw",
+                scale: 1.05,
+                rotate: -7,
+                opacity: 1
+              }}
+              animate={{
+                x: "0vw",
+                scale: 1,
+                rotate: 0,
+                opacity: 1
+              }}
+              exit={{
+                x: "0vw",
+                scale: 1,
+                rotate: 0,
+                opacity: 1
+              }}
+              transition={{
+                duration: 1.4,
+                ease: [0.81, 0.03, 0.28, 0.99]
+              }}
               style={{
                 display: "flex",
+                flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "100vw",
-                position: "relative"
+                minWidth: 238,
+                pointerEvents: "none",
+                position: "relative",
+                zIndex: 12
               }}
+              onAnimationComplete={() => setHasEntered(true)}
             >
-              {/* Car slides in from left to center */}
-              <motion.div
-                className="ts-animated-car"
-                initial={{
-                  x: "-80vw",
-                  scale: 1.12,
-                  rotate: -5,
-                  opacity: 1
-                }}
-                animate={{
-                  x: "0vw",
-                  scale: 1,
-                  rotate: 0,
-                  opacity: 1,
-                }}
-                exit={{
-                  scale: 1,
-                  y: 0,
-                  x: "0vw",
-                  opacity: 1,
-                }}
-                transition={{
-                  duration: 1.6,
-                  ease: [0.8, 0.01, 0.28, 0.99]
-                }}
+              <FerrariF1SideSVG
                 style={{
-                  flexDirection: "row",
-                  minWidth: 220,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  pointerEvents: "none",
-                  position: "relative",
-                  zIndex: 11
+                  width: 285,
+                  height: 88,
+                  maxWidth: "46vw",
+                  marginRight: 36,
+                  filter: "drop-shadow(0 0 60px #ffe60099)"
                 }}
-                onAnimationComplete={() => setHasEntered(true)}
-              >
-                <FerrariF1SideSVG
-                  style={{
-                    width: 210,
-                    height: 74,
-                    minWidth: 110,
-                    maxWidth: "38vw",
-                    marginRight: 26,
-                    filter: "drop-shadow(0 0 56px #ffe60099)"
-                  }}
-                />
-              </motion.div>
-              {/* Brand name only appears after car has parked */}
+              />
+              {/* "TyreSense" appears just after car centers */}
               {hasEntered && (
                 <motion.span
                   className="ts-animated-car-title"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.1, ease: [0.72, 0.03, 0.22, 1.01] }}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.46, delay: 0.06, ease: [0.71, 0.01, 0.18, 1] }}
                   style={{
                     marginLeft: 0,
-                    fontSize: "2.69rem",
+                    fontSize: "2.9rem",
                     whiteSpace: "nowrap",
                     letterSpacing: "0.13em",
                     filter: "brightness(1.34) blur(.03px)",
                     color: "#ffe600",
-                    textShadow: "0 0 20px #ffe60090, 0 2px 10px #000",
-                    position: "relative",
-                    zIndex: 12
+                    textShadow: "0 0 22px #ffe600a4, 0 2px 13px #000",
+                    fontWeight: 800
                   }}
                 >
                   TyreSense
                 </motion.span>
               )}
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-      {/* Persistent logo after intro: fixed at left bottom */}
+      {/* After intro: persist car and logo parked at dead center forever */}
       {!visible && hasEntered && (
         <div
           className="ts-animated-car ts-animated-car-fixed"
           style={{
             position: "fixed",
-            left: 0,
-            bottom: "10vh",
-            minWidth: 200,
-            zIndex: 99,
+            left: "50%",
+            top: "49%",
+            transform: "translate(-50%, -50%)",
+            minWidth: 238,
+            zIndex: 100,
             pointerEvents: "none",
             display: "flex",
             flexDirection: "row",
-            alignItems: "center"
+            alignItems: "center",
+            justifyContent: "center"
           }}
         >
           <FerrariF1SideSVG
             style={{
-              width: 148,
-              height: 49,
-              minWidth: 98,
-              maxWidth: "17vw",
-              marginRight: 13,
-              filter: "drop-shadow(0 0 40px #ffe60070)"
+              width: 285,
+              height: 88,
+              maxWidth: "46vw",
+              marginRight: 36,
+              filter: "drop-shadow(0 0 60px #ffe60065)"
             }}
           />
           <span
             className="ts-animated-car-title"
             style={{
               marginLeft: 0,
-              fontSize: "2.11rem",
+              fontSize: "2.9rem",
               whiteSpace: "nowrap",
               letterSpacing: "0.13em",
-              filter: "brightness(1.2) blur(.01px)",
+              filter: "brightness(1.25) blur(.01px)",
               color: "#ffe600",
-              textShadow: "0 0 14px #ffe60080, 0 2px 10px #000"
+              textShadow: "0 0 17px #ffe60085, 0 2px 12px #191B",
+              fontWeight: 800
             }}
           >
             TyreSense
