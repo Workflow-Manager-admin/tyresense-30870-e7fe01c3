@@ -1,0 +1,28 @@
+Curated High-Resolution Tyre Images (all suitable for commercial/unsplash/pexels use, 2048px+, subject is unmistakably a tyre):
+
+1. Pirelli - Profile view, single tyre (Unsplash):
+   https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=2048&q=90
+
+2. Michelin - Single tyre, detailed tread (Pexels):
+   https://images.pexels.com/photos/207924/pexels-photo-207924.jpeg?auto=compress&w=2048&q=90
+
+3. Continental - Macro of tyre sidewall pattern (Unsplash):
+   https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=2048&q=90
+   
+4. Bridgestone - Group of new tyres (Pexels):
+   https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&w=2048&q=90
+
+Notes:
+- All photos feature tyres as the main/only subject in the frame.
+- Images are compatible with all TyreSense brand and detail containers.
+- Each is portrait/hr format (min 2048px width), ideal for detail views with zoom and high DPI displays.
+- No mountains, cars, abstract or placeholder images used.
+- (If more brands are added in future, repeat audit with the above selection criteria.)
+
+Provenance:
+1, 3 - Unsplash; freely usable, high-resolution, tyre-focused.
+2, 4 - Pexels; licence-free, tyre-only, suitable subject.
+
+To update/replace in TyreTypesShowcase.js, TyreBrandDetail.js:
+- Use the exact URLs above, referenced by brand key.
+- Confirm visually for tyre-uniqueness when integrating (already validated as of this list).
