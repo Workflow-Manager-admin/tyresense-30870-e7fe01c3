@@ -7,14 +7,11 @@ import "./TyreBrandDetail.css";
  * PUBLIC_INTERFACE
  * TyreBrandDetail:
  * Individual tyre brand menu page, fully styled per Porsche menu sample:
- * - Strict page structure: header, headline, grid of long luxury cards (no legacy or neon)
- * - Implements all details of Porsche-inspired layout, color palette, card, and type hierarchy from style_guide.md
+ * - Structured layout—header bar, title, grid of large minimal cards, no decorative/legacy UI
+ * - Strict use of Porsche color palette/typography/gap
+ * - Expanded tyre options with real-world, curated images (see curated_tyre_images.txt)
  */
 
-/*
- * Expanded and refined: Each brand gets more tyre models, curated real tyre images, and clean, consistent card details.
- * Real image links based on curated_tyre_images.txt for primary models, with unique alt text.
- */
 const DEMO_BRAND_TYPES = {
   pirelli: {
     name: "Pirelli",
@@ -148,8 +145,8 @@ const DEMO_BRAND_TYPES = {
   }
 };
 
+// fallback to Pirelli for unknown brands (minimal, robust)
 function getDemoBrand(brand) {
-  // fallback to Pirelli for unknown brands
   return DEMO_BRAND_TYPES[brand.id] || DEMO_BRAND_TYPES.pirelli;
 }
 
@@ -158,7 +155,7 @@ function TyreBrandDetail({ brand, onBack }) {
   const { types, name } = getDemoBrand(brand);
   const [selected, setSelected] = useState(types[0]?.id);
 
-  // Animate card grid; subtle Porsche-like fade-up per card
+  // Animate card grid with subtle Porsche fade-up per card
   const gridVariants = {
     hidden: { opacity: 0, y: 24 },
     visible: i => ({
@@ -177,6 +174,7 @@ function TyreBrandDetail({ brand, onBack }) {
 
   return (
     <div className="ts-brand-detail-outer" data-testid="brand-detail-view">
+      {/* HEADER BAR */}
       <div className="ts-brand-detail-topbar" aria-label="TyreSense navigation bar" role="banner">
         <button className="ts-detail-back-btn" onClick={onBack} aria-label="Go back to brand selection">
           ← Back
@@ -185,9 +183,11 @@ function TyreBrandDetail({ brand, onBack }) {
           <AnimatedCarIntro asLogo />
         </div>
       </div>
+      {/* MAIN CONTAINER */}
       <div className="ts-brand-detail-container">
         <div className="brand-detail-breadcrumb">Explore Tyre Brands &nbsp;/&nbsp; {name}</div>
         <div className="brand-detail-headline">{name} - Tyre Range</div>
+        {/* Minimal, responsive card grid */}
         <div className="porsche-type-card-grid">
           <AnimatePresence>
             {types.map((type, i) => (
@@ -207,7 +207,7 @@ function TyreBrandDetail({ brand, onBack }) {
                   if (e.key === "Enter" || e.key === " ") setSelected(type.id);
                 }}
                 style={{
-                  background: "#fff", // Ensures Porsche card bg
+                  background: "#fff",
                   boxShadow: "0 5px 22px #cfd2d651"
                 }}
               >
