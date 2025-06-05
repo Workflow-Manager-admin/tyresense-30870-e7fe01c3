@@ -1,242 +1,297 @@
 :root {
-  --ts-dark-bg: #18181f;
-  --ts-neon-bg: #191932;
-  --ts-card-bg: #1c2241;
-  --ts-tyre-fade: #242b4b;
-  --ts-neon-yellow: #ffe600;
-  --ts-cyan: #00fff9;
-  --ts-purple: #ad00c0;
-  --ts-white: #fff;
-  --ts-border: rgba(0,255,255,0.12);
-  --ts-glow: 0 0 13px #00fff955, 0 4px 20px #ffe60066;
-  --ts-btn-hover: #212147;
+  /* Porsche.com-inspired minimal, sophisticated palette */
+  --porsche-black: #0c0c0e;
+  --porsche-deep-black: #18181c;
+  --porsche-grey-dark: #232327;
+  --porsche-grey-mid: #7d7d85;
+  --porsche-grey-light: #edeef0;
+  --porsche-white: #fff;
+  --porsche-accent-red: #b4081b;
+  --porsche-border-light: #2f2f33;
+  --porsche-border-soft: #222226;
+  --porsche-shadow: 0 2.5px 30px 0 #07070915;
+  --porsche-card-shadow: 0 12px 34px 2px #11111419, 0 1.8px 18px #b4081b08;
+  --porsche-card-radius: 32px;
+  --porsche-card-radius-sm: 16px;
+  --porsche-overlay-bg: rgba(18,18,19,0.72);
+
+  /* Text */
+  --porsche-font-main: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --porsche-text: #fff;
+  --porsche-text-secondary: #ececec;
+  --porsche-text-grey: #a9aaae;
+  --porsche-text-dark: #232327;
+
+  /* Remove all neon tokens */
 }
 
 .tyresense-main {
   min-height: 100vh;
-  background: linear-gradient(137deg, var(--ts-dark-bg) 0%, var(--ts-neon-bg) 100%);
-  color: var(--ts-white);
-  font-family: 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-}
-
-
-/* --- Section Containers --- */
-.ts-section {
-  padding: 56px 0 32px 0;
-  margin: 0 auto;
-  max-width: 940px;
-  width: 100%;
-  box-sizing: border-box;
-}
-.ts-section:not(:first-child) {
-  border-top: 2px solid var(--ts-border);
-}
-
-.ts-animated-tyre {
-  width: 165px;
-  height: 180px;
-  border-radius: 56% 44% 60% 40%/60% 57% 43% 40%;
-  background: linear-gradient(131deg, var(--ts-grad-red-1) 0%, var(--ts-red-main) 75%, var(--ts-dark-bg) 100%);
-  box-shadow: 0 0 54px 10px var(--ts-red-main)cc, 0 8px 34px 8px #a1081399, 0 2px 20px 4px #82132166;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: ts-float 2.5s ease-in-out infinite alternate;
+  background: var(--porsche-black);
+  font-family: var(--porsche-font-main);
+  color: var(--porsche-text);
   position: relative;
 }
-.ts-tyre-intro-text {
-  font-size: 2.55rem;
-  font-weight: 800;
-  color: #fff;
+
+.porsche-hero-bg-video-container {
   position: absolute;
-  bottom: -2.8rem;
-  left: 20%;
-  letter-spacing: 0.16em;
-  text-shadow: 0 0 36px var(--ts-red-main), 0 2px 10px #3f0d1a;
-  font-family: 'Inter', 'Roboto', Arial, sans-serif;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 55vh;
+  max-height: 420px;
+  overflow: hidden;
+  z-index: 1;
+  background: var(--porsche-black);
+  pointer-events: none;
+}
+.porsche-hero-bg-video {
+  width: 100vw;
+  height: 55vh;
+  object-fit: cover;
+  filter: brightness(0.6) grayscale(0.11);
+  min-width: 100vw;
+  min-height: 310px;
+  max-height: 420px;
 }
 
-.ts-main-content {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+.porsche-hero-frost {
+  pointer-events: none;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 55vh;
+  background: linear-gradient(180deg, #0c0c0e90 60%, #19191d 100%);
+  z-index: 2;
 }
 
-/* --- Animated Tyre Intro --- */
-.ts-intro-section {
-  height: 44vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-@keyframes ts-float {
-  0% { transform: translateY(0);}
-  100% { transform: translateY(18px);}
+.porsche-main-content {
+  position: relative;
+  z-index: 3;
+  margin-top: 28vh;
 }
 
-
-
-/* --- Tyre Recommendation/Filter --- */
-.ts-tyre-recommend-section {
-  background: transparent;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-.ts-tyre-filters {
-  display: flex;
-  gap: 12px;
+.porsche-title {
+  font-size: 3.1rem;
+  color: var(--porsche-white);
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height: 1.08;
   margin-bottom: 12px;
+  text-shadow: none;
 }
-.ts-btn {
-  background: linear-gradient(93deg, var(--ts-grad-red-1), var(--ts-red-main) 50%);
-  color: #fff;
-  border-radius: 7px;
-  border: none;
-  padding: 8px 20px;
-  font-size: 1.03rem;
-  font-weight: 700;
-  box-shadow: 0 0 10px 1.5px var(--ts-grad-red-1)66, 0 1px 6px #a108136d;
-  cursor: not-allowed;
-  filter: grayscale(0.19) brightness(1.12);
-  opacity: 0.87;
-}
-.ts-btn-filter {
-  min-width: 70px;
-}
-.ts-tyre-list {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: start;
-}
-.ts-tyre-card {
-  width: 122px;
-  height: 140px;
-  background: linear-gradient(121deg, var(--ts-card-bg) 28%, #bc0932 99%);
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px #c6203045;
-  transition: box-shadow .17s;
-}
-.ts-card-placeholder {
-  opacity: 0.53;
-  border: 2.5px dashed var(--ts-accent);
-  background: none;
+.porsche-subtitle {
+  font-size: 1.2rem;
+  color: var(--porsche-grey-light);
+  font-weight: 500;
+  margin-bottom: 11px;
+  letter-spacing: 0.04em;
 }
 
-.ts-btn {
-  background: linear-gradient(92deg, var(--ts-grad-red-1) 0%, var(--ts-red-main) 70%);
-  color: #fff;
-  border-radius: 7px;
-  border: none;
-  padding: 8px 20px;
-  font-size: 1.03rem;
-  font-weight: 700;
-  box-shadow: 0 0 10px 1.5px var(--ts-grad-red-1)66, 0 1px 6px #a108136d;
-  cursor: not-allowed;
-  filter: grayscale(0.11) brightness(1.11);
-  opacity: 0.91;
-}
-
-/* --- Map Section --- */
-.ts-map-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.porsche-dual-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 44px 36px;
+  max-width: 1080px;
+  margin: 0 auto;
   width: 100%;
-  min-height: 170px;
+  padding: 2vw 2vw 3vw 2vw;
+  position: relative;
 }
 
-.ts-map-container {
-  width: 96%;
-  min-width: 240px;
-  max-width: 740px;
-  height: 200px;
-  background: linear-gradient(120deg, #191932 2%, #18181f 100%);
-  border-radius: 13px;
-  border: 2.1px solid var(--ts-cyan, #00fff9);
+@media (max-width: 960px) {
+  .porsche-dual-grid {
+    grid-template-columns: 1fr;
+    gap: 34px 0;
+    padding: 2vw 0.5vw 3vw 0.5vw;
+  }
+}
+
+.porsche-tyre-card {
+  background: var(--porsche-grey-dark);
+  border-radius: var(--porsche-card-radius);
+  box-shadow: var(--porsche-card-shadow);
+  border: 1.7px solid var(--porsche-border-soft);
+  overflow: hidden;
+  position: relative;
+  transition: box-shadow .2s, border .18s, transform .13s;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  justify-content: stretch;
-  box-shadow: 0 7px 35px 2.5px #00fff931, 0 4.5px 35px 1.5px #ffe60024;
-  margin-bottom: 2px;
+  min-height: 310px;
+  min-width: 210px;
+  cursor: pointer;
+}
+.porsche-tyre-card:focus,
+.porsche-tyre-card:hover {
+  border: 1.8px solid var(--porsche-accent-red);
+  box-shadow: 0 12px 41px 2.5px #b4081b1a, 0 11px 34px 14px #2f2f330a;
+  transform: translateY(-4px) scale(1.012);
+}
+
+.porsche-tyre-card-img-wrapper {
+  width: 100%;
+  padding-top: 60%;
   position: relative;
+  background: var(--porsche-deep-black);
+  border-bottom: 1.5px solid var(--porsche-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
+.porsche-tyre-card-image {
+  width: 98%;
+  height: 98%;
+  max-width: 246px;
+  max-height: 110%;
+  object-fit: cover;
+  border-radius: var(--porsche-card-radius-sm);
+  margin: 0 auto;
+  display: block;
+  filter: brightness(0.98) contrast(1.09);
+  box-shadow: 0 6px 21.5px 0 #22222433;
+}
+.porsche-tyre-card-content {
+  padding: 30px 27px 24px 27px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  background: none;
+}
+.porsche-tyre-brand {
+  color: var(--porsche-white);
+  font-size: 1.43rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.01;
+}
+.porsche-tyre-details {
+  color: var(--porsche-text-grey);
+  font-size: 0.97rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.porsche-accent-red {
+  color: var(--porsche-accent-red);
+  font-weight: 700;
+  font-size: 1.09rem;
+  letter-spacing: 0.045em;
+}
+.porsche-tyre-card-btn {
+  margin-top: 9px;
+  margin-bottom: 0;
+  background: none;
+  color: var(--porsche-white);
+  border: 1.6px solid var(--porsche-border-soft);
+  border-radius: 41px;
+  font-size: 1.03rem;
+  font-weight: 600;
+  padding: 8px 21px;
+  transition: border .14s, color .14s, background .19s;
+  cursor: pointer;
+  box-shadow: none;
+}
+.porsche-tyre-card-btn:focus,
+.porsche-tyre-card-btn:hover {
+  color: var(--porsche-accent-red);
+  border: 1.8px solid var(--porsche-accent-red);
+  background: #21111320;
+}
 
-.ts-map-canvas {
+.porsche-tyre-card-all {
+  background: var(--porsche-grey-mid);
+  color: var(--porsche-black);
+  border: 2.2px solid var(--porsche-accent-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .18s, border .18s, color .13s;
+}
+.porsche-tyre-card-all-content {
   width: 100%;
   height: 100%;
-  border-radius: 13px;
-  min-height: 170px;
-  background: #18181f !important;
-}
-
-.ts-map-error {
-  width: 100%;
-  min-height: 36px;
-  font-size: 1.10rem;
-  color: #ffe600;
-  background: #191932;
-  margin-bottom: 6px;
-  border: 2px solid #ffe600;
-  border-radius: 13px;
-  padding: 10px 14px;
-  text-align: center;
-  font-weight: 600;
-  box-shadow: 0 2px 11px #ffe60036, 0 1.5px 7px #00fff94a;
-}
-
-@media (max-width: 720px) {
-  .ts-map-section {
-    padding: 0 !important;
-  }
-  .ts-map-container {
-    min-width: 96vw;
-    max-width: 99vw;
-    height: 140px;
-    padding: 0;
-  }
-  .ts-map-canvas {
-    min-height: 100px;
-    font-size: 1rem;
-  }
-}
-
-/* --- Reminders / Notifications --- */
-.ts-reminder-section {
+  padding: 52px 38px 52px 38px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-}
-.ts-popup-reminder {
-  min-width: 260px;
-  min-height: 43px;
-  background: linear-gradient(128deg, #410d18, var(--ts-card-bg) 78%);
-  color: var(--ts-accent);
-  border-radius: 11px;
-  border: 2.4px dotted var(--ts-accent);
-  padding: 12px 13px;
+  justify-content: center;
   text-align: center;
-  font-size: 1.05rem;
-  font-weight: 600;
-  box-shadow: 0 1.5px 13px 2.5px #ff3a3a33;
+}
+.porsche-tyre-card-all-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  margin-bottom: 12px;
+  color: var(--porsche-black);
+}
+.porsche-tyre-card-all-desc {
+  font-size: 1.11rem;
+  color: var(--porsche-grey-dark);
+  font-weight: 510;
+  margin-bottom: 11px;
 }
 
-/* --- Hidden User Data Section --- */
-.ts-hidden-userdata {
-  display: none;
+.porsche-card-gradient-hover {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--porsche-card-radius);
+  background: linear-gradient(142deg, #b4081b28 6%, transparent 86%);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 3;
+  transition: opacity 0.18s;
+}
+.porsche-tyre-card:focus .porsche-card-gradient-hover,
+.porsche-tyre-card:hover .porsche-card-gradient-hover,
+.porsche-tyre-card-all:focus .porsche-card-gradient-hover,
+.porsche-tyre-card-all:hover .porsche-card-gradient-hover {
+  opacity: 1;
 }
 
-/* --- Responsive Design --- */
-@media (max-width: 720px) {
-  .ts-section { padding: 32px 0 20px 0; }
-  .ts-car-input-form { flex-direction: column; gap: 18px; padding: 18px 11px 12px 11px; }
-  .ts-tyre-list { gap: 8px; }
-  .ts-tyre-card { width: 92px; height: 100px; }
-  .ts-map-placeholder { height: 100px; font-size: 1rem; }
+.porsche-section-title {
+  font-size: 2.32rem;
+  color: var(--porsche-white);
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  margin-bottom: 0.71em;
+}
+
+.porsche-filters-row {
+  margin-top: 32px;
+  margin-bottom: 12px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@media (max-width: 700px) {
+  .porsche-main-content {
+    margin-top: 16vh;
+  }
+  .porsche-dual-grid {
+    grid-template-columns: 1fr;
+    gap: 32px 0;
+    padding: 1vw 0.3vw 2vw 0.3vw;
+  }
+  .porsche-title {
+    font-size: 2.3rem;
+  }
+  .porsche-section-title {
+    font-size: 1.38rem;
+  }
+  .porsche-tyre-card-content {
+    padding: 19px 13px 16px 13px;
+  }
+  .porsche-tyre-card-all-content {
+    padding: 27px 8vw 29px 8vw;
+  }
+}
+
+/* Remove/override any legacy neon style classes – make sure they have no effect */
+.neon-accent, .neon-gold, .neon-premium-btn, .ts-btn, .ts-tyre-card, .ts-card-placeholder {
+  all: unset !important;
 }
