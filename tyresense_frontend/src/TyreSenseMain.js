@@ -4,6 +4,41 @@ import AnimatedCarIntro from "./AnimatedCarIntro";
 import TyreTypesShowcase from "./TyreTypesShowcase";
 import TyreBrandDetail from "./TyreBrandDetail";
 import GoogleMapsStoreLocator from "./GoogleMapsStoreLocator";
+import CarDetailsInput from "./CarDetailsInput";
+import TyreRecommendations from "./TyreRecommendations";
+import ReminderPopup from "./ReminderPopup";
+
+// LocalStorage helpers for persistence
+function saveCarToLS(car) {
+  window.localStorage.setItem("tyrewiseCar", JSON.stringify(car));
+}
+function loadCarFromLS() {
+  try {
+    return JSON.parse(window.localStorage.getItem("tyrewiseCar") || "null");
+  } catch {
+    return null;
+  }
+}
+function saveTyreDataToLS(tyreData) {
+  window.localStorage.setItem("tyrewiseTyreData", JSON.stringify(tyreData));
+}
+function loadTyreDataFromLS() {
+  try {
+    return JSON.parse(window.localStorage.getItem("tyrewiseTyreData") || "null");
+  } catch {
+    return null;
+  }
+}
+function saveUserPrefsToLS(prefs) {
+  window.localStorage.setItem("tyrewisePrefs", JSON.stringify(prefs));
+}
+function loadUserPrefsFromLS() {
+  try {
+    return JSON.parse(window.localStorage.getItem("tyrewisePrefs") || "{}");
+  } catch {
+    return {};
+  }
+}
 
 /**
  * TyreSenseMain - Main container for TyreSense app UI, with a blackout overlay intro.
