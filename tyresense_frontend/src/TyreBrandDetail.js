@@ -5,14 +5,13 @@ import "./TyreBrandDetail.css";
 
 /**
  * PUBLIC_INTERFACE
- * TyreBrandDetail
- * Porsche.com-style tyre brand/type luxury card selector with premium minimalist structure.
- * - Removes all neon/yellow/cyan styling, uses muted, refined Porsche palette.
- * - Clear card hierarchy, luxury brand menu for type/model selection.
- * - Premium, high-res images; elegant navigation.
+ * TyreBrandDetail:
+ * Individual tyre brand menu page, fully styled per Porsche menu sample:
+ * - Strict page structure: header, headline, grid of long luxury cards (no legacy or neon)
+ * - Implements all details of Porsche-inspired layout, color palette, card, and type hierarchy from style_guide.md
  */
 
-// Premium images and types for each brand (expand as needed)
+// Demo content for each brand (expand as needed)
 const DEMO_BRAND_TYPES = {
   pirelli: {
     name: "Pirelli",
@@ -22,7 +21,7 @@ const DEMO_BRAND_TYPES = {
         model: "Cinturato P7",
         type: "Summer",
         img: process.env.PUBLIC_URL + "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
-        desc: "Award-winning summer tyre. Responsive handling, low rolling resistance and premium comfort, ideal for modern performance cars.",
+        desc: "Award-winning summer tyre—responsive handling, low rolling resistance and premium comfort for modern performance cars.",
         sizes: ["225/45R17", "215/40R18", "205/55R16"],
         url: "https://www.pirelli.com/tyres/en-ww/cinturato/p7"
       },
@@ -31,7 +30,7 @@ const DEMO_BRAND_TYPES = {
         model: "Sottozero 3",
         type: "Winter",
         img: process.env.PUBLIC_URL + "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
-        desc: "Ultimate safety for cold conditions. Superior snow/ice traction, wide grooves channel winter slush.",
+        desc: "Ultimate safety for cold conditions. Superior snow/ice traction and wide grooves for winter slush.",
         sizes: ["205/55R16", "225/45R17"],
         url: "https://www.pirelli.com/tyres/en-ww/cinturato-winter"
       }
@@ -45,7 +44,7 @@ const DEMO_BRAND_TYPES = {
         model: "Primacy 4",
         type: "All-Season",
         img: process.env.PUBLIC_URL + "/assets/20250605_071317_michelin-tyres.jpg",
-        desc: "All-season touring tyre. Outstanding wet braking, extra-long tread life, preferred for family sedans.",
+        desc: "Touring tyre with outstanding wet braking and extra-long tread life. Preferred for family sedans.",
         sizes: ["205/55R16", "215/55R17"],
         url: "https://www.michelin.co.uk/auto/tyres/michelin-primacy-4"
       },
@@ -54,7 +53,7 @@ const DEMO_BRAND_TYPES = {
         model: "Pilot Sport 5",
         type: "Performance",
         img: process.env.PUBLIC_URL + "/assets/20250605_071317_michelin-tyres.jpg",
-        desc: "Maximum performance street tyre. Track-derived compound for the spirited driver.",
+        desc: "Maximum performance street tyre—track-derived compound for spirited drivers.",
         sizes: ["225/40R18", "235/45R18", "255/35R19"],
         url: "https://www.michelin.co.uk/auto/tyres/michelin-pilot-sport-5"
       }
@@ -82,7 +81,7 @@ const DEMO_BRAND_TYPES = {
         model: "Turanza T005",
         type: "Touring",
         img: process.env.PUBLIC_URL + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
-        desc: "Premium touring tyre. Quiet ride, outstanding wet grip and class-leading fuel efficiency.",
+        desc: "Premium touring tyre: quiet ride, outstanding wet grip and class-leading efficiency.",
         sizes: ["195/65R15", "205/60R16"],
         url: "https://www.bridgestone.co.uk/our-products/car-tyres/turanza-t005"
       },
@@ -91,7 +90,7 @@ const DEMO_BRAND_TYPES = {
         model: "Blizzak LM005",
         type: "Winter",
         img: process.env.PUBLIC_URL + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
-        desc: "Exceptional winter control, engineered for snow, ice and slush with high silica tread.",
+        desc: "Exceptional winter control, engineered for snow and slush with high silica tread.",
         sizes: ["205/55R16", "225/45R17"],
         url: "https://www.bridgestone.co.uk/our-products/car-tyres/blizzak-lm005"
       }
@@ -100,7 +99,7 @@ const DEMO_BRAND_TYPES = {
 };
 
 function getDemoBrand(brand) {
-  // Fallback to Pirelli if brand is missing/unknown
+  // fallback to Pirelli for unknown brands
   return DEMO_BRAND_TYPES[brand.id] || DEMO_BRAND_TYPES.pirelli;
 }
 
@@ -109,37 +108,36 @@ function TyreBrandDetail({ brand, onBack }) {
   const { types, name } = getDemoBrand(brand);
   const [selected, setSelected] = useState(types[0]?.id);
 
-  // Motion variants for card grid
+  // Animate card grid; subtle Porsche-like fade-up per card
   const gridVariants = {
-    hidden: { opacity: 0, y: 28 },
+    hidden: { opacity: 0, y: 24 },
     visible: i => ({
       opacity: 1,
       y: 0,
       transition: {
-        delay: 0.10 + i * 0.12,
-        duration: 0.41,
+        delay: 0.04 + i * 0.13,
+        duration: 0.33,
         type: "spring",
-        stiffness: 67,
-        damping: 17,
-        ease: [0.72, 0.01, 0.11, 1]
+        stiffness: 61,
+        damping: 20,
       }
     }),
-    exit: { opacity: 0, y: 22, transition: { duration: 0.21 } }
+    exit: { opacity: 0, y: 14, transition: { duration: 0.13 } }
   };
 
   return (
-    <div className="ts-brand-detail-outer porsche-brand-detail-bg" data-testid="brand-detail-view">
-      {/* Topbar: luxury minimalist, no neon */}
-      <div className="ts-brand-detail-topbar porsche-detail-topbar" aria-label="TyreSense navigation bar" role="banner">
-        <button className="ts-detail-back-btn porsche-detail-back-btn" onClick={onBack} aria-label="Go back to brand selection">
+    <div className="ts-brand-detail-outer" data-testid="brand-detail-view">
+      <div className="ts-brand-detail-topbar" aria-label="TyreSense navigation bar" role="banner">
+        <button className="ts-detail-back-btn" onClick={onBack} aria-label="Go back to brand selection">
           ← Back
         </button>
         <div aria-hidden="true" className="ts-brand-navbar-center-logo">
           <AnimatedCarIntro asLogo />
         </div>
       </div>
-      <div className="ts-brand-detail-container porsche-brand-container">
-        {/* Premium Porsche-style type-select menu grid */}
+      <div className="ts-brand-detail-container">
+        <div className="brand-detail-breadcrumb">Explore Tyre Brands &nbsp;/&nbsp; {name}</div>
+        <div className="brand-detail-headline">{name} - Tyre Range</div>
         <div className="porsche-type-card-grid">
           <AnimatePresence>
             {types.map((type, i) => (
@@ -149,7 +147,6 @@ function TyreBrandDetail({ brand, onBack }) {
                 tabIndex={0}
                 role="button"
                 aria-label={`Select ${type.model} ${type.type}`}
-                layout
                 initial="hidden"
                 animate="visible"
                 custom={i}
@@ -161,7 +158,6 @@ function TyreBrandDetail({ brand, onBack }) {
                 }}
               >
                 <div className="porsche-type-card-img-row">
-                  {/* High-quality model/type image */}
                   <img
                     src={type.img}
                     alt={`${name} ${type.model} tyre`}
@@ -187,25 +183,13 @@ function TyreBrandDetail({ brand, onBack }) {
                   >
                     {selected === type.id ? "Selected" : "Show details"}
                   </button>
-                  {/* Removed Buy Now button to ensure only in-app detail navigation */}
                   {selected === type.id && (
                     <span
                       className="porsche-type-buy-btn"
-                      style={{
-                        marginTop: 13,
-                        fontWeight: 800,
-                        color: "#7d7d85",
-                        background: "none",
-                        border: "none",
-                        cursor: "not-allowed",
-                        display: "inline-block",
-                        opacity: 0.7,
-                        pointerEvents: "none",
-                      }}
                       tabIndex={-1}
                       aria-disabled="true"
                     >
-                      Buy Now (In-app view only)
+                      Buy Now (In-app only)
                     </span>
                   )}
                 </div>
