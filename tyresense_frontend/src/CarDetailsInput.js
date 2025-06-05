@@ -204,15 +204,19 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
           Choose your car's manufacturer or select "Other" to enter it manually.
         </span>
       </div>
-      <div style={{ flex: "1 1 190px", minWidth: 100, marginTop: 44 }}>
+      <div style={{
+        flex: "1 1 190px",
+        minWidth: 100,
+        marginTop: 57
+      }}>
         <label
           className="ts-label"
           htmlFor="car-model"
           style={{
             fontWeight: 700,
             color: "#ffe600cc",
-            fontSize: "1.06rem",
-            marginBottom: 3,
+            fontSize: "1.07rem",
+            marginBottom: 5,
             letterSpacing: ".03em",
             display: "block"
           }}
@@ -230,13 +234,15 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
           autoComplete="on"
           aria-label="Car model"
           style={{
-            borderRadius: 9,
-            border: "1.3px solid #ffe60044",
+            borderRadius: 11,
+            border: "1px solid #ffe60033",
             marginBottom: 2,
             fontWeight: 600,
-            fontSize: "1.01rem",
+            fontSize: "1.06rem",
             background: "#18181f",
-            color: "#ffe600"
+            color: "#ffe600",
+            padding: "7.5px 8.5px",
+            width: "100%"
           }}
           inputMode="text"
         />
@@ -245,7 +251,7 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             display: "block",
             color: "#ffe600a1",
             fontSize: "0.91em",
-            marginTop: 2,
+            marginTop: 4,
             fontWeight: 400,
             opacity: 0.82
           }}
@@ -253,15 +259,19 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
           Enter your car's model, e.g. "Corolla", "Mustang", "A-Class".
         </span>
       </div>
-      <div style={{ flex: "1 1 90px", minWidth: 60, marginTop: 44 }}>
+      <div style={{
+        flex: "1 1 90px",
+        minWidth: 65,
+        marginTop: 57
+      }}>
         <label
           className="ts-label"
           htmlFor="car-year"
           style={{
             fontWeight: 700,
             color: "#ffe600aa",
-            fontSize: "1.04rem",
-            marginBottom: 3,
+            fontSize: "1.03rem",
+            marginBottom: 4,
             letterSpacing: ".03em",
             display: "block"
           }}
@@ -281,12 +291,14 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
           autoComplete="on"
           aria-label="Car model year"
           style={{
-            borderRadius: 9,
-            border: "1.3px solid #ffe60044",
+            borderRadius: 11,
+            border: "1px solid #ffe60033",
             fontWeight: 600,
-            fontSize: "1.00rem",
+            fontSize: "1.04rem",
             background: "#18181f",
-            color: "#ffe600"
+            color: "#ffe600",
+            padding: "7.5px 8.5px",
+            width: "100%"
           }}
           inputMode="numeric"
           pattern="[0-9]*"
@@ -295,10 +307,10 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
           style={{
             display: "block",
             color: "#ffe60070",
-            fontSize: "0.88em",
-            marginTop: 2,
+            fontSize: "0.89em",
+            marginTop: 3,
             fontWeight: 400,
-            opacity: 0.80
+            opacity: 0.83
           }}
         >
           Car's registration year (4 digits)
