@@ -54,6 +54,14 @@ function TyreBrandDetail({ brand, onBack }) {
             x,
             y,
             zIndex: 25,
+            position: "relative",
+            overflow: "hidden",
+            borderRadius: "42px",
+            background:
+              "radial-gradient(ellipse at center, #232f5c 85%, #18181f 100%)",
+            boxShadow:
+              "0 10px 44px 0 #00fff93c, 0 2px 21px 7px #ffe6002f, 0 3px 54px #19193273",
+            aspectRatio: "1/1",
           }}
         >
           <img
@@ -62,10 +70,14 @@ function TyreBrandDetail({ brand, onBack }) {
             style={{
               width: "100%",
               height: "100%",
-              objectFit: "contain",
-              borderRadius: "31px",
-              backgroundColor: "#191932",
-              boxShadow: "0 0 32px #00fff978, 0 4px 24px #1119",
+              objectFit: "cover",
+              objectPosition: "center",
+              display: "block",
+              borderRadius: "42px",
+              backgroundColor: "#171932",
+              boxShadow: "0 0 32px #00fff988, 0 6px 32px #13132d85",
+              filter: "brightness(1.08) contrast(1.07)",
+              transition: "transform .21s cubic-bezier(.62,-0.13,.36,1.11)",
             }}
             loading="lazy"
           />
