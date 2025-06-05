@@ -1,17 +1,18 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedCarIntro from "./AnimatedCarIntro";
 import "./TyreBrandDetail.css";
 
-// PUBLIC_INTERFACE
 /**
- * TyreBrandDetail: Porsche-style brand/type selection
- * - Shows a card grid of tyre types/models within the brand
- * - Allows selection of a type, revealing its details just like Porsche configuration menu
- * - Uses premium muted accent and no neon
+ * PUBLIC_INTERFACE
+ * TyreBrandDetail
+ * Porsche.com-style tyre brand/type luxury card selector with premium minimalist structure.
+ * - Removes all neon/yellow/cyan styling, uses muted, refined Porsche palette.
+ * - Clear card hierarchy, luxury brand menu for type/model selection.
+ * - Premium, high-res images; elegant navigation.
  */
 
-// Demo luxury palette images and types for each brand (expand as needed)
+// Premium images and types for each brand (expand as needed)
 const DEMO_BRAND_TYPES = {
   pirelli: {
     name: "Pirelli",
@@ -99,38 +100,36 @@ const DEMO_BRAND_TYPES = {
 };
 
 function getDemoBrand(brand) {
-  // Fallback to pirelli if missing, always returns {name, types}
+  // Fallback to Pirelli if brand is missing/unknown
   return DEMO_BRAND_TYPES[brand.id] || DEMO_BRAND_TYPES.pirelli;
 }
 
+// PUBLIC_INTERFACE
 function TyreBrandDetail({ brand, onBack }) {
-  // State for selected type card
   const { types, name } = getDemoBrand(brand);
   const [selected, setSelected] = useState(types[0]?.id);
 
-  // Variants for grid entrance
+  // Motion variants for card grid
   const gridVariants = {
-    hidden: { opacity: 0, y: 32 },
+    hidden: { opacity: 0, y: 28 },
     visible: i => ({
       opacity: 1,
       y: 0,
       transition: {
-        delay: 0.09 + i * 0.11,
-        duration: 0.49,
+        delay: 0.10 + i * 0.12,
+        duration: 0.41,
         type: "spring",
-        stiffness: 66,
+        stiffness: 67,
         damping: 17,
         ease: [0.72, 0.01, 0.11, 1]
       }
     }),
-    exit: { opacity: 0, y: 20, transition: { duration: 0.19 } }
+    exit: { opacity: 0, y: 22, transition: { duration: 0.21 } }
   };
 
-  // Luxury Porsche-style muted palette for cards
-  // Outer layout is two columns: left side (logo+meta), right (type grid)
   return (
-    <div className="ts-brand-detail-outer porsche-brand-detail-bg">
-      {/* Topbar: back & logo */}
+    <div className="ts-brand-detail-outer porsche-brand-detail-bg" data-testid="brand-detail-view">
+      {/* Topbar: luxury minimalist, no neon */}
       <div className="ts-brand-detail-topbar porsche-detail-topbar" aria-label="TyreSense navigation bar" role="banner">
         <button className="ts-detail-back-btn porsche-detail-back-btn" onClick={onBack} aria-label="Go back to brand selection">
           ← Back
@@ -140,7 +139,7 @@ function TyreBrandDetail({ brand, onBack }) {
         </div>
       </div>
       <div className="ts-brand-detail-container porsche-brand-container">
-        {/* Type selection card grid */}
+        {/* Premium Porsche-style type-select menu grid */}
         <div className="porsche-type-card-grid">
           <AnimatePresence>
             {types.map((type, i) => (
@@ -162,6 +161,7 @@ function TyreBrandDetail({ brand, onBack }) {
                 }}
               >
                 <div className="porsche-type-card-img-row">
+                  {/* High-quality model/type image */}
                   <img
                     src={type.img}
                     alt={`${name} ${type.model} tyre`}
@@ -178,11 +178,7 @@ function TyreBrandDetail({ brand, onBack }) {
                   <button
                     className="porsche-type-select-btn"
                     tabIndex={0}
-                    style={{
-                      marginTop: 11,
-                      border: selected === type.id ? "2px solid #b4081b" : undefined,
-                      color: selected === type.id ? "#b4081b" : undefined
-                    }}
+                    style={selected === type.id ? { border: "1.7px solid #b4081b", color: "#b4081b" } : undefined}
                     onClick={e => {
                       e.stopPropagation();
                       setSelected(type.id);
@@ -195,10 +191,7 @@ function TyreBrandDetail({ brand, onBack }) {
                     <a
                       className="porsche-type-buy-btn"
                       href={type.url}
-                      style={{
-                        marginTop: 15,
-                        marginLeft: 4
-                      }}
+                      style={{ marginTop: 13 }}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
