@@ -3,90 +3,104 @@ import { motion, AnimatePresence } from "framer-motion";
 import "./AnimatedCarIntro.css";
 
 /**
- * Ferrari F1 Car Aerial SVG - photorealistic, accurate detail (top-down 2023/2024 SF-23/SF-24 flavor).
- * Approximates the real Ferrari livery, halo, suspension, and the distinctive wing/tyre geometry.
+ * Detailed Aerial Ferrari F1 Car SVG (SF-23/SF-24 style, top-down)
+ * Main distinctive colorway: Ferrari Red with neon yellow accents,
+ * black suspension/halo, four wheels, two wings.
  */
 function FerrariF1AerialSVG({ style, ...props }) {
   return (
     <svg
-      width="140"
-      height="76"
-      viewBox="0 0 140 76"
+      width="160"
+      height="90"
+      viewBox="0 0 160 90"
       fill="none"
       style={style}
       {...props}
       aria-label="Aerial Ferrari Formula 1 Car"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Rear wing (black, broad) */}
-      <rect x="40" y="67" width="60" height="8" rx="4" fill="#19191f" stroke="#19191f" strokeWidth="2"/>
-      {/* Rear wing endplates (red) */}
-      <rect x="40" y="67" width="7" height="8" rx="2" fill="#F60020" stroke="#b11117" strokeWidth="0.6"/>
-      <rect x="93" y="67" width="7" height="8" rx="2" fill="#F60020" stroke="#b11117" strokeWidth="0.6"/>
+      {/* Rear wing */}
+      <rect x="52" y="78" width="56" height="8" rx="3.5" fill="#18181c" stroke="#18181c" strokeWidth="2"/>
+      {/* Rear wing endplates */}
+      <rect x="52" y="78" width="7.6" height="8" rx="2" fill="#f60020" stroke="#98091C" strokeWidth="0.6"/>
+      <rect x="100.4" y="78" width="7.6" height="8" rx="2" fill="#f60020" stroke="#98091C" strokeWidth="0.6"/>
 
-      {/* Rear tyres (left/right) */}
-      <ellipse cx="32" cy="60" rx="13" ry="13" fill="#191919" stroke="#bbb" strokeWidth="3"/>
-      <ellipse cx="108" cy="60" rx="13" ry="13" fill="#191919" stroke="#bbb" strokeWidth="3"/>
-      {/* Shadow under rear tyres */}
-      <ellipse cx="32" cy="67" rx="9" ry="2.1" fill="#000" opacity="0.13"/>
-      <ellipse cx="108" cy="67" rx="9" ry="2.1" fill="#000" opacity="0.13"/>
+      {/* Rear tyres */}
+      <ellipse cx="40" cy="67" rx="13" ry="13" fill="#1b1b1b" stroke="#bababa" strokeWidth="3"/>
+      <ellipse cx="120" cy="67" rx="13" ry="13" fill="#1b1b1b" stroke="#bababa" strokeWidth="3"/>
+      {/* Shadows under rear tyres */}
+      <ellipse cx="40" cy="74" rx="8.8" ry="2.1" fill="#000" opacity="0.12"/>
+      <ellipse cx="120" cy="74" rx="8.8" ry="2.1" fill="#000" opacity="0.12"/>
 
-      {/* Main body center spine (main survival cell) */}
-      <rect x="58" y="13" width="24" height="45" rx="10" fill="#ED0B1B" stroke="#ffe600" strokeWidth="1.2"/>
-      {/* Sidepods broader section */}
-      <rect x="46" y="31" width="48" height="21" rx="10.5" fill="#EF1A24" stroke="#faf600" strokeWidth="1.2"/>
-      {/* Cockpit opening inside (black) */}
-      <ellipse cx="70" cy="33.5" rx="9" ry="6.5" fill="#16171b" />
-      {/* Halo (black arc) */}
-      <path d="M61 31 q9 -14 18 0" stroke="#0d0f13" strokeWidth="3.5" fill="none"/>
-      {/* Headrest padding */}
-      <ellipse cx="70" cy="33.5" rx="4.6" ry="2.1" fill="#232a38"/>
-      {/* Driver helmet (blue visor) */}
-      <ellipse cx="70" cy="33.7" rx="2.7" ry="2.3" fill="#0033cc" stroke="#ffe600" strokeWidth="0.7"/>
-      <ellipse cx="70" cy="34.6" rx="2" ry="1.3" fill="#ffe600" opacity="0.41"/>
-      {/* Ferrari badge in sidepod */}
-      <rect x="89.2" y="38.3" width="7.2" height="8.2" rx="1.8" fill="#ffe600" stroke="#1d0f0f" strokeWidth="0.8"/>
-      <text x="92.7" y="43.7" fontSize="5" fontWeight="bold" fill="#111">SF</text>
+      {/* Floor plank */}
+      <rect x="74" y="72.6" width="12.2" height="2.1" rx="1" fill="#FFD874"/>
+      {/* Rear suspension arms */}
+      <rect x="29.7" y="50" width="7.7" height="1.9" rx="0.7" fill="#211b1b"/>
+      <rect x="122.6" y="50" width="7.7" height="1.9" rx="0.7" fill="#211b1b"/>
+      {/* Rear suspension links */}
+      <rect x="40.2" y="54.2" width="6" height="1.8" rx="0.7" fill="#2d2623" opacity="0.91"/>
+      <rect x="113.8" y="54.2" width="6" height="1.8" rx="0.7" fill="#2d2623" opacity="0.91"/>
+
+      {/* Main body (monocoque and sidepods) */}
+      <rect x="66" y="16" width="28" height="50" rx="13" fill="#ED0B1B" stroke="#ffe600" strokeWidth="1.25"/>
+      <rect x="50" y="30" width="60" height="26" rx="12" fill="#EF1A24" stroke="#faf600" strokeWidth="1.15"/>
+
+      {/* Sidepod neon accent shape (left and right) */}
+      <ellipse cx="58.7" cy="46" rx="5.2" ry="10.8" fill="#ffe600" opacity="0.14"/>
+      <ellipse cx="101.3" cy="46" rx="5.2" ry="10.8" fill="#ffe600" opacity="0.14"/>
+
+      {/* Cockpit opening */}
+      <ellipse cx="80" cy="36" rx="10" ry="7.2" fill="#202021" />
+      {/* Halo */}
+      <path d="M71.5 33 q8.5 -18 17 0" stroke="#161622" strokeWidth="4.2" fill="none"/>
+      {/* Halo yellow tips */}
+      <ellipse cx="78" cy="25" rx="1.1" ry="1.1" fill="#ffe600"/>
+      <ellipse cx="82" cy="25" rx="1.1" ry="1.1" fill="#ffe600"/>
+
+      {/* Cockpit padding */}
+      <ellipse cx="80" cy="36" rx="4.2" ry="1.7" fill="#232a38"/>
+      {/* Driver helmet */}
+      <ellipse cx="80" cy="35.8" rx="2.7" ry="2.2" fill="#0146ca" stroke="#ffe600" strokeWidth="0.7"/>
+      <ellipse cx="80" cy="36.7" rx="2.1" ry="1.2" fill="#ffe600" opacity="0.35"/>
+
+      {/* Ferrari logo badge (right pod) */}
+      <rect x="103.4" y="43.5" width="8.9" height="7.1" rx="1.4" fill="#ffe600" stroke="#15110f" strokeWidth="0.85"/>
+      <text x="106.4" y="49.1" fontSize="4.7" fontWeight="bold" fill="#1a1a1a">SF</text>
 
       {/* Side mirrors */}
-      <ellipse cx="48" cy="18" rx="2.2" ry="4.2" fill="#ffe600" />
-      <ellipse cx="92" cy="18" rx="2.2" ry="4.2" fill="#ffe600" />
+      <ellipse cx="56" cy="18.6" rx="2.1" ry="3.8" fill="#ffe600" />
+      <ellipse cx="104" cy="18.6" rx="2.1" ry="3.8" fill="#ffe600" />
 
       {/* Front nose cone */}
-      <rect x="58.3" y="1.3" width="23.5" height="18" rx="6.5" fill="#ffe600" stroke="#c20507" strokeWidth="1.2"/>
-      {/* Red triangle nose tip */}
-      <polygon points="70,1.5 66,11 74,11" fill="#d9041d" />
-      {/* Black and white stickers/emblems under cockpit */}
-      <rect x="66.5" y="18.6" width="7" height="2.2" rx="0.7" fill="#fff" stroke="#19191f" strokeWidth="0.55"/>
-      <rect x="67.5" y="22.1" width="5" height="0.95" rx="0.4" fill="#16171b" />
+      <rect x="66.9" y="3" width="26.2" height="16.3" rx="6.8" fill="#ffe600" stroke="#c20507" strokeWidth="1.08"/>
+      {/* Red tip */}
+      <polygon points="80,2.5 76.4,12.3 83.6,12.3" fill="#d9041d" />
 
-      {/* Front wing (wide) */}
-      <rect x="49" y="0.2" width="42" height="8.8" rx="4.2" fill="#fff" stroke="#ed0b1b" strokeWidth="1.6"/>
+      {/* Black + white stickers below cockpit */}
+      <rect x="74.1" y="19.6" width="12" height="2.3" rx="0.8" fill="#fff" stroke="#2c2021" strokeWidth="0.42"/>
+      <rect x="76.8" y="24.5" width="6.5" height="1" rx="0.6" fill="#19191b" />
+
+      {/* Front wing */}
+      <rect x="56.7" y="0.6" width="46.8" height="8.5" rx="4.5" fill="#fff" stroke="#ed0b1b" strokeWidth="1.4"/>
       {/* Front wing endplates */}
-      <rect x="49" y="0.2" width="6" height="8.8" rx="2.7" fill="#e30219"/>
-      <rect x="85" y="0.2" width="6" height="8.8" rx="2.7" fill="#e30219"/>
+      <rect x="56.7" y="0.6" width="6.8" height="8.5" rx="2.9" fill="#e30219"/>
+      <rect x="96.7" y="0.6" width="6.8" height="8.5" rx="2.9" fill="#e30219"/>
 
       {/* Front tyres */}
-      <ellipse cx="40" cy="13" rx="11" ry="11" fill="#16181b" stroke="#bbb" strokeWidth="3"/>
-      <ellipse cx="100" cy="13" rx="11" ry="11" fill="#16181b" stroke="#bbb" strokeWidth="3"/>
-      {/* Shadow under front tyres */}
-      <ellipse cx="40" cy="21" rx="7.5" ry="2.3" fill="#000" opacity="0.11"/>
-      <ellipse cx="100" cy="21" rx="7.5" ry="2.3" fill="#000" opacity="0.11"/>
+      <ellipse cx="51" cy="15" rx="11.1" ry="11.1" fill="#19181d" stroke="#bababa" strokeWidth="3"/>
+      <ellipse cx="109" cy="15" rx="11.1" ry="11.1" fill="#19181d" stroke="#bababa" strokeWidth="3"/>
+      {/* Front tyre shadows */}
+      <ellipse cx="51" cy="23.4" rx="7.6" ry="2.1" fill="#000" opacity="0.11"/>
+      <ellipse cx="109" cy="23.4" rx="7.6" ry="2.1" fill="#000" opacity="0.11"/>
 
       {/* Front suspension arms */}
-      <rect x="42" y="16" width="6" height="2" rx="1" fill="#666" opacity="0.96"/>
-      <rect x="92" y="16" width="6" height="2" rx="1" fill="#666" opacity="0.96"/>
-      <rect x="43.4" y="22" width="3.7" height="1.5" rx="0.8" fill="#231a1a"/>
-      <rect x="92.9" y="22" width="3.7" height="1.5" rx="0.8" fill="#231a1a"/>
-      {/* Rear suspension arms */}
-      <rect x="33" y="45" width="4.9" height="1.5" rx="0.7" fill="#231a1a"/>
-      <rect x="102" y="45" width="4.9" height="1.5" rx="0.7" fill="#231a1a"/>
+      <rect x="53.6" y="18.1" width="7.1" height="2.2" rx="1" fill="#656565" opacity="0.96"/>
+      <rect x="99.3" y="18.1" width="7.1" height="2.2" rx="1" fill="#656565" opacity="0.96"/>
+      <rect x="55.7" y="24" width="4.0" height="1.7" rx="0.8" fill="#18171a"/>
+      <rect x="100.3" y="24" width="4.0" height="1.7" rx="0.8" fill="#18171a"/>
 
       {/* Diffuser highlight */}
-      <ellipse cx="70" cy="74" rx="8.7" ry="1.7" fill="#1e1e1e" opacity="0.12"/>
-
-      {/* Floor plank line */}
-      <rect x="67" y="58.3" width="6" height="2.1" rx="1" fill="#FFD874"/>
+      <ellipse cx="80" cy="86.6" rx="8.6" ry="1.3" fill="#222222" opacity="0.19"/>
     </svg>
   );
 }
@@ -94,12 +108,12 @@ function FerrariF1AerialSVG({ style, ...props }) {
 // PUBLIC_INTERFACE
 function AnimatedCarIntro({ visible, onAnimationComplete }) {
   /**
-   * Displays the animated aerial Ferrari F1 zooming across and stopping at TyreSense.
-   * After animation, the car 'parks' beside/under TyreSense and remains.
-   * @param {boolean} visible - If true, show the car animation; otherwise hide.
+   * F1 Car rolls/zooms in and parks aligned left of TyreSense, then the unified duo remains.
+   * @param {boolean} visible - Show/hide the animation.
    * @param {function} onAnimationComplete - Called after animation completes.
    */
-  // The parked position is x: '49vw' for logo & car together, with a visual bias left
+  // The car and TyreSense are centered vertically; car parks left of text as one joined logo.
+  // On small screens, everything scales down nicely.
   return (
     <AnimatePresence>
       {visible && (
@@ -108,38 +122,57 @@ function AnimatedCarIntro({ visible, onAnimationComplete }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          style={{ position: "absolute", inset: 0, zIndex: 12 }}
+          style={{ position: "absolute", inset: 0, zIndex: 1200, pointerEvents: "none" }}
         >
           <motion.div
             className="ts-animated-car"
-            initial={{ x: "-33vw", rotate: -6, scale: 1.2 }}
-            animate={{
-              x: "49vw",
-              rotate: 0,
-              scale: 1
+            initial={{
+              x: "-50vw",
+              scale: 1.3,
+              rotate: -8,
+              opacity: 1
             }}
-            exit={{ y: 40, opacity: 0 }}
-            transition={{ duration: 2.3, ease: [0.67, 0, 0.33, 1] }}
+            animate={{
+              x: 0,           // parks at position 0 in flex row (left of TyreSense)
+              scale: 1,
+              rotate: 0,
+              opacity: 1
+            }}
+            exit={{
+              scale: 0.95, y: 32, opacity: 0
+            }}
+            transition={{
+              duration: 2.4,
+              ease: [0.74, 0.02, 0.25, 1]
+            }}
             onAnimationComplete={onAnimationComplete}
-            style={{ flexDirection: "row", minWidth: 185, alignItems: "center" }}
+            style={{
+              flexDirection: "row",
+              minWidth: 200,
+              alignItems: "center",
+              justifyContent: "flex-start",
+              pointerEvents: "none"
+            }}
           >
             <FerrariF1AerialSVG
               style={{
-                filter: "drop-shadow(0 0 60px #ffe600aa)",
                 width: 140,
-                height: 76,
-                minWidth: 110,
-                marginRight: 14
+                height: 80,
+                minWidth: 108,
+                marginRight: 18,
+                filter: "drop-shadow(0 0 70px #ffe60088)"
               }}
             />
             <span
               className="ts-animated-car-title"
               style={{
-                marginLeft: 16,
-                fontSize: "2.5rem",
+                marginLeft: 0,
+                fontSize: "2.68rem",
                 whiteSpace: "nowrap",
-                letterSpacing: "0.14em",
-                filter: "brightness(1.34) blur(.04px)"
+                letterSpacing: "0.13em",
+                filter: "brightness(1.34) blur(.03px)",
+                color: "#ffe600",
+                textShadow: "0 0 20px #ffe60090, 0 2px 10px #000"
               }}
             >
               TyreSense
