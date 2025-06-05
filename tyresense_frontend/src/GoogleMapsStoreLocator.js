@@ -192,22 +192,26 @@ function GoogleMapsStoreLocator() {
   return (
     <div className="ts-map-container">
       {error ? (
-        <div className="ts-map-error" style={{
-          color: "#ffe600",
-          background: "#191932",
-          border: "2px solid #ffe600",
-          borderRadius: "14px",
-          padding: "22px 18px",
-          fontWeight: 600,
-          minHeight: "110px",
-          fontSize: "1.14rem",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          margin: 0,
-          textAlign: "center"
-        }}>
-          {error}
+        <div
+          className="ts-map-error"
+          style={{
+            color: "#ffe600",
+            background: "#191932",
+            border: "2px solid #ffe600",
+            borderRadius: "14px",
+            padding: "22px 18px",
+            fontWeight: 600,
+            minHeight: "110px",
+            fontSize: "1.14rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: 0,
+            textAlign: "center",
+          }}
+        >
+          {/* Strictly show only the friendly error, NEVER display stacktrace or technical errors */}
+          Map unavailable - please contact support or check configuration
         </div>
       ) : (
         <div
@@ -219,13 +223,12 @@ function GoogleMapsStoreLocator() {
             minHeight: "170px",
             borderRadius: "13px",
             boxShadow: "0 5px 34px #00fff934, 0 4px 34px #ffe60012",
-            background: "#18181f"
+            background: "#18181f",
           }}
           aria-label="Nearby tyre stores map"
           tabIndex={0}
         ></div>
       )}
-      {/* Key: You must provide your Google Maps API key via .env as REACT_APP_GOOGLE_MAPS_API_KEY */}
     </div>
   );
 }
