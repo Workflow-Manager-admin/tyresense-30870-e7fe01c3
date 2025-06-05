@@ -235,13 +235,14 @@ function TyreRecommendations({ car, userLocation, onSetReminder, userTyreData, p
                   marginTop: 7,
                   fontSize: "0.97rem",
                   borderRadius: 7,
-                  border: "1.2px solid #2f2f33",
-                  background: "#232327",
-                  color: "#b4081b",
-                  fontWeight: 700,
-                  padding: "6px 14px",
+                  border: "1.3px solid #b4081b",
+                  background: "#b4081b",
+                  color: "#fff",
+                  fontWeight: 800,
+                  padding: "6px 17px",
                   boxShadow: "none",
                   cursor: "pointer",
+                  transition: "background 0.14s, color 0.13s, border 0.13s"
                 }}
                 onClick={() => window.open(tyre.url, "_blank")}
               >
@@ -250,15 +251,15 @@ function TyreRecommendations({ car, userLocation, onSetReminder, userTyreData, p
               <button
                 className="ts-btn"
                 style={{
-                  background: "#18181b",
+                  background: "#232327",
                   border: "1.2px solid #7d7d85",
                   color: "#7d7d85",
                   marginTop: 3,
-                  fontWeight: 600,
+                  fontWeight: 700,
                   fontSize: "0.92rem",
                   borderRadius: 6,
                   boxShadow: "none",
-                  cursor: "pointer",
+                  cursor: "pointer"
                 }}
                 onClick={(e) => {
                   e.preventDefault();
