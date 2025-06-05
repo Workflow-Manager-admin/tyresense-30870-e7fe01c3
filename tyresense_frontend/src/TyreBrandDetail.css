@@ -1,8 +1,294 @@
+/* --- Porsche.com-inspired luxury card/type-menu styles for TyreSense tyre brand/type detail --- */
 .ts-brand-detail-outer {
   min-height: 100vh;
-  background: linear-gradient(136deg, #18181f 23%, #0c1026 100%);
+  background: var(--porsche-black, #0c0c0e);
   padding-bottom: 44px;
   position: relative;
+}
+/* Topbar refined: more minimal, monochrome dark, bolder and softer, disables all neon/yellow */
+.ts-brand-detail-topbar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  padding: 24px 0 2px 0;
+  min-height: 72px;
+  position: relative;
+  z-index: 120;
+  background: linear-gradient(89deg, var(--porsche-black, #0c0c0e) 95%, #18181c 105%);
+  border-bottom: 1px solid var(--porsche-border-light, #2f2f33);
+  pointer-events: none; /* disables pointer, button gets pointerEvents: auto */
+}
+.ts-detail-back-btn {
+  margin: 0 0 0 32px;
+  background: none;
+  color: var(--porsche-grey-mid, #7d7d85);
+  font-size: 1.11rem;
+  font-weight: 600;
+  padding: 9px 26px 9px 20px;
+  border: 1.2px solid var(--porsche-border-soft, #222226);
+  border-radius: 14px;
+  background: var(--porsche-deep-black, #18181c);
+  box-shadow: 0 2px 16px 2px #09091210;
+  cursor: pointer;
+  letter-spacing: .045em;
+  transition: border 0.14s, background 0.14s, color 0.13s, box-shadow 0.15s;
+  z-index: 121;
+  position: relative;
+  min-width: 86px;
+  min-height: 44px;
+  pointer-events: auto;
+}
+.ts-detail-back-btn:focus-visible {
+  outline: 2.5px solid var(--porsche-accent-red, #b4081b);
+  outline-offset: 2.5px;
+}
+.ts-detail-back-btn:hover {
+  background: var(--porsche-grey-dark, #232327);
+  color: var(--porsche-accent-red, #b4081b);
+  border: 1.7px solid var(--porsche-accent-red, #b4081b);
+}
+
+.ts-brand-detail-topbar .ts-animated-car-navbar {
+  max-width: 320px;
+  min-width: 80px;
+  height: 38px;
+  margin-left: 0;
+  margin-right: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-3px);
+  position: absolute;
+  top: 54%;
+  pointer-events: none;
+  filter: none;
+}
+.ts-brand-detail-topbar .ts-animated-car-title {
+  font-size: 1.10rem !important;
+  color: var(--porsche-grey-light, #edeef0) !important;
+  text-shadow: none;
+}
+@media (max-width: 1040px) {
+  .ts-brand-detail-topbar .ts-animated-car-navbar {
+    max-width: 160px;
+    height: 23px;
+    min-width: 44px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-2px);
+    top: 54%;
+  }
+}
+@media (max-width: 700px) {
+  .ts-brand-detail-topbar .ts-animated-car-navbar {
+    max-width: 90px;
+    height: 11px;
+    min-width: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-1.2px);
+    top: 51%;
+  }
+}
+
+/* --- Porsche luxo card & type grid styling --- */
+.ts-brand-detail-container {
+  margin: 0 auto;
+  max-width: 1080px;
+  min-height: 75vh;
+  border-radius: 38px;
+  box-shadow: var(--porsche-card-shadow, 0 12px 34px 2px #11111423), 0 3.5px 21px #18181c08;
+  position: relative;
+  background: var(--porsche-grey-dark, #232327);
+  display: block;
+  padding: 0;
+  min-width: 0;
+  z-index: 3;
+}
+.porsche-type-card-grid {
+  margin: 0;
+  display: grid;
+  gap: 48px 64px;
+  grid-template-columns: repeat(auto-fit, minmax(315px, 1fr));
+  width: 100%;
+  padding: 62px 68px 43px 68px;
+  min-height: 37vh;
+  align-items: stretch;
+  justify-items: center;
+}
+@media (max-width: 960px) {
+  .porsche-type-card-grid {
+    grid-template-columns: 1fr;
+    gap: 38px 0;
+    padding: 23px 11vw 19px 11vw;
+  }
+  .ts-brand-detail-container {
+    max-width: 99vw;
+    min-height: 66vw;
+    border-radius: 21px;
+  }
+}
+@media (max-width: 640px) {
+  .porsche-type-card-grid {
+    padding: 7vw 2vw;
+  }
+}
+
+/* --- Card core: luxury, minimal, interactive --- */
+.porsche-type-card {
+  background: var(--porsche-black, #0c0c0e);
+  border-radius: var(--porsche-card-radius, 32px);
+  box-shadow: var(--porsche-card-shadow, 0 12px 34px 2px #11111419), 0 1.8px 18px #b4081b08;
+  border: 1.7px solid var(--porsche-border-light, #2f2f33);
+  overflow: hidden;
+  display: flex;
+  min-height: 322px;
+  flex-direction: column;
+  align-items: stretch;
+  transition: box-shadow .16s, border .17s, transform .10s;
+  cursor: pointer;
+  position: relative;
+}
+.porsche-type-card.selected,
+.porsche-type-card:focus,
+.porsche-type-card:hover {
+  border: 2.1px solid var(--porsche-accent-red, #b4081b);
+  box-shadow: 0 12px 46px 2.5px #b4081b19, 0 11px 24px 14px #2323272a;
+  transform: translateY(-3px) scale(1.011);
+  z-index: 7;
+}
+
+/* Card image row, covers top. */
+.porsche-type-card-img-row {
+  width: 100%;
+  height: 176px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--porsche-grey-dark, #232327);
+  border-bottom: 1.5px solid var(--porsche-border-light, #2f2f33);
+  position: relative;
+}
+.porsche-type-card-img {
+  width: 97%;
+  height: 83%;
+  max-width: 305px;
+  max-height: 99%;
+  object-fit: cover;
+  border-radius: var(--porsche-card-radius-sm, 16px);
+  margin: 0 auto;
+  display: block;
+  filter: brightness(1.02) contrast(1.15);
+  box-shadow: 0 7px 15.5px 0 #23232731;
+  background: #18181d;
+  transition: filter 0.19s;
+}
+
+.porsche-type-card-info-row {
+  padding: 33px 25px 20px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  width: 100%;
+  background: none;
+}
+/* Model (tyre subbrand) */
+.porsche-type-model {
+  color: var(--porsche-white, #fff);
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  margin-bottom: 2px;
+  line-height: 1.1;
+  text-shadow: none;
+}
+/* Type (Summer, Winter, etc) */
+.porsche-type-kind {
+  color: var(--porsche-accent-red, #b4081b);
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 5px;
+  margin-top: 0.5px;
+  line-height: 1.01;
+  text-shadow: none;
+}
+.porsche-type-desc {
+  color: var(--porsche-text-grey, #a9aaae);
+  font-size: 1.07rem;
+  font-weight: 500;
+  line-height: 1.45;
+  margin-bottom: 3px;
+  text-shadow: none;
+}
+/* Tyre sizes */
+.porsche-type-sizes {
+  color: var(--porsche-grey-light, #edeef0);
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-shadow: none;
+}
+/* Buttons refined */
+.porsche-type-select-btn {
+  margin-top: 12px;
+  font-size: 1rem;
+  border-radius: 23px;
+  background: none;
+  color: var(--porsche-grey-mid, #7d7d85);
+  border: 1.2px solid var(--porsche-border-light, #2f2f33);
+  font-weight: 700;
+  padding: 8px 20px;
+  outline: none;
+  transition: border 0.13s, color .14s, background 0.19s;
+  cursor: pointer;
+}
+.porsche-type-select-btn:focus,
+.porsche-type-select-btn:hover,
+.porsche-type-card.selected .porsche-type-select-btn {
+  color: var(--porsche-accent-red, #b4081b);
+  border: 1.7px solid var(--porsche-accent-red, #b4081b);
+  background: #23111313;
+}
+
+/* 'Buy now' link button for selected type */
+.porsche-type-buy-btn {
+  margin-top: 17px;
+  margin-left: 0;
+  display: inline-block;
+  font-size: 1.08rem;
+  padding: 8px 21px;
+  border-radius: 21px;
+  border: 1.5px solid var(--porsche-accent-red, #b4081b);
+  background: var(--porsche-grey-dark, #232327);
+  color: var(--porsche-accent-red, #b4081b);
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 1.5px 16px #b4081b11;
+  transition: border 0.11s, color .14s, background 0.18s;
+}
+.porsche-type-buy-btn:focus,
+.porsche-type-buy-btn:hover {
+  background: var(--porsche-accent-red, #b4081b);
+  color: var(--porsche-white, #fff);
+  border: 1.8px solid var(--porsche-accent-red, #b4081b);
+}
+
+/* Hide legacy neon/brand-block styling from old templates */
+.ts-brand-info-block,
+.ts-brand-info-panes,
+.ts-brand-block-title,
+.ts-brand-block-content,
+.ts-detail-buy-btn {
+  all: unset !important;
+  display: none !important;
+}
+
+/* Remove scrollbars and margin for a cleaner luxury look */
+.ts-brand-detail-container::-webkit-scrollbar {
+  display: none;
 }
 
 /* Topbar for detail view: positions 'Back' button and TyreSense logo left-to-right, always visible */
