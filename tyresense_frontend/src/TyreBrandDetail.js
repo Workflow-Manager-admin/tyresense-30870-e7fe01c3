@@ -1,68 +1,163 @@
-import React, { useRef } from "react";
+import React, { useRef, useMemo } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./TyreBrandDetail.css";
 
 /**
- * UPDATE: Use high-resolution, realistic, royalty-free tyre images for demo.
- * Should match the ones in TyreTypesShowcase.js!
+ * Tyre brand detail view with advanced scroll-driven animation:
+ * - Tyre image starts fully zoomed in, covering the section as a true background.
+ * - As you scroll, it zooms out and shifts left, "parking" on the left.
+ * - Key info blocks on the right appear progressively, not all at once, as you scroll further.
+ * This layout uses the image as a background/cover at first. The info on the right appears in separate blocks, unveiled one after another.
  */
+
+// Tyre images per brand
 const TYRE_IMAGES = {
   pirelli:
-    "https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&w=600&q=90", // Demo purpose
+    "https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&w=900&q=90",
   michelin:
-    "https://images.pexels.com/photos/712618/pexels-photo-712618.jpeg?auto=compress&w=600&q=90",
+    "https://images.pexels.com/photos/712618/pexels-photo-712618.jpeg?auto=compress&w=900&q=90",
   continental:
-    "https://images.pexels.com/photos/460235/pexels-photo-460235.jpeg?auto=compress&w=600&q=90",
+    "https://images.pexels.com/photos/460235/pexels-photo-460235.jpeg?auto=compress&w=900&q=90",
   bridgestone:
-    "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=600&q=90",
+    "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=900&q=90",
 };
+
+// Info blocks per brand (demo text—could be extended/customized)
+function getBrandInfoBlocks(brand) {
+  return [
+    {
+      label: "About",
+      content: (
+        <span>
+          <b>{brand.name}</b> delivers world-class tyres for every performance need.
+          <br />
+          <br />
+          Experience extra grip and longevity with {brand.name}, driving safety and comfort.
+        </span>
+      ),
+    },
+    {
+      label: "Highlights",
+      content: (
+        <ul>
+          <li>Maximum grip, low rolling resistance</li>
+          <li>Enhanced tread durability and noise reduction</li>
+          <li>Engineered for precision in wet and dry</li>
+        </ul>
+      ),
+    },
+    {
+      label: "Popular Model",
+      content: (
+        <span>
+          <strong>Featured:</strong> {brand.name} UltraMax Pro<br/>
+          <strong>Sizes:</strong> 195/65R15, 205/55R16, 225/45R17
+        </span>
+      ),
+    },
+    {
+      label: "Shop",
+      content: (
+        <button
+          className="ts-detail-buy-btn"
+          onClick={() =>
+            window.open(
+              "https://www.google.com/search?q=" +
+                encodeURIComponent(brand.name + " tyres"),
+              "_blank"
+            )
+          }
+        >
+          Buy Now &rarr;
+        </button>
+      ),
+    },
+  ];
+}
 
 // PUBLIC_INTERFACE
 function TyreBrandDetail({ brand, onBack }) {
   /**
-   * Brand detail view: tyre zooms out to right, info slides in from left.
-   * @param {object} brand - e.g. {id, name, tagline}
-   * @param {function} onBack
+   * This layout makes the tyre image the covering "background" at first, then scroll-animates it to park left,
+   * while info blocks on right are progressively revealed upon further scrolling.
    */
   const ref = useRef(null);
 
-  // Track scroll progress within the container
+  // Info blocks for this brand
+  const infoBlocks = useMemo(() => getBrandInfoBlocks(brand), [brand]);
+
+  // Scroll progress across the detail container
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start start", "end end"],
+    offset: ["start start", "end center"], // gentle ramp
   });
 
-  // Tyre animation: scale decreases, translateX increases, y stays almost unchanged
-  const scale = useTransform(scrollYProgress, [0, 0.45], [1.15, 0.68]);
-  const x = useTransform(scrollYProgress, [0, 1], [0, 180]); // to right
-  const y = useTransform(scrollYProgress, [0, 1], [0, 14]);  // slight downward
+  // IMAGE ANIMATION
+  // Scale: starts at 1.23 (fully covers), zoom to 0.77 once scrolled enough
+  const tyreScale = useTransform(scrollYProgress, [0, 0.35], [1.23, 0.77]);
+  // X: at 0, at rest, as scroll increases move left into place (0 to -28vw)
+  const tyreX = useTransform(scrollYProgress, [0, 0.29, 0.6], ["0vw", "-21vw", "-28vw"]);
+  // Y: subtle move downward for parallax
+  const tyreY = useTransform(scrollYProgress, [0, 0.3], ["0vh", "8vh"]);
+  // Border radius: round out as we park left
+  const tyreBorder = useTransform(scrollYProgress, [0, 0.25, 1], [0, 42, 54]); // px
+  // Drop shadow/brightness adjusts as image shifts
+  const tyreFilter = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.7],
+    [
+      "drop-shadow(0 8px 74px #00fff97e) brightness(1.2)",
+      "drop-shadow(0 3px 34px #00fff96c) brightness(1.1)",
+      "drop-shadow(0 1px 9px #00fff938) brightness(1.03)",
+    ]
+  );
+  // Opacity: always 1
 
-  // Info card animation: opacity from 0.2 -> 1, translateX from -110px -> 0 (left to center)
-  const infoOpacity = useTransform(scrollYProgress, [0, 0.23, 0.6], [0.15, 0.86, 1]);
-  const infoX = useTransform(scrollYProgress, [0, 0.22, 1], [-110, 0, 0]);
+  // INFO BLOCKS STAGING
+  // Each info block appears in sequence as we scroll further right
+  // For N blocks, split progress in increasing bands: e.g. first visible after 0.18, last after 0.64
+  function blockVisibilityProgress(i, totalBlocks) {
+    const band = 0.16;
+    const start = 0.22 + i * band;
+    const end = start + band * 0.95;
+    return [start, end];
+  }
 
+  // Container style: full height, relative + overflow hidden
   return (
-    <div className="ts-brand-detail-outer">
+    <div className="ts-brand-detail-outer" style={{ minHeight: "100vh"}}>
       <button className="ts-detail-back-btn" onClick={onBack}>
         ← Back
       </button>
-      <div className="ts-brand-detail-container" ref={ref}>
+      <div
+        className="ts-brand-detail-container"
+        ref={ref}
+        style={{
+          position: "relative",
+          overflow: "visible",
+          // Remove default flex-direction here—we control structure via CSS+animation
+        }}
+      >
+        {/* Background: Tyre image (true cover at start). We absolutely position, z-index 2 */}
         <motion.div
-          className="ts-brand-tyre-hero"
+          className="ts-brand-tyre-bg"
           style={{
-            scale,
-            x,
-            y,
-            zIndex: 25,
-            position: "relative",
+            position: "absolute",
+            top: 0, left: 0, bottom: 0, right: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 2,
+            willChange: "transform, filter, borderRadius",
+            scale: tyreScale,
+            x: tyreX,
+            y: tyreY,
+            borderRadius: tyreBorder,
+            filter: tyreFilter,
             overflow: "hidden",
-            borderRadius: "42px",
-            background:
-              "radial-gradient(ellipse at center, #232f5c 85%, #18181f 100%)",
-            boxShadow:
-              "0 10px 44px 0 #00fff93c, 0 2px 21px 7px #ffe6002f, 0 3px 54px #19193273",
-            aspectRatio: "1/1",
+            background: "radial-gradient(ellipse at center, #232f5c 80%, #18181f 100%)",
+            transition: "box-shadow 0.25s"
           }}
+          aria-hidden="true"
         >
           <img
             src={TYRE_IMAGES[brand.id] || TYRE_IMAGES["pirelli"]}
@@ -73,62 +168,80 @@ function TyreBrandDetail({ brand, onBack }) {
               objectFit: "cover",
               objectPosition: "center",
               display: "block",
-              borderRadius: "42px",
-              backgroundColor: "#171932",
-              boxShadow: "0 0 32px #00fff988, 0 6px 32px #13132d85",
-              filter: "brightness(1.08) contrast(1.07)",
-              transition: "transform .21s cubic-bezier(.62,-0.13,.36,1.11)",
+              borderRadius: "inherit",
+              background: "#181932",
+              boxShadow: "0 0 100px #00fff951, 0 12px 38px #19193241",
+              filter: "brightness(1.05) contrast(1.08)",
+              pointerEvents: "none",
+              userSelect: "none"
             }}
+            draggable={false}
             loading="lazy"
           />
         </motion.div>
-        <motion.div
-          className="ts-brand-info"
+
+        {/* Foreground: staged right info blocks (flex col), relative zIndex 4 */}
+        <div
+          className="ts-brand-info-panes"
           style={{
-            opacity: infoOpacity,
-            x: infoX,
-            zIndex: 30,
+            zIndex: 4,
+            position: "relative",
+            width: "100%",
+            marginLeft: "auto",
+            marginRight: 0,
+            minHeight: 360,
+            minWidth: 0,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-end",
+            gap: "18px",
+            paddingLeft: "48vw", // leaves room for image to rest at left
+            transition: "padding-left 0.22s"
           }}
         >
-          <h1 className="ts-brand-name">{brand.name}</h1>
-          <h3 className="ts-brand-tagline">
-            {brand.tagline || "Premium Tyres"}
-          </h3>
-          <section className="ts-brand-desc">
-            <p>
-              <span>
-                {brand.name} brings industry-leading technology and craftsmanship for a sublime driving experience.
-              </span>
-              <br />
-              <br />
-              <span>
-                <b>Highlights:</b>
-                <ul>
-                  <li>Maximum grip, low rolling resistance</li>
-                  <li>Enhanced durability with unique tread design</li>
-                  <li>Engineered for performance &amp; safety on all roads</li>
-                </ul>
-              </span>
-            </p>
-            <div className="ts-gradient-divider" />
-            <div className="ts-brand-placeholder-data">
-              <strong>Featured Model:</strong> {brand.name} UltraMax Pro <br />
-              <strong>Available Sizes:</strong> 195/65R15, 205/55R16, 225/45R17 <br />
-              <button
-                className="ts-detail-buy-btn"
-                onClick={() =>
-                  window.open(
-                    "https://www.google.com/search?q=" +
-                      encodeURIComponent(brand.name + " tyres"),
-                    "_blank"
-                  )
-                }
+          {infoBlocks.map((block, i) => {
+            const [start, end] = blockVisibilityProgress(i, infoBlocks.length);
+            const opacity = useTransform(scrollYProgress, [0, start, end], [0, 0, 1]);
+            const y = useTransform(scrollYProgress, [0, start, end], [48, 44, 0]);
+            return (
+              <motion.section
+                key={block.label}
+                className={`ts-brand-info-block ts-brand-info-block${i}`}
+                style={{
+                  opacity: opacity,
+                  y: y,
+                  background: "rgba(21,21,59, 0.81)",
+                  borderRadius: "22px",
+                  boxShadow: "0 2px 15px #00fff924",
+                  minWidth: 320,
+                  maxWidth: 440,
+                  width: "80%",
+                  margin: "12px 0",
+                  padding: "32px 30px 22px 38px",
+                  filter: "brightness(1.08)",
+                  pointerEvents: "auto"
+                }}
               >
-                Buy Now &rarr;
-              </button>
-            </div>
-          </section>
-        </motion.div>
+                <h2
+                  className="ts-brand-block-title"
+                  style={{
+                    fontSize: i === 0 ? "2.05rem" : "1.25rem",
+                    fontWeight: i === 0 ? 800 : 600,
+                    letterSpacing: ".13em",
+                    color: i === 0 ? "#ffe600" : "#fff",
+                    lineHeight: "1.15",
+                    marginTop: i === 0 ? "0" : "0.22em",
+                    marginBottom: i === 0 ? "0.53em" : "0.29em",
+                    textShadow: "0 1.5px 20px #00fff992"
+                  }}
+                >
+                  {block.label}
+                </h2>
+                <div className="ts-brand-block-content">{block.content}</div>
+              </motion.section>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
