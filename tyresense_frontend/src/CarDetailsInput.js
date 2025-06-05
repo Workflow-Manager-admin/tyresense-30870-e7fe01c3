@@ -101,20 +101,32 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
         {uxInstruction}
       </div>
       {/* Leave top margin for instructions on desktop */}
-      <div style={{ flex: "1 1 190px", minWidth: 120, marginTop: 44 }}>
+      <div style={{
+        flex: "1 1 220px",
+        minWidth: 130,
+        marginTop: 57
+      }}>
         <label
           className="ts-label"
           htmlFor="car-manufacturer"
           style={{
-            fontWeight: 700,
+            fontWeight: 800,
             color: "#ffe600",
-            fontSize: "1.06rem",
-            marginBottom: 3,
-            letterSpacing: ".03em",
-            display: "block"
+            fontSize: "1.13rem",
+            marginBottom: 6,
+            letterSpacing: ".045em",
+            display: "block",
+            marginLeft: 1,
           }}
         >
-          Car Manufacturer <span style={{ color: "#fff", opacity: 0.62, fontWeight: 400, fontSize: "0.98em" }}>(brand)</span>
+          Car Manufacturer
+          <span style={{
+            color: "#fff",
+            opacity: 0.62,
+            fontWeight: 400,
+            fontSize: "0.97em",
+            marginLeft: 7,
+          }}>(brand)</span>
         </label>
         <select
           className="ts-input"
@@ -131,16 +143,21 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
           autoComplete="on"
           aria-label="Car manufacturer (brand)"
           style={{
-            borderRadius: 9,
-            border: "1.3px solid #ffe60088",
-            marginBottom: 2,
+            borderRadius: 11,
+            border: "1px solid #ffe60066",
+            marginBottom: 3,
             fontWeight: 600,
-            fontSize: "1.08rem",
+            fontSize: "1.10rem",
             background: "#18181f",
-            color: "#ffe600"
+            color: "#ffe600",
+            padding: "7.5px 8.5px",
+            marginTop: 2,
+            width: "100%",
+            minHeight: 37,
+            appearance: "none"
           }}
         >
-          <option value="">Select...</option>
+          <option value="">Select manufacturer...</option>
           {CAR_BRANDS.map((brand) => (
             <option key={brand} value={brand}>{brand}</option>
           ))}
@@ -159,14 +176,16 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             autoComplete="on"
             aria-label="Car manufacturer (other)"
             style={{
-              borderRadius: 9,
-              border: "1.3px solid #ffe60088",
-              marginBottom: 2,
+              borderRadius: 11,
+              border: "1px solid #ffe60066",
+              marginBottom: 1,
               fontWeight: 600,
-              fontSize: "1.08rem",
+              fontSize: "1.10rem",
               background: "#18181f",
               color: "#ffe600",
-              marginTop: 4
+              marginTop: 5,
+              width: "100%",
+              padding: "7.5px 8.5px",
             }}
             inputMode="text"
           />
@@ -174,15 +193,15 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
         <span
           style={{
             display: "block",
-            color: "#ffe600b4",
-            fontSize: "0.93em",
-            marginTop: 2,
+            color: "#ffe600a0",
+            fontSize: ".94em",
+            marginTop: 4,
             marginBottom: 2,
             fontWeight: 400,
-            opacity: 0.86
+            opacity: 0.82
           }}
         >
-          Choose your car's manufacturer or select "Other" to enter manually.
+          Choose your car's manufacturer or select "Other" to enter it manually.
         </span>
       </div>
       <div style={{ flex: "1 1 190px", minWidth: 100, marginTop: 44 }}>
