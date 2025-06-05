@@ -316,21 +316,31 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
           Car's registration year (4 digits)
         </span>
       </div>
-      <div style={{ flex: "0 1 160px", alignSelf: "center", marginTop: 60 }}>
+      <div style={{
+        flex: "0 1 150px",
+        alignSelf: "center",
+        marginTop: 73,
+        display: "flex",
+        flexDirection: "column",
+        gap: 4
+      }}>
         <button
           type="submit"
           className="btn btn-large"
           style={{
             background:
-              "linear-gradient(91deg,#ffe600 80%,#00fff9 130%)",
-            color: "#18181f",
+              "linear-gradient(91deg,#ffe600 80%,#00fff9 125%)",
+            color: "#191a1a",
             fontWeight: 700,
-            borderRadius: 16,
-            padding: "12px 27px",
-            boxShadow: "0 2px 11px #00fff926, 0 0.8px 8px #ffe60036",
-            minWidth: 83,
-            minHeight: 44,
-            fontSize: "1.12rem",
+            borderRadius: 13,
+            padding: "13px 29px",
+            boxShadow: "0 2.5px 11px #00fff916, 0 1.5px 8px #ffe60019",
+            minWidth: 86,
+            minHeight: 46,
+            fontSize: "1.13rem",
+            border: "none",
+            outline: "none",
+            transition: "background 0.18s, box-shadow 0.18s"
           }}
           aria-label="Save car details"
         >
