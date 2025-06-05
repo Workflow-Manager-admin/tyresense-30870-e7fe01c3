@@ -159,9 +159,10 @@ function AnimatedCarIntro({ visible, onAnimationComplete }) {
           >
             <FerrariF1AerialSVG
               style={{
-                width: 140,
-                height: 80,
-                minWidth: 108,
+                width: 162,
+                height: 84,
+                minWidth: 120,
+                maxWidth: "21vw",
                 marginRight: 18,
                 filter: "drop-shadow(0 0 70px #ffe60088)"
               }}
