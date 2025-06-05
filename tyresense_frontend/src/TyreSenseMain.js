@@ -3,6 +3,7 @@ import "./TyreSenseMain.css";
 import AnimatedCarIntro from "./AnimatedCarIntro";
 import TyreTypesShowcase from "./TyreTypesShowcase";
 import TyreBrandDetail from "./TyreBrandDetail";
+import GoogleMapsStoreLocator from "./GoogleMapsStoreLocator";
 
 /**
  * TyreSenseMain - Main container for TyreSense app UI, with a blackout overlay intro.
@@ -133,9 +134,8 @@ function TyreSenseMain() {
               <main className="ts-main-content">
                 <TyreTypesShowcase onBrandSelect={handleBrandSelect} />
                 <section className="ts-section ts-map-section">
-                  <div className="ts-map-placeholder">
-                    <span>Map: Nearby Tyre Stores</span>
-                  </div>
+                  {/* Interactive Google Map showing nearby tyre stores */}
+                  <GoogleMapsStoreLocator />
                 </section>
                 <section className="ts-section ts-reminder-section">
                   <div className="ts-popup-reminder ts-card-placeholder">
