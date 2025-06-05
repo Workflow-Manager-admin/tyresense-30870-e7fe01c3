@@ -286,29 +286,73 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
         >
           Model
         </label>
-        <input
-          className="ts-input"
-          id="car-model"
-          type="text"
-          placeholder="e.g. Civic, F-150, Model 3"
-          value={model}
-          onChange={(e) => setModel(e.target.value)}
-          required
-          autoComplete="on"
-          aria-label="Car model"
-          style={{
-            borderRadius: 11,
-            border: "1px solid #ffe60033",
-            marginBottom: 2,
-            fontWeight: 600,
-            fontSize: "1.06rem",
-            background: "#18181f",
-            color: "#ffe600",
-            padding: "7.5px 8.5px",
-            width: "100%"
-          }}
-          inputMode="text"
-        />
+        {/* Dynamically render Model as dropdown if brand is known, else text input */}
+        {manufacturer && CAR_MODELS_BY_BRAND[manufacturer] ? (
+          <select
+            className="ts-input"
+            id="car-model"
+            value={model && CAR_MODELS_BY_BRAND[manufacturer].includes(model) ? model : ""}
+            onChange={(e) => setModel(e.target.value)}
+            required
+            autoComplete="on"
+            aria-label="Car model"
+            style={{
+              borderRadius: 11,
+              border: "1px solid #ffe60033",
+              marginBottom: 2,
+              fontWeight: 600,
+              fontSize: "1.08rem",
+              background: "#18181f",
+              color: "#ffe600",
+              padding: "7.5px 8.5px",
+              width: "100%",
+              appearance: "none",
+              marginTop: 2,
+            }}
+          >
+            <option value="">Select model...</option>
+            {CAR_MODELS_BY_BRAND[manufacturer].map((mod) => (
+              <option key={mod} value={mod}>
+                {mod}
+              </option>
+            ))}
+            <option value="Other">Other (enter manually)</option>
+          </select>
+        ) : null}
+
+        {/* If brand is known & user chose "Other", or if no dropdown, show a manual input */}
+        {(!manufacturer || !CAR_MODELS_BY_BRAND[manufacturer]) ||
+         (manufacturer && CAR_MODELS_BY_BRAND[manufacturer] && (model === "Other" || !CAR_MODELS_BY_BRAND[manufacturer].includes(model))) ? (
+          <input
+            className="ts-input"
+            id="car-model-other"
+            type="text"
+            placeholder={
+              manufacturer && CAR_MODELS_BY_BRAND[manufacturer]
+                ? "Type model name (if not listed above)"
+                : "e.g. Civic, F-150, Model 3"
+            }
+            value={model === "Other" ? "" : model}
+            onChange={(e) => setModel(e.target.value)}
+            required
+            autoComplete="on"
+            aria-label="Car model"
+            style={{
+              borderRadius: 11,
+              border: "1px solid #ffe60033",
+              marginBottom: 2,
+              fontWeight: 600,
+              fontSize: "1.06rem",
+              background: "#18181f",
+              color: "#ffe600",
+              padding: "7.5px 8.5px",
+              width: "100%",
+              marginTop: 5,
+            }}
+            inputMode="text"
+          />
+        ) : null}
+
         <span
           style={{
             display: "block",
@@ -319,7 +363,9 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             opacity: 0.82
           }}
         >
-          Enter your car's model, e.g. "Corolla", "Mustang", "A-Class".
+          {manufacturer && CAR_MODELS_BY_BRAND[manufacturer]
+            ? 'Choose your car\'s model or select "Other" to enter it manually.'
+            : 'Enter your car\'s model, e.g. "Corolla", "Mustang", "A-Class".'}
         </span>
       </div>
       <div style={{
