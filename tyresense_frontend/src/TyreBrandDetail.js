@@ -93,22 +93,36 @@ function TyreBrandDetail({ brand, onBack }) {
   });
 
   // IMAGE ANIMATION
-  // Scale: starts at 1.23 (fully covers), zoom to 0.77 once scrolled enough
-  const tyreScale = useTransform(scrollYProgress, [0, 0.35], [1.23, 0.77]);
-  // X: at 0, at rest, as scroll increases move left into place (0 to -28vw)
-  const tyreX = useTransform(scrollYProgress, [0, 0.29, 0.6], ["0vw", "-21vw", "-28vw"]);
-  // Y: subtle move downward for parallax
-  const tyreY = useTransform(scrollYProgress, [0, 0.3], ["0vh", "8vh"]);
-  // Border radius: round out as we park left
-  const tyreBorder = useTransform(scrollYProgress, [0, 0.25, 1], [0, 42, 54]); // px
-  // Drop shadow/brightness adjusts as image shifts
+  // Scale: starts at 1.23 (fully covers), zoom to 0.77 much slower and smoother (increases range, curve)
+  const tyreScale = useTransform(
+    scrollYProgress,
+    [0, 0.6],
+    [1.23, 0.77],
+    { mixer: (a, b) => (t) => a + (b - a) * (1 - Math.cos(Math.PI * t)) / 2 } // easeInOutSine for extra smooth
+  );
+  // X: slow curve, linger at start, then ease out farther left
+  const tyreX = useTransform(
+    scrollYProgress,
+    [0, 0.22, 0.75],
+    ["0vw", "-15vw", "-28vw"],
+    { mixer: (a, b) => (t) => a + (b - a) * (1 - Math.cos(Math.PI * t)) / 2 }
+  );
+  // Y: move downward slower for parallax, linger at top
+  const tyreY = useTransform(
+    scrollYProgress,
+    [0, 0.5],
+    ["0vh", "8vh"]
+  );
+  // Border radius: round out more gently as we park left
+  const tyreBorder = useTransform(scrollYProgress, [0, 0.4, 1], [0, 42, 54]);
+  // Drop shadow/brightness adjusts slower for extra smooth transition
   const tyreFilter = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.7],
+    [0, 0.23, 1],
     [
-      "drop-shadow(0 8px 74px #00fff97e) brightness(1.2)",
-      "drop-shadow(0 3px 34px #00fff96c) brightness(1.1)",
-      "drop-shadow(0 1px 9px #00fff938) brightness(1.03)",
+      "drop-shadow(0 8px 74px #00fff97e) brightness(1.23)",
+      "drop-shadow(0 3px 34px #00fff96c) brightness(1.11)",
+      "drop-shadow(0 1px 9px #00fff938) brightness(1.04)",
     ]
   );
   // Opacity: always 1
