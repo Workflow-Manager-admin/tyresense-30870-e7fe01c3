@@ -95,12 +95,14 @@
 .ts-car-form-group {
   display: flex;
   flex-direction: column;
-  flex: 1 1 258px;
-  min-width: 185px;
-  margin-top: 82px;
+  flex: 1 1 260px;
+  min-width: 190px;
+  margin-top: 96px;
   margin-bottom: 0;
-  padding: 0 5px 0 3px;
+  padding: 0 17px 0 12px;
   position: relative;
+  background: none;
+  border: none;
 }
 @media (max-width: 600px) {
   .ts-car-form-group {
@@ -112,19 +114,21 @@
 
 /* Bold, upscale FIELD LABEL styling (Apple/Luxe) */
 .ts-car-form-group label {
-  font-weight: var(--label-bold);
+  font-weight: 950;
   color: var(--label-text);
-  font-size: 1.32rem;
+  font-size: 1.44rem;
   margin-bottom: 8px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   display: block;
-  margin-left: 2px;
+  margin-left: 5px;
   text-shadow:
-    0 0 12px #ffe60059,
-    0 2px 18px #00fff917,
-    0 0 3px #ffe60029;
+    0 0 17px #ffe60042,
+    0 2.5px 22px #00fff966,
+    0 0 5px #00fff931;
   font-family: 'Inter', 'Roboto', Arial, sans-serif;
-  filter: brightness(1.21);
+  filter: brightness(1.23);
+  line-height: 1.13;
+  transition: color 0.13s, text-shadow 0.17s;
 }
 
 /* Highlight sub-label (brand) */
