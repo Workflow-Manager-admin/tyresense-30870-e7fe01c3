@@ -126,8 +126,8 @@
 
 @media (max-width: 960px) {
   .ts-brand-detail-container {
-    border-radius: 19px;
-    padding: 18px 0 12px 0;
+    border-radius: 17px;
+    padding: 13px 0 5px 0;
     min-width: 0;
     max-width: 99vw;
   }
