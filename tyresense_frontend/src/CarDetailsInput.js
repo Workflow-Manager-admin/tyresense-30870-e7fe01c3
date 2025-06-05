@@ -111,13 +111,17 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
         >
           Car Manufacturer <span style={{ color: "#fff", opacity: 0.62, fontWeight: 400, fontSize: "0.98em" }}>(brand)</span>
         </label>
-        <input
+        <select
           className="ts-input"
           id="car-manufacturer"
-          type="text"
-          placeholder="e.g. Toyota, Ford, BMW, Tesla"
-          value={manufacturer}
-          onChange={(e) => setManufacturer(e.target.value)}
+          value={CAR_BRANDS.includes(manufacturer) ? manufacturer : (manufacturer ? "Other" : "")}
+          onChange={(e) => {
+            if (e.target.value === "Other") {
+              setManufacturer("");
+            } else {
+              setManufacturer(e.target.value);
+            }
+          }}
           required
           autoComplete="on"
           aria-label="Car manufacturer (brand)"
@@ -130,8 +134,38 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             background: "#18181f",
             color: "#ffe600"
           }}
-          inputMode="text"
-        />
+        >
+          <option value="">Select...</option>
+          {CAR_BRANDS.map((brand) => (
+            <option key={brand} value={brand}>{brand}</option>
+          ))}
+          <option value="Other">Other (enter manually)</option>
+        </select>
+        {/* Show manual input if "Other" or not in list */}
+        {(manufacturer === "" || !CAR_BRANDS.includes(manufacturer)) && (
+          <input
+            className="ts-input"
+            id="car-manufacturer-other"
+            type="text"
+            placeholder="Type manufacturer name"
+            value={manufacturer}
+            onChange={(e) => setManufacturer(e.target.value)}
+            required
+            autoComplete="on"
+            aria-label="Car manufacturer (other)"
+            style={{
+              borderRadius: 9,
+              border: "1.3px solid #ffe60088",
+              marginBottom: 2,
+              fontWeight: 600,
+              fontSize: "1.08rem",
+              background: "#18181f",
+              color: "#ffe600",
+              marginTop: 4
+            }}
+            inputMode="text"
+          />
+        )}
         <span
           style={{
             display: "block",
@@ -143,7 +177,7 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             opacity: 0.86
           }}
         >
-          Enter your car's manufacturer, e.g. "Honda", "Audi", "Toyota".
+          Choose your car's manufacturer or select "Other" to enter manually.
         </span>
       </div>
       <div style={{ flex: "1 1 190px", minWidth: 100, marginTop: 44 }}>
