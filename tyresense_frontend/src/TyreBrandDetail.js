@@ -230,7 +230,17 @@ function TyreBrandDetail({ brand, onBack }) {
         >
           <img
             src={TYRE_IMAGES[brand.id] || TYRE_IMAGES["pirelli"]}
-            alt={`Real-life ${brand.name} tyre`}
+            alt={
+              brand.id === "pirelli"
+                ? "Profile view of a real Pirelli tyre on a clean surface"
+                : brand.id === "michelin"
+                ? "Close-up of a single Michelin tyre showcasing deep tread detail"
+                : brand.id === "continental"
+                ? "Macro shot of Continental tyre sidewall and tread textures"
+                : brand.id === "bridgestone"
+                ? "Group of stacked Bridgestone tyres in a clean indoor setting"
+                : `Real-life ${brand.name} tyre`
+            }
             style={{
               width: "100%",
               height: "100%",
