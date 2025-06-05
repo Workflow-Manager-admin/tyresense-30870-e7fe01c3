@@ -241,14 +241,14 @@
 /* Info note under input/select */
 .ts-car-form-group .ts-label-note {
   display: block;
-  color: #ffe60085;
-  font-size: 0.97em;
-  margin-top: 6px;
-  font-weight: 410;
-  opacity: 0.88;
-  padding-bottom: 3px;
-  filter: brightness(1.04);
-  font-family: 'Inter', Arial, sans-serif;
+  color: #7d7d85;
+  font-size: 0.96em;
+  margin-top: 5px;
+  font-weight: 450;
+  opacity: 0.79;
+  padding-bottom: 2px;
+  filter: none;
+  font-family: inherit;
 }
 
 /* Submit Button - bold, neon gradient, soft shadow */
