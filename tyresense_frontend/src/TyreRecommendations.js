@@ -165,7 +165,7 @@ function TyreRecommendations({ car, userLocation, onSetReminder, userTyreData, p
       />
       <div className="ts-tyre-list">
         {filteredTyres.length === 0 ? (
-          <div style={{ color: "#ffe600", fontWeight: 700, padding: 18 }}>
+          <div style={{ color: "#b4081b", fontWeight: 700, padding: 18 }}>
             No matching tyres found for your selection.
           </div>
         ) : (
