@@ -322,53 +322,53 @@
 .modern-img-preview-box {
   width: 139px;
   height: 86px;
-  border-radius: 19px;
-  background: linear-gradient(128deg, #191924 52%, #00fff937 120%);
-  box-shadow: 0 10px 38px #00fff927, 0 7px 23px #ffe60020;
+  border-radius: 11px;
+  background: #232327;
+  box-shadow: 0 7px 21px #1b1b2555;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   position: relative;
-  border: 3.2px solid #ffe6004d;
-  backdrop-filter: blur(4.5px) brightness(1.12);
-  transition: box-shadow 0.19s, border 0.18s;
+  border: 1.4px solid #2f2f33;
+  backdrop-filter: blur(1.5px) brightness(1.05);
+  transition: box-shadow 0.13s, border 0.13s;
 }
 .ts-car-img-preview-box img,
 .modern-img-preview-box img {
-  width: 134px;
-  height: 82px;
+  width: 133px;
+  height: 81px;
   object-fit: cover;
-  border-radius: 17px;
-  filter: drop-shadow(0 0 32px #00fff991) brightness(1.28);
-  background: #191924;
+  border-radius: 10px;
+  filter: brightness(1.08);
+  background: #19181b;
   user-select: none;
   pointer-events: none;
   display: block;
-  transition: filter 0.23s, box-shadow 0.23s;
+  transition: filter 0.12s, box-shadow 0.11s;
 }
 .ts-car-img-preview-label,
 .modern-preview-label {
-  color: #ffe600b7;
-  font-size: 1.12em;
+  color: #7d7d85;
+  font-size: 1.06em;
   text-align: center;
-  margin-top: 21px;
+  margin-top: 13px;
   display: block;
-  font-weight: 670;
-  letter-spacing: 0.13em;
-  text-shadow: 0 7px 27px #00fff97b, 0 2px 9px #18193290;
-  filter: brightness(1.13);
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-shadow: none;
+  filter: none;
 }
 .ts-car-img-loading,
 .ts-car-img-preview span {
-  color: #00fff9;
+  color: #7d7d85;
   text-align: center;
-  font-weight: 900;
-  font-size: 1.13rem;
-  padding: 10px;
+  font-weight: 700;
+  font-size: 1.07rem;
+  padding: 9px;
   opacity: 0.94;
-  letter-spacing: 0.09em;
-  text-shadow: 0 0 14px #00fff97d, 0 0 3px #ffe60052;
+  letter-spacing: 0.06em;
+  text-shadow: none;
 }
 
 @media (max-width: 550px) {
