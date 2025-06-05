@@ -67,16 +67,18 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
     >
       <div style={{ flex: "1 1 190px", minWidth: 120 }}>
         <label className="ts-label" htmlFor="car-make">
-          Make
+          Car Manufacturer
         </label>
         <input
           className="ts-input"
           id="car-make"
           type="text"
+          placeholder="e.g. Toyota, Ford, BMW"
           value={make}
           onChange={(e) => setMake(e.target.value)}
           required
           autoComplete="on"
+          aria-label="Car Manufacturer"
         />
       </div>
       <div style={{ flex: "1 1 190px", minWidth: 100 }}>
