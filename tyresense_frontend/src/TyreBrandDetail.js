@@ -149,13 +149,12 @@ function TyreBrandDetail({ brand, onBack }) {
           width: "100%",
           display: "flex",
           alignItems: "center",
-          gap: 0,
-          padding: "24px 0 0 0",
           position: "relative",
           minHeight: 90,
           zIndex: 120,
           background: "transparent",
-          pointerEvents: "none" // disables interactions except button, fixed below
+          pointerEvents: "none", // disables interactions except button, fixed below
+          justifyContent: "center"
         }}
         aria-label="TyreSense navigation bar"
         role="banner"
@@ -176,16 +175,21 @@ function TyreBrandDetail({ brand, onBack }) {
         >
           ← Back
         </button>
-        {/* Logo: car + TyreSense, always visible, never overlaps content due to stacking order */}
+        {/* Always centered logo, never overlaps button, perfectly balanced */}
         <div
-          style={{
-            marginLeft: 20,
-            marginTop: 0,
-            pointerEvents: "none", // always non-interactive here
-            zIndex: 120,
-            position: "relative"
-          }}
           aria-hidden="true"
+          style={{
+            width: "100%",
+            minHeight: 0,
+            height: "100%",
+            position: "absolute",
+            left: 0, right: 0, top: 0, bottom: 0,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            pointerEvents: "none",
+            zIndex: 120,
+          }}
         >
           <AnimatedCarIntro asLogo />
         </div>
