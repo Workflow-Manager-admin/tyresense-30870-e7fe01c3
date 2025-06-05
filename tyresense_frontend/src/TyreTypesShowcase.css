@@ -114,11 +114,10 @@
   inset: 0;
   z-index: 3;
   border-radius: inherit;
-  background: linear-gradient(145deg, #18181fcc 12%, #18181fbb 55%, #10101966 98%);
-  transition: background 0.2s;
+  background: linear-gradient(145deg, #18181fda 22%, #232327cc 64%, #0c0c0e99 98%);
+  transition: background 0.12s;
   pointer-events: none;
-  /* Subtle vignette/neon accent for premium feel */
-  box-shadow: 0px 9px 40px 20px #00fff941 inset, 0 4px 22px 10px #ffe60022 inset;
+  box-shadow: none;
 }
 
 .tyre-brand-info-col,
