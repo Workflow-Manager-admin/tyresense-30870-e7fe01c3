@@ -52,14 +52,40 @@
 
 /* Style for navbar logo inside detail: never overlaps content, shrinks for mobile */
 .ts-brand-detail-topbar .ts-animated-car-navbar {
-  max-width: 330px;
-  min-width: 105px;
-  height: 52px;
-  transform: translateY(-2px);
-  margin-left: 14px;
+  max-width: 320px;
+  min-width: 80px;
+  height: 38px;
+  margin-left: 0;
+  margin-right: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-3px);
+  position: absolute;
+  top: 54%;
+  /* center vertically relative to bar height for all breakpoints */
+  pointer-events: none;
 }
 .ts-brand-detail-topbar .ts-animated-car-title {
-  font-size: 1.21rem !important;
+  font-size: 1.09rem !important;
+}
+@media (max-width: 1040px) {
+  .ts-brand-detail-topbar .ts-animated-car-navbar {
+    max-width: 160px;
+    height: 23px;
+    min-width: 44px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-2px);
+    top: 54%;
+  }
+}
+@media (max-width: 700px) {
+  .ts-brand-detail-topbar .ts-animated-car-navbar {
+    max-width: 90px;
+    height: 11px;
+    min-width: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-1.2px);
+    top: 51%;
+  }
 }
 
 /* Main scroll-animated container */
