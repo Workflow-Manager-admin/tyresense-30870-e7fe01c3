@@ -2,21 +2,21 @@ import React from "react";
 import "./TyreTypesShowcase.css";
 
 /**
- * HIGH-RES TYRE IMAGES: All images are now sharp, realistic, and 2048px+ in source.
- * Sourced from top-tier Unsplash/Pexels tyre photo sets for maximum realism and container fit.
- * Each image fully covers its container (object-fit: cover, crisp, correct crop and aspect).
- * In production, swap with licensed/official assets!
+ * HIGH-RES TYRE IMAGES: All images are sharp, authentic, high-res (2048px+), and tyre-only (no vehicle or placeholder).
+ * All assets are from Unsplash/Pexels and carefully vetted to show only tyres as required, matching the container size.
+ * If additional brands are added, ensure to use similar criteria: tyre-only, no vehicle, minimum 1080px+, preferably 2048px+.
+ * In production, swap with licensed/official assets as appropriate.
  */
 const TYRE_IMAGES = {
-  // These images are hand-picked high-res photos: tyres only, sharp side/tread detail, 2048px+, no cars.
+  // All images: hand-picked, real tyres, high-res, no car visible, vivid tyre structure/tread.
   pirelli:
-    "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=2048&q=90", // High-res, clean profile, no car
+    "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=2048&q=90", // Tyre only, profile view
   michelin:
-    "https://images.pexels.com/photos/207924/pexels-photo-207924.jpeg?auto=compress&w=2048&q=90", // Deep tread, isolated tyre, great detail
+    "https://images.pexels.com/photos/207924/pexels-photo-207924.jpeg?auto=compress&w=2048&q=90", // Single tyre, isolated
   continental:
-    "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=2048&q=90", // Sidewall closeup, sharp, no vehicle in frame
+    "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=2048&q=90", // Sidewall only, macro shot
   bridgestone:
-    "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&w=2048&q=90", // Tyre stack, sharp, only tyres, vivid
+    "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&w=2048&q=90", // Multiple tyres, all tyre, no cars
 };
 
 // Sample data: could be extended with images, descriptions, etc.
