@@ -85,10 +85,10 @@ function GoogleMapsStoreLocator() {
       center,
       zoom: DEFAULT_ZOOM,
       styles: [
-        // Neon, dark mode (inspired by snazzy-maps and custom)
-        { elementType: "geometry", stylers: [{ color: "#191932" }] },
-        { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
-        { elementType: "labels.text.fill", stylers: [{ color: "#ffe600" }] },
+        // Porsche-inspired muted dark mode
+        { elementType: "geometry", stylers: [{ color: "#18181c" }] },
+        { elementType: "labels.text.stroke", stylers: [{ color: "#232327" }] },
+        { elementType: "labels.text.fill", stylers: [{ color: "#edeef0" }] },
         {
           featureType: "poi.business",
           stylers: [{ visibility: "off" }],
@@ -96,22 +96,22 @@ function GoogleMapsStoreLocator() {
         {
           featureType: "poi.park",
           elementType: "geometry",
-          stylers: [{ color: "#232f5c" }]
+          stylers: [{ color: "#232327" }]
         },
         {
           featureType: "road",
           elementType: "geometry",
-          stylers: [{ color: "#323248" }]
+          stylers: [{ color: "#222226" }]
         },
         {
           featureType: "road",
           elementType: "geometry.stroke",
-          stylers: [{ color: "#312927" }]
+          stylers: [{ color: "#2f2f33" }]
         },
         {
           featureType: "water",
           elementType: "geometry",
-          stylers: [{ color: "#00fff9" }]
+          stylers: [{ color: "#7d7d85" }]
         }
       ],
       disableDefaultUI: true,
