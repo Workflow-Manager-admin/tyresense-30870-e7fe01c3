@@ -200,46 +200,43 @@ function TyreBrandDetail({ brand, onBack }) {
             transition: "padding-left 0.22s"
           }}
         >
-          {infoBlocks.map((block, i) => {
-            const { opacity, y } = infoBlockTransforms[i];
-            return (
-              <motion.section
-                key={block.label}
-                className={`ts-brand-info-block ts-brand-info-block${i}`}
+          {infoBlocks.map((block, i) => (
+            <motion.section
+              key={block.label}
+              className={`ts-brand-info-block ts-brand-info-block${i}`}
+              style={{
+                opacity: infoBlockOpacities[i],
+                y: infoBlockYs[i],
+                background: "rgba(21,21,59, 0.81)",
+                borderRadius: "22px",
+                boxShadow: "0 2px 15px #00fff924",
+                minWidth: 320,
+                maxWidth: 440,
+                width: "80%",
+                margin: "12px 0",
+                padding: "32px 30px 22px 38px",
+                filter: "brightness(1.08)",
+                pointerEvents: "auto"
+              }}
+            >
+              <h2
+                className="ts-brand-block-title"
                 style={{
-                  opacity: opacity,
-                  y: y,
-                  background: "rgba(21,21,59, 0.81)",
-                  borderRadius: "22px",
-                  boxShadow: "0 2px 15px #00fff924",
-                  minWidth: 320,
-                  maxWidth: 440,
-                  width: "80%",
-                  margin: "12px 0",
-                  padding: "32px 30px 22px 38px",
-                  filter: "brightness(1.08)",
-                  pointerEvents: "auto"
+                  fontSize: i === 0 ? "2.05rem" : "1.25rem",
+                  fontWeight: i === 0 ? 800 : 600,
+                  letterSpacing: ".13em",
+                  color: i === 0 ? "#ffe600" : "#fff",
+                  lineHeight: "1.15",
+                  marginTop: i === 0 ? "0" : "0.22em",
+                  marginBottom: i === 0 ? "0.53em" : "0.29em",
+                  textShadow: "0 1.5px 20px #00fff992"
                 }}
               >
-                <h2
-                  className="ts-brand-block-title"
-                  style={{
-                    fontSize: i === 0 ? "2.05rem" : "1.25rem",
-                    fontWeight: i === 0 ? 800 : 600,
-                    letterSpacing: ".13em",
-                    color: i === 0 ? "#ffe600" : "#fff",
-                    lineHeight: "1.15",
-                    marginTop: i === 0 ? "0" : "0.22em",
-                    marginBottom: i === 0 ? "0.53em" : "0.29em",
-                    textShadow: "0 1.5px 20px #00fff992"
-                  }}
-                >
-                  {block.label}
-                </h2>
-                <div className="ts-brand-block-content">{block.content}</div>
-              </motion.section>
-            );
-          })}
+                {block.label}
+              </h2>
+              <div className="ts-brand-block-content">{block.content}</div>
+            </motion.section>
+          ))}
         </div>
       </div>
     </div>
