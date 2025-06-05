@@ -136,22 +136,22 @@ function TyreRecommendations({ car, userLocation, onSetReminder, userTyreData, p
   return (
     <section className="ts-section ts-tyre-recommend-section">
       <header style={{ marginBottom: 16 }}>
-        <h2 style={{ color: "#ffe600", fontWeight: 800, letterSpacing: "0.09em" }}>
+        <h2 style={{ color: "#b4081b", fontWeight: 800, letterSpacing: "0.08em" }}>
           Tyre Recommendations
         </h2>
         <p className="tyre-showcase-desc">
           Personalised for your car, location and weather.
         </p>
         {car && (
-          <div style={{ color: "#00fff9", fontWeight: 600 }}>
+          <div style={{ color: "#7d7d85", fontWeight: 600 }}>
             {car.year} {car.make} {car.model}
           </div>
         )}
         {weatherLoading && (
-          <span style={{ color: "#ffe600", fontWeight: 600 }}>Loading weather...</span>
+          <span style={{ color: "#a9aaae", fontWeight: 600 }}>Loading weather...</span>
         )}
         {weather && (
-          <span style={{ color: "#ffe600", fontWeight: 600 }}>
+          <span style={{ color: "#b4081b", fontWeight: 600 }}>
             Weather: {weather.weather ? weather.weather[0].description : "N/A"} ({weather.main ? weather.main.temp + "°C" : ""})
           </span>
         )}
@@ -174,9 +174,9 @@ function TyreRecommendations({ car, userLocation, onSetReminder, userTyreData, p
               className="ts-tyre-card"
               key={tyre.id}
               style={{
-                background: "linear-gradient(121deg, #1c2241 28%, #bc0932 99%)",
-                borderRadius: "16px",
-                boxShadow: "0 4px 12px #c6203045",
+                background: "#232327",
+                borderRadius: "13px",
+                boxShadow: "0 5px 15px #18181b33",
                 cursor: "pointer",
                 padding: "8px",
                 minWidth: 102,
