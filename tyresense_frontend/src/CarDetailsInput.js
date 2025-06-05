@@ -157,22 +157,6 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
     <section
       className="car-details-minimal-summary"
       aria-live="polite"
-      style={{
-        background: "#edeef0",
-        borderRadius: 17,
-        border: "1.5px solid #cfd2d6",
-        padding: "22px 36px 17px 26px",
-        margin: "24px 0 0 0",
-        boxShadow:
-          "0 9px 35px #cfd2d63a, 0 1.5px 10px #11111409",
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        gap: "32px",
-        minHeight: 86,
-        maxWidth: 510,
-        fontFamily: "'Inter','Helvetica Neue',Arial,sans-serif",
-      }}
     >
       <div
         style={{
@@ -193,7 +177,13 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
           <img
             src={carImg}
             alt={`Preview: ${year ? year + " " : ""}${manufacturer} ${model}`}
-            style={{ width: 71, height: 49, objectFit: "cover", borderRadius: 8, background: "#19181b" }}
+            style={{
+              width: 71,
+              height: 49,
+              objectFit: "cover",
+              borderRadius: 8,
+              background: "#19181b",
+            }}
             draggable={false}
           />
         ) : (
@@ -212,49 +202,13 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
       </div>
       <div>
         <div
-          style={{
-            fontSize: "1.26rem",
-            fontWeight: 800,
-            color: "#111216",
-            marginBottom: 4,
-            lineHeight: "1.15",
-            letterSpacing: "0.06em",
-            textTransform: "none",
-          }}
+          className="car-details-summary-title"
         >
-          {manufacturer}{" "}
-          <span style={{
-            color: "#b4081b",
-            fontWeight: 900,
-            fontSize: "1.13em",
-            letterSpacing: "0.095em",
-            marginLeft: 3,
-          }}>{model}</span>
+          {manufacturer}
+          <span className="car-details-summary-model">{model}</span>
           {year && (
-            <span style={{
-              color: "#5d6266",
-              fontSize: "1.02em",
-              marginLeft: 10,
-              fontWeight: 700,
-              opacity: 0.83,
-            }}>
-              {year}
-            </span>
+            <span className="car-details-summary-year">{year}</span>
           )}
-        </div>
-        <div
-          style={{
-            color: "#7d7d85",
-            fontWeight: 450,
-            fontSize: "1.01em",
-            marginTop: 1,
-            letterSpacing: "0.025em",
-            textShadow: "none",
-          }}
-        >
-          <span>
-            Minimal car set: Just the essentials.
-          </span>
         </div>
       </div>
     </section>
