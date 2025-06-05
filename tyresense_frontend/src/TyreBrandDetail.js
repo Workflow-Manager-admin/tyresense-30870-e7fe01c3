@@ -141,19 +141,65 @@ function TyreBrandDetail({ brand, onBack }) {
 
   // Container style: full height, relative + overflow hidden
   return (
-    <div className="ts-brand-detail-outer" style={{ minHeight: "100vh"}}>
-      <button className="ts-detail-back-btn" onClick={onBack}>
-        ← Back
-      </button>
+    <div className="ts-brand-detail-outer" style={{ minHeight: "100vh", position: "relative" }}>
+      {/* Topbar with Back button and logo (z-index 120, always over detail/tyre but below fullscreen modals) */}
+      <div
+        className="ts-brand-detail-topbar"
+        style={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          gap: 0,
+          padding: "24px 0 0 0",
+          position: "relative",
+          minHeight: 90,
+          zIndex: 120,
+          background: "transparent",
+          pointerEvents: "none" // disables interactions except button, fixed below
+        }}
+        aria-label="TyreSense navigation bar"
+        role="banner"
+      >
+        <button
+          className="ts-detail-back-btn"
+          onClick={onBack}
+          aria-label="Go back to brand selection"
+          style={{
+            marginLeft: 34,
+            marginRight: 0,
+            marginTop: 0,
+            marginBottom: 0,
+            position: "relative",
+            zIndex: 121,
+            pointerEvents: "auto"
+          }}
+        >
+          ← Back
+        </button>
+        {/* Logo: car + TyreSense, always visible, never overlaps content due to stacking order */}
+        <div
+          style={{
+            marginLeft: 20,
+            marginTop: 0,
+            pointerEvents: "none", // always non-interactive here
+            zIndex: 120,
+            position: "relative"
+          }}
+          aria-hidden="true"
+        >
+          <AnimatedCarIntro asLogo />
+        </div>
+      </div>
       <div
         className="ts-brand-detail-container"
         ref={ref}
         style={{
           position: "relative",
           overflow: "visible",
+          marginTop: 20 // provides space below fixed logo/topbar
         }}
       >
-        {/* Background: Tyre image (true cover at start). We absolutely position, z-index 2 */}
+        {/* Background: Tyre image (true cover at start). Absolutely position, z-index 2 */}
         <motion.div
           className="ts-brand-tyre-bg"
           style={{
