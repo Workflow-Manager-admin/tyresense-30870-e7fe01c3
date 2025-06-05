@@ -14,6 +14,12 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
   const [carImg, setCarImg] = useState(initialCar?.carImg || null);
   const [loadingImg, setLoadingImg] = useState(false);
 
+  // Popular car brands list for dropdown (customizable, can expand)
+  const CAR_BRANDS = [
+    "Toyota", "Honda", "Ford", "Chevrolet", "Volkswagen", "BMW", "Mercedes-Benz", "Audi", "Nissan", "Hyundai",
+    "Kia", "Mazda", "Subaru", "Tesla", "Jeep", "Lexus", "Porsche", "Mini", "Jaguar", "Land Rover", "Volvo", "Renault", "Peugeot"
+  ];
+
   // Fetch car image for preview based on manufacturer/model/year
   useEffect(() => {
     if (manufacturer && model && year) {
