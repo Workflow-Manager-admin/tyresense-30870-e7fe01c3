@@ -187,16 +187,26 @@ function TyreBrandDetail({ brand, onBack }) {
                   >
                     {selected === type.id ? "Selected" : "Show details"}
                   </button>
+                  {/* Removed Buy Now button to ensure only in-app detail navigation */}
                   {selected === type.id && (
-                    <a
+                    <span
                       className="porsche-type-buy-btn"
-                      href={type.url}
-                      style={{ marginTop: 13 }}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      style={{
+                        marginTop: 13,
+                        fontWeight: 800,
+                        color: "#7d7d85",
+                        background: "none",
+                        border: "none",
+                        cursor: "not-allowed",
+                        display: "inline-block",
+                        opacity: 0.7,
+                        pointerEvents: "none",
+                      }}
+                      tabIndex={-1}
+                      aria-disabled="true"
                     >
-                      Buy Now &rarr;
-                    </a>
+                      Buy Now (In-app view only)
+                    </span>
                   )}
                 </div>
               </motion.div>
