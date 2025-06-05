@@ -55,18 +55,7 @@ function TyreSenseMain() {
                 <TyreTypesShowcase onBrandSelect={handleBrandSelect} />
 
                 {/* --- Recommendation & Filtering Section --- */}
-                <section className="ts-section ts-tyre-recommend-section">
-                  <div className="ts-tyre-filters">
-                    <button className="ts-btn ts-btn-filter" disabled>Brand</button>
-                    <button className="ts-btn ts-btn-filter" disabled>Size</button>
-                    <button className="ts-btn ts-btn-filter" disabled>Budget</button>
-                  </div>
-                  <div className="ts-tyre-list">
-                    <div className="ts-tyre-card ts-card-placeholder" />
-                    <div className="ts-tyre-card ts-card-placeholder" />
-                    <div className="ts-tyre-card ts-card-placeholder" />
-                  </div>
-                </section>
+                {/* Filter controls removed as per requirements */}
 
                 {/* --- Map Section --- */}
                 <section className="ts-section ts-map-section">
