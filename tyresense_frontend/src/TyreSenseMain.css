@@ -74,54 +74,7 @@
   100% { transform: translateY(18px);}
 }
 
-/* --- Car Input --- */
-.ts-car-input-section {
-  display: flex;
-  gap: 36px;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.ts-car-input-form {
-  background: linear-gradient(121deg, var(--ts-grad-red-2) 21%, var(--ts-card-bg) 88%);
-  border-radius: 20px;
-  padding: 40px 38px 24px 38px;
-  box-shadow: 0 4px 32px 6px #d1001977;
-  display: flex;
-  gap: 44px;
-  align-items: center;
-  min-width: 340px;
-  border: 2px solid var(--ts-border);
-}
-.ts-car-img-placeholder {
-  width: 112px;
-  height: 54px;
-  background: linear-gradient(127deg, var(--ts-secondary), var(--ts-card-bg) 61%);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ts-accent);
-  font-size: 0.91rem;
-  font-weight: 500;
-  border: 1.5px dashed var(--ts-accent);
-}
 
-.ts-input {
-  background: #3e2024;
-  border: 1px solid var(--ts-accent);
-  border-radius: 5px;
-  padding: 8px 13px;
-  margin: 5px 0;
-  color: var(--ts-text);
-  font-size: 1rem;
-  outline: none;
-  margin-right: 7px;
-  min-width: 100px;
-}
-.ts-input:disabled {
-  opacity: 0.47;
-}
 
 /* --- Tyre Recommendation/Filter --- */
 .ts-tyre-recommend-section {

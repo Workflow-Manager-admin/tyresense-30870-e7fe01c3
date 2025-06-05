@@ -51,20 +51,6 @@ function TyreSenseMain() {
               </section>
 
               <main className="ts-main-content">
-                {/* --- Car Details Input Section --- */}
-                <section className="ts-section ts-car-input-section">
-                  <div className="ts-car-input-form">
-                    <div className="ts-car-img-placeholder">
-                      <span>Car Image</span>
-                    </div>
-                    <form>
-                      <input className="ts-input" placeholder="Car Make" disabled />
-                      <input className="ts-input" placeholder="Car Model" disabled />
-                      <input className="ts-input" placeholder="Year" disabled />
-                    </form>
-                  </div>
-                </section>
-
                 {/* --- Tyre Brands Showcase Section --- */}
                 <TyreTypesShowcase onBrandSelect={handleBrandSelect} />
 
