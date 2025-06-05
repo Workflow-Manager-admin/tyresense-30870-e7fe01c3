@@ -333,6 +333,8 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
               appearance: "none",
               marginTop: 2,
             }}
+            // Key property for select: ensures re-mount/reset when brand changes for accessibility/focus.
+            key={manufacturer}
           >
             <option value="">Select model...</option>
             {CAR_MODELS_BY_BRAND[manufacturer].map((mod) => (
