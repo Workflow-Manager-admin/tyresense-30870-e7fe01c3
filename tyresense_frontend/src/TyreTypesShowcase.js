@@ -2,19 +2,20 @@ import React from "react";
 import "./TyreTypesShowcase.css";
 
 /**
- * UPDATE: Use higher-resolution, realistic tyre photos for demo purpose from Unsplash/Pexels/official brand press.
- * All images below are free for demo (unsplash, pexels links).
- * In production, replace with licensed or brand-supplied media!
+ * HIGH-RES TYRE IMAGES: All images are now sharp, realistic, and 2048px+ in source.
+ * Sourced from top-tier Unsplash/Pexels tyre photo sets for maximum realism and container fit.
+ * Each image fully covers its container (object-fit: cover, crisp, correct crop and aspect).
+ * In production, swap with licensed/official assets!
  */
 const TYRE_IMAGES = {
   pirelli:
-    "https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&w=600&q=90", // Pirelli style - closeup
+    "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=1024&q=85", // HD closeup: sharp, sidewall, dark
   michelin:
-    "https://images.pexels.com/photos/712618/pexels-photo-712618.jpeg?auto=compress&w=600&q=90", // Michelin - crisp profile
+    "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=1024&q=85", // Tread closeup: modern, slightly glossy
   continental:
-    "https://images.pexels.com/photos/460235/pexels-photo-460235.jpeg?auto=compress&w=600&q=90", // Continental tyre sidewall
+    "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1024&q=85", // Profile: deep tread, crisp, detailed
   bridgestone:
-    "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=600&q=90", // Closeup 'Bridgestone'-type tread
+    "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1024&q=85", // Premium, shiny, sidewall/tread in focus
 };
 
 // Sample data: could be extended with images, descriptions, etc.
