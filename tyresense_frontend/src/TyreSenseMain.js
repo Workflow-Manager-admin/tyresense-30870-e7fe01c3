@@ -80,6 +80,13 @@ function TyreSenseMain() {
     };
   }, []);
 
+  // Car input and context state
+  const [userCar, setUserCar] = useState(loadCarFromLS());
+  const [userLocation, setUserLocation] = useState(null);
+  const [reminderTyre, setReminderTyre] = useState(null);
+  const [userTyreData, setUserTyreData] = useState(loadTyreDataFromLS());
+  const [showReminderPopup, setShowReminderPopup] = useState(false);
+
   function handleBrandSelect(brand) {
     setSelectedBrand(brand);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -87,6 +94,35 @@ function TyreSenseMain() {
   function handleBackFromDetail() {
     setSelectedBrand(null);
     window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+  function handleCarSubmit(car) {
+    setUserCar(car);
+    saveCarToLS(car);
+  }
+  function handleTyreDataUpdate(newTyreData) {
+    setUserTyreData(newTyreData);
+    saveTyreDataToLS(newTyreData);
+  }
+  function handleSetReminder(tyre) {
+    setReminderTyre(tyre);
+    setShowReminderPopup(true);
+  }
+
+  // Geolocation acquisition
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        pos => setUserLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+        err => setUserLocation(null), // fallback to null; map will do fallback itself
+        { enableHighAccuracy: true, timeout: 5000 }
+      );
+    }
+  }, []);
+
+  // Handle closing reminder
+  function closeReminderPopup() {
+    setShowReminderPopup(false);
+    setTimeout(() => setReminderTyre(null), 300); // small delay to allow animation
   }
 
   // --- Blackout overlay states ---
@@ -167,15 +203,38 @@ function TyreSenseMain() {
                 {/* Logo is now in the navbar instead */}
               </section>
               <main className="ts-main-content">
-                <TyreTypesShowcase onBrandSelect={handleBrandSelect} />
+                {/* Car entry */}
+                <section className="ts-section">
+                  <CarDetailsInput
+                    onSubmit={handleCarSubmit}
+                    initialCar={userCar}
+                    persistCar={saveCarToLS}
+                  />
+                </section>
+                {/* Tyre recommendations */}
+                <TyreRecommendations
+                  car={userCar}
+                  userLocation={userLocation}
+                  onSetReminder={handleSetReminder}
+                  userTyreData={userTyreData}
+                  persistTyreData={handleTyreDataUpdate}
+                />
+                {/* Map: store locator */}
                 <section className="ts-section ts-map-section">
-                  {/* Interactive Google Map showing nearby tyre stores */}
                   <GoogleMapsStoreLocator />
                 </section>
                 <section className="ts-section ts-reminder-section">
-                  <div className="ts-popup-reminder ts-card-placeholder">
-                    <span>Tyre replacement reminder popup will appear here.</span>
-                  </div>
+                  {showReminderPopup && reminderTyre ? (
+                    <ReminderPopup
+                      tyre={reminderTyre}
+                      userEmail={userCar?.email || ""}
+                      onClose={closeReminderPopup}
+                    />
+                  ) : (
+                    <div className="ts-popup-reminder ts-card-placeholder">
+                      <span>Tyre replacement reminder popup will appear here.</span>
+                    </div>
+                  )}
                 </section>
                 <div className="ts-section ts-hidden-userdata"></div>
               </main>
