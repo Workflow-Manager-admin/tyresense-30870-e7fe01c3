@@ -1,9 +1,12 @@
 :root {
-  --base-light: #00ffff;
-  --base-dark: #00008b;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
+  --base-light: #00fff2;
+  --base-dark: #18181f;
+  --neon-yellow: #ffe600;
+  --neon-accent: #00fff9;
+  --neon-pink: #fb01ff;
+  --text-color: #fff;
+  --text-secondary: rgba(255,255,255,0.6);
+  --border-color: rgba(255,255,255,0.11);
 }
 
 body {
