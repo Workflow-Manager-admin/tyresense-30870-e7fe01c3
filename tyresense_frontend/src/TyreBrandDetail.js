@@ -114,14 +114,19 @@ function TyreBrandDetail({ brand, onBack }) {
   // Opacity: always 1
 
   // INFO BLOCKS STAGING
-  // Each info block appears in sequence as we scroll further right
-  // For N blocks, split progress in increasing bands: e.g. first visible after 0.18, last after 0.64
-  function blockVisibilityProgress(i, totalBlocks) {
+  // For each info block, calculate the transform hooks at the top level (not inside callback)
+  const infoBlockTransforms = useMemo(() => {
     const band = 0.16;
-    const start = 0.22 + i * band;
-    const end = start + band * 0.95;
-    return [start, end];
-  }
+    return infoBlocks.map((block, i) => {
+      const start = 0.22 + i * band;
+      const end = start + band * 0.95;
+      return {
+        opacity: useTransform(scrollYProgress, [0, start, end], [0, 0, 1]),
+        y: useTransform(scrollYProgress, [0, start, end], [48, 44, 0]),
+      };
+    });
+  // eslint-disable-next-line
+  }, [infoBlocks.length, scrollYProgress]);
 
   // Container style: full height, relative + overflow hidden
   return (
@@ -135,7 +140,6 @@ function TyreBrandDetail({ brand, onBack }) {
         style={{
           position: "relative",
           overflow: "visible",
-          // Remove default flex-direction here—we control structure via CSS+animation
         }}
       >
         {/* Background: Tyre image (true cover at start). We absolutely position, z-index 2 */}
@@ -195,14 +199,12 @@ function TyreBrandDetail({ brand, onBack }) {
             flexDirection: "column",
             alignItems: "flex-end",
             gap: "18px",
-            paddingLeft: "48vw", // leaves room for image to rest at left
+            paddingLeft: "48vw",
             transition: "padding-left 0.22s"
           }}
         >
           {infoBlocks.map((block, i) => {
-            const [start, end] = blockVisibilityProgress(i, infoBlocks.length);
-            const opacity = useTransform(scrollYProgress, [0, start, end], [0, 0, 1]);
-            const y = useTransform(scrollYProgress, [0, start, end], [48, 44, 0]);
+            const { opacity, y } = infoBlockTransforms[i];
             return (
               <motion.section
                 key={block.label}
