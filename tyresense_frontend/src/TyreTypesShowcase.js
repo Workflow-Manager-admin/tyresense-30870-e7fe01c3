@@ -1,13 +1,20 @@
 import React from "react";
 import "./TyreTypesShowcase.css";
 
-// Placeholder/photo URLs for tyre brand images.
-// These can be replaced with actual brand tyre images if available.
+/**
+ * UPDATE: Use higher-resolution, realistic tyre photos for demo purpose from Unsplash/Pexels/official brand press.
+ * All images below are free for demo (unsplash, pexels links).
+ * In production, replace with licensed or brand-supplied media!
+ */
 const TYRE_IMAGES = {
-  pirelli: "https://images.unsplash.com/photo-1519681393-2de5e0f0c81b?auto=format&fit=crop&w=200&q=80", // Unsplash - represents a tyre
-  michelin: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=200&q=80",
-  continental: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=200&q=80",
-  bridgestone: "https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=200&q=80",
+  pirelli:
+    "https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&w=600&q=90", // Pirelli style - closeup
+  michelin:
+    "https://images.pexels.com/photos/712618/pexels-photo-712618.jpeg?auto=compress&w=600&q=90", // Michelin - crisp profile
+  continental:
+    "https://images.pexels.com/photos/460235/pexels-photo-460235.jpeg?auto=compress&w=600&q=90", // Continental tyre sidewall
+  bridgestone:
+    "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=600&q=90", // Closeup 'Bridgestone'-type tread
 };
 
 // Sample data: could be extended with images, descriptions, etc.
