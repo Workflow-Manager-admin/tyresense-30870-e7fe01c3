@@ -2,9 +2,10 @@ import React from "react";
 import "./TyreTypesShowcase.css";
 
 /**
- * HIGH-RES TYRE IMAGES: All images are sharp, authentic, high-res (2048px+), and tyre-only (no vehicle or placeholder).
- * All assets are from Unsplash/Pexels and carefully vetted to show only tyres as required, matching the container size.
- * In production, swap with licensed/official assets as appropriate.
+ * PUBLIC_INTERFACE
+ * TyreTypesShowcase
+ * Displays only premium, Porsche-style brand cards for main navigation to brand pages (no small cards or alternate decks).
+ * @param {function} onBrandSelect - function(brand) called when a brand is clicked.
  */
 const TYRE_IMAGES = {
   pirelli:
@@ -45,11 +46,8 @@ const TYRE_BRANDS = [
 ];
 
 // PUBLIC_INTERFACE
-/**
- * Displays "Explore Tyre Brands" section – each brand in its own visually impactful, device-responsive container with a fully sized, object-fit: cover image.
- * @param {function} onBrandSelect - function(brand) called when a brand is clicked.
- */
 function TyreTypesShowcase({ onBrandSelect }) {
+  // Only the set of large, Porsche-style cards is shown; top small cards are fully removed.
   return (
     <section className="ts-section ts-tyre-brands-showcase">
       <header className="tyre-showcase-header">
@@ -68,7 +66,6 @@ function TyreTypesShowcase({ onBrandSelect }) {
             type="button"
             tabIndex={0}
           >
-            {/* Background Tyre Image - always covers whole container */}
             <div className="tyre-brand-cover-bg" aria-hidden="true">
               <img
                 src={TYRE_IMAGES[brand.id] || TYRE_IMAGES["pirelli"]}
@@ -87,7 +84,6 @@ function TyreTypesShowcase({ onBrandSelect }) {
                 className="tyre-brand-img"
                 draggable={false}
               />
-              {/* Overlay for contrast and premium vignette */}
               <div className="tyre-brand-img-overlay" />
             </div>
             <div className="tyre-brand-info-col premium-info-col">
@@ -100,9 +96,7 @@ function TyreTypesShowcase({ onBrandSelect }) {
                 </span>
               </div>
               {brand.tagline && (
-                <span
-                  className="tyre-brand-tagline"
-                >
+                <span className="tyre-brand-tagline">
                   {brand.tagline}
                 </span>
               )}
