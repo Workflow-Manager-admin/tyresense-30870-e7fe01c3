@@ -1,60 +1,80 @@
+/* CAR DETAILS FORM - Dark/Neon Luxe Apple/Richard Mille Minimalist */
+
 .ts-car-input-form {
-  --form-dark-bg: #18181f;
-  --form-dark-grad: linear-gradient(130deg, #18181f 78%, #191932 100%);
-  --form-card-shadow: 0 3px 18px #00fff91e, 0 1.5px 10px #ffe60019;
+  --form-dark-bg: #16161c;
+  --form-dark-grad: linear-gradient(125deg, #191924 85%, #101019 100%);
+  --form-card-shadow: 0 8px 48px 4px #00fff933, 0 1.5px 12px #ffe60024;
   --neon-yellow: #ffe600;
-  --form-border: 1.5px solid #212147;
-  --input-border-radius: 14px;
-  --input-bg: #16161f;
-  --input-border: 2px solid #ffe60066;
+  --neon-cyan: #00fff9;
+  --form-border: 2.3px solid #23253f;
+  --input-border-radius: 19px;
+  --input-bg: #15151d;
+  --input-border: 2.3px solid #212147;
   --input-text: #ffe600;
+  --input-highlight: #00fff9;
   --label-text: #ffe600;
   --label-text-secondary: #fff;
-  --label-bold: 800;
-  --btn-bg-grad: linear-gradient(89deg, #ffe600 68%, #00fff9 115%);
+  --label-bold: 950;
+  --btn-bg-grad: linear-gradient(98deg, #ffe600 71%, #00fff9 133%);
   --btn-hover: #191932;
-  --box-radius: 30px;
+  --box-radius: 38px;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   background: var(--form-dark-grad);
   border-radius: var(--box-radius);
   box-shadow: var(--form-card-shadow);
-  padding: 54px 36px 40px 36px;
-  margin-bottom: 46px;
-  margin-top: 26px;
+  padding: 64px 54px 50px 54px;
+  margin-bottom: 53px;
+  margin-top: 34px;
   position: relative;
   border: var(--form-border);
   min-width: 0;
-  gap: 42px;
+  gap: 52px 46px;
+  max-width: 980px;
+  width: 99%;
+  justify-content: flex-start;
 }
-@media (max-width: 860px) {
+@media (max-width: 950px) {
   .ts-car-input-form {
     flex-direction: column;
-    padding: 24px 6vw 17px 6vw;
-    gap: 24px;
-    border-radius: 16px;
+    padding: 30px 6vw 22px 6vw;
+    gap: 27px;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 99vw;
+  }
+}
+@media (max-width: 700px) {
+  .ts-car-input-form {
+    padding: 16px 2vw 12px 3vw;
+    gap: 15px;
+    border-radius: 12px;
+    margin-bottom: 21px;
   }
 }
 
-/* Instruction Block */
+/* Instruction block above form fields */
 .ts-car-input-instruction {
-  background: rgba(255, 230, 0, 0.08);
-  border-radius: 13px;
+  background: linear-gradient(111deg, #191924e0 75%, #181937cc 100%);
+  border-radius: 17px;
   color: var(--neon-yellow);
-  font-weight: 750;
-  font-size: 1.12rem;
-  margin-bottom: 14px;
-  margin-top: -10px;
-  padding: 12px 18px;
-  box-shadow: 0 1.5px 14px #ffe60029;
-  max-width: 520px;
-  letter-spacing: 0.01em;
+  font-weight: 890;
+  font-size: 1.18rem;
+  margin-bottom: 18px;
+  margin-top: -11px;
+  padding: 17px 27px 14px 25px;
+  box-shadow: 0 3px 14px #ffe60029, 0 1.5px 17px #00fff916;
+  max-width: 560px;
+  letter-spacing: 0.025em;
   text-align: left;
-  border: 2px solid rgba(255, 230, 0, 0.24);
+  border: 2.1px solid #ffe60042;
   position: relative;
+  filter: brightness(1.18);
+  z-index: 2;
 }
 
+/* Remove fieldset border/spacing for grouped fields */
 .ts-car-input-form fieldset {
   border: none;
   margin: 0;
@@ -62,170 +82,219 @@
   min-width: 0;
 }
 
+/* Main field group styling: ample whitespace, minimalist */
 .ts-car-form-group {
   display: flex;
   flex-direction: column;
-  flex: 1 1 210px;
-  min-width: 135px;
-  margin-top: 74px;
+  flex: 1 1 258px;
+  min-width: 185px;
+  margin-top: 82px;
   margin-bottom: 0;
+  padding: 0 5px 0 3px;
+  position: relative;
 }
 @media (max-width: 600px) {
   .ts-car-form-group {
-    margin-top: 47px;
+    margin-top: 38px;
+    min-width: 0;
+    padding: 0 0 0 1px;
   }
 }
+
+/* Bold, upscale FIELD LABEL styling (Apple/Luxe) */
 .ts-car-form-group label {
   font-weight: var(--label-bold);
   color: var(--label-text);
-  font-size: 1.19rem;
-  margin-bottom: 7px;
-  letter-spacing: 0.055em;
+  font-size: 1.32rem;
+  margin-bottom: 8px;
+  letter-spacing: 0.08em;
   display: block;
-  margin-left: 1px;
-  text-shadow: 0 0 9px #ffe60024;
+  margin-left: 2px;
+  text-shadow:
+    0 0 12px #ffe60059,
+    0 2px 18px #00fff917,
+    0 0 3px #ffe60029;
+  font-family: 'Inter', 'Roboto', Arial, sans-serif;
+  filter: brightness(1.21);
 }
 
-/* Brand and Model minor labels */
+/* Highlight sub-label (brand) */
 .ts-car-form-group .ts-label-sub {
   color: var(--label-text-secondary);
-  opacity: 0.59;
-  font-weight: 400;
-  font-size: 0.98em;
-  margin-left: 7px;
+  opacity: 0.63;
+  font-weight: 460;
+  font-size: 0.99em;
+  margin-left: 9px;
+  letter-spacing: 0.01em;
+  text-shadow: none;
+  filter: brightness(1.07);
+  font-family: inherit;
 }
 .ts-car-form-group .ts-label-instruction {
-  color: #ffe600a0;
-  font-size: 0.98em;
-  margin-top: 4px;
-  font-weight: 400;
-  opacity: 0.83;
+  color: #ffe600af;
+  font-size: 1.01em;
+  margin-top: 7px;
+  font-weight: 390;
+  opacity: 0.92;
+  letter-spacing: 0.009em;
+  filter: brightness(1.06);
+  font-family: 'Inter', Arial, sans-serif;
 }
 
-/* Inputs/Select */
+/* Neon minimal inputs and selects - modern, strong visual focus */
 .ts-car-form-group .ts-input,
 .ts-car-form-group select {
   border-radius: var(--input-border-radius);
   border: var(--input-border);
   margin-bottom: 3px;
-  font-weight: 650;
-  font-size: 1.11rem;
+  font-weight: 790;
+  font-size: 1.15rem;
   background: var(--input-bg);
   color: var(--input-text);
-  padding: 11px 11px 10px 15px;
-  margin-top: 3px;
+  padding: 14px 15px 14px 20px;
+  margin-top: 7px;
   width: 100%;
-  min-height: 43px;
+  min-height: 54px;
   outline: none;
-  box-shadow: 0 0 0px 2px #ffe60010 inset;
-  transition: border 0.13s, box-shadow 0.13s, background 0.13s;
+  box-shadow: 0 0 0px 3px #ffe60012 inset, 0 0 34px #00fff909;
+  transition: border 0.17s, box-shadow 0.15s, background 0.13s, filter 0.13s;
   appearance: none;
-  letter-spacing: 0.009em;
-  border-width: 2px;
+  letter-spacing: 0.01em;
+  border-width: 2.1px;
+  font-family: 'Inter', 'SF Pro', Arial, sans-serif;
+  filter: brightness(1.22) blur(.05px);
 }
 
-/* Neon focus effect for input/select */
 .ts-car-form-group .ts-input:focus,
 .ts-car-form-group select:focus {
-  border: 2.2px solid #ffe600;
-  background: #22231e;
-  box-shadow: 0 0 16px #ffe60063, 0 1px 12px #00fff933;
+  border: 2.8px solid var(--neon-yellow);
+  background: #24252f;
+  box-shadow: 0 0 18px #ffe60093, 0 3px 17px #00fff93d;
+  filter: brightness(1.32);
 }
 
-/* Placeholders */
+/* Placeholders neon & subtle underline/minimalist */
 .ts-car-form-group .ts-input::placeholder {
-  color: #ffe60085;
+  color: #ffe60087;
   opacity: 1;
-  font-weight: 400;
+  font-weight: 430;
+  letter-spacing: 0.018em;
+  font-family: 'Inter', Arial, sans-serif;
+  filter: brightness(1.13);
+  text-shadow: 0 0 3px #ffe60021;
+  font-size: 1.03em;
 }
 
-/* Subdued description below selects/inputs */
+/* Info note under input/select */
 .ts-car-form-group .ts-label-note {
   display: block;
-  color: #ffe60080;
-  font-size: 0.96em;
-  margin-top: 5px;
-  font-weight: 400;
-  opacity: 0.81;
-  padding-bottom: 2px;
+  color: #ffe60085;
+  font-size: 0.97em;
+  margin-top: 6px;
+  font-weight: 410;
+  opacity: 0.88;
+  padding-bottom: 3px;
+  filter: brightness(1.04);
+  font-family: 'Inter', Arial, sans-serif;
 }
 
-/* Submit Button */
+/* Submit Button - bold, neon gradient, soft shadow */
 .ts-car-form-submit {
   flex: 0 1 180px;
   align-self: center;
-  margin-top: 79px;
+  margin-top: 96px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 7px;
+  min-width: 135px;
+  padding: 0;
 }
 .ts-car-form-submit .btn {
   background: var(--btn-bg-grad);
-  color: #181818;
-  font-weight: 800;
-  border-radius: 14px;
-  padding: 17px 35px;
-  box-shadow: 0 2.5px 11px #00fff914, 0 1.5px 8px #ffe6000d;
-  min-width: 94px;
-  min-height: 54px;
-  font-size: 1.21rem;
+  color: #191924;
+  font-weight: 900;
+  border-radius: 19px;
+  padding: 19px 45px;
+  box-shadow: 0 5px 24px #00fff915, 0 3px 18px #ffe60017;
+  min-width: 117px;
+  min-height: 61px;
+  font-size: 1.26rem;
+  letter-spacing: 0.021em;
   border: none;
   outline: none;
-  transition: background 0.18s, box-shadow 0.18s, filter 0.15s;
-  letter-spacing: 0.007em;
+  transition: background 0.19s, box-shadow 0.19s, filter 0.15s, color 0.13s;
+  font-family: 'Inter', 'SF Pro', Arial, sans-serif;
+  filter: brightness(1.15) blur(.04px);
+  position: relative;
+  z-index: 2;
 }
 .ts-car-form-submit .btn:hover,
 .ts-car-form-submit .btn:focus {
-  filter: brightness(1.05);
-  background: linear-gradient(109deg, #ffe600 76%, #00fff9 115%);
-  box-shadow: 0 3px 22px #ffe60053, 0 2.5px 14px #00fff929;
+  filter: brightness(1.07) blur(.01px);
+  background: linear-gradient(108deg, #ffe600 78%, #00fff9 123%);
+  box-shadow: 0 10px 38px #ffe60083, 0 7px 17px #00fff93b;
+  color: #191932;
 }
 
-/* Car image preview block */
+/* Car image preview block - bold, clean container, vivid placeholder bg */
 .ts-car-img-preview {
   flex: 0 0 128px;
-  margin-left: 22px;
+  margin-left: 34px;
   align-self: center;
   position: relative;
-  margin-top: 54px;
+  margin-top: 64px;
+  z-index: 0;
+}
+@media (max-width: 950px) {
+  .ts-car-img-preview {
+    margin-left: 0;
+    margin-top: 27px;
+  }
 }
 .ts-car-img-preview-box {
-  width: 110px;
-  height: 63px;
-  border-radius: 14px;
-  background: #21214722;
-  box-shadow: 0 3px 18px #00fff94a, 0 2px 8px #ffe6000b;
+  width: 115px;
+  height: 67px;
+  border-radius: 16px;
+  background: linear-gradient(123deg, #23253f2b 60%, #00fff912 120%);
+  box-shadow: 0 6px 28px #00fff955, 0 2px 15px #ffe6001c;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   position: relative;
+  border: 2.6px solid #ffe6004d;
 }
 .ts-car-img-preview-box img {
-  width: 108px;
-  height: 61px;
+  width: 112px;
+  height: 64px;
   object-fit: contain;
-  border-radius: 12px;
-  filter: drop-shadow(0 0 14px #00fff985) brightness(1.17);
+  border-radius: 15px;
+  filter: drop-shadow(0 0 20px #00fff991) brightness(1.22);
   background: #13131b;
   user-select: none;
   pointer-events: none;
   display: block;
+  transition: filter 0.2s, box-shadow 0.2s;
 }
 .ts-car-img-preview-label {
-  color: #ffe6008a;
-  font-size: 0.93em;
+  color: #ffe600b7;
+  font-size: 0.99em;
   text-align: center;
-  margin-top: 7px;
+  margin-top: 10px;
   display: block;
-  font-weight: 500;
+  font-weight: 550;
+  letter-spacing: 0.09em;
+  text-shadow: 0 1.5px 17px #00fff969;
+  filter: brightness(1.025);
 }
 .ts-car-img-loading,
 .ts-car-img-preview span {
-  color: #ffe600b7;
+  color: #00fff9;
   text-align: center;
-  font-weight: 600;
-  font-size: 1.09rem;
-  padding: 7px;
+  font-weight: 800;
+  font-size: 1.13rem;
+  padding: 9px;
   opacity: 0.92;
+  letter-spacing: 0.09em;
 }
+
