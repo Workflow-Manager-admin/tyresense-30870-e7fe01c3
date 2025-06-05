@@ -40,8 +40,10 @@ function GoogleMapsStoreLocator() {
       return;
     }
     const MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || "<YOUR_GOOGLE_MAPS_KEY>";
+
+    // If missing or left as placeholder, show a user-friendly, production-safe message
     if (!MAPS_API_KEY || MAPS_API_KEY.includes("<YOUR_GOOGLE_MAPS_KEY>")) {
-      setError("Google Maps API key is missing. Please set REACT_APP_GOOGLE_MAPS_API_KEY in your .env file.");
+      setError("Map unavailable – please contact support or check configuration.");
       return;
     }
     if (document.getElementById("google-maps-js")) {
