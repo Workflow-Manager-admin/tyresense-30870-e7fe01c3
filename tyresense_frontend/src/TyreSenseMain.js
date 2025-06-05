@@ -65,12 +65,18 @@ function loadCarFromLS() {
   catch { return null; }
 }
 
-// PUBLIC_INTERFACE
+/** PUBLIC_INTERFACE
+ * TyreSenseMain - container for TyreSense app
+ * Edits: Add internal navigation to TyreBrandDetail page for brand cards (showcase), removing direct external links from brand navigation.
+ */
 function TyreSenseMain() {
   const [stage, setStage] = useState("BLACKOUT");
   const [userCar, setUserCar] = useState(loadCarFromLS());
   const [reminderTyre, setReminderTyre] = useState(null);
   const [showReminderPopup, setShowReminderPopup] = useState(false);
+
+  // --- New state for selected brand detail view ---
+  const [selectedBrand, setSelectedBrand] = useState(null);
 
   // Anim intro
   const logoFadeInTimeout = useRef();
@@ -107,6 +113,30 @@ function TyreSenseMain() {
     : { opacity: 0, pointerEvents: "none" };
   const showAnimatedCar = stage === "CAR_ANIM" || stage === "LOGO_FADEIN" || stage === "LIFT_BLACKOUT";
   const showNavbarLogo = stage === "SHOW_MAIN";
+
+  // --- New: handle brand showcase navigation ---
+  // If a brand card is clicked, show TyreBrandDetail page instead of normal content.
+  if (selectedBrand) {
+    return (
+      <div className="tyresense-main">
+        {showNavbarLogo && (
+          <nav style={{
+            position: "fixed", top: 0, left: 0, width: "100%",
+            zIndex: 100,
+            background: "var(--porsche-black)",
+            borderBottom: "1px solid var(--porsche-border-light)",
+            display: "flex", justifyContent: "center", alignItems: "center", height: 66
+          }}>
+            <AnimatedCarIntro asLogo />
+          </nav>
+        )}
+        <TyreBrandDetail
+          brand={selectedBrand}
+          onBack={() => setSelectedBrand(null)}
+        />
+      </div>
+    );
+  }
 
   // Render the Porsche-style hero, grid/cards, and main structure
   return (
@@ -170,6 +200,10 @@ function TyreSenseMain() {
                 Premium tyres. Engineered for performance. Select your vehicle and explore leading brands.
               </div>
             </div>
+            {/* --- Updated: Brand showcase navigation routes to in-app brand detail --- */}
+            <TyreTypesShowcase
+              onBrandSelect={(brand) => setSelectedBrand(brand)}
+            />
             {/* Card/grid section */}
             <section className="porsche-dual-grid" aria-label="TyreGrid">
               {/* Main tyre cards */}
