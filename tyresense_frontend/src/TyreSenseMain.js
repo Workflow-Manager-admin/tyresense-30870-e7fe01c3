@@ -229,7 +229,7 @@ function TyreSenseMain() {
                   <span className="porsche-tyre-card-all-desc">
                     Explore the complete collection. Browse all brands, sizes, and performance profiles.
                   </span>
-                  <button className="porsche-tyre-card-btn" style={{ marginTop: 16 }} tabIndex={0} aria-label="View all tyres">View Full Range</button>
+                  <button className="porsche-tyre-card-btn" style={{ marginTop: 16 }} tabIndex={0} aria-label="View all tyres">View all tyres</button>
                 </div>
                 <div className="porsche-card-gradient-hover" />
               </div>
