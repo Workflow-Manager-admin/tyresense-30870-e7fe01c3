@@ -211,7 +211,7 @@ function TyreSenseMain() {
                     persistCar={saveCarToLS}
                   />
                 </section>
-                {/* Explore Tyre Brands */}
+                {/* 'Explore Tyre Brands' section - each brand in its own container */}
                 <TyreTypesShowcase onBrandSelect={handleBrandSelect} />
                 {/* Map: store locator */}
                 <section className="ts-section ts-map-section">
