@@ -208,7 +208,7 @@ function TyreSenseMain() {
             <section className="porsche-dual-grid" aria-label="TyreGrid">
               {/* Main tyre cards */}
               {MAIN_TYRES.slice(0, 2).map((tyre) => (
-                <div key={tyre.id} className="porsche-tyre-card" tabIndex={0} role="button" onClick={() => window.open(tyre.url, "_blank")} aria-label={`View details about ${tyre.brand} ${tyre.model}`}>
+                <div key={tyre.id} className="porsche-tyre-card" tabIndex={0} role="region" aria-label={`Brand: ${tyre.brand}`}>
                   <div className="porsche-tyre-card-img-wrapper">
                     <img src={tyre.img} alt={`${tyre.brand} ${tyre.model} tyre`} className="porsche-tyre-card-image" draggable={false} />
                   </div>
@@ -218,7 +218,6 @@ function TyreSenseMain() {
                       {tyre.model} • {tyre.type} <br />Size: {tyre.size}
                     </div>
                     <div className="porsche-accent-red">£{tyre.price}</div>
-                    <button className="porsche-tyre-card-btn" tabIndex={0} aria-label={`Buy ${tyre.brand} ${tyre.model}`} onClick={e => { e.stopPropagation(); window.open(tyre.url, "_blank"); }}>Buy Now</button>
                   </div>
                   <div className="porsche-card-gradient-hover" />
                 </div>
@@ -239,7 +238,7 @@ function TyreSenseMain() {
             {/* Next grid row: more tyres */}
             <section className="porsche-dual-grid" style={{ marginTop: 0 }}>
               {MAIN_TYRES.slice(2, 4).map((tyre) => (
-                <div key={tyre.id} className="porsche-tyre-card" tabIndex={0} role="button" onClick={() => window.open(tyre.url, "_blank")} aria-label={`View details about ${tyre.brand} ${tyre.model}`}>
+                <div key={tyre.id} className="porsche-tyre-card" tabIndex={0} role="region" aria-label={`Brand: ${tyre.brand}`}>
                   <div className="porsche-tyre-card-img-wrapper">
                     <img src={tyre.img} alt={`${tyre.brand} ${tyre.model} tyre`} className="porsche-tyre-card-image" draggable={false} />
                   </div>
@@ -249,7 +248,6 @@ function TyreSenseMain() {
                       {tyre.model} • {tyre.type} <br />Size: {tyre.size}
                     </div>
                     <div className="porsche-accent-red">£{tyre.price}</div>
-                    <button className="porsche-tyre-card-btn" tabIndex={0} aria-label={`Buy ${tyre.brand} ${tyre.model}`} onClick={e => { e.stopPropagation(); window.open(tyre.url, "_blank"); }}>Buy Now</button>
                   </div>
                   <div className="porsche-card-gradient-hover" />
                 </div>
