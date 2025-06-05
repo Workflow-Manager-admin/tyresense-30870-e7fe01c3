@@ -18,13 +18,13 @@ import "./TyreBrandDetail.css";
  */
 const TYRE_IMAGES = {
   pirelli:
-    "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2048&q=90", // Studio-lit close-up Pirelli racing tyre
+    "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=2048&q=90", // Profile view of a real Pirelli tyre on a clean surface
   michelin:
-    "https://images.pexels.com/photos/18355280/pexels-photo-18355280.jpeg?auto=compress&w=2048&q=90", // Stacked Michelin high-performance tyres
+    "https://images.pexels.com/photos/207924/pexels-photo-207924.jpeg?auto=compress&w=2048&q=90", // Close-up of a single Michelin tyre showcasing deep tread detail
   continental:
-    "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&w=2048&q=90", // Macro Continental tyre bead and sidewall
+    "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=2048&q=90", // Macro shot of Continental tyre sidewall and tread textures
   bridgestone:
-    "https://images.pexels.com/photos/16760311/pexels-photo-16760311.jpeg?auto=compress&w=2048&q=90", // Bridgestone tyre under directional light, detail focus
+    "https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&w=2048&q=90", // Group of stacked Bridgestone tyres in a clean indoor setting
 };
 
 // Info blocks per brand (demo text—could be extended/customized)

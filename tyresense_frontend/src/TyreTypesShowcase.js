@@ -96,13 +96,13 @@ function TyreTypesShowcase({ onBrandSelect }) {
                 src={TYRE_IMAGES[brand.id] || TYRE_IMAGES["pirelli"]}
                 alt={
                   brand.id === "pirelli"
-                    ? "Studio-lit close-up photo of a Pirelli racing tyre with distinct tread blocks and reflections"
+                    ? "Profile view of a real Pirelli tyre on a clean surface"
                     : brand.id === "michelin"
-                    ? "Top-down view of neatly stacked Michelin high-performance tyres in a clean, modern warehouse"
+                    ? "Close-up of a single Michelin tyre showcasing deep tread detail"
                     : brand.id === "continental"
-                    ? "Macro photograph of a Continental tyre bead and sidewall, showcasing crisp tread and logo texturing"
+                    ? "Macro shot of Continental tyre sidewall and tread textures"
                     : brand.id === "bridgestone"
-                    ? "Bridgestone tyre under directional studio light focusing on the rubber pattern and sidewall, no rim visible"
+                    ? "Group of stacked Bridgestone tyres in a clean indoor setting"
                     : `Photograph of a real ${brand.name} tyre`
                 }
                 loading="lazy"
