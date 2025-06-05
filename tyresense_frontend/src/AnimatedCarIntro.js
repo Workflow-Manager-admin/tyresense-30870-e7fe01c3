@@ -152,7 +152,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
           height: 63
         }}
       >
-        <FerrariF1SideSVG
+        <TyreSenseLogoCarSVG
           style={{
             width: 97,
             height: 30,
@@ -238,7 +238,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
               }}
               onAnimationComplete={() => setHasEntered(true)}
             >
-              <FerrariF1SideSVG
+              <TyreSenseLogoCarSVG
                 style={{
                   width: 285,
                   height: 88,
