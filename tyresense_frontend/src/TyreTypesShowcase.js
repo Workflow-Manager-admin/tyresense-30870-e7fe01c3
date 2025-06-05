@@ -1,13 +1,22 @@
 import React from "react";
 import "./TyreTypesShowcase.css";
 
+// Placeholder/photo URLs for tyre brand images.
+// These can be replaced with actual brand tyre images if available.
+const TYRE_IMAGES = {
+  pirelli: "https://images.unsplash.com/photo-1519681393-2de5e0f0c81b?auto=format&fit=crop&w=200&q=80", // Unsplash - represents a tyre
+  michelin: "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=200&q=80",
+  continental: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=200&q=80",
+  bridgestone: "https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=200&q=80",
+};
+
 // Sample data: could be extended with images, descriptions, etc.
 const TYRE_BRANDS = [
   {
     id: "pirelli",
     name: "Pirelli",
     tagline: "Performance meets Innovation",
-    logo: null, // For minimalism, can use stylized text or import logos
+    logo: null,
   },
   {
     id: "michelin",
@@ -28,76 +37,6 @@ const TYRE_BRANDS = [
     logo: null,
   },
 ];
-
-function TyreSVG({ style }) {
-  return (
-    <svg
-      width="104"
-      height="104"
-      viewBox="0 0 120 120"
-      fill="none"
-      style={style}
-      aria-hidden="true"
-      className="tyre-svg-img"
-    >
-      <ellipse
-        cx="60"
-        cy="60"
-        rx="55"
-        ry="54"
-        fill="url(#tyre-dark-neon)"
-        style={{ filter: "drop-shadow(0 0 16px #00fff96b)" }}
-      />
-      <ellipse
-        cx="60"
-        cy="60"
-        rx="43"
-        ry="43"
-        fill="#18181f"
-        opacity="0.35"
-      />
-      <circle
-        cx="60"
-        cy="60"
-        r="29"
-        stroke="#00fff9"
-        strokeWidth="6"
-        opacity="0.22"
-      />
-      <ellipse
-        cx="60"
-        cy="60"
-        rx="22"
-        ry="22"
-        fill="#212147"
-        opacity="0.92"
-      />
-      {/* Centre highlight */}
-      <ellipse
-        cx="60"
-        cy="57"
-        rx="11"
-        ry="4"
-        fill="#fff"
-        opacity="0.09"
-      />
-      <defs>
-        <radialGradient
-          id="tyre-dark-neon"
-          cx="0"
-          cy="0"
-          r="1"
-          gradientTransform="translate(78 63) rotate(121.14) scale(68 73.7)"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop offset="0.17" stopColor="#00fff9" />
-          <stop offset="0.7" stopColor="#20273c" />
-          <stop offset="1" stopColor="#18181f" />
-        </radialGradient>
-      </defs>
-    </svg>
-  );
-}
 
 // PUBLIC_INTERFACE
 function TyreTypesShowcase({ onBrandSelect }) {
@@ -125,7 +64,19 @@ function TyreTypesShowcase({ onBrandSelect }) {
           >
             {/* Tyre image on right side */}
             <div className="tyre-brand-tyre-img">
-              <TyreSVG />
+              <img
+                src={TYRE_IMAGES[brand.id] || TYRE_IMAGES["pirelli"]}
+                alt={`Real-life ${brand.name} tyre`}
+                loading="lazy"
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  objectFit: "contain",
+                  borderRadius: "22px",
+                  backgroundColor: "#191932",
+                  boxShadow: "0 0 12px #00fff944, 0 2px 10px #1112",
+                }}
+              />
             </div>
             {/* Info on left */}
             <div className="tyre-brand-info-col">
