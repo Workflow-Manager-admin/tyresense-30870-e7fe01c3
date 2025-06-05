@@ -139,7 +139,7 @@ function TyreRecommendations({ car, userLocation, onSetReminder, userTyreData, p
         <h2 style={{ color: "#b4081b", fontWeight: 800, letterSpacing: "0.08em" }}>
           Tyre Recommendations
         </h2>
-        <p className="tyre-showcase-desc">
+        <p className="tyre-showcase-desc" style={{ color: "#7d7d85", opacity: 0.8 }}>
           Personalised for your car, location and weather.
         </p>
         {car && (

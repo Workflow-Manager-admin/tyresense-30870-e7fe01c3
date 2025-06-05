@@ -171,10 +171,10 @@ function GoogleMapsStoreLocator() {
             "data:image/svg+xml;utf-8," +
             encodeURIComponent(
               `<svg height="30" width="30" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="15" cy="20" rx="10" ry="6.4" fill="#191932" stroke="#00fff9" stroke-width="2.2"/>
-                <ellipse cx="15" cy="20" rx="4.5" ry="2.7" fill="#ffe600"/>
-                <circle cx="15" cy="11.5" r="7" fill="#ffe600" stroke="#00fff9" stroke-width="2.2"/>
-                <circle cx="15" cy="11.5" r="3.5" fill="#191932" />
+                <ellipse cx="15" cy="20" rx="10" ry="6.4" fill="#232327" stroke="#b4081b" stroke-width="2.2"/>
+                <ellipse cx="15" cy="20" rx="4.5" ry="2.7" fill="#edeef0"/>
+                <circle cx="15" cy="11.5" r="7" fill="#edeef0" stroke="#b4081b" stroke-width="2.2"/>
+                <circle cx="15" cy="11.5" r="3.5" fill="#232327" />
               </svg>`
             ),
           scaledSize: new window.google.maps.Size(30, 30),
@@ -255,8 +255,8 @@ function GoogleMapsStoreLocator() {
             height: "100%",
             minHeight: "170px",
             borderRadius: "13px",
-            boxShadow: "0 5px 34px #00fff934, 0 4px 34px #ffe60012",
-            background: "#18181f",
+            boxShadow: "0 5px 22px #b4081b14, 0 1px 16px #edeef013",
+            background: "#18181c",
           }}
           aria-label="Nearby tyre stores map"
           tabIndex={0}
