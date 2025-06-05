@@ -14,10 +14,13 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
   const [carImg, setCarImg] = useState(initialCar?.carImg || null);
   const [loadingImg, setLoadingImg] = useState(false);
 
-  // Popular car brands list for dropdown (customizable, can expand)
+  // Popular car brands list (expansive, includes global brands; can be extended further)
   const CAR_BRANDS = [
     "Toyota", "Honda", "Ford", "Chevrolet", "Volkswagen", "BMW", "Mercedes-Benz", "Audi", "Nissan", "Hyundai",
-    "Kia", "Mazda", "Subaru", "Tesla", "Jeep", "Lexus", "Porsche", "Mini", "Jaguar", "Land Rover", "Volvo", "Renault", "Peugeot"
+    "Kia", "Mazda", "Subaru", "Tesla", "Jeep", "Lexus", "Porsche", "Mini", "Jaguar", "Land Rover", "Volvo", "Renault", "Peugeot",
+    "Skoda", "Fiat", "Citroen", "Mitsubishi", "Dacia", "Suzuki", "Alfa Romeo", "Seat", "Bentley", "Bugatti", 
+    "Cadillac", "Chrysler", "Dodge", "Genesis", "Infiniti", "Maserati", "RAM", "Saab", "Smart", "SsangYong", "Rolls-Royce", "Opel", 
+    "Vauxhall", "Acura", "Aston Martin", "Buick", "GMC", "Hummer", "Isuzu", "Lincoln", "Lotus", "Pagani", "Polestar", "Proton", "Rivian"
   ];
 
   // Fetch car image for preview based on manufacturer/model/year
