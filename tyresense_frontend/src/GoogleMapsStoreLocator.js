@@ -189,9 +189,42 @@ function GoogleMapsStoreLocator() {
     };
   }, [scriptLoaded]);
 
+  // Hide the entire map container and only show the friendly error if API key is missing
+  const isAPIKeyMissing =
+    error === "Map unavailable - please contact support or check configuration";
+
+  if (isAPIKeyMissing) {
+    return (
+      <div
+        className="ts-map-error"
+        style={{
+          color: "#ffe600",
+          background: "#191932",
+          border: "2px solid #ffe600",
+          borderRadius: "14px",
+          padding: "22px 18px",
+          fontWeight: 600,
+          minHeight: "110px",
+          fontSize: "1.14rem",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          margin: 0,
+          textAlign: "center",
+          width: "100%",
+        }}
+        aria-live="polite"
+      >
+        Map unavailable - please contact support or check configuration
+      </div>
+    );
+  }
+
+  // If showing some other error (e.g., geolocation) or map, show map container as usual
   return (
     <div className="ts-map-container">
       {error ? (
+        // Show only the user-friendly message WITHOUT any error detail
         <div
           className="ts-map-error"
           style={{
@@ -209,8 +242,8 @@ function GoogleMapsStoreLocator() {
             margin: 0,
             textAlign: "center",
           }}
+          aria-live="polite"
         >
-          {/* Strictly show only the friendly error, NEVER display stacktrace or technical errors */}
           Map unavailable - please contact support or check configuration
         </div>
       ) : (
