@@ -1,0 +1,1 @@
+{"is_source_file": true, "file_id": 57, "git_revision": "", "state": 1, "description": "", "external_files": [], "external_methods": [], "published": [], "classes": [], "methods": [], "calls": [], "search-terms": [], "hash": "1d08fb7a73051ca14dd40c3d783bd276", "format-version": 4, "code-base-name": "default", "filename": "assets/style_guide.md", "knowledge_revision": 140}
