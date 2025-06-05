@@ -298,23 +298,45 @@
 }
 .ts-car-img-preview-label {
   color: #ffe600b7;
-  font-size: 0.99em;
+  font-size: 1.09em;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 15px;
   display: block;
-  font-weight: 550;
-  letter-spacing: 0.09em;
-  text-shadow: 0 1.5px 17px #00fff969;
-  filter: brightness(1.025);
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-shadow: 0 4px 20px #00fff97b;
+  filter: brightness(1.065);
 }
 .ts-car-img-loading,
 .ts-car-img-preview span {
   color: #00fff9;
   text-align: center;
-  font-weight: 800;
+  font-weight: 900;
   font-size: 1.13rem;
-  padding: 9px;
-  opacity: 0.92;
+  padding: 10px;
+  opacity: 0.94;
   letter-spacing: 0.09em;
+  text-shadow: 0 0 14px #00fff97d, 0 0 3px #ffe60052;
+}
+
+@media (max-width: 550px) {
+  .ts-car-input-form,
+  .ts-car-input-form.ts-premium {
+    padding: 16px 3vw 13px 3vw;
+    gap: 11px;
+    border-radius: 13px;
+    width: 100%;
+    margin-bottom: 19px;
+    margin-top: 10px;
+  }
+  .ts-car-form-group {
+    margin-top: 21px !important;
+    padding: 0 1px 0 1.5px;
+    min-width: 0;
+  }
+  .ts-car-img-preview {
+    margin-left: 0;
+    margin-top: 13px;
+  }
 }
 
