@@ -114,19 +114,16 @@ function TyreBrandDetail({ brand, onBack }) {
   // Opacity: always 1
 
   // INFO BLOCKS STAGING
-  // For each info block, calculate the transform hooks at the top level (not inside callback)
-  const infoBlockTransforms = useMemo(() => {
-    const band = 0.16;
-    return infoBlocks.map((block, i) => {
-      const start = 0.22 + i * band;
-      const end = start + band * 0.95;
-      return {
-        opacity: useTransform(scrollYProgress, [0, start, end], [0, 0, 1]),
-        y: useTransform(scrollYProgress, [0, start, end], [48, 44, 0]),
-      };
-    });
-  // eslint-disable-next-line
-  }, [infoBlocks.length, scrollYProgress]);
+  // For each info block, calculate transform hooks at top level (not in any closure/callback)
+  const band = 0.16;
+  const infoBlockOpacities = [];
+  const infoBlockYs = [];
+  for (let i = 0; i < infoBlocks.length; ++i) {
+    const start = 0.22 + i * band;
+    const end = start + band * 0.95;
+    infoBlockOpacities.push(useTransform(scrollYProgress, [0, start, end], [0, 0, 1]));
+    infoBlockYs.push(useTransform(scrollYProgress, [0, start, end], [48, 44, 0]));
+  }
 
   // Container style: full height, relative + overflow hidden
   return (
