@@ -1,21 +1,17 @@
-import React, { useRef, useMemo } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import AnimatedCarIntro from "./AnimatedCarIntro";
 import "./TyreBrandDetail.css";
 
 /**
- * Tyre brand detail view with advanced scroll-driven animation:
- * - Tyre image starts fully zoomed in, covering the section as a true background.
- * - As you scroll, it zooms out and shifts left, "parking" on the left.
- * - Key info blocks on the right appear progressively, not all at once, as you scroll further.
- * This layout uses the image as a background/cover at first. The info on the right appears in separate blocks, unveiled one after another.
+ * Tyre brand detail view (Premium overhaul, smooth modern transitions, no zoom-out animation):
+ * - Tyre image floats at left (non-animated), bold and luxurious, with deep shadow/glow.
+ * - Info blocks elegantly fade/slide in with classic presentational transitions.
+ * - Layout, color, spacing, and shadow all maximize premium/luxury feeling with modern elegance.
+ * - Removal of scroll-driven zoom-out or parallax—transitions are just for entrance.
  */
 
-/** 
- * Tyre images per brand: highest-res, authentic tyre assets only.
- * Every image below is: 2048px+ in width, strictly a tyre (not a car), real photo, vivid, and fills all detail containers crisply.
- * If additional brands are added, vet images for tyre-only, no vehicle, no placeholder.
- */
+// High-res authentic tyre images per brand (see curated_tyre_images.txt for alt explanations)
 const TYRE_IMAGES = {
   pirelli:
     process.env.PUBLIC_URL + "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
@@ -27,8 +23,8 @@ const TYRE_IMAGES = {
     process.env.PUBLIC_URL + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
 };
 
-// Info blocks per brand (demo text—could be extended/customized)
 function getBrandInfoBlocks(brand) {
+  // PUBLIC_INTERFACE
   return [
     {
       label: "About",
@@ -82,71 +78,41 @@ function getBrandInfoBlocks(brand) {
 
 // PUBLIC_INTERFACE
 function TyreBrandDetail({ brand, onBack }) {
-  /**
-   * This layout makes the tyre image the covering "background" at first, then scroll-animates it to park left,
-   * while info blocks on right are progressively revealed upon further scrolling.
-   */
-  const ref = useRef(null);
-
   // Info blocks for this brand
   const infoBlocks = useMemo(() => getBrandInfoBlocks(brand), [brand]);
 
-  // Scroll progress across the detail container
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end center"], // gentle ramp
-  });
+  // Animation variants for blocks: soft slide/fade up
+  const blockVariants = {
+    hidden: { opacity: 0, y: 44 },
+    visible: i => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: 0.09 + i * 0.17,
+        duration: 0.45,
+        type: "spring",
+        stiffness: 68,
+        damping: 18,
+        ease: [0.71, 0.01, 0.17, 1]
+      }
+    }),
+    exit: { opacity: 0, y: 32, transition: { duration: 0.28 } }
+  };
 
-  // IMAGE ANIMATION
-  // Scale: starts at 1.23 (fully covers), zoom to 0.77 much slower and smoother (increases range, curve)
-  const tyreScale = useTransform(
-    scrollYProgress,
-    [0, 0.6],
-    [1.23, 0.77],
-    { mixer: (a, b) => (t) => a + (b - a) * (1 - Math.cos(Math.PI * t)) / 2 } // easeInOutSine for extra smooth
-  );
-  // X: slow curve, linger at start, then ease out farther left
-  const tyreX = useTransform(
-    scrollYProgress,
-    [0, 0.22, 0.75],
-    ["0vw", "-15vw", "-28vw"],
-    { mixer: (a, b) => (t) => a + (b - a) * (1 - Math.cos(Math.PI * t)) / 2 }
-  );
-  // Y: move downward slower for parallax, linger at top
-  const tyreY = useTransform(
-    scrollYProgress,
-    [0, 0.5],
-    ["0vh", "8vh"]
-  );
-  // Border radius: round out more gently as we park left
-  const tyreBorder = useTransform(scrollYProgress, [0, 0.4, 1], [0, 42, 54]);
-  // Drop shadow/brightness adjusts slower for extra smooth transition
-  const tyreFilter = useTransform(
-    scrollYProgress,
-    [0, 0.23, 1],
-    [
-      "drop-shadow(0 8px 74px #00fff97e) brightness(1.23)",
-      "drop-shadow(0 3px 34px #00fff96c) brightness(1.11)",
-      "drop-shadow(0 1px 9px #00fff938) brightness(1.04)",
-    ]
-  );
-  // Opacity: always 1
-
-  // INFO BLOCKS STAGING (no hooks in loops, call hooks directly and unconditionally)
-  // Assuming there are always 4 info blocks
-  const block0_opacity = useTransform(scrollYProgress, [0, 0.22, 0.22 + 0.16 * 0.95], [0, 0, 1]);
-  const block0_y = useTransform(scrollYProgress, [0, 0.22, 0.22 + 0.16 * 0.95], [48, 44, 0]);
-  const block1_opacity = useTransform(scrollYProgress, [0, 0.22 + 0.16, 0.22 + 0.16 * 2 * 0.95], [0, 0, 1]);
-  const block1_y = useTransform(scrollYProgress, [0, 0.22 + 0.16, 0.22 + 0.16 * 2 * 0.95], [48, 44, 0]);
-  const block2_opacity = useTransform(scrollYProgress, [0, 0.22 + 0.32, 0.22 + 0.16 * 3 * 0.95], [0, 0, 1]);
-  const block2_y = useTransform(scrollYProgress, [0, 0.22 + 0.32, 0.22 + 0.16 * 3 * 0.95], [48, 44, 0]);
-  const block3_opacity = useTransform(scrollYProgress, [0, 0.22 + 0.48, 0.22 + 0.16 * 4 * 0.95], [0, 0, 1]);
-  const block3_y = useTransform(scrollYProgress, [0, 0.22 + 0.48, 0.22 + 0.16 * 4 * 0.95], [48, 44, 0]);
-
-  // Container style: full height, relative + overflow hidden
+  // Outer layout: tyre image always left, info panes float right
   return (
-    <div className="ts-brand-detail-outer" style={{ minHeight: "100vh", position: "relative" }}>
-      {/* Topbar with Back button and logo (z-index 120, always over detail/tyre but below fullscreen modals) */}
+    <div
+      className="ts-brand-detail-outer"
+      style={{
+        minHeight: "100vh",
+        position: "relative",
+        width: "100%",
+        background: "linear-gradient(136deg, #18181f 23%, #0c1026 100%)",
+        paddingBottom: 0,
+        paddingTop: 0,
+      }}
+    >
+      {/* Topbar: back & logo */}
       <div
         className="ts-brand-detail-topbar"
         style={{
@@ -155,10 +121,10 @@ function TyreBrandDetail({ brand, onBack }) {
           alignItems: "center",
           position: "relative",
           minHeight: 90,
-          zIndex: 120,
-          background: "transparent",
-          pointerEvents: "none", // disables interactions except button, fixed below
-          justifyContent: "center"
+          zIndex: 140,
+          background: "linear-gradient(89deg, #18181f 92%, #0c1026 110%)",
+          pointerEvents: "none",
+          justifyContent: "center",
         }}
         aria-label="TyreSense navigation bar"
         role="banner"
@@ -173,13 +139,12 @@ function TyreBrandDetail({ brand, onBack }) {
             marginTop: 0,
             marginBottom: 0,
             position: "relative",
-            zIndex: 121,
-            pointerEvents: "auto"
+            zIndex: 141,
+            pointerEvents: "auto",
           }}
         >
           ← Back
         </button>
-        {/* Always centered logo, never overlaps button, perfectly balanced */}
         <div
           aria-hidden="true"
           style={{
@@ -187,146 +152,177 @@ function TyreBrandDetail({ brand, onBack }) {
             minHeight: 0,
             height: "100%",
             position: "absolute",
-            left: 0, right: 0, top: 0, bottom: 0,
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             pointerEvents: "none",
-            zIndex: 120,
+            zIndex: 140,
           }}
         >
           <AnimatedCarIntro asLogo />
         </div>
       </div>
+      {/* Main body with tyre image and info blocks */}
       <div
         className="ts-brand-detail-container"
-        ref={ref}
         style={{
           position: "relative",
           overflow: "visible",
-          marginTop: 20 // provides space below fixed logo/topbar
+          margin: "0 auto",
+          marginTop: 34,
+          paddingBottom: 28,
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "stretch",
+          gap: "0",
+          minHeight: "calc(80vh - 80px)",
+          maxWidth: 1180,
         }}
       >
-        {/* Background: Tyre image (true cover at start). Absolutely position, z-index 2 */}
-        <motion.div
+        {/* Tyre Image Block (left) */}
+        <div
           className="ts-brand-tyre-bg"
           style={{
-            position: "absolute",
-            top: 0, left: 0, bottom: 0, right: 0,
-            width: "100%",
-            height: "100%",
-            zIndex: 2,
-            willChange: "transform, filter, borderRadius",
-            scale: tyreScale,
-            x: tyreX,
-            y: tyreY,
-            borderRadius: tyreBorder,
-            filter: tyreFilter,
-            overflow: "hidden",
-            background: "radial-gradient(ellipse at center, #232f5c 80%, #18181f 100%)",
-            transition: "box-shadow 0.25s"
+            width: "50vw",
+            maxWidth: 610,
+            minWidth: 270,
+            height: "80vh",
+            minHeight: 350,
+            maxHeight: 670,
+            position: "relative",
+            flexShrink: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            zIndex: 10,
+            userSelect: "none",
+            pointerEvents: "none",
           }}
           aria-hidden="true"
         >
-          <img
+          <motion.img
             src={TYRE_IMAGES[brand.id] || TYRE_IMAGES["pirelli"]}
             alt={
               brand.id === "pirelli"
-                ? "User provided Pirelli Cinturato P7 tyre photo, full detail"
+                ? "Pirelli Cinturato P7 tyre photo, full detail"
                 : brand.id === "michelin"
-                ? "User provided Michelin Tyres, tread detail close-up"
+                ? "Michelin Tyres, tread detail close-up"
                 : brand.id === "continental"
-                ? "User provided Continental CityPlus tyre, macro sidewall/tread"
+                ? "Continental CityPlus tyre, macro sidewall/tread"
                 : brand.id === "bridgestone"
-                ? "User provided Bridgestone Turanza T005 tyre, stacked detailed"
+                ? "Bridgestone Turanza T005 tyre, stacked detailed"
                 : `Photograph of a real ${brand.name} tyre`
             }
+            initial={{ opacity: 0, scale: 1.14, filter: "brightness(1.13) blur(5px)" }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              filter:
+                "drop-shadow(0 8px 85px #00fff945) drop-shadow(0 11px 132px #ffe60033) brightness(1.12) contrast(1.15)",
+              transition: {
+                duration: 0.82,
+                ease: [0.62, 0, 0.38, 1]
+              }
+            }}
+            transition={{ duration: 0.86, ease: "easeOut" }}
             style={{
-              width: "100%",
-              height: "100%",
+              width: "98%",
+              height: "95%",
               objectFit: "cover",
-              objectPosition: "center",
+              borderRadius: "41px",
+              boxShadow:
+                "0 22px 124px 22px #00fff931, 0 9px 52px 2px #ffe60050",
+              filter:
+                "drop-shadow(0 6px 99px #00fff947) brightness(1.15) contrast(1.13)",
               display: "block",
-              borderRadius: "inherit",
-              background: "#181932",
-              boxShadow: "0 0 100px #00fff951, 0 12px 38px #19193241",
-              filter: "brightness(1.05) contrast(1.08)",
+              background: "#191932",
+              userSelect: "none",
               pointerEvents: "none",
-              userSelect: "none"
+              transition: "box-shadow .37s, filter .23s",
             }}
             draggable={false}
             loading="lazy"
           />
-        </motion.div>
+        </div>
 
-        {/* Foreground: staged right info blocks (flex col), relative zIndex 4 */}
+        {/* Info blocks (right) */}
         <div
           className="ts-brand-info-panes"
           style={{
-            zIndex: 4,
-            position: "relative",
-            width: "100%",
-            marginLeft: "auto",
-            marginRight: 0,
-            minHeight: 360,
-            minWidth: 0,
+            width: "50vw",
+            minWidth: 330,
+            maxWidth: 550,
+            minHeight: 350,
+            margin: "0 auto",
+            padding: "32px 0 0 0",
             display: "flex",
             flexDirection: "column",
-            alignItems: "flex-end",
-            gap: "18px",
-            paddingLeft: "48vw",
-            transition: "padding-left 0.22s"
+            alignItems: "flex-start",
+            justifyContent: "flex-start",
+            gap: "30px",
+            zIndex: 18,
+            position: "relative",
           }}
         >
-          {infoBlocks.map((block, i) => {
-            let opacity, y;
-            if (i === 0) {
-              opacity = block0_opacity; y = block0_y;
-            } else if (i === 1) {
-              opacity = block1_opacity; y = block1_y;
-            } else if (i === 2) {
-              opacity = block2_opacity; y = block2_y;
-            } else {
-              opacity = block3_opacity; y = block3_y;
-            }
-            return (
+          <AnimatePresence>
+            {infoBlocks.map((block, i) => (
               <motion.section
                 key={block.label}
                 className={`ts-brand-info-block ts-brand-info-block${i}`}
+                variants={blockVariants}
+                initial="hidden"
+                animate="visible"
+                custom={i}
+                exit="exit"
+                layout
                 style={{
-                  opacity,
-                  y,
-                  background: "rgba(21,21,59, 0.81)",
-                  borderRadius: "22px",
-                  boxShadow: "0 2px 15px #00fff924",
-                  minWidth: 320,
-                  maxWidth: 440,
-                  width: "80%",
-                  margin: "12px 0",
-                  padding: "32px 30px 22px 38px",
+                  background:
+                    i === 0
+                      ? "linear-gradient(94deg,#191932 82%, #ffe60022 170%)"
+                      : "rgba(21,21,59, 0.88)",
+                  color: i === 0 ? "#ffe600" : "#fff",
+                  borderRadius: "25px",
+                  boxShadow:
+                    i === 0
+                      ? "0 3.5px 34px #ffe60029, 0 0.5px 53px #00fff933"
+                      : "0 2px 13px #00fff912, 0 2.5px 22px #ffe60017",
+                  minWidth: 290,
+                  maxWidth: 460,
+                  width: "95%",
+                  padding: i === 0 ? "38px 34px 29px 38px" : "30px 22px 18px 30px",
+                  margin: "0 0 12px 0",
                   filter: "brightness(1.08)",
-                  pointerEvents: "auto"
+                  pointerEvents: "auto",
+                  transition: "box-shadow 0.25s",
                 }}
               >
                 <h2
                   className="ts-brand-block-title"
                   style={{
-                    fontSize: i === 0 ? "2.05rem" : "1.25rem",
-                    fontWeight: i === 0 ? 800 : 600,
+                    fontSize: i === 0 ? "2.15rem" : "1.18rem",
+                    fontWeight: i === 0 ? 860 : 640,
                     letterSpacing: ".13em",
                     color: i === 0 ? "#ffe600" : "#fff",
-                    lineHeight: "1.15",
-                    marginTop: i === 0 ? "0" : "0.22em",
-                    marginBottom: i === 0 ? "0.53em" : "0.29em",
-                    textShadow: "0 1.5px 20px #00fff992"
+                    lineHeight: "1.13",
+                    marginTop: i === 0 ? "0" : "0.15em",
+                    marginBottom: i === 0 ? "0.45em" : "0.24em",
+                    textShadow:
+                      i === 0
+                        ? "0 2.5px 30px #00fff995, 0 6px 12.5px #ffe60036"
+                        : "0 1.5px 10px #00fff988",
+                    filter: "brightness(1.21)"
                   }}
                 >
                   {block.label}
                 </h2>
                 <div className="ts-brand-block-content">{block.content}</div>
               </motion.section>
-            );
-          })}
+            ))}
+          </AnimatePresence>
         </div>
       </div>
     </div>
