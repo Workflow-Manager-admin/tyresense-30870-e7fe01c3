@@ -222,31 +222,38 @@
   min-width: 135px;
   padding: 0;
 }
-.ts-car-form-submit .btn {
-  background: var(--btn-bg-grad);
+.ts-car-form-submit .btn,
+.ts-car-form-submit .neon-premium-btn {
+  background: linear-gradient(98deg, #ffe600 78%, #00fff9 133%);
   color: #191924;
   font-weight: 900;
-  border-radius: 19px;
-  padding: 19px 45px;
-  box-shadow: 0 5px 24px #00fff915, 0 3px 18px #ffe60017;
-  min-width: 117px;
-  min-height: 61px;
-  font-size: 1.26rem;
-  letter-spacing: 0.021em;
+  border-radius: 22px;
+  padding: 21px 57px;
+  box-shadow: 0 7px 36px #00fff932, 0 3px 23px #ffe60036;
+  min-width: 143px;
+  min-height: 67px;
+  font-size: 1.23rem;
+  letter-spacing: 0.028em;
   border: none;
   outline: none;
-  transition: background 0.19s, box-shadow 0.19s, filter 0.15s, color 0.13s;
+  transition: background 0.19s, box-shadow 0.19s, filter 0.13s, color 0.13s;
   font-family: 'Inter', 'SF Pro', Arial, sans-serif;
-  filter: brightness(1.15) blur(.04px);
+  filter: brightness(1.18) blur(.01px);
   position: relative;
   z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .ts-car-form-submit .btn:hover,
-.ts-car-form-submit .btn:focus {
-  filter: brightness(1.07) blur(.01px);
-  background: linear-gradient(108deg, #ffe600 78%, #00fff9 123%);
-  box-shadow: 0 10px 38px #ffe60083, 0 7px 17px #00fff93b;
+.ts-car-form-submit .btn:focus,
+.ts-car-form-submit .neon-premium-btn:hover,
+.ts-car-form-submit .neon-premium-btn:focus {
+  filter: brightness(1.09) blur(.01px) contrast(1.05);
+  background: linear-gradient(100deg, #00fff9 46%, #ffe600 123%);
+  box-shadow: 0 14px 48px #00fff98c, 0 8px 17px #ffe60047;
   color: #191932;
+  outline: none;
 }
 
 /* Car image preview block - bold, clean container, vivid placeholder bg */
