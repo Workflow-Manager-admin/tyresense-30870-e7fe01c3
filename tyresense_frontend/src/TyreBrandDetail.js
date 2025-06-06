@@ -174,23 +174,25 @@ function TyreBrandDetail({ brand, onBack }) {
         <button className="ts-detail-back-btn" onClick={onBack} aria-label="Go back to brand selection">
           ← Back
         </button>
-        <div aria-hidden="true" className="ts-brand-navbar-center-logo" style={{
+        {/* Unified tyre-themed logo with title for brand detail header */}
+        <span className="ts-animated-car-navbar" style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           gap: 8,
-          height: "100%"
+          minWidth: 100,
+          maxWidth: 328,
+          height: 40
         }}>
-          {/* Use the tyre-themed logo for consistency */}
           {(() => {
             const TyreLogoSVG = require('./TyreLogoSVG').default;
             return (
               <TyreLogoSVG
                 style={{
-                  width: 34,
-                  height: 34,
+                  width: 29,
+                  height: 29,
+                  minWidth: 20,
                   marginRight: 10,
-                  minWidth: 22,
                   verticalAlign: "middle",
                   flex: "0 0 auto"
                 }}
@@ -200,14 +202,14 @@ function TyreBrandDetail({ brand, onBack }) {
           <span
             className="ts-animated-car-title"
             style={{
-              fontWeight: 800,
+              marginLeft: 0,
               fontSize: "1.08rem",
-              letterSpacing: "0.19em",
+              fontWeight: 800,
+              letterSpacing: "0.21em",
               color: "#111216",
               textShadow: "none",
-              filter: "brightness(1.03) blur(.01px)",
+              filter: "brightness(1.07) blur(.01px)",
               verticalAlign: "middle",
-              marginLeft: 0,
               display: "inline-block",
               background: "none",
               lineHeight: 1,
@@ -217,7 +219,7 @@ function TyreBrandDetail({ brand, onBack }) {
           >
             TyreSense
           </span>
-        </div>
+        </span>
       </div>
       {/* Main content */}
       <div className="ts-brand-detail-container">
