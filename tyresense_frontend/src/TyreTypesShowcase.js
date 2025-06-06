@@ -15,7 +15,12 @@ const getPublicUrl = () =>
     ? process.env.PUBLIC_URL
     : window.PUBLIC_URL || "");
 
-// Strictly only the four Porsche-premium brands with image data
+const getPublicUrl = () =>
+  (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
+    ? process.env.PUBLIC_URL
+    : window.PUBLIC_URL || "");
+
+// Only the four Porsche-style premium brands: vertical "long" containers
 const TYRE_BRANDS = [
   {
     id: "pirelli",
