@@ -4,7 +4,8 @@ import "./TyreTypesShowcase.css";
 /**
  * PUBLIC_INTERFACE
  * TyreTypesShowcase
- * Displays only premium, Porsche-style brand cards for main navigation to brand pages (no small cards or alternate decks).
+ * Displays ONLY the four premium/larger brand containers.
+ * Each brand container is a clickable button that routes to a tyre brand page.
  * @param {function} onBrandSelect - function(brand) called when a brand is clicked.
  */
 const getPublicUrl = () =>
@@ -12,6 +13,7 @@ const getPublicUrl = () =>
     ? process.env.PUBLIC_URL
     : window.PUBLIC_URL || "");
 
+// Images for the four premium brands
 const TYRE_IMAGES = {
   pirelli: getPublicUrl() + "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
   michelin: getPublicUrl() + "/assets/20250605_071317_michelin-tyres.jpg",
@@ -19,6 +21,7 @@ const TYRE_IMAGES = {
   bridgestone: getPublicUrl() + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
 };
 
+// Four premium brands only - all other brands or code for smaller containers removed
 const TYRE_BRANDS = [
   {
     id: "pirelli",
@@ -48,7 +51,8 @@ const TYRE_BRANDS = [
 
 // PUBLIC_INTERFACE
 function TyreTypesShowcase({ onBrandSelect }) {
-  // Only the set of large, Porsche-style cards is shown; top small cards are fully removed.
+  // Only the set of large, Porsche-style cards is rendered.
+  // There are no small brand containers in the UI or code.
   return (
     <section className="ts-section ts-tyre-brands-showcase">
       <header className="tyre-showcase-header">
