@@ -79,7 +79,13 @@ function TyreRecommendations({ car, userLocation, onSetReminder, userTyreData, p
   useEffect(() => {
     if (!userLocation || !userLocation.lat) return;
     setWeatherLoading(true);
-    const API_KEY = process.env.REACT_APP_OWM_KEY || "<YOUR_OPENWEATHERMAP_KEY>";
+
+    const API_KEY =
+      (typeof process !== "undefined" && process.env && process.env.REACT_APP_OWM_KEY)
+        ? process.env.REACT_APP_OWM_KEY
+        : window.REACT_APP_OWM_KEY
+        || "<YOUR_OPENWEATHERMAP_KEY>";
+
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${userLocation.lat}&lon=${userLocation.lng}&appid=${API_KEY}&units=metric`
     )
