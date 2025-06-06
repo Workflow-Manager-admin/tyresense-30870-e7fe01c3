@@ -369,6 +369,27 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
               <span style={{ color: "#7d7d85", fontWeight: 700 }}>Registration year</span>
             </span>
           </fieldset>
+
+          {/* Last Tyre Change Date */}
+          <fieldset className="ts-car-form-group modern-form-group" style={{ maxWidth: 220, marginTop: 72 }}>
+            <label htmlFor="car-last-tyre-change">
+              <span className="car-label-title" style={{ color: "#b4081b", fontWeight: 800 }}>Last Tyre Change</span>
+            </label>
+            <input
+              className="ts-input"
+              type="date"
+              id="car-last-tyre-change"
+              value={lastTyreChange}
+              onChange={e => setLastTyreChange(e.target.value)}
+              required
+              aria-label="Date of last tyre replacement"
+              style={{ border: "2.1px solid #b4081b" }}
+              max={new Date().toISOString().substr(0, 10)}
+            />
+            <span className="ts-label-instruction">
+              <span style={{ color: "#b4081b", fontWeight: 700 }}>When did you last replace your tyres?</span>
+            </span>
+          </fieldset>
         </div>
 
         <div className="modern-car-form-row">
