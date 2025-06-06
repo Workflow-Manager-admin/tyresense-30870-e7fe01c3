@@ -454,14 +454,13 @@ function BrandDetailRoute({ onBackToList }) {
   );
 }
 
-// PUBLIC_INTERFACE
+/**
+ * PUBLIC_INTERFACE
+ * TyreSenseMain: Only renders the main app routes and UI, does NOT wrap with <Router>.
+ * The SPA <Router> must be provided at the true app root (index.js) for correct in-app navigation/history behavior.
+ */
 function TyreSenseMain() {
-  // Wrap everything in <Router>
-  return (
-    <Router>
-      <MainTyreSenseRoutes />
-    </Router>
-  );
+  return <MainTyreSenseRoutes />;
 }
 
 export default TyreSenseMain;
