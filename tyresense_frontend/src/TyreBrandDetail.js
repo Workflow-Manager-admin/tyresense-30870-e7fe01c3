@@ -174,8 +174,73 @@ function TyreBrandDetail({ brand, onBack }) {
         <button className="ts-detail-back-btn" onClick={onBack} aria-label="Go back to brand selection">
           ← Back
         </button>
-        <div aria-hidden="true" className="ts-brand-navbar-center-logo">
-          <AnimatedCarIntro asLogo />
+        <div aria-hidden="true" className="ts-brand-navbar-center-logo" style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 8,
+          height: "100%"
+        }}>
+          {/* Tyre-Themed SVG Logo from TyreSenseMain */}
+          {TyreSenseMain?.prototype?.constructor?.toString().includes('TyreLogoSVG') ? (
+            <TyreSenseMain.type.TyreLogoSVG style={{ width: 32, height: 32, marginRight: 7 }} />
+          ) : (
+            // fallback: inline TyreLogoSVG directly, can't access via import due to scoping
+            <svg
+              width={32}
+              height={32}
+              viewBox="0 0 44 44"
+              fill="none"
+              style={{ display: "inline-block", verticalAlign: "middle", marginRight: 7 }}
+              xmlns="http://www.w3.org/2000/svg"
+              aria-label="TyreSense tyre logo"
+              role="img"
+            >
+              <defs>
+                <radialGradient id="tyre-tread-bg-nav" cx="50%" cy="54%" r="54%">
+                  <stop offset="0.18" stopColor="#edeef0" />
+                  <stop offset="0.77" stopColor="#cdcfd4" />
+                  <stop offset="1" stopColor="#b0b1b7" />
+                </radialGradient>
+                <linearGradient id="tyre-sidewall-nav" x1="0" y1="0" x2="44" y2="38" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#4e5355" />
+                  <stop offset="1" stopColor="#18181c" />
+                </linearGradient>
+                <radialGradient id="tyre-red-accent-nav" cx="54%" cy="50%" r="67%">
+                  <stop offset="0.20" stopColor="#e10600" />
+                  <stop offset="0.95" stopColor="#b4081b" />
+                </radialGradient>
+              </defs>
+              <circle cx="22" cy="22" r="17" fill="url(#tyre-sidewall-nav)" stroke="#18181c" strokeWidth="2.2" />
+              <circle cx="22" cy="22" r="11.8" fill="url(#tyre-tread-bg-nav)" stroke="#7d7d85" strokeWidth="1.5" />
+              <path d="M12 17 Q22 10 32 17" stroke="url(#tyre-red-accent-nav)" strokeWidth="1.6" fill="none" />
+              <path d="M15 24 Q22 31 29 24" stroke="url(#tyre-red-accent-nav)" strokeWidth="1" fill="none" />
+              <path d="M18 14 L22 18 L26 14" stroke="#b4081b" strokeWidth="0.8" fill="none" />
+              <path d="M18 28 L22 24 L26 28" stroke="#b4081b" strokeWidth="0.7" fill="none" />
+              <circle cx="22" cy="22" r="2.1" fill="#e10600" stroke="#fff" strokeWidth="0.4" />
+              <circle cx="22" cy="22" r="0.7" fill="#b4081b" />
+            </svg>
+          )}
+          <span
+            className="ts-animated-car-title"
+            style={{
+              fontWeight: 800,
+              fontSize: "1.08rem",
+              letterSpacing: "0.19em",
+              color: "#111216",
+              textShadow: "none",
+              filter: "brightness(1.03) blur(.01px)",
+              verticalAlign: "middle",
+              marginLeft: 1,
+              display: "inline-block",
+              background: "none",
+              lineHeight: 1,
+              textTransform: "uppercase",
+              fontFamily: "'Roboto', Helvetica, Arial, sans-serif"
+            }}
+          >
+            TyreSense
+          </span>
         </div>
       </div>
       {/* Main content */}
