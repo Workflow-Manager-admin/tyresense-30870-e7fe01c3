@@ -257,7 +257,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                   minHeight: 38,
                   maxHeight: 92,
                   marginRight: "3vw",
-                  filter: "drop-shadow(0 0 26px #001eff55)", // palette only
+                  filter: "drop-shadow(0 0 26px #e1060055)", // updated to red palette
                   display: "inline-block",
                   verticalAlign: "middle",
                 }}
@@ -280,7 +280,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                     letterSpacing: "0.13em",
                     filter: "brightness(1.08) blur(.01px)",
                     color: "#FFFFFF", // accent
-                    textShadow: "0 0 14px #001eff, 0 2px 14px #4e5355", // Only palette, no opacity tokens
+                    textShadow: "0 0 14px #e10600, 0 2px 14px #4e5355", // Only palette, no opacity tokens
                     fontWeight: 800,
                     lineHeight: 1,
                     display: "inline-block",
