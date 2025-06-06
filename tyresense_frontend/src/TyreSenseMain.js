@@ -211,15 +211,16 @@ function MainTyreSenseRoutes(props) {
             }}
           >
             {/* Tyre-themed logo inline for branding */}
+            {/* Use TyreLogoSVG as tyre-themed logo for header/main navbar */}
             <TyreLogoSVG
               style={{
-                width: 34,
-                height: 34,
+                width: 36,
+                height: 36,
                 minWidth: 26,
-                marginRight: 10,
+                marginRight: 12,
                 verticalAlign: "middle",
                 flex: "0 0 auto",
-                filter: "drop-shadow(0 0 8px #b4081b28)"
+                filter: "drop-shadow(0 0 11px #b4081b18)"
               }}
             />
             <span
@@ -227,13 +228,13 @@ function MainTyreSenseRoutes(props) {
               style={{
                 fontWeight: 800,
                 fontSize: "1.18rem",
-                letterSpacing: "0.15em",
+                letterSpacing: "0.13em",
                 color: "#fff",
                 textShadow: "0 0 10px #e1060080, 0 1px 5px #0009",
                 filter: "brightness(1.13) blur(.01px)",
                 verticalAlign: "middle",
                 fontFamily: "'Roboto', Helvetica, Arial, sans-serif",
-                marginLeft: 3,
+                marginLeft: 2,
                 display: "inline-block",
                 background: "none",
                 lineHeight: 1.12,
