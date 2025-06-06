@@ -17,9 +17,18 @@ import "./AnimatedCarIntro.css";
 
 import TyreLogoSVG from "./TyreLogoSVG";
 
-// PUBLIC_INTERFACE
+/** PUBLIC_INTERFACE
+ * AnimatedCarIntro (actually, full AnimatedTyreIntro!): 
+ * - Animates the TyreSense rolling tyre SVG, then reveals the TyreSense wordmark/title.
+ * - No car icons whatsoever. All visual and code references are tyre-centric.
+ * 
+ * Props:
+ *   - visible: boolean, controls whether the animation runs
+ *   - onAnimationComplete: function, fired once intro finishes
+ *   - asLogo: boolean, render as header logo (static tyre + name)
+ */
 function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
-  // State to track when the tyre intro animation is over.
+  // State for when the intro passing tyre roll-in is complete
   const [hasEntered, setHasEntered] = useState(false);
   const doneOnce = useRef(false);
 
@@ -30,7 +39,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
     }
   }, [hasEntered, onAnimationComplete]);
 
-  // Navbar logo: static (not spinning) tyre and TyreSense name.
+  // Navbar/topbar: static, left-aligned tyre and TyreSense text for header.
   if (asLogo) {
     return (
       <span
@@ -77,7 +86,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
     );
   }
 
-  // Animated tyre intro
+  // Animated intro: rolling/rotating tyre, then fade-in wordmark
   return (
     <>
       <AnimatePresence>
@@ -95,7 +104,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              // Brand gradient
+              // TyreSense red-gradient brand background
               background: "linear-gradient(140deg, #4e5355 68%, #e10600 100%)",
             }}
           >
@@ -137,7 +146,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
               }}
               onAnimationComplete={() => setHasEntered(true)}
             >
-              {/* Rolling tyre logo, animated with rotation while appearing */}
+              {/* Rolling tyre SVG, animated spin-in on intro */}
               <motion.span
                 style={{
                   marginRight: "3vw",
@@ -165,7 +174,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                   }}
                 />
               </motion.span>
-              {/* "TyreSense" appears just after logo rolls in */}
+              {/* TyreSense name reveals after tyre rolls in */}
               {hasEntered && (
                 <motion.span
                   className="ts-animated-car-title"
