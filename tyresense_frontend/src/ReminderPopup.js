@@ -15,18 +15,29 @@ function ReminderPopup({ tyre, userEmail, onClose }) {
   useEffect(() => {
     if (!userEmail || !tyre) return;
     setSending(true);
-    if (window.emailjs && process.env.REACT_APP_EMAILJS_SERVICE_ID) {
+
+    const svcId = (typeof process !== "undefined" && process.env && process.env.REACT_APP_EMAILJS_SERVICE_ID)
+      ? process.env.REACT_APP_EMAILJS_SERVICE_ID
+      : window.REACT_APP_EMAILJS_SERVICE_ID;
+    const tplId = (typeof process !== "undefined" && process.env && process.env.REACT_APP_EMAILJS_TEMPLATE_ID)
+      ? process.env.REACT_APP_EMAILJS_TEMPLATE_ID
+      : window.REACT_APP_EMAILJS_TEMPLATE_ID;
+    const userId = (typeof process !== "undefined" && process.env && process.env.REACT_APP_EMAILJS_USER_ID)
+      ? process.env.REACT_APP_EMAILJS_USER_ID
+      : window.REACT_APP_EMAILJS_USER_ID;
+
+    if (window.emailjs && svcId) {
       window.emailjs
         .send(
-          process.env.REACT_APP_EMAILJS_SERVICE_ID,
-          process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+          svcId,
+          tplId,
           {
             tyre_model: tyre.model,
             user_email: userEmail,
             tyre_brand: tyre.brand,
             remind_date: new Date().toLocaleDateString(),
           },
-          process.env.REACT_APP_EMAILJS_USER_ID
+          userId
         )
         .then(() => {
           setSent(true);
