@@ -4,16 +4,9 @@ import "./TyreTypesShowcase.css";
 /**
  * PUBLIC_INTERFACE
  * TyreTypesShowcase
- * Only displays the four Porsche-style premium brand containers (Pirelli, Michelin, Continental, Bridgestone).
- * Any legacy/extra/small brand logic or mapping mechanisms have been removed.
+ * Displays the four Porsche-style premium brand containers (Pirelli, Michelin, Continental, Bridgestone) as vertically-long cards.
  * @param {function} onBrandSelect - function(brand) called when a brand is clicked.
  */
-
-// Helper for public URL
-const getPublicUrl = () =>
-  (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
-    ? process.env.PUBLIC_URL
-    : window.PUBLIC_URL || "");
 
 const getPublicUrl = () =>
   (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
@@ -48,14 +41,8 @@ const TYRE_BRANDS = [
   },
 ];
 
-/**
- * PUBLIC_INTERFACE
- * TyreTypesShowcase
- * Only displays the four Porsche-style premium brand containers (Pirelli, Michelin, Continental, Bridgestone).
- * Clicking a brand navigates to its detail page via onBrandSelect(brand).
- */
+// PUBLIC_INTERFACE
 function TyreTypesShowcase({ onBrandSelect }) {
-  // Render the four Porsche-style premium vertical brand containers
   return (
     <section className="ts-section ts-tyre-brands-showcase">
       <header className="tyre-showcase-header">
