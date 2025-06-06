@@ -247,36 +247,41 @@ function MainTyreSenseRoutes(props) {
             justifyContent: "center",
             alignItems: "center",
             height: 66,
-            padding: 0
+            padding: 0,
+            boxShadow: "0 2px 11px #11111417"
           }}
         >
           <div
+            className="ts-animated-car-navbar"
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               height: "100%",
-              gap: 12,
-              padding: "0 10px"
+              gap: 8,
+              padding: "0 11px",
+              minWidth: 123,
+              maxWidth: 390
             }}
           >
-            {/* Tyre-Themed Logo SVG as the only logo in the navbar */}
-            <TyreLogoSVG style={{ width: 46, height: 46, marginRight: 8, flex: "0 0 auto" }} />
+            {/* Tyre-Themed Logo SVG - visual sizing and accessibility for header */}
+            <TyreLogoSVG style={{ width: 38, height: 38, minWidth: 28, marginRight: 9, flex: "0 0 auto", filter: "drop-shadow(0 0 7px #b4081b41)" }} />
             <span
+              className="ts-animated-car-title"
               style={{
                 fontWeight: 800,
-                fontSize: "1.38rem",
+                fontSize: "1.4rem",
                 letterSpacing: "0.13em",
                 color: "#fff",
                 textShadow: "0 0 7px #b4081b77",
-                filter: "brightness(1.08) blur(.01px)",
+                filter: "brightness(1.09) blur(.01px)",
                 verticalAlign: "middle",
                 fontFamily: "'Roboto', Helvetica, Arial, sans-serif",
-                marginLeft: 2,
-                marginTop: 3,
+                marginLeft: 3,
+                marginTop: 1,
                 display: "inline-block",
                 background: "none",
-                lineHeight: 1,
+                lineHeight: 1.08,
                 textTransform: "uppercase"
               }}
             >
