@@ -48,9 +48,9 @@
 .ts-animated-car-title {
   font-size: 2.25rem;
   font-weight: 700;
-  color: #edeef0;
+  color: #FFFFFF;
   letter-spacing: 0.13em;
-  text-shadow: 0 0 10px #b4081b40;
+  text-shadow: 0 0 10px #001eff80, 0 2px 12px #4e5355aa; /* blue + primary brand shadow */
   margin-top: 0;
   font-family: 'Inter', 'Roboto', Arial, sans-serif;
   filter: brightness(1.11) blur(0.01px);
