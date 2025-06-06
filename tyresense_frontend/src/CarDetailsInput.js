@@ -24,6 +24,8 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
   );
   const [carImg, setCarImg] = useState(initialCar?.carImg || null);
   const [loadingImg, setLoadingImg] = useState(false);
+  // New state to force fallback UI if the fetched image source is broken
+  const [carImgError, setCarImgError] = useState(false);
 
   // When manufacturer changes, reset model unless it is valid for the selected brand.
   useEffect(() => {
@@ -110,13 +112,27 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
 
   // Fetch car image for preview based on manufacturer/model/year
   useEffect(() => {
+    // Whenever a new search happens, clear error state
+    setCarImgError(false);
+
+    let isMounted = true;
     if (manufacturer && model && year) {
       setLoadingImg(true);
-      // Use DuckDuckGo for API search first, fallback to Bing if blank, otherwise always fallback SVG
+
+      const searchQuery = `${year} ${manufacturer} ${model} car`;
+
+      // Helper to set error state and carImg for all downstream error cases
+      const failImage = () => {
+        if (isMounted) {
+          setCarImg(null);
+          setCarImgError(true);
+          setLoadingImg(false);
+        }
+      };
+
+      // Use DuckDuckGo for API search first
       fetch(
-        `https://api.duckduckgo.com/?q=${encodeURIComponent(
-          `${year} ${manufacturer} ${model} car`
-        )}&format=json&no_redirect=1`,
+        `https://api.duckduckgo.com/?q=${encodeURIComponent(searchQuery)}&format=json&no_redirect=1`,
         { method: "GET", mode: "cors" }
       )
         .then((r) => r.json())
@@ -125,13 +141,10 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             data.Image && data.Image.startsWith("http")
               ? data.Image
               : null;
-          // If DuckDuckGo API gives blank (common for lesser-known cars), fallback to Bing search API (free demo endpoint)
+          // If DuckDuckGo API gives blank (common for lesser-known cars), fallback to Unsplash (do not call Bing, limits)
           if (!img) {
-            // Demo or fallback: Use Bing/Unsplash API (vivid demo only, swap for prod API if needed)
             fetch(
-              `https://api.unsplash.com/search/photos?client_id=FJ7a7yzrRgqT1kt9YAGQ8lm9ZimzLmYWrm7Y8Rx-lP8&query=${encodeURIComponent(
-                `${year} ${manufacturer} ${model} car`
-              )}`,
+              `https://api.unsplash.com/search/photos?client_id=FJ7a7yzrRgqT1kt9YAGQ8lm9ZimzLmYWrm7Y8Rx-lP8&query=${encodeURIComponent(searchQuery)}`,
               { method: "GET" }
             )
               .then((res) => res.json())
@@ -142,27 +155,37 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
                   json.results[0].urls &&
                   json.results[0].urls.small
                 ) {
-                  img = json.results[0].urls.small;
-                  setCarImg(img);
+                  if (isMounted) {
+                    setCarImg(json.results[0].urls.small);
+                    setCarImgError(false);
+                  }
                 } else {
-                  setCarImg(null);
+                  failImage();
                 }
-                setLoadingImg(false);
+                if (isMounted) setLoadingImg(false);
               })
               .catch(() => {
-                setCarImg(null);
-                setLoadingImg(false);
+                failImage();
               });
           } else {
-            setCarImg(img);
-            setLoadingImg(false);
+            if (isMounted) {
+              setCarImg(img);
+              setCarImgError(false);
+              setLoadingImg(false);
+            }
           }
         })
         .catch(() => {
-          // Fallback/fail gracefully to showing SVG
-          setCarImg(null);
-          setLoadingImg(false);
+          failImage();
         });
+
+      return () => {
+        isMounted = false;
+      };
+    } else {
+      // reset if details cleared
+      setCarImg(null);
+      setCarImgError(false);
     }
   }, [manufacturer, model, year]);
 
@@ -217,20 +240,30 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
     </svg>
   );
   // Helper for conditional preview (carImg, loading, fallback)
-  const renderCarImage = (altText = "Car", imgStyle = {}) =>
-    loadingImg ? (
-      <span className="ts-car-img-loading">Loading…</span>
-    ) : carImg ? (
-      <img
-        src={carImg}
-        alt={altText}
-        style={imgStyle}
-        draggable={false}
-        onError={e => { e.target.onerror = null; setCarImg(null); }}
-      />
-    ) : (
-      fallbackCarSVG
-    );
+  const renderCarImage = (altText = "Car", imgStyle = {}) => {
+    if (loadingImg) {
+      return <span className="ts-car-img-loading">Loading…</span>;
+    }
+    if (carImg && !carImgError) {
+      // "key" ensures failed URLs don't get reused for re-renders
+      return (
+        <img
+          src={carImg}
+          alt={altText}
+          style={imgStyle}
+          draggable={false}
+          key={carImg}
+          // If image fails to load, trigger fallback
+          onError={e => {
+            e.target.onerror = null;
+            setCarImgError(true);
+          }}
+        />
+      );
+    }
+    // Either no image or error on image: always render fallback
+    return fallbackCarSVG;
+  };
 
   const minimalSummary = hasEssentials && (
     <section
