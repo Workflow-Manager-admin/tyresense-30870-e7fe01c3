@@ -11,48 +11,51 @@ function ReminderPopup({ tyre, userEmail, onClose }) {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
 
-  // Send with EmailJS if configured, fallback to demo after 2s
+  // Always open popup, only attempt EmailJS if userEmail is provided
   useEffect(() => {
-    if (!userEmail || !tyre) return;
+    if (!tyre) return;
     setSending(true);
 
-    const svcId = (typeof process !== "undefined" && process.env && process.env.REACT_APP_EMAILJS_SERVICE_ID)
-      ? process.env.REACT_APP_EMAILJS_SERVICE_ID
-      : window.REACT_APP_EMAILJS_SERVICE_ID;
-    const tplId = (typeof process !== "undefined" && process.env && process.env.REACT_APP_EMAILJS_TEMPLATE_ID)
-      ? process.env.REACT_APP_EMAILJS_TEMPLATE_ID
-      : window.REACT_APP_EMAILJS_TEMPLATE_ID;
-    const userId = (typeof process !== "undefined" && process.env && process.env.REACT_APP_EMAILJS_USER_ID)
-      ? process.env.REACT_APP_EMAILJS_USER_ID
-      : window.REACT_APP_EMAILJS_USER_ID;
+    if (userEmail && window.emailjs) {
+      const svcId = (typeof process !== "undefined" && process.env && process.env.REACT_APP_EMAILJS_SERVICE_ID)
+        ? process.env.REACT_APP_EMAILJS_SERVICE_ID
+        : window.REACT_APP_EMAILJS_SERVICE_ID;
+      const tplId = (typeof process !== "undefined" && process.env && process.env.REACT_APP_EMAILJS_TEMPLATE_ID)
+        ? process.env.REACT_APP_EMAILJS_TEMPLATE_ID
+        : window.REACT_APP_EMAILJS_TEMPLATE_ID;
+      const userId = (typeof process !== "undefined" && process.env && process.env.REACT_APP_EMAILJS_USER_ID)
+        ? process.env.REACT_APP_EMAILJS_USER_ID
+        : window.REACT_APP_EMAILJS_USER_ID;
 
-    if (window.emailjs && svcId) {
-      window.emailjs
-        .send(
-          svcId,
-          tplId,
-          {
-            tyre_model: tyre.model,
-            user_email: userEmail,
-            tyre_brand: tyre.brand,
-            remind_date: new Date().toLocaleDateString(),
-          },
-          userId
-        )
-        .then(() => {
-          setSent(true);
-          setTimeout(onClose, 2600);
-        })
-        .catch(() => {
-          setSent(true);
-          setTimeout(onClose, 2600);
-        });
-    } else {
-      setTimeout(() => {
-        setSent(true);
-        setTimeout(onClose, 1700);
-      }, 1300);
+      if (svcId && tplId && userId) {
+        window.emailjs
+          .send(
+            svcId,
+            tplId,
+            {
+              tyre_model: tyre.model,
+              user_email: userEmail,
+              tyre_brand: tyre.brand,
+              remind_date: new Date().toLocaleDateString(),
+            },
+            userId
+          )
+          .then(() => {
+            setSent(true);
+            setTimeout(onClose, 2600);
+          })
+          .catch(() => {
+            setSent(true);
+            setTimeout(onClose, 2600);
+          });
+        return;
+      }
     }
+    // Fallback: just show a local reminder
+    setTimeout(() => {
+      setSent(true);
+      setTimeout(onClose, 1700);
+    }, 1300);
     // eslint-disable-next-line
   }, [userEmail, tyre]);
 
