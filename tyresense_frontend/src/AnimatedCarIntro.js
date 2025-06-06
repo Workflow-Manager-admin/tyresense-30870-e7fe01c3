@@ -25,22 +25,22 @@ function TyreSenseLogoCarSVG({ style, ...props }) {
     >
       <defs>
         <radialGradient id="ts-carBody" cx="49%" cy="52%" r="78%">
-          <stop offset="0.02" stopColor="#b6b3a7" stopOpacity="0.72" />
-          <stop offset="0.54" stopColor="#232327" stopOpacity="1" />
-          <stop offset="1" stopColor="#18181c" stopOpacity="1" />
+          <stop offset="0.02" stopColor="#FFFFFF" stopOpacity="0.82" /> {/* accent */}
+          <stop offset="0.54" stopColor="#4e5355" stopOpacity="1" /> {/* primary */}
+          <stop offset="1" stopColor="#001eff" stopOpacity="1" /> {/* secondary */}
         </radialGradient>
         <linearGradient id="ts-roof" x1="42" y1="16" x2="220" y2="9" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#7d7d85" />
-          <stop offset="0.8" stopColor="#edeef0" />
+          <stop stopColor="#4e5355" /> {/* primary */}
+          <stop offset="0.8" stopColor="#001eff" /> {/* secondary */}
         </linearGradient>
         <radialGradient id="ts-wheel-dark" cx="49%" cy="48%" r="51%">
           <stop offset="0.29" stopColor="#4e5355" />
-          <stop offset="0.77" stopColor="#232327" />
-          <stop offset="1" stopColor="#0c0c0e" />
+          <stop offset="0.77" stopColor="#001eff" />
+          <stop offset="1" stopColor="#FFFFFF" />
         </radialGradient>
         <radialGradient id="ts-wheel-gloss" cx="62%" cy="40%" r="66%">
-          <stop offset="0.48" stopColor="#b6b3a7" stopOpacity="0.09" />
-          <stop offset="0.96" stopColor="#edeef0" stopOpacity="0.04" />
+          <stop offset="0.48" stopColor="#FFFFFF" stopOpacity="0.09" />
+          <stop offset="0.96" stopColor="#001eff" stopOpacity="0.05" />
         </radialGradient>
       </defs>
       {/* Shadow */}
