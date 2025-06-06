@@ -43,30 +43,31 @@ function TyreSenseLogoCarSVG({ style, ...props }) {
         </radialGradient>
       </defs>
       {/* Shadow */}
-      <ellipse cx="160" cy="88" rx="92" ry="5.5" fill="#18181c" opacity="0.18" />
+      {/* All legacy/grey/non-palette colors replaced with main colors only */}
+      <ellipse cx="160" cy="88" rx="92" ry="5.5" fill="#001eff" opacity="0.14" />
       {/* Rear wheel */}
       <g>
         <circle cx="60" cy="71" r="19.4" fill="url(#ts-wheel-dark)" />
-        <circle cx="60" cy="71" r="13" fill="#18181c" />
+        <circle cx="60" cy="71" r="13" fill="#4e5355" />
         <circle cx="60" cy="71" r="17" fill="url(#ts-wheel-gloss)" />
-        <circle cx="60" cy="71" r="5.8" fill="#edeef0" opacity="0.08" />
+        <circle cx="60" cy="71" r="5.8" fill="#FFFFFF" opacity="0.10" />
         {/* Muted highlight */}
-        <ellipse cx="56" cy="61" rx="6" ry="2.6" fill="#7d7d85" opacity="0.07" />
+        <ellipse cx="56" cy="61" rx="6" ry="2.6" fill="#001eff" opacity="0.085" />
       </g>
       {/* Front wheel */}
       <g>
         <circle cx="232" cy="71" r="18" fill="url(#ts-wheel-dark)" />
-        <circle cx="232" cy="71" r="12" fill="#232327" />
+        <circle cx="232" cy="71" r="12" fill="#4e5355" />
         <circle cx="232" cy="71" r="15" fill="url(#ts-wheel-gloss)" />
-        <circle cx="232" cy="71" r="6" fill="#edeef0" opacity="0.05" />
+        <circle cx="232" cy="71" r="6" fill="#FFFFFF" opacity="0.09" />
         {/* Muted highlight */}
-        <ellipse cx="229" cy="61" rx="6" ry="2.5" fill="#7d7d85" opacity="0.07" />
+        <ellipse cx="229" cy="61" rx="6" ry="2.5" fill="#001eff" opacity="0.07" />
       </g>
       {/* Car body main shape (front to tail, stylized and logo-like) */}
       <path
         d="M43 66 Q54 22 124 24 Q136 4 200 7 Q255 8 278 29 Q312 35 321 64 Q326 66 329 68 Q314 72 238 67 Q131 65 75 73 Q48 69 43 66 Z"
         fill="url(#ts-carBody)"
-        stroke="#7d7d85"
+        stroke="#001eff"
         strokeWidth="2.7"
         opacity="1"
       />
@@ -76,33 +77,33 @@ function TyreSenseLogoCarSVG({ style, ...props }) {
         stroke="url(#ts-roof)"
         strokeWidth="2.8"
         fill="none"
-        opacity="0.35"
+        opacity="0.31"
         strokeLinecap="round"
       />
-      {/* Window gloss - muted accent */}
+      {/* Window gloss */}
       <path
         d="M118 22 Q135 13 205 16 Q240 20 247 30"
-        stroke="#edeef0"
+        stroke="#FFFFFF"
         strokeWidth="1.7"
         fill="none"
         opacity="0.07"
         strokeLinecap="round"
       />
       {/* Undercarriage */}
-      <rect x="54" y="67.5" width="190" height="7.1" rx="3.8" fill="#18181c" />
-      {/* Door handle - muted mini bar */}
-      <rect x="135" y="49" width="26" height="2.2" rx="1.1" fill="#edeef0" opacity="0.11" />
-      {/* Rear "fin" - thicker stylized bar */}
-      <rect x="41.3" y="54" width="7.1" height="15" rx="3.5" fill="#edeef0" opacity="0.07" />
-      {/* Short vertical antenna */}
-      <rect x="137" y="12" width="2.9" height="13" rx="1.7" fill="#edeef0" opacity="0.11" />
-      {/* Muted speedline (stylized motion effect) */}
-      <rect x="86" y="41" width="33" height="2" rx="1" fill="#7d7d85" opacity="0.08" />
-      <rect x="220" y="21" width="23" height="2" rx="1" fill="#7d7d85" opacity="0.09" />
+      <rect x="54" y="67.5" width="190" height="7.1" rx="3.8" fill="#4e5355" opacity="0.82" />
+      {/* Door handle */}
+      <rect x="135" y="49" width="26" height="2.2" rx="1.1" fill="#001eff" opacity="0.11" />
+      {/* Rear "fin" */}
+      <rect x="41.3" y="54" width="7.1" height="15" rx="3.5" fill="#001eff" opacity="0.07" />
+      {/* Antenna */}
+      <rect x="137" y="12" width="2.9" height="13" rx="1.7" fill="#FFFFFF" opacity="0.08" />
+      {/* Speedline */}
+      <rect x="86" y="41" width="33" height="2" rx="1" fill="#4e5355" opacity="0.07" />
+      <rect x="220" y="21" width="23" height="2" rx="1" fill="#4e5355" opacity="0.09" />
       {/* TyreSense badge (logo dot, subtle) */}
       <g>
-        <circle cx="242.5" cy="62.5" r="8" fill="#edeef0" stroke="#edeef0" strokeWidth="1.1" />
-        <path d="M237 63 Q242.7 56 248 63 Q243 67 237 65 Z" fill="#fff" opacity="0.41" />
+        <circle cx="242.5" cy="62.5" r="8" fill="#001eff" stroke="#001eff" strokeWidth="1.1" opacity="0.7"/>
+        <path d="M237 63 Q242.7 56 248 63 Q243 67 237 65 Z" fill="#FFFFFF" opacity="0.21" />
       </g>
     </svg>
   );
