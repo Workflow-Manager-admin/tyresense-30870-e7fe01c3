@@ -21,7 +21,10 @@ const MAIN_TYRES = [
     type: "Summer",
     size: "225/45R17",
     price: 118,
-    img: process.env.PUBLIC_URL + "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
+    img: (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
+      ? process.env.PUBLIC_URL
+      : window.PUBLIC_URL || ""
+    ) + "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
     url: "https://www.pirelli.com/tyres/en-ww/cinturato/p7"
   },
   {
@@ -31,7 +34,10 @@ const MAIN_TYRES = [
     type: "All-Season",
     size: "205/55R16",
     price: 109,
-    img: process.env.PUBLIC_URL + "/assets/20250605_071317_michelin-tyres.jpg",
+    img: (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
+      ? process.env.PUBLIC_URL
+      : window.PUBLIC_URL || ""
+    ) + "/assets/20250605_071317_michelin-tyres.jpg",
     url: "https://www.michelin.co.uk/auto/tyres/michelin-primacy-4"
   },
   {
@@ -41,7 +47,10 @@ const MAIN_TYRES = [
     type: "Performance",
     size: "225/40R18",
     price: 127,
-    img: process.env.PUBLIC_URL + "/assets/20250605_071316_continental_pp_conti_cityplus.jpg",
+    img: (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
+      ? process.env.PUBLIC_URL
+      : window.PUBLIC_URL || ""
+    ) + "/assets/20250605_071316_continental_pp_conti_cityplus.jpg",
     url: "https://www.continental-tires.com/uk/en/b2c/car/tires/contisportcontact-6.html"
   },
   {
@@ -51,7 +60,10 @@ const MAIN_TYRES = [
     type: "Touring",
     size: "195/65R15",
     price: 103,
-    img: process.env.PUBLIC_URL + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
+    img: (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
+      ? process.env.PUBLIC_URL
+      : window.PUBLIC_URL || ""
+    ) + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
     url: "https://www.bridgestone.co.uk/our-products/car-tyres/turanza-t005"
   }
 ];

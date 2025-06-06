@@ -19,7 +19,10 @@ const DEMO_TYRES = [
     size: "225/45R17",
     price: 118,
     url: "https://www.pirelli.com/tyres/en-ww/cinturato/p7",
-    img: process.env.PUBLIC_URL + "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
+    img: (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
+      ? process.env.PUBLIC_URL
+      : window.PUBLIC_URL || ""
+    ) + "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
     weather: "summer",
   },
   {
