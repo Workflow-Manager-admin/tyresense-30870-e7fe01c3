@@ -161,8 +161,8 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
             height: 31,
             marginRight: 13,
             marginLeft: 2,
-            // Brand shadow using secondary (blue) - no yellow/red/neon
-            filter: "drop-shadow(0 0 9px #001eff44)",
+            // Brand shadow using secondary (blue) - strict ColorCraft palette only
+            filter: "drop-shadow(0 0 9px #001eff55)",
             flex: "0 0 auto",
           }}
         />
