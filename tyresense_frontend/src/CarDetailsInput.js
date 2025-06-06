@@ -5,6 +5,7 @@ import "./CarDetailsInput.css";
  * PUBLIC_INTERFACE
  * CarDetailsInput:
  *  - User enters car details: Manufacturer, Model, Year, gets a contextual car image.
+ *  - NEW: User enters date of last tyre change, used for reminder popup logic ("when tyres are due").
  *  - Refined UX: clearer field labels, helpful instructions and hints.
  *  - Persists car info in LocalStorage (or Firebase if available).
  */
@@ -226,6 +227,11 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
             <span className="car-details-summary-year">{year}</span>
           )}
         </div>
+        {lastTyreChange && (
+          <div style={{ color: "#b4081b", fontWeight: 700, fontSize: "1.01rem", marginTop: 6 }}>
+            Last Tyre Change: {lastTyreChange}
+          </div>
+        )}
       </div>
     </section>
   );
