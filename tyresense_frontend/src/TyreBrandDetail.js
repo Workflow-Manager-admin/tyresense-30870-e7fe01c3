@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedCarIntro from "./AnimatedCarIntro";
+import TyreSenseMain from "./TyreSenseMain";
 import "./TyreBrandDetail.css";
 
 /**
