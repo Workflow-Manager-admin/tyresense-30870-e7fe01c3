@@ -42,8 +42,7 @@ function TyreSenseLogoCarSVG({ style, ...props }) {
           <stop offset="0.96" stopColor="#001eff" stopOpacity="0.05" />
         </radialGradient>
       </defs>
-      {/* Shadow */}
-      {/* All legacy/grey/non-palette colors replaced with main colors only */}
+      {/* Shadow - strict palette usage */}
       <ellipse cx="160" cy="88" rx="92" ry="5.5" fill="#001eff" opacity="0.14" />
       {/* Rear wheel */}
       <g>
@@ -51,7 +50,7 @@ function TyreSenseLogoCarSVG({ style, ...props }) {
         <circle cx="60" cy="71" r="13" fill="#4e5355" />
         <circle cx="60" cy="71" r="17" fill="url(#ts-wheel-gloss)" />
         <circle cx="60" cy="71" r="5.8" fill="#FFFFFF" opacity="0.10" />
-        {/* Muted highlight */}
+        {/* Muted highlight; palette only, all opacity values kept for visual effect */}
         <ellipse cx="56" cy="61" rx="6" ry="2.6" fill="#001eff" opacity="0.085" />
       </g>
       {/* Front wheel */}
@@ -60,10 +59,9 @@ function TyreSenseLogoCarSVG({ style, ...props }) {
         <circle cx="232" cy="71" r="12" fill="#4e5355" />
         <circle cx="232" cy="71" r="15" fill="url(#ts-wheel-gloss)" />
         <circle cx="232" cy="71" r="6" fill="#FFFFFF" opacity="0.09" />
-        {/* Muted highlight */}
         <ellipse cx="229" cy="61" rx="6" ry="2.5" fill="#001eff" opacity="0.07" />
       </g>
-      {/* Car body main shape (front to tail, stylized and logo-like) */}
+      {/* Car body main shape */}
       <path
         d="M43 66 Q54 22 124 24 Q136 4 200 7 Q255 8 278 29 Q312 35 321 64 Q326 66 329 68 Q314 72 238 67 Q131 65 75 73 Q48 69 43 66 Z"
         fill="url(#ts-carBody)"
@@ -71,7 +69,7 @@ function TyreSenseLogoCarSVG({ style, ...props }) {
         strokeWidth="2.7"
         opacity="1"
       />
-      {/* Roof - stylized highlight */}
+      {/* Roof highlight */}
       <path
         d="M99 27 Q113 13 197 13 Q238 15 258 28"
         stroke="url(#ts-roof)"
@@ -97,10 +95,10 @@ function TyreSenseLogoCarSVG({ style, ...props }) {
       <rect x="41.3" y="54" width="7.1" height="15" rx="3.5" fill="#001eff" opacity="0.07" />
       {/* Antenna */}
       <rect x="137" y="12" width="2.9" height="13" rx="1.7" fill="#FFFFFF" opacity="0.08" />
-      {/* Speedline */}
+      {/* Speedlines - only palette */}
       <rect x="86" y="41" width="33" height="2" rx="1" fill="#4e5355" opacity="0.07" />
       <rect x="220" y="21" width="23" height="2" rx="1" fill="#4e5355" opacity="0.09" />
-      {/* TyreSense badge (logo dot, subtle) */}
+      {/* Badge */}
       <g>
         <circle cx="242.5" cy="62.5" r="8" fill="#001eff" stroke="#001eff" strokeWidth="1.1" opacity="0.7"/>
         <path d="M237 63 Q242.7 56 248 63 Q243 67 237 65 Z" fill="#FFFFFF" opacity="0.21" />

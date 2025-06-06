@@ -138,3 +138,4 @@
 }
 
 /* Strict color policy: Only #4e5355, #001eff, #FFFFFF (primary, secondary, accent) for ALL backgrounds, text, borders, gradients, shadows. No yellow/neon or legacy tokens allowed. */
+/* No other colors permitted anywhere in this file. */
