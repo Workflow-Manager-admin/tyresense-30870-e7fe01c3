@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation, useParams } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation, useParams } from "react-router-dom";
 import "./TyreSenseMain.css";
 import ReminderPopup from "./ReminderPopup";
 import CarDetailsInput from "./CarDetailsInput";
