@@ -130,15 +130,11 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
 
   // Persistent logo (mini, navbar style)
   if (asLogo) {
-    // Render tyre-themed logo plus TyreSense title for header use (not just bare name)
-    // Import logo SVG if available
-    let TyreLogoSVG;
-    try { TyreLogoSVG = require('./TyreSenseMain').TyreLogoSVG; } catch { TyreLogoSVG = null; }
+    // Render tyre-themed logo plus TyreSense title for header use (just the new TyreLogoSVG)
+    const TyreLogoSVG = require('./TyreLogoSVG').default;
     return (
-      <span className="ts-animated-car-navbar" style={{display:"flex",alignItems:"center",gap:6,minWidth:92,height:46}}>
-        {TyreLogoSVG && (
-          <TyreLogoSVG style={{ width: 29, height: 29, minWidth: 20, marginRight: 6, verticalAlign: "middle" }} />
-        )}
+      <span className="ts-animated-car-navbar" style={{display:"flex",alignItems:"center",gap:8,minWidth:92,height:46}}>
+        <TyreLogoSVG style={{ width: 29, height: 29, minWidth: 20, marginRight: 10, verticalAlign: "middle", flex: "0 0 auto" }}/>
         <span
           className="ts-animated-car-title"
           style={{
