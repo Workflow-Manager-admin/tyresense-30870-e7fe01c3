@@ -142,7 +142,26 @@ function MainTyreSenseRoutes(props) {
     }
   }, []);
 
-  // Anim intro
+  // -- Tyre replacement popup logic: Show reminder (modal/popup) on "Remind Me",
+  // and/or when tyres are due for replacement --
+  // Assume userTyreData could include age/mileage/lastChange;
+  // Minimal demo: show if triggered by Remind Me click (popup logic reliable)
+
+  // Make reminder popup visible
+  function handleSetReminderPopup(tyre) {
+    setReminderTyre(tyre);
+    setShowReminderPopup(true);
+  }
+  // Optionally: Here, for future—detect overdue tyre logic and trigger modal
+  // E.g., if checking a persisted "lastTyreChange" date from storage/db:
+  /*
+  useEffect(() => {
+    if (userTyreData && userTyreData.lastChange) {
+      // If last change >6y, show popup (or whatever logic)
+    }
+  }, [userTyreData]);
+  */
+
   const logoFadeInTimeout = useRef();
   useEffect(() => { setStage("CAR_ANIM"); }, []);
   const handleAnimatedCarDone = () => {
