@@ -51,7 +51,6 @@
   font-weight: 700;
   color: #FFFFFF; /* accent */
   letter-spacing: 0.13em;
-  /* Unified shadow with main container: Blue and primary only (no yellow/neon) */
   text-shadow: 0 0 14px #001effbb, 0 2px 14px #4e5355b5;
   margin-top: 0;
   font-family: 'Inter', 'Roboto', Arial, sans-serif;
@@ -65,7 +64,7 @@
   vertical-align: middle;
 }
 
-/* Persistent logo mark (navbar/topbar): ALWAYS horizontally centered, never overlaps, always inline */
+/* Persistent logo mark (navbar/topbar): */
 .ts-animated-car-navbar {
   max-width: 390px;
   min-width: 123px;
@@ -82,7 +81,6 @@
 .ts-animated-car-navbar .ts-animated-car-title {
   font-size: 1.53rem !important;
   color: #FFFFFF !important; /* accent */
-  /* Only palette shadows: secondary and primary */
   text-shadow: 0 0 8px #001eff99, 0 2px 11px #4e5355a0;
   letter-spacing: 0.13em;
   line-height: 1;
@@ -114,7 +112,6 @@
   }
 }
 
-/* Responsive intro animation: scale car+text without overlap, visually centered at all widths */
 @media (max-width: 600px) {
   .ts-animated-car {
     min-width: 88px;
@@ -140,6 +137,4 @@
   gap: 0;
 }
 
-/* Strictly enforce ColorCraft palette: 
-   Only primary (#4e5355), secondary (#001eff), accent (#FFFFFF) allowed.
-   No neon, yellow, or non-approved colors anywhere in component. */
+/* Strict color policy: Only #4e5355, #001eff, #FFFFFF (primary, secondary, accent) for ALL backgrounds, text, borders, gradients, shadows. No yellow/neon or legacy tokens allowed. */
