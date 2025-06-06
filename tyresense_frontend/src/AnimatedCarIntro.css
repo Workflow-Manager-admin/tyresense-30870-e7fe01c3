@@ -1,5 +1,6 @@
 .ts-animated-car-intro-bg {
-  background: linear-gradient(150deg, #18181c 80%, #232327 100%);
+  /* Updated for TyreSense main container palette */
+  background: linear-gradient(140deg, #4e5355 68%, #001eff 100%);
   width: 100vw;
   height: 100vh;
   display: flex;
