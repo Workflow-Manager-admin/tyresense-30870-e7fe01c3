@@ -12,6 +12,15 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
   const [manufacturer, setManufacturer] = useState(initialCar?.make || "");
   const [model, setModel] = useState(initialCar?.model || "");
   const [year, setYear] = useState(initialCar?.year || "");
+  const [lastTyreChange, setLastTyreChange] = useState(
+    initialCar?.lastTyreChange ||
+      // Default to 4 years ago (for first-timers, demo purposes: not overdue)
+      (() => {
+        const d = new Date();
+        d.setFullYear(d.getFullYear() - 4);
+        return d.toISOString().substr(0, 10);
+      })()
+  );
   const [carImg, setCarImg] = useState(initialCar?.carImg || null);
   const [loadingImg, setLoadingImg] = useState(false);
 
@@ -124,7 +133,14 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const car = { make: manufacturer, model, year, carImg };
+    const car = {
+      make: manufacturer,
+      model,
+      year,
+      carImg,
+      lastTyreChange,
+      // Support other fields (e.g., email in the future) if needed
+    };
     onSubmit(car);
     if (persistCar) persistCar(car);
   }
