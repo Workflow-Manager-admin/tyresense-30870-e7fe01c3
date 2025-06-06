@@ -102,7 +102,7 @@
   display: block;
   margin-bottom: 7px;
   text-shadow: none;
-  font-family: 'Inter', 'Roboto', Arial, sans-serif;
+  font-family: inherit;
   filter: brightness(1.07);
 }
 .ts-car-input-instruction-desc {
