@@ -53,11 +53,15 @@ function GoogleMapsStoreLocator() {
 
   // Load Google Maps JS API (idempotent for SPA)
   useEffect(() => {
-    const MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || "<YOUR_GOOGLE_MAPS_KEY>";
+    // In production build, env vars like REACT_APP_GOOGLE_MAPS_API_KEY are replaced at build time.
+    const MAPS_API_KEY =
+      (typeof process !== "undefined" && process.env && process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
+        ? process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+        : window.REACT_APP_GOOGLE_MAPS_API_KEY // fallback in case it's injected globally
+        || "<YOUR_GOOGLE_MAPS_KEY>";
 
-    // If missing or left as placeholder, show a user-friendly, production-safe message (no stacktrace!)
+    // If missing or left as placeholder, show user-friendly, production-safe message (no stacktrace!)
     if (!MAPS_API_KEY || MAPS_API_KEY.includes("<YOUR_GOOGLE_MAPS_KEY>")) {
-      // Only set a controlled friendly error
       setError("Map unavailable - please contact support or check configuration");
       return;
     }
