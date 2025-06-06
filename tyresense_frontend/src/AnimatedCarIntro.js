@@ -207,7 +207,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
               alignItems: "center",
               justifyContent: "center",
               // ColorCraft gradient
-              background: "linear-gradient(140deg, #4e5355 68%, #001eff 100%)",
+              background: "linear-gradient(140deg, #4e5355 68%, #e10600 100%)",
             }}
           >
             <motion.div
