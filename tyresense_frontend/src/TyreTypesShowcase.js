@@ -7,15 +7,16 @@ import "./TyreTypesShowcase.css";
  * Displays only premium, Porsche-style brand cards for main navigation to brand pages (no small cards or alternate decks).
  * @param {function} onBrandSelect - function(brand) called when a brand is clicked.
  */
+const getPublicUrl = () =>
+  (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
+    ? process.env.PUBLIC_URL
+    : window.PUBLIC_URL || "");
+
 const TYRE_IMAGES = {
-  pirelli:
-    process.env.PUBLIC_URL + "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
-  michelin:
-    process.env.PUBLIC_URL + "/assets/20250605_071317_michelin-tyres.jpg",
-  continental:
-    process.env.PUBLIC_URL + "/assets/20250605_071316_continental_pp_conti_cityplus.jpg",
-  bridgestone:
-    process.env.PUBLIC_URL + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
+  pirelli: getPublicUrl() + "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
+  michelin: getPublicUrl() + "/assets/20250605_071317_michelin-tyres.jpg",
+  continental: getPublicUrl() + "/assets/20250605_071316_continental_pp_conti_cityplus.jpg",
+  bridgestone: getPublicUrl() + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
 };
 
 const TYRE_BRANDS = [
