@@ -420,6 +420,7 @@ function MainTyreSenseRoutes(props) {
                   </section>
                   {/* Porsche-style popover for reminder */}
                   <section style={{ maxWidth: 900, margin: "30px auto 0 auto", minHeight: 64 }}>
+                    {/* Render the ReminderPopup when a tyre is selected for reminder */}
                     {showReminderPopup && reminderTyre ? (
                       <ReminderPopup
                         tyre={reminderTyre}
@@ -435,6 +436,14 @@ function MainTyreSenseRoutes(props) {
                         <span>Tyre replacement reminder will appear here.</span>
                       </div>
                     )}
+                    {/* Pass the handler for "Remind Me" to TyreRecommendations */}
+                    <TyreRecommendations
+                      car={userCar}
+                      userLocation={userLocation}
+                      onSetReminder={handleSetReminderPopup}
+                      userTyreData={null}
+                      persistTyreData={() => {}}
+                    />
                   </section>
                 </div>
               </>
