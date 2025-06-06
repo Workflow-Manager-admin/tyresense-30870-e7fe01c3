@@ -218,36 +218,66 @@ function TyreSenseMain() {
     <div className="tyresense-main">
       {/* Persistent Porsche-minimal logo as navbar */}
       {showNavbarLogo && (
-        <nav style={{
-          position: "fixed",
-          top: 0, left: 0, width: "100%",
-          zIndex: 100,
-          background: "var(--porsche-black)",
-          borderBottom: "1px solid var(--porsche-border-light)",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: 66
-        }}>
-          <AnimatedCarIntro asLogo />
+        <nav
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            zIndex: 100,
+            background: "var(--porsche-black)",
+            borderBottom: "1px solid var(--porsche-border-light)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: 66,
+          }}
+        >
+          <div style={{display:"flex", alignItems:"center", gap:18}}>
+            <TyreSensePlaceholderLogo width={62} height={30} />
+            <span className="tyresense-brand-gradient-text"
+              style={{
+                fontWeight: 900,
+                fontSize: "2.0rem",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                background: "linear-gradient(90deg, #D41414 22%, #b4081b 66%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text"
+              }}
+            >
+              TyreSense
+            </span>
+          </div>
         </nav>
       )}
 
       {/* Blackout overlay */}
-      {showBlackout && (<div className="blackout-overlay" style={{
-        ...blackoutStyle,
-        position: "fixed",
-        top: 0, left: 0, right: 0, bottom: 0,
-        width: "100vw",
-        height: "100vh",
-        background: "#08080B",
-        willChange: "opacity",
-        pointerEvents: (blackoutStyle.opacity === 0 ? "none" : "all"),
-        zIndex: 2000
-      }}></div>)}
+      {showBlackout && (
+        <div
+          className="blackout-overlay"
+          style={{
+            ...blackoutStyle,
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: "100vw",
+            height: "100vh",
+            background: "#08080B",
+            willChange: "opacity",
+            pointerEvents: blackoutStyle.opacity === 0 ? "none" : "all",
+            zIndex: 2000,
+          }}
+        ></div>
+      )}
 
       {/* Animated car intro staged in center */}
-      {showAnimatedCar && (<AnimatedCarIntro visible onAnimationComplete={handleAnimatedCarDone} />)}
+      {showAnimatedCar && (
+        <AnimatedCarIntro visible onAnimationComplete={handleAnimatedCarDone} />
+      )}
 
       {/* Main UI per Porsche visual guidelines */}
       {stage === "SHOW_MAIN" && (
@@ -262,7 +292,10 @@ function TyreSenseMain() {
               playsInline
               poster={process.env.PUBLIC_URL + "/assets/porsche_hero_fallback.jpg"}
             >
-              <source src="https://storage.googleapis.com/kavia-public-assets/porsche_tyreloop_trimmed.mp4" type="video/mp4" />
+              <source
+                src="https://storage.googleapis.com/kavia-public-assets/porsche_tyreloop_trimmed.mp4"
+                type="video/mp4"
+              />
               {/* If video fails, show fallback img */}
             </video>
             <div className="porsche-hero-frost" />
@@ -270,8 +303,32 @@ function TyreSenseMain() {
           {/* Main overlayed content */}
           <div className="porsche-main-content">
             <div style={{ maxWidth: 1320, margin: "0 auto", padding: "10px 8vw 28px 8vw" }}>
-              <h1 className="porsche-title" style={{ marginTop: 0 }}>TyreSense</h1>
-              <div className="porsche-subtitle">
+              <h1
+                className="porsche-title tyresense-brand-gradient-text"
+                style={{
+                  marginTop: 0,
+                  background: "linear-gradient(90deg, #D41414 18%, #b4081b 82%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  fontWeight: 900,
+                  textTransform: "uppercase"
+                }}
+              >
+                TyreSense
+              </h1>
+              <div
+                className="porsche-subtitle tyresense-brand-gradient-text"
+                style={{
+                  fontWeight: 600,
+                  fontSize: "1.14rem",
+                  background: "linear-gradient(90deg, #D41414 6%, #b4081b 84%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  marginBottom: 12
+                }}
+              >
                 Premium tyres. Engineered for performance. Select your vehicle and explore leading brands.
               </div>
             </div>
