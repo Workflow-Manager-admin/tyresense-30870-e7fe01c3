@@ -17,13 +17,14 @@ import "./AnimatedCarIntro.css";
  *   - onAnimationComplete: function, fired once intro finishes
  *   - asLogo: boolean, render as header logo
  */
+import TyreLogoSVG from "./TyreLogoSVG";
+
 // PUBLIC_INTERFACE
 function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
-  // State to track when the animation (entry) is over.
+  // State to track when the tyre intro animation is over.
   const [hasEntered, setHasEntered] = useState(false);
   const doneOnce = useRef(false);
 
-  // Trigger callback after entry anim is over.
   useEffect(() => {
     if (hasEntered && typeof onAnimationComplete === "function" && !doneOnce.current) {
       onAnimationComplete();
@@ -31,13 +32,29 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
     }
   }, [hasEntered, onAnimationComplete]);
 
-  // Persistent logo (mini, navbar style)
+  // Navbar logo: static (not spinning) tyre and TyreSense name.
   if (asLogo) {
-    // Render tyre-themed logo plus TyreSense title for header use (just the new TyreLogoSVG)
-    const TyreLogoSVG = require('./TyreLogoSVG').default;
     return (
-      <span className="ts-animated-car-navbar" style={{display:"flex",alignItems:"center",gap:8,minWidth:92,height:46}}>
-        <TyreLogoSVG style={{ width: 29, height: 29, minWidth: 20, marginRight: 10, verticalAlign: "middle", flex: "0 0 auto" }}/>
+      <span
+        className="ts-animated-car-navbar"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          minWidth: 92,
+          height: 46
+        }}
+      >
+        <TyreLogoSVG
+          style={{
+            width: 29,
+            height: 29,
+            minWidth: 20,
+            marginRight: 10,
+            verticalAlign: "middle",
+            flex: "0 0 auto"
+          }}
+        />
         <span
           className="ts-animated-car-title"
           style={{
@@ -62,7 +79,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
     );
   }
 
-  // Animated intro
+  // Animated tyre intro
   return (
     <>
       <AnimatePresence>
@@ -80,16 +97,16 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              // ColorCraft gradient
+              // Brand gradient
               background: "linear-gradient(140deg, #4e5355 68%, #e10600 100%)",
             }}
           >
             <motion.div
               className="ts-animated-car"
               initial={{
-                x: "-90vw",
-                scale: 1.05,
-                rotate: -7,
+                x: "-100vw",
+                scale: 1.10,
+                rotate: -24,
                 opacity: 1,
               }}
               animate={{
@@ -105,7 +122,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                 opacity: 1,
               }}
               transition={{
-                duration: 1.3,
+                duration: 1.1,
                 ease: [0.81, 0.03, 0.28, 0.99],
               }}
               style={{
@@ -113,30 +130,44 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "center",
-                minWidth: 238,
-                maxWidth: "92vw",
+                minWidth: 120,
+                maxWidth: "95vw",
                 pointerEvents: "none",
                 position: "relative",
                 zIndex: 12,
-                width: "100%",
+                width: "100%"
               }}
               onAnimationComplete={() => setHasEntered(true)}
             >
-              <TyreSenseLogoCarSVG
+              {/* Rolling tyre logo, animated with rotation while appearing */}
+              <motion.span
                 style={{
-                  width: "21vw",
-                  minWidth: 146,
-                  maxWidth: 330,
-                  height: "11vw",
-                  minHeight: 38,
-                  maxHeight: 92,
                   marginRight: "3vw",
-                  filter: "drop-shadow(0 0 26px #e1060055)", // updated to red palette
                   display: "inline-block",
                   verticalAlign: "middle",
+                  filter: "drop-shadow(0 0 26px #e1060055)"
                 }}
-              />
-              {/* "TyreSense" appears just after car centers */}
+                initial={{ rotate: 0, scale: 1.15 }}
+                animate={{ rotate: [0, 790, 720], scale: 1 }}
+                transition={{
+                  duration: 1.1,
+                  ease: [0.89, 0.05, 0.23, 1]
+                }}
+              >
+                <TyreLogoSVG
+                  style={{
+                    width: "18vw",
+                    minWidth: 84,
+                    maxWidth: 210,
+                    height: "18vw",
+                    minHeight: 84,
+                    maxHeight: 210,
+                    display: "inline-block",
+                    verticalAlign: "middle"
+                  }}
+                />
+              </motion.span>
+              {/* "TyreSense" appears just after logo rolls in */}
               {hasEntered && (
                 <motion.span
                   className="ts-animated-car-title"
@@ -144,7 +175,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
                     duration: 0.38,
-                    delay: 0.05,
+                    delay: 0.06,
                     ease: [0.71, 0.01, 0.18, 1],
                   }}
                   style={{
@@ -154,7 +185,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                     letterSpacing: "0.13em",
                     filter: "brightness(1.08) blur(.01px)",
                     color: "#FFFFFF", // accent
-                    textShadow: "0 0 14px #e10600, 0 2px 14px #4e5355", // Only palette, no opacity tokens
+                    textShadow: "0 0 14px #e10600, 0 2px 14px #4e5355",
                     fontWeight: 800,
                     lineHeight: 1,
                     display: "inline-block",
