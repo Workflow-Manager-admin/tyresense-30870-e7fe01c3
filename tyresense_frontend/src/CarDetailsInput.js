@@ -414,27 +414,15 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
           {/* Car image preview */}
           <div className="ts-car-img-preview modern-img-preview">
             <div className="ts-car-img-preview-box modern-img-preview-box">
-              {loadingImg ? (
-                <span className="ts-car-img-loading">Loading…</span>
-              ) : carImg ? (
-                <img
-                  src={carImg}
-                  alt="Auto-fetched preview illustration of your car"
-                  draggable={false}
-                />
-              ) : (
-                <span>
-                  <span style={{
-                    color: "#b4081b",
-                    fontWeight: 820
-                  }}>Car image</span>
-                  <br />
-                  <span style={{
-                    color: "#7d7d85",
-                    opacity: 0.9,
-                    fontWeight: 600
-                  }}>(auto)</span>
-                </span>
+              {renderCarImage(
+                "Auto-fetched preview illustration of your car",
+                {
+                  width: 133,
+                  height: 81,
+                  objectFit: "cover",
+                  borderRadius: 10,
+                  background: "#19181b",
+                }
               )}
             </div>
             <span className="ts-car-img-preview-label modern-preview-label">
