@@ -171,14 +171,38 @@ function TyreSenseMain() {
     return (
       <div className="tyresense-main">
         {showNavbarLogo && (
-          <nav style={{
-            position: "fixed", top: 0, left: 0, width: "100%",
-            zIndex: 100,
-            background: "var(--porsche-black)",
-            borderBottom: "1px solid var(--porsche-border-light)",
-            display: "flex", justifyContent: "center", alignItems: "center", height: 66
-          }}>
-            <AnimatedCarIntro asLogo />
+          <nav
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100%",
+              zIndex: 100,
+              background: "var(--porsche-black)",
+              borderBottom: "1px solid var(--porsche-border-light)",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: 66,
+            }}
+          >
+            <div style={{display:"flex", alignItems:"center", gap:18}}>
+              <TyreSensePlaceholderLogo width={62} height={30} />
+              <span className="tyresense-brand-gradient-text"
+                style={{
+                  fontWeight: 900,
+                  fontSize: "2.0rem",
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  background: "linear-gradient(90deg, #D41414 22%, #b4081b 66%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text"
+                }}
+              >
+                TyreSense
+              </span>
+            </div>
           </nav>
         )}
         <TyreBrandDetail
