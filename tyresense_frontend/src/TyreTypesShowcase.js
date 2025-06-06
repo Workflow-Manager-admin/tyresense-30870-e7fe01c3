@@ -4,7 +4,7 @@ import "./TyreTypesShowcase.css";
 /**
  * PUBLIC_INTERFACE
  * TyreTypesShowcase
- * Displays only the four Porsche-inspired premium/larger brand containers.
+ * Displays only the four Porsche-style premium brand containers, with all legacy/small brand logic removed.
  * Each brand container is a clickable button that routes to a tyre brand page.
  * @param {function} onBrandSelect - function(brand) called when a brand is clicked.
  */
@@ -15,7 +15,7 @@ const getPublicUrl = () =>
     ? process.env.PUBLIC_URL
     : window.PUBLIC_URL || "");
 
-// Images for the premium brands
+// Only the four confirmed premium brands and their official showcase images
 const TYRE_IMAGES = {
   pirelli: getPublicUrl() + "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
   michelin: getPublicUrl() + "/assets/20250605_071317_michelin-tyres.jpg",
@@ -23,7 +23,7 @@ const TYRE_IMAGES = {
   bridgestone: getPublicUrl() + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
 };
 
-// FINAL LIST: Porsche-style premium containers only, no small/legacy brands
+// FINAL and ONLY list of brands for Porsche-style showcase
 const TYRE_BRANDS = [
   {
     id: "pirelli",
@@ -53,7 +53,7 @@ const TYRE_BRANDS = [
 
 // PUBLIC_INTERFACE
 function TyreTypesShowcase({ onBrandSelect }) {
-  // Render only four premium-style containers, no legacy/small brands.
+  // Only the four premium brands are rendered, with NO filtering/mapping legacy logic.
   return (
     <section className="ts-section ts-tyre-brands-showcase">
       <header className="tyre-showcase-header">
@@ -63,10 +63,7 @@ function TyreTypesShowcase({ onBrandSelect }) {
         </p>
       </header>
       <div className="tyre-brands-grid">
-        {/* Porsche-style large premium brand containers, hardcoded; no other brand cards */}
-        {TYRE_BRANDS.filter(b =>
-          ["pirelli", "michelin", "continental", "bridgestone"].includes(b.id)
-        ).map((brand) => (
+        {TYRE_BRANDS.map((brand) => (
           <button
             key={brand.id}
             className="tyre-brand-card premium-brand-container"
@@ -77,7 +74,7 @@ function TyreTypesShowcase({ onBrandSelect }) {
           >
             <div className="tyre-brand-cover-bg" aria-hidden="true">
               <img
-                src={TYRE_IMAGES[brand.id] || TYRE_IMAGES["pirelli"]}
+                src={TYRE_IMAGES[brand.id]}
                 alt={
                   brand.id === "pirelli"
                     ? "Pirelli Cinturato P7 tyre photo, full detail"
