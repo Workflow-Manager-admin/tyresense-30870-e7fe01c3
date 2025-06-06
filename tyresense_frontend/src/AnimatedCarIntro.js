@@ -160,8 +160,8 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
             height: 31,
             marginRight: 13,
             marginLeft: 2,
-            // Subtle accent red shadow for Porsche branding
-            filter: "drop-shadow(0 0 9px #b4081b22)",
+            // Brand shadow using secondary (blue) - no yellow/red/neon
+            filter: "drop-shadow(0 0 9px #001eff44)",
             flex: "0 0 auto",
           }}
         />
@@ -173,9 +173,9 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
             lineHeight: "1",
             whiteSpace: "nowrap",
             letterSpacing: "0.13em",
-            filter: "brightness(1.13) blur(.01px)",
+            filter: "brightness(1.10) blur(.01px)",
             color: "#FFFFFF", // accent (ColorCraft palette)
-            textShadow: "0 0 6px #001eff, 0 2px 11px #4e5355", // clearer blue/primary
+            textShadow: "0 0 8px #001eff99, 0 2px 12px #4e5355b8", // secondary and primary
             fontWeight: 800,
             flex: "0 0 auto",
             display: "inline-block",
