@@ -210,29 +210,30 @@ function MainTyreSenseRoutes(props) {
               padding: "0 14px"
             }}
           >
-            {/* TyreLogoSVG: always use the tyre-themed SVG as branding mark */}
+            {/* Use tyre logo SVG for consistent branding */}
             <TyreLogoSVG
               style={{
-                width: 36,
-                height: 36,
-                minWidth: 28,
+                width: 34,
+                height: 34,
+                minWidth: 26,
                 marginRight: 10,
+                verticalAlign: "middle",
                 flex: "0 0 auto",
-                filter: "drop-shadow(0 0 7px #b4081b25)"
+                filter: "drop-shadow(0 0 8px #b4081b28)",
               }}
             />
             <span
               className="ts-animated-car-title"
               style={{
                 fontWeight: 800,
-                fontSize: "1.28rem",
-                letterSpacing: "0.13em",
+                fontSize: "1.18rem",
+                letterSpacing: "0.15em",
                 color: "#fff",
-                textShadow: "0 0 7px #b4081b77",
-                filter: "brightness(1.09) blur(.01px)",
+                textShadow: "0 0 10px #e1060080, 0 1px 5px #0009",
+                filter: "brightness(1.13) blur(.01px)",
                 verticalAlign: "middle",
                 fontFamily: "'Roboto', Helvetica, Arial, sans-serif",
-                marginLeft: 2,
+                marginLeft: 3,
                 display: "inline-block",
                 background: "none",
                 lineHeight: 1.12,
