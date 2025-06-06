@@ -7,8 +7,8 @@
 :root,
 html,
 body {
-  font-family: 'SF Pro', SFProText, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  /* Use the recommended system font stack for San Francisco (Apple devices), otherwise best cross-platform fallback */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
