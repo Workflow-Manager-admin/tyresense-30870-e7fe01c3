@@ -130,28 +130,35 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
 
   // Persistent logo (mini, navbar style)
   if (asLogo) {
-    // Just brand word (no car SVG) since tyre logo is provided by the header
+    // Render tyre-themed logo plus TyreSense title for header use (not just bare name)
+    // Import logo SVG if available
+    let TyreLogoSVG;
+    try { TyreLogoSVG = require('./TyreSenseMain').TyreLogoSVG; } catch { TyreLogoSVG = null; }
     return (
-      <span
-        className="ts-animated-car-title"
-        style={{
-          marginLeft: 0,
-          fontSize: "1.53rem",
-          lineHeight: "1",
-          whiteSpace: "nowrap",
-          letterSpacing: "0.13em",
-          filter: "brightness(1.10) blur(.01px)",
-          color: "#fff",
-          // Subtle double-shadow using main gradient colors
-          textShadow: "0 0 10px #e10600a0, 0 0px 12px #4e5355b2",
-          fontWeight: 800,
-          flex: "0 0 auto",
-          display: "inline-block",
-          verticalAlign: "middle",
-          background: "none"
-        }}
-      >
-        TyreSense
+      <span className="ts-animated-car-navbar" style={{display:"flex",alignItems:"center",gap:6,minWidth:92,height:46}}>
+        {TyreLogoSVG && (
+          <TyreLogoSVG style={{ width: 29, height: 29, minWidth: 20, marginRight: 6, verticalAlign: "middle" }} />
+        )}
+        <span
+          className="ts-animated-car-title"
+          style={{
+            marginLeft: 0,
+            fontSize: "1.18rem",
+            lineHeight: "1",
+            whiteSpace: "nowrap",
+            letterSpacing: "0.13em",
+            filter: "brightness(1.09) blur(.01px)",
+            color: "#fff",
+            textShadow: "0 0 8px #e10600a0, 0 0px 10px #4e5355a2",
+            fontWeight: 800,
+            flex: "0 0 auto",
+            display: "inline-block",
+            verticalAlign: "middle",
+            background: "none"
+          }}
+        >
+          TyreSense
+        </span>
       </span>
     );
   }
