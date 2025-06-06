@@ -270,6 +270,32 @@ function GoogleMapsStoreLocator() {
   // If showing some other error (e.g., geolocation) or map, show map container as usual
   return (
     <div className="ts-map-container">
+      {/* DEV/DEMO Key warning notice - only appears if public test key is in use */}
+      {typeof process !== "undefined" &&
+        process.env &&
+        (process.env.REACT_APP_GOOGLE_MAPS_API_KEY === undefined ||
+          process.env.REACT_APP_GOOGLE_MAPS_API_KEY === "<YOUR_GOOGLE_MAPS_KEY>") && (
+        <div
+          style={{
+            color: "#ffe600",
+            background: "#241e42",
+            border: "1.5px solid #ffe600",
+            borderRadius: "9px",
+            padding: "7px 13px",
+            fontWeight: 560,
+            fontSize: "0.97rem",
+            marginBottom: 6,
+            marginTop: 4,
+            textAlign: "center",
+            opacity: 0.89,
+          }}
+        >
+          <b>DEMO:</b> Displaying map using Google Maps public test key. <br />
+          <span style={{ color: "#c6a280" }}>
+            For production, set <code>REACT_APP_GOOGLE_MAPS_API_KEY</code> in your <b>.env</b> file!
+          </span>
+        </div>
+      )}
       {error ? (
         // Show only the user-friendly message WITHOUT any error detail
         <div
