@@ -149,7 +149,7 @@
   letter-spacing: .11em;
   text-shadow: none;
   line-height: 1.05;
-  font-family: 'Inter', 'Roboto', Arial, sans-serif;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif !important;
   margin-bottom: 4px;
 }
 
@@ -159,7 +159,7 @@
   font-size: 1.18rem;
   opacity: 0.87;
   text-shadow: 0 2px 18px #19193290;
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif !important;
 }
 
 @media (max-width: 960px) {
