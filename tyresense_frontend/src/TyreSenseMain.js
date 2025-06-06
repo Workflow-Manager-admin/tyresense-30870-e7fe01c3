@@ -9,16 +9,14 @@ import TyreBrandDetail from "./TyreBrandDetail";
 import AnimatedCarIntro from "./AnimatedCarIntro";
 import TyreRecommendations from "./TyreRecommendations";
 
-/* Placeholder SVG logo is no longer required; replaced with AnimatedCarIntro asLogo */
-
 /**
  * TyreLogoSVG
- * Bold, visually distinctive tyre SVG logo for nav/header.
- * Used as the main mark beside TyreSense wordmark.
+ * Bold, visually distinctive tyre SVG logo for nav/header as primary app mark.
+ * This function is used as the tyre-themed logo everywhere the main container needs branding.
  */
 // PUBLIC_INTERFACE
 function TyreLogoSVG({ style = {}, ...props }) {
-  // Modern, round tyre: thick sidewall, accent tread, subtle gradient for depth.
+  // Modern, round tyre with performance accent treads (SVG)
   return (
     <svg
       width={style.width || 44}
@@ -50,20 +48,19 @@ function TyreLogoSVG({ style = {}, ...props }) {
           <stop offset="0.95" stopColor="#b4081b" />
         </radialGradient>
       </defs>
-      {/* Main tyre sidewall */}
-      <circle cx="22" cy="22" r="21" fill="url(#tyre-sidewall)" stroke="#18181c" strokeWidth="2.6"/>
-      {/* Tyre tread area (lighter inside ring) */}
-      <circle cx="22" cy="22" r="15.1" fill="url(#tyre-tread-bg)" stroke="#7d7d85" strokeWidth="2.1"/>
-      {/* "Tread" arcs – bold red, hinting sport/performance */}
+      {/* Outer sidewall */}
+      <circle cx="22" cy="22" r="21" fill="url(#tyre-sidewall)" stroke="#18181c" strokeWidth="2.7"/>
+      {/* Tread background */}
+      <circle cx="22" cy="22" r="15.2" fill="url(#tyre-tread-bg)" stroke="#7d7d85" strokeWidth="2"/>
+      {/* Accent red performance arcs */}
       <path d="M9 17.5 Q22 7 35 17.5" stroke="url(#tyre-red-accent)" strokeWidth="2.5" fill="none" />
-      <path d="M13 26 Q22 36 31 26" stroke="url(#tyre-red-accent)" strokeWidth="2.25" fill="none" />
-      {/* Stylized chevron marks (hinting slick tread) */}
-      <path d="M18 13 L22 17 L26 13" stroke="#b4081b" strokeWidth="1.4" fill="none"/>
-      <path d="M18 32 L22 28 L26 32" stroke="#b4081b" strokeWidth="1.2" fill="none"/>
-      {/* Centre hub accent */}
-      <circle cx="22" cy="22" r="3.2" fill="#e10600" stroke="#fff" strokeWidth="0.7" />
-      {/* Tiny center dot */}
-      <circle cx="22" cy="22" r="1.07" fill="#b4081b" />
+      <path d="M13 26 Q22 36 31 26" stroke="url(#tyre-red-accent)" strokeWidth="2.1" fill="none" />
+      {/* Chevron/zig-zag treads for dynamism */}
+      <path d="M18 13 L22 17 L26 13" stroke="#b4081b" strokeWidth="1.3" fill="none"/>
+      <path d="M18 32 L22 28 L26 32" stroke="#b4081b" strokeWidth="1.1" fill="none"/>
+      {/* Central hub + dot */}
+      <circle cx="22" cy="22" r="3.1" fill="#e10600" stroke="#fff" strokeWidth="0.76" />
+      <circle cx="22" cy="22" r="1.1" fill="#b4081b" />
     </svg>
   );
 }
@@ -259,13 +256,13 @@ function MainTyreSenseRoutes(props) {
               alignItems: "center",
               justifyContent: "center",
               height: "100%",
-              gap: 16,
+              gap: 14,
               padding: "0 8px"
             }}
           >
-            {/* Tyre-themed round logo always visible */}
-            <TyreLogoSVG style={{ width: 40, height: 40, marginRight: 5, flex: "0 0 auto" }} />
-            {/* AnimatedCarIntro with asLogo renders TyreSense brand next to tyre logo */}
+            {/* Tyre logo SVG as brand logo */}
+            <TyreLogoSVG style={{ width: 38, height: 38, marginRight: 5, flex: "0 0 auto" }} />
+            {/* Brand wordmark / text next to logo */}
             <AnimatedCarIntro asLogo />
           </div>
         </nav>
