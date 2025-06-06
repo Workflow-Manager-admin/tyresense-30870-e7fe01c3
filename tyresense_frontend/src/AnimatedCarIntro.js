@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-// Ensure only named imports from 'framer-motion' as per latest recommendation.
 import { motion, AnimatePresence } from "framer-motion";
 import "./AnimatedCarIntro.css";
 
