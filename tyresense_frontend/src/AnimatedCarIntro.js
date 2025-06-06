@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+// Ensure only named imports from 'framer-motion' as per latest recommendation.
 import { motion, AnimatePresence } from "framer-motion";
 import "./AnimatedCarIntro.css";
 
@@ -206,7 +207,8 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              background: "linear-gradient(150deg, #18181c 78%, #232327 100%)",
+              // Updated background using main palette primary/secondary
+              background: "linear-gradient(140deg, #4e5355 68%, #001eff 100%)",
             }}
           >
             <motion.div
