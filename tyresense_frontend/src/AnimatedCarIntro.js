@@ -130,61 +130,29 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
 
   // Persistent logo (mini, navbar style)
   if (asLogo) {
+    // Just brand word (no car SVG) since tyre logo is provided by the header
     return (
-      <div
-        className="ts-animated-car ts-animated-car-navbar"
+      <span
+        className="ts-animated-car-title"
         style={{
-          position: "relative",
-          left: "50%",
-          top: "0",
-          transform: "translateX(-50%)",
-          minWidth: 165,
-          maxWidth: 390,
-          zIndex: 11,
-          pointerEvents: "none",
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          height: 63,
-          width: "auto",
-          background: "none",
+          marginLeft: 0,
+          fontSize: "1.53rem",
+          lineHeight: "1",
+          whiteSpace: "nowrap",
+          letterSpacing: "0.13em",
+          filter: "brightness(1.10) blur(.01px)",
+          color: "#fff",
+          // Subtle double-shadow using main gradient colors
+          textShadow: "0 0 10px #e10600a0, 0 0px 12px #4e5355b2",
+          fontWeight: 800,
+          flex: "0 0 auto",
+          display: "inline-block",
+          verticalAlign: "middle",
+          background: "none"
         }}
       >
-        <TyreSenseLogoCarSVG
-          style={{
-            width: 92,
-            height: 31,
-            marginRight: 13,
-            marginLeft: 2,
-            // Soft drop-shadow in secondary
-            filter: "drop-shadow(0 0 12px #e1060088)",
-            flex: "0 0 auto",
-            background: "none",
-          }}
-        />
-        <span
-          className="ts-animated-car-title"
-          style={{
-            marginLeft: 0,
-            fontSize: "1.53rem",
-            lineHeight: "1",
-            whiteSpace: "nowrap",
-            letterSpacing: "0.13em",
-            filter: "brightness(1.10) blur(.01px)",
-            color: "#fff",
-            // Subtle double-shadow using main gradient colors
-            textShadow: "0 0 10px #e10600a0, 0 0px 12px #4e5355b2",
-            fontWeight: 800,
-            flex: "0 0 auto",
-            display: "inline-block",
-            verticalAlign: "middle",
-            background: "none",
-          }}
-        >
-          TyreSense
-        </span>
-      </div>
+        TyreSense
+      </span>
     );
   }
 
