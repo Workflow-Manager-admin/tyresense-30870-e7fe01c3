@@ -83,23 +83,50 @@ function ReminderPopup({ tyre, userEmail, onClose }) {
     >
       {sending && !sent ? (
         <span>
-          Setting a reminder for <b>{tyre.model}</b>...
-          <div
-            className="ts-bounce"
-            style={{
-              display: "inline-block",
-              fontSize: "1.09em",
-              animation: "ts-pop .8s infinite alternate",
-              marginLeft: 8,
-              color: "#b4081b",
-            }}
-          >
-            ⏳
-          </div>
+          {userEmail
+            ? (
+              <>
+                Setting a reminder for <b>{tyre.model}</b>...
+                <div
+                  className="ts-bounce"
+                  style={{
+                    display: "inline-block",
+                    fontSize: "1.09em",
+                    animation: "ts-pop .8s infinite alternate",
+                    marginLeft: 8,
+                    color: "#b4081b",
+                  }}
+                >
+                  ⏳
+                </div>
+              </>
+            )
+            : (
+              <>
+                Preparing in-app replacement reminder for <b>{tyre.model}</b>...
+                <div
+                  className="ts-bounce"
+                  style={{
+                    display: "inline-block",
+                    fontSize: "1.09em",
+                    animation: "ts-pop .8s infinite alternate",
+                    marginLeft: 8,
+                    color: "#b4081b",
+                  }}
+                >
+                  ⏳
+                </div>
+              </>
+            )
+          }
         </span>
       ) : sent ? (
         <span>
-          Reminder set for tyre <b>{tyre.brand} {tyre.model}</b>!
+          {userEmail
+            ? <>Reminder set for tyre <b>{tyre.brand} {tyre.model}</b>! (Email sent)</>
+            : <>Tyre replacement reminder shown for <b>{tyre.brand} {tyre.model}</b>.<br />
+            Check tyres or update data for safety.</>
+          }
         </span>
       ) : null}
       <button
