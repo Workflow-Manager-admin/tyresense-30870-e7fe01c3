@@ -33,7 +33,10 @@ const DEMO_TYRES = [
     size: "205/55R16",
     price: 109,
     url: "https://www.michelin.co.uk/auto/tyres/michelin-primacy-4",
-    img: process.env.PUBLIC_URL + "/assets/20250605_071317_michelin-tyres.jpg",
+    img: (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
+      ? process.env.PUBLIC_URL
+      : window.PUBLIC_URL || ""
+    ) + "/assets/20250605_071317_michelin-tyres.jpg",
     weather: "all",
   },
   {
@@ -44,7 +47,10 @@ const DEMO_TYRES = [
     size: "225/40R18",
     price: 127,
     url: "https://www.continental-tires.com/uk/en/b2c/car/tires/contisportcontact-6.html",
-    img: process.env.PUBLIC_URL + "/assets/20250605_071316_continental_pp_conti_cityplus.jpg",
+    img: (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
+      ? process.env.PUBLIC_URL
+      : window.PUBLIC_URL || ""
+    ) + "/assets/20250605_071316_continental_pp_conti_cityplus.jpg",
     weather: "summer",
   },
   {
@@ -55,7 +61,10 @@ const DEMO_TYRES = [
     size: "195/65R15",
     price: 103,
     url: "https://www.bridgestone.co.uk/our-products/car-tyres/turanza-t005",
-    img: process.env.PUBLIC_URL + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
+    img: (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
+      ? process.env.PUBLIC_URL
+      : window.PUBLIC_URL || ""
+    ) + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
     weather: "all",
   },
 ];
