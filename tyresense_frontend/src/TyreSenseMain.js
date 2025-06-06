@@ -14,8 +14,11 @@ import TyreRecommendations from "./TyreRecommendations";
  * Bold, visually distinctive tyre SVG logo for nav/header as primary app mark.
  * This function is used as the tyre-themed logo everywhere the main container needs branding.
  */
-// PUBLIC_INTERFACE
-function TyreLogoSVG({ style = {}, ...props }) {
+/**
+ * PUBLIC_INTERFACE
+ * TyreLogoSVG: A visually distinctive tyre-themed SVG logo to be used throughout the app for branding.
+ */
+export function TyreLogoSVG({ style = {}, ...props }) {
   // Modern, round tyre with performance accent treads (SVG)
   return (
     <svg
