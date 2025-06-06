@@ -208,7 +208,8 @@
   transition: border 0.18s, box-shadow 0.11s, background 0.13s, filter 0.10s;
   appearance: none;
   letter-spacing: 0.025em;
-  font-family: 'Inter', 'SF Pro', Arial, sans-serif;
+  /* Use system stack only to avoid SF Pro issues */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   filter: none;
 }
 .ts-car-form-group .ts-input:focus,
