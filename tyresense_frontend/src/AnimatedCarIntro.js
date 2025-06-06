@@ -9,7 +9,7 @@ import "./AnimatedCarIntro.css";
  * The design is logo-like and scale-agnostic, with thick outlines and ColorCraft theme accents.
  */
 function TyreSenseLogoCarSVG({ style, ...props }) {
-  // SVG: side-view, stylized coupe, ColorCraft colors only
+  // SVG: side-view, stylized coupe, with gradient fills per new brand guidelines
   return (
     <svg
       width={style?.width || 230}
@@ -23,84 +23,82 @@ function TyreSenseLogoCarSVG({ style, ...props }) {
       role="img"
     >
       <defs>
-        <radialGradient id="ts-carBody" cx="49%" cy="52%" r="78%">
-          <stop offset="0.02" stopColor="#FFFFFF" stopOpacity="0.82" />
-          <stop offset="0.54" stopColor="#4e5355" stopOpacity="1" />
-          <stop offset="1" stopColor="#001eff" stopOpacity="1" />
-        </radialGradient>
-        <linearGradient id="ts-roof" x1="42" y1="16" x2="220" y2="9" gradientUnits="userSpaceOnUse">
+        <linearGradient id="ts-main-grad-a" x1="0" y1="0" x2="340" y2="0" gradientUnits="userSpaceOnUse">
           <stop stopColor="#4e5355" />
-          <stop offset="0.8" stopColor="#001eff" />
+          <stop offset="1" stopColor="#001eff" />
+        </linearGradient>
+        <radialGradient id="ts-carBody" cx="52%" cy="50%" r="80%">
+          <stop offset="0.18" stopColor="#4e5355" stopOpacity="1" />
+          <stop offset="0.85" stopColor="#001eff" stopOpacity="1" />
+        </radialGradient>
+        <linearGradient id="ts-roof" x1="42" y1="16" x2="236" y2="20" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#4e5355" />
+          <stop offset="1" stopColor="#001eff" />
         </linearGradient>
         <radialGradient id="ts-wheel-dark" cx="49%" cy="48%" r="51%">
-          <stop offset="0.29" stopColor="#4e5355" />
-          <stop offset="0.77" stopColor="#001eff" />
-          <stop offset="1" stopColor="#FFFFFF" />
+          <stop offset="0.24" stopColor="#4e5355" />
+          <stop offset="0.85" stopColor="#001eff" />
         </radialGradient>
-        <radialGradient id="ts-wheel-gloss" cx="62%" cy="40%" r="66%">
-          <stop offset="0.48" stopColor="#FFFFFF" stopOpacity="0.09" />
-          <stop offset="0.96" stopColor="#001eff" stopOpacity="0.05" />
-        </radialGradient>
+        <linearGradient id="ts-badge-grad" x1="234" y1="55" x2="251" y2="70" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#4e5355" />
+          <stop offset="1" stopColor="#001eff" />
+        </linearGradient>
       </defs>
-      {/* Shadow (strict ColorCraft) */}
-      <ellipse cx="160" cy="88" rx="92" ry="5.5" fill="#001eff" opacity="0.14" />
+      {/* Shadow */}
+      <ellipse cx="160" cy="88" rx="92" ry="5.5" fill="url(#ts-main-grad-a)" opacity="0.17"/>
       {/* Rear wheel */}
       <g>
         <circle cx="60" cy="71" r="19.4" fill="url(#ts-wheel-dark)" />
-        <circle cx="60" cy="71" r="13" fill="#4e5355" />
-        <circle cx="60" cy="71" r="17" fill="url(#ts-wheel-gloss)" />
-        <circle cx="60" cy="71" r="5.8" fill="#FFFFFF" opacity="0.10" />
-        <ellipse cx="56" cy="61" rx="6" ry="2.6" fill="#001eff" opacity="0.085" />
+        <circle cx="60" cy="71" r="13" fill="url(#ts-main-grad-a)" />
+        <circle cx="60" cy="71" r="6.7" fill="#fff" opacity="0.06"/>
       </g>
       {/* Front wheel */}
       <g>
         <circle cx="232" cy="71" r="18" fill="url(#ts-wheel-dark)" />
-        <circle cx="232" cy="71" r="12" fill="#4e5355" />
-        <circle cx="232" cy="71" r="15" fill="url(#ts-wheel-gloss)" />
-        <circle cx="232" cy="71" r="6" fill="#FFFFFF" opacity="0.09" />
-        <ellipse cx="229" cy="61" rx="6" ry="2.5" fill="#001eff" opacity="0.07" />
+        <circle cx="232" cy="71" r="12" fill="url(#ts-main-grad-a)" />
+        <circle cx="232" cy="71" r="5.9" fill="#fff" opacity="0.04"/>
       </g>
       {/* Car body main shape */}
       <path
         d="M43 66 Q54 22 124 24 Q136 4 200 7 Q255 8 278 29 Q312 35 321 64 Q326 66 329 68 Q314 72 238 67 Q131 65 75 73 Q48 69 43 66 Z"
         fill="url(#ts-carBody)"
-        stroke="#001eff"
+        stroke="url(#ts-main-grad-a)"
         strokeWidth="2.7"
         opacity="1"
       />
-      {/* Roof highlight */}
+      {/* Roof highlight (faint) */}
       <path
         d="M99 27 Q113 13 197 13 Q238 15 258 28"
         stroke="url(#ts-roof)"
         strokeWidth="2.8"
         fill="none"
-        opacity="0.31"
+        opacity="0.32"
         strokeLinecap="round"
       />
-      {/* Window gloss */}
+      {/* Window gloss, subtle accent only */}
       <path
         d="M118 22 Q135 13 205 16 Q240 20 247 30"
-        stroke="#FFFFFF"
+        stroke="#fff"
         strokeWidth="1.7"
         fill="none"
         opacity="0.07"
         strokeLinecap="round"
       />
       {/* Undercarriage */}
-      <rect x="54" y="67.5" width="190" height="7.1" rx="3.8" fill="#4e5355" opacity="0.82" />
+      <rect x="54" y="67.5" width="190" height="7.1" rx="3.8" fill="url(#ts-main-grad-a)" opacity="0.51" />
       {/* Door handle */}
-      <rect x="135" y="49" width="26" height="2.2" rx="1.1" fill="#001eff" opacity="0.11" />
+      <rect x="135" y="49" width="26" height="2.2" rx="1.1" fill="url(#ts-main-grad-a)" opacity="0.19" />
       {/* Rear "fin" */}
-      <rect x="41.3" y="54" width="7.1" height="15" rx="3.5" fill="#001eff" opacity="0.07" />
-      {/* Antenna */}
-      <rect x="137" y="12" width="2.9" height="13" rx="1.7" fill="#FFFFFF" opacity="0.08" />
-      {/* Speedline highlights - palette only */}
-      <rect x="86" y="41" width="33" height="2" rx="1" fill="#4e5355" opacity="0.07" />
-      <rect x="220" y="21" width="23" height="2" rx="1" fill="#4e5355" opacity="0.09" />
-      {/* TyreSense badge */}
+      <rect x="41.3" y="54" width="7.1" height="15" rx="3.5" fill="url(#ts-main-grad-a)" opacity="0.09" />
+      {/* Antenna (accent) */}
+      <rect x="137" y="12" width="2.9" height="13" rx="1.7" fill="#fff" opacity="0.09" />
+      {/* Speedline highlights */}
+      <rect x="86" y="41" width="33" height="2" rx="1" fill="url(#ts-main-grad-a)" opacity="0.10" />
+      <rect x="220" y="21" width="23" height="2" rx="1" fill="url(#ts-main-grad-a)" opacity="0.12" />
+      {/* TyreSense badge in gradient */}
       <g>
-        <circle cx="242.5" cy="62.5" r="8" fill="#001eff" stroke="#001eff" strokeWidth="1.1" opacity="0.7"/>
-        <path d="M237 63 Q242.7 56 248 63 Q243 67 237 65 Z" fill="#FFFFFF" opacity="0.21" />
+        <circle cx="242.5" cy="62.5" r="8" fill="url(#ts-badge-grad)" stroke="url(#ts-main-grad-a)" strokeWidth="1.1" opacity="0.92"/>
+        <path d="M237 63 Q242.7 56 248 63 Q243 67 237 65 Z" fill="#fff" opacity="0.12" />
       </g>
     </svg>
   );
