@@ -19,10 +19,11 @@ const DEMO_TYRES = [
     size: "225/45R17",
     price: 118,
     url: "https://www.pirelli.com/tyres/en-ww/cinturato/p7",
-    img: (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
-      ? process.env.PUBLIC_URL
-      : window.PUBLIC_URL || ""
-    ) + "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
+    img:
+      (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
+        ? process.env.PUBLIC_URL
+        : window.PUBLIC_URL || "") +
+      "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
     weather: "summer",
   },
   {
@@ -33,10 +34,11 @@ const DEMO_TYRES = [
     size: "205/55R16",
     price: 109,
     url: "https://www.michelin.co.uk/auto/tyres/michelin-primacy-4",
-    img: (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
-      ? process.env.PUBLIC_URL
-      : window.PUBLIC_URL || ""
-    ) + "/assets/20250605_071317_michelin-tyres.jpg",
+    img:
+      (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
+        ? process.env.PUBLIC_URL
+        : window.PUBLIC_URL || "") +
+      "/assets/20250605_071317_michelin-tyres.jpg",
     weather: "all",
   },
   {
@@ -47,10 +49,11 @@ const DEMO_TYRES = [
     size: "225/40R18",
     price: 127,
     url: "https://www.continental-tires.com/uk/en/b2c/car/tires/contisportcontact-6.html",
-    img: (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
-      ? process.env.PUBLIC_URL
-      : window.PUBLIC_URL || ""
-    ) + "/assets/20250605_071316_continental_pp_conti_cityplus.jpg",
+    img:
+      (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
+        ? process.env.PUBLIC_URL
+        : window.PUBLIC_URL || "") +
+      "/assets/20250605_071316_continental_pp_conti_cityplus.jpg",
     weather: "summer",
   },
   {
@@ -61,16 +64,18 @@ const DEMO_TYRES = [
     size: "195/65R15",
     price: 103,
     url: "https://www.bridgestone.co.uk/our-products/car-tyres/turanza-t005",
-    img: (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
-      ? process.env.PUBLIC_URL
-      : window.PUBLIC_URL || ""
-    ) + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
+    img:
+      (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
+        ? process.env.PUBLIC_URL
+        : window.PUBLIC_URL || "") +
+      "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
     weather: "all",
   },
 ];
 
 // Get unique options from tyres array
-const uniqueFrom = (arr, key) => [...new Set(arr.map((t) => t[key]))].filter(Boolean);
+const uniqueFrom = (arr, key) =>
+  [...new Set(arr.map((t) => t[key]))].filter(Boolean);
 
 function getWeatherLabel(code = "") {
   if (code.indexOf("snow") >= 0) return "snow";
@@ -82,7 +87,13 @@ function getWeatherLabel(code = "") {
 }
 
 // PUBLIC_INTERFACE
-function TyreRecommendations({ car, userLocation, onSetReminder, userTyreData, persistTyreData }) {
+function TyreRecommendations({
+  car,
+  userLocation,
+  onSetReminder,
+  userTyreData,
+  persistTyreData,
+}) {
   const [filters, setFilters] = useState({ brand: "", size: "", budget: "" });
   const [weather, setWeather] = useState(null);
   const [weatherLoading, setWeatherLoading] = useState(false);
@@ -93,10 +104,11 @@ function TyreRecommendations({ car, userLocation, onSetReminder, userTyreData, p
     setWeatherLoading(true);
 
     const API_KEY =
-      (typeof process !== "undefined" && process.env && process.env.REACT_APP_OWM_KEY)
+      (typeof process !== "undefined" &&
+      process.env &&
+      process.env.REACT_APP_OWM_KEY)
         ? process.env.REACT_APP_OWM_KEY
-        : window.REACT_APP_OWM_KEY
-        || "<YOUR_OPENWEATHERMAP_KEY>";
+        : window.REACT_APP_OWM_KEY || "<YOUR_OPENWEATHERMAP_KEY>";
 
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${userLocation.lat}&lon=${userLocation.lng}&appid=${API_KEY}&units=metric`
@@ -121,7 +133,6 @@ function TyreRecommendations({ car, userLocation, onSetReminder, userTyreData, p
   // Demo: filter tyres by brand, size, budget
   const filteredTyres = useMemo(() => {
     return DEMO_TYRES.filter((tyre) => {
-      // Brand filter
       if (filters.brand && tyre.brand !== filters.brand) return false;
       if (filters.size && tyre.size !== filters.size) return false;
       if (
@@ -170,7 +181,8 @@ function TyreRecommendations({ car, userLocation, onSetReminder, userTyreData, p
         )}
         {weather && (
           <span style={{ color: "#b4081b", fontWeight: 600 }}>
-            Weather: {weather.weather ? weather.weather[0].description : "N/A"} ({weather.main ? weather.main.temp + "°C" : ""})
+            Weather: {weather.weather ? weather.weather[0].description : "N/A"}{" "}
+            {weather.main ? `(${weather.main.temp}°C)` : ""}
           </span>
         )}
       </header>
@@ -260,7 +272,7 @@ function TyreRecommendations({ car, userLocation, onSetReminder, userTyreData, p
                   padding: "6px 17px",
                   boxShadow: "none",
                   cursor: "pointer",
-                  transition: "background 0.14s, color 0.13s, border 0.13s"
+                  transition: "background 0.14s, color 0.13s, border 0.13s",
                 }}
                 onClick={() => window.open(tyre.url, "_blank")}
               >
@@ -277,13 +289,17 @@ function TyreRecommendations({ car, userLocation, onSetReminder, userTyreData, p
                   fontSize: "0.92rem",
                   borderRadius: 6,
                   boxShadow: "none",
-                  cursor: "pointer"
+                  cursor: "pointer",
                 }}
-                onClick={(e) => {
+                onClick={e => {
                   e.preventDefault();
                   e.stopPropagation();
-                  if (onSetReminder) onSetReminder(tyre);
+                  if (typeof onSetReminder === "function") {
+                    onSetReminder(tyre);
+                  }
                 }}
+                tabIndex={0}
+                aria-label={`Set reminder for ${tyre.brand} ${tyre.model}`}
               >
                 Remind Me
               </button>
