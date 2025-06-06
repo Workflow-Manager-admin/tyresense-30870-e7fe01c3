@@ -170,6 +170,34 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
 
   // --- Porsche-style minimal summary section ---
   const hasEssentials = manufacturer && model;
+  // Inline SVG fallback silhouette (simple side car icon)
+  const fallbackCarSVG = (
+    <svg width="71" height="49" viewBox="0 0 90 49" fill="none" style={{display: 'block'}}
+      aria-label="Default car silhouette">
+      <rect x="0" y="24" width="90" height="24" rx="9" fill="#18181b"/>
+      <ellipse cx="25" cy="41" rx="8" ry="6.5" fill="#7d7d85"/>
+      <ellipse cx="66" cy="41" rx="8" ry="6.5" fill="#7d7d85"/>
+      <rect x="11" y="13" width="68" height="17" rx="7" fill="#232327" />
+      <rect x="29" y="9" width="33" height="12" rx="5.5" fill="#232327" />
+      <rect x="41" y="4" width="11" height="7" rx="3.2" fill="#b4081b" />
+    </svg>
+  );
+  // Helper for conditional preview (carImg, loading, fallback)
+  const renderCarImage = (altText = "Car", imgStyle = {}) =>
+    loadingImg ? (
+      <span className="ts-car-img-loading">Loading…</span>
+    ) : carImg ? (
+      <img
+        src={carImg}
+        alt={altText}
+        style={imgStyle}
+        draggable={false}
+        onError={e => { e.target.onerror = null; setCarImg(null); }}
+      />
+    ) : (
+      fallbackCarSVG
+    );
+
   const minimalSummary = hasEssentials && (
     <section
       className="car-details-minimal-summary"
@@ -190,31 +218,15 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
         }}
         aria-hidden={carImg ? "false" : "true"}
       >
-        {carImg && !loadingImg ? (
-          <img
-            src={carImg}
-            alt={`Preview: ${year ? year + " " : ""}${manufacturer} ${model}`}
-            style={{
-              width: 71,
-              height: 49,
-              objectFit: "cover",
-              borderRadius: 8,
-              background: "#19181b",
-            }}
-            draggable={false}
-          />
-        ) : (
-          <span
-            style={{
-              color: "#7d7d85",
-              fontWeight: 700,
-              fontSize: "1.32rem",
-              lineHeight: 1,
-            }}
-            aria-label="No image"
-          >
-            🚗
-          </span>
+        {renderCarImage(
+          `Preview: ${year ? year + " " : ""}${manufacturer} ${model}`,
+          {
+            width: 71,
+            height: 49,
+            objectFit: "cover",
+            borderRadius: 8,
+            background: "#19181b",
+          }
         )}
       </div>
       <div>
