@@ -6,11 +6,10 @@ import "./AnimatedCarIntro.css";
  * PUBLIC_INTERFACE
  * TyreSenseLogoCarSVG
  * Purpose: Bold, premium side-view car SVG with stylized, minimal lines for branding and animation.
- * The design is logo-like and scale-agnostic, with thick outlines and neon accents, suitable for memorable branding.
+ * The design is logo-like and scale-agnostic, with thick outlines and muted Porsche-inspired accents.
  */
 function TyreSenseLogoCarSVG({ style, ...props }) {
   // SVG: side-view, stylized coupe with bold lines, circular wheels, and premium muted highlights.
-  // All former neon/cyan/yellow accents replaced with Porsche-styled, muted analogues; subtle accents only.
   return (
     <svg
       width={style?.width || 230}
@@ -25,44 +24,43 @@ function TyreSenseLogoCarSVG({ style, ...props }) {
     >
       <defs>
         <radialGradient id="ts-carBody" cx="49%" cy="52%" r="78%">
-          <stop offset="0.02" stopColor="#b6b3a7" stopOpacity="0.72"/>
-          <stop offset="0.54" stopColor="#232327" stopOpacity="1"/>
-          <stop offset="1" stopColor="#18181c" stopOpacity="1"/>
+          <stop offset="0.02" stopColor="#b6b3a7" stopOpacity="0.72" />
+          <stop offset="0.54" stopColor="#232327" stopOpacity="1" />
+          <stop offset="1" stopColor="#18181c" stopOpacity="1" />
         </radialGradient>
         <linearGradient id="ts-roof" x1="42" y1="16" x2="220" y2="9" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#7d7d85"/>
-          <stop offset="0.8" stopColor="#edeef0"/>
+          <stop stopColor="#7d7d85" />
+          <stop offset="0.8" stopColor="#edeef0" />
         </linearGradient>
         <radialGradient id="ts-wheel-dark" cx="49%" cy="48%" r="51%">
-          <stop offset="0.29" stopColor="#4e5355"/>
-          <stop offset="0.77" stopColor="#232327"/>
-          <stop offset="1" stopColor="#0c0c0e"/>
+          <stop offset="0.29" stopColor="#4e5355" />
+          <stop offset="0.77" stopColor="#232327" />
+          <stop offset="1" stopColor="#0c0c0e" />
         </radialGradient>
         <radialGradient id="ts-wheel-gloss" cx="62%" cy="40%" r="66%">
-          <stop offset="0.48" stopColor="#b6b3a7" stopOpacity="0.09"/>
-          <stop offset="0.96" stopColor="#edeef0" stopOpacity="0.04"/>
+          <stop offset="0.48" stopColor="#b6b3a7" stopOpacity="0.09" />
+          <stop offset="0.96" stopColor="#edeef0" stopOpacity="0.04" />
         </radialGradient>
       </defs>
-
       {/* Shadow */}
-      <ellipse cx="160" cy="88" rx="92" ry="5.5" fill="#18181c" opacity="0.18"/>
+      <ellipse cx="160" cy="88" rx="92" ry="5.5" fill="#18181c" opacity="0.18" />
       {/* Rear wheel */}
       <g>
         <circle cx="60" cy="71" r="19.4" fill="url(#ts-wheel-dark)" />
         <circle cx="60" cy="71" r="13" fill="#18181c" />
         <circle cx="60" cy="71" r="17" fill="url(#ts-wheel-gloss)" />
-        <circle cx="60" cy="71" r="5.8" fill="#edeef0" opacity="0.08"/>
+        <circle cx="60" cy="71" r="5.8" fill="#edeef0" opacity="0.08" />
         {/* Muted highlight */}
-        <ellipse cx="56" cy="61" rx="6" ry="2.6" fill="#7d7d85" opacity="0.07"/>
+        <ellipse cx="56" cy="61" rx="6" ry="2.6" fill="#7d7d85" opacity="0.07" />
       </g>
       {/* Front wheel */}
       <g>
         <circle cx="232" cy="71" r="18" fill="url(#ts-wheel-dark)" />
         <circle cx="232" cy="71" r="12" fill="#232327" />
         <circle cx="232" cy="71" r="15" fill="url(#ts-wheel-gloss)" />
-        <circle cx="232" cy="71" r="6" fill="#edeef0" opacity="0.05"/>
+        <circle cx="232" cy="71" r="6" fill="#edeef0" opacity="0.05" />
         {/* Muted highlight */}
-        <ellipse cx="229" cy="61" rx="6" ry="2.5" fill="#7d7d85" opacity="0.07"/>
+        <ellipse cx="229" cy="61" rx="6" ry="2.5" fill="#7d7d85" opacity="0.07" />
       </g>
       {/* Car body main shape (front to tail, stylized and logo-like) */}
       <path
@@ -93,18 +91,18 @@ function TyreSenseLogoCarSVG({ style, ...props }) {
       {/* Undercarriage */}
       <rect x="54" y="67.5" width="190" height="7.1" rx="3.8" fill="#18181c" />
       {/* Door handle - muted mini bar */}
-      <rect x="135" y="49" width="26" height="2.2" rx="1.1" fill="#edeef0" opacity="0.11"/>
+      <rect x="135" y="49" width="26" height="2.2" rx="1.1" fill="#edeef0" opacity="0.11" />
       {/* Rear "fin" - thicker stylized bar */}
-      <rect x="41.3" y="54" width="7.1" height="15" rx="3.5" fill="#edeef0" opacity="0.07"/>
+      <rect x="41.3" y="54" width="7.1" height="15" rx="3.5" fill="#edeef0" opacity="0.07" />
       {/* Short vertical antenna */}
-      <rect x="137" y="12" width="2.9" height="13" rx="1.7" fill="#edeef0" opacity="0.11"/>
+      <rect x="137" y="12" width="2.9" height="13" rx="1.7" fill="#edeef0" opacity="0.11" />
       {/* Muted speedline (stylized motion effect) */}
-      <rect x="86" y="41" width="33" height="2" rx="1" fill="#7d7d85" opacity="0.08"/>
-      <rect x="220" y="21" width="23" height="2" rx="1" fill="#7d7d85" opacity="0.09"/>
+      <rect x="86" y="41" width="33" height="2" rx="1" fill="#7d7d85" opacity="0.08" />
+      <rect x="220" y="21" width="23" height="2" rx="1" fill="#7d7d85" opacity="0.09" />
       {/* TyreSense badge (logo dot, subtle) */}
       <g>
-        <circle cx="242.5" cy="62.5" r="8" fill="#edeef0" stroke="#edeef0" strokeWidth="1.1"/>
-        <path d="M237 63 Q242.7 56 248 63 Q243 67 237 65 Z" fill="#fff" opacity="0.41"/>
+        <circle cx="242.5" cy="62.5" r="8" fill="#edeef0" stroke="#edeef0" strokeWidth="1.1" />
+        <path d="M237 63 Q242.7 56 248 63 Q243 67 237 65 Z" fill="#fff" opacity="0.41" />
       </g>
     </svg>
   );
@@ -112,29 +110,21 @@ function TyreSenseLogoCarSVG({ style, ...props }) {
 
 /**
  * AnimatedCarIntro:
- * - Animates a detailed Ferrari F1 side-view car and "TyreSense" brand name to the center.
+ * - Animates a detailed Porsche-style car and "TyreSense" brand name to the center.
  * - After the animation, both persist, always parked and centered in the viewport.
  *
  * Props:
  *   - visible: boolean, controls whether the animation runs
  *   - onAnimationComplete: function, fired once intro finishes
+ *   - asLogo: boolean, render as header logo style (persistent mini)
  */
-/**
- * AnimatedCarIntro:
- * - Animates a detailed Ferrari F1 side-view car and "TyreSense" brand name to the center (intro mode).
- * - In logo mode (`asLogo`), shows a horizontally condensed, fixed car+name logo (e.g., inside navbar).
- *
- * Props:
- *   - visible: boolean, controls whether the intro animation runs (centered, big)
- *   - asLogo: boolean, if true, renders as a persistent logo (small, inline for navbar)
- *   - onAnimationComplete: function, fired once intro finishes
- */
+// PUBLIC_INTERFACE
 function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
   // State to track when the animation (entry) is over.
   const [hasEntered, setHasEntered] = useState(false);
   const doneOnce = useRef(false);
 
-  // "visible" triggers the entry animation; after, signal completion.
+  // Trigger callback after entry anim is over.
   useEffect(() => {
     if (hasEntered && typeof onAnimationComplete === "function" && !doneOnce.current) {
       onAnimationComplete();
@@ -142,9 +132,8 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
     }
   }, [hasEntered, onAnimationComplete]);
 
-  // If asLogo is enabled, render an always present car+TyreSense mark (small/in-navbar).
+  // Persistent logo (mini, navbar style)
   if (asLogo) {
-    // Always horizontally center: logo SVG + TyreSense text with proper spacing, size for all breakpoints, visually balanced
     return (
       <div
         className="ts-animated-car ts-animated-car-navbar"
@@ -152,7 +141,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
           position: "relative",
           left: "50%",
           top: "0",
-          transform: "translateX(-50%)", // center in parent horizontally
+          transform: "translateX(-50%)",
           minWidth: 165,
           maxWidth: 390,
           zIndex: 11,
@@ -160,7 +149,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          justifyContent: "center", // ensure logo mark and text are centered together
+          justifyContent: "center",
           height: 63,
           width: "auto",
         }}
@@ -171,7 +160,8 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
             height: 31,
             marginRight: 13,
             marginLeft: 2,
-            filter: "drop-shadow(0 0 18px #ffe60033)",
+            // Subtle accent red shadow for Porsche branding
+            filter: "drop-shadow(0 0 9px #b4081b22)",
             flex: "0 0 auto",
           }}
         />
@@ -183,9 +173,9 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
             lineHeight: "1",
             whiteSpace: "nowrap",
             letterSpacing: "0.13em",
-            filter: "brightness(1.18) blur(.01px)",
-            color: "#ffe600",
-            textShadow: "0 0 10px #ffe60085",
+            filter: "brightness(1.13) blur(.01px)",
+            color: "#edeef0",
+            textShadow: "0 0 4px #b4081b40",
             fontWeight: 800,
             flex: "0 0 auto",
             display: "inline-block",
@@ -198,6 +188,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
     );
   }
 
+  // Animated intro
   return (
     <>
       <AnimatePresence>
@@ -215,10 +206,9 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              background: "linear-gradient(150deg, #18181c 78%, #232327 100%)", // Porsche dark
+              background: "linear-gradient(150deg, #18181c 78%, #232327 100%)",
             }}
           >
-            {/* Animated car + logo in center */}
             <motion.div
               className="ts-animated-car"
               initial={{
@@ -266,7 +256,6 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                   minHeight: 38,
                   maxHeight: 92,
                   marginRight: "3vw",
-                  // drop-shadow for Porsche accent red instead of yellow
                   filter: "drop-shadow(0 0 31px #b4081b64)",
                   display: "inline-block",
                   verticalAlign: "middle",
