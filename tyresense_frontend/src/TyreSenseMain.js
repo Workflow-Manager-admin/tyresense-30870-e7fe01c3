@@ -439,7 +439,7 @@ function MainTyreSenseRoutes(props) {
   );
 }
 
-import { useParams } from "react-router-dom";
+ 
 // Helper: Renders TyreBrandDetail using route param
 function BrandDetailRoute({ onBackToList }) {
   // PUBLIC_INTERFACE
