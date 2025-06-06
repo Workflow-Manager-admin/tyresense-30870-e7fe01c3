@@ -191,12 +191,12 @@ function MainTyreSenseRoutes(props) {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: 66,
+            height: 74,
             padding: 0,
             boxShadow: "0 2px 11px #11111417"
           }}
         >
-          {/* TyreSense tyre-themed logo for header/navbar (visually prominent, brand-aligned) */}
+          {/* Updated: Prominent tyre-themed SVG logo in header */}
           <div
             className="ts-animated-car-navbar"
             style={{
@@ -204,38 +204,38 @@ function MainTyreSenseRoutes(props) {
               alignItems: "center",
               justifyContent: "center",
               height: "100%",
-              minWidth: 126,
+              minWidth: 155,
               maxWidth: 340,
-              padding: "0 11px",
-              gap: 8
+              padding: "0 18px",
+              gap: 10
             }}
           >
             <TyreLogoSVG
               style={{
-                width: 42,
-                height: 42,
-                minWidth: 28,
-                marginRight: 10,
+                width: 54,
+                height: 54,
+                minWidth: 36,
+                marginRight: 13,
                 verticalAlign: "middle",
                 flex: "0 0 auto",
-                filter: "drop-shadow(0 0 12px #b4081b35)"
+                filter: "drop-shadow(0 0 13px #b4081b21)"
               }}
             />
             <span
               className="ts-animated-car-title"
               style={{
                 fontWeight: 900,
-                fontSize: "1.19rem",
-                letterSpacing: "0.13em",
+                fontSize: "1.25rem",
+                letterSpacing: "0.17em",
                 color: "#fff",
-                textShadow: "0 0 11px #e1060068, 0 1px 8px #23232733",
+                textShadow: "0 0 13px #e1060078, 0 0.5px 8px #23232733",
                 filter: "brightness(1.13) blur(.01px)",
                 verticalAlign: "middle",
                 fontFamily: "'Roboto', Helvetica, Arial, sans-serif",
-                marginLeft: 2,
+                marginLeft: 1,
                 display: "inline-block",
                 background: "none",
-                lineHeight: 1.12,
+                lineHeight: 1.1,
                 textTransform: "uppercase"
               }}
             >
