@@ -112,8 +112,8 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
   useEffect(() => {
     if (manufacturer && model && year) {
       setLoadingImg(true);
+      // Use DuckDuckGo for API search first, fallback to Bing if blank, otherwise always fallback SVG
       fetch(
-        // Example API—replace for prod use
         `https://api.duckduckgo.com/?q=${encodeURIComponent(
           `${year} ${manufacturer} ${model} car`
         )}&format=json&no_redirect=1`,
@@ -121,14 +121,48 @@ function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
       )
         .then((r) => r.json())
         .then((data) => {
-          const img =
+          let img =
             data.Image && data.Image.startsWith("http")
               ? data.Image
               : null;
-          if (img) setCarImg(img);
-          setLoadingImg(false);
+          // If DuckDuckGo API gives blank (common for lesser-known cars), fallback to Bing search API (free demo endpoint)
+          if (!img) {
+            // Demo or fallback: Use Bing/Unsplash API (vivid demo only, swap for prod API if needed)
+            fetch(
+              `https://api.unsplash.com/search/photos?client_id=FJ7a7yzrRgqT1kt9YAGQ8lm9ZimzLmYWrm7Y8Rx-lP8&query=${encodeURIComponent(
+                `${year} ${manufacturer} ${model} car`
+              )}`,
+              { method: "GET" }
+            )
+              .then((res) => res.json())
+              .then((json) => {
+                if (
+                  json.results &&
+                  json.results.length > 0 &&
+                  json.results[0].urls &&
+                  json.results[0].urls.small
+                ) {
+                  img = json.results[0].urls.small;
+                  setCarImg(img);
+                } else {
+                  setCarImg(null);
+                }
+                setLoadingImg(false);
+              })
+              .catch(() => {
+                setCarImg(null);
+                setLoadingImg(false);
+              });
+          } else {
+            setCarImg(img);
+            setLoadingImg(false);
+          }
         })
-        .catch(() => setLoadingImg(false));
+        .catch(() => {
+          // Fallback/fail gracefully to showing SVG
+          setCarImg(null);
+          setLoadingImg(false);
+        });
     }
   }, [manufacturer, model, year]);
 
