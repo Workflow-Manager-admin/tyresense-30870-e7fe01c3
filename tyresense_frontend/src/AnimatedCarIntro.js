@@ -148,6 +148,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
           justifyContent: "center",
           height: 63,
           width: "auto",
+          background: "none",
         }}
       >
         <TyreSenseLogoCarSVG
@@ -156,9 +157,10 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
             height: 31,
             marginRight: 13,
             marginLeft: 2,
-            // ColorCraft shadow (secondary)
-            filter: "drop-shadow(0 0 9px #001eff55)",
+            // Soft drop-shadow in secondary
+            filter: "drop-shadow(0 0 12px #001eff88)",
             flex: "0 0 auto",
+            background: "none",
           }}
         />
         <span
@@ -170,12 +172,14 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
             whiteSpace: "nowrap",
             letterSpacing: "0.13em",
             filter: "brightness(1.10) blur(.01px)",
-            color: "#FFFFFF", // accent
-            textShadow: "0 0 8px #001eff, 0 2px 12px #4e5355", // Only ColorCraft colors
+            color: "#fff",
+            // Subtle double-shadow using main gradient colors
+            textShadow: "0 0 10px #001effa0, 0 0px 12px #4e5355b2",
             fontWeight: 800,
             flex: "0 0 auto",
             display: "inline-block",
             verticalAlign: "middle",
+            background: "none",
           }}
         >
           TyreSense
