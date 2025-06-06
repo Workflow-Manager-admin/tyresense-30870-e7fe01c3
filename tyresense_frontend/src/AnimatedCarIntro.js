@@ -280,8 +280,8 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                     whiteSpace: "nowrap",
                     letterSpacing: "0.13em",
                     filter: "brightness(1.17) blur(.01px)",
-                    color: "#edeef0",
-                    textShadow: "0 0 10px #b4081b55, 0 2px 13px #000",
+                    color: "#FFFFFF", // accent
+                    textShadow: "0 0 10px #001eff, 0 2px 13px #4e5355", // secondary and primary palette
                     fontWeight: 800,
                     lineHeight: 1,
                     display: "inline-block",
