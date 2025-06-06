@@ -6,10 +6,10 @@ import "./AnimatedCarIntro.css";
  * PUBLIC_INTERFACE
  * TyreSenseLogoCarSVG
  * Purpose: Bold, premium side-view car SVG with stylized, minimal lines for branding and animation.
- * The design is logo-like and scale-agnostic, with thick outlines and muted Porsche-inspired accents.
+ * The design is logo-like and scale-agnostic, with thick outlines and ColorCraft theme accents.
  */
 function TyreSenseLogoCarSVG({ style, ...props }) {
-  // SVG: side-view, stylized coupe with bold lines, circular wheels, and premium muted highlights.
+  // SVG: side-view, stylized coupe, ColorCraft colors only
   return (
     <svg
       width={style?.width || 230}
@@ -24,13 +24,13 @@ function TyreSenseLogoCarSVG({ style, ...props }) {
     >
       <defs>
         <radialGradient id="ts-carBody" cx="49%" cy="52%" r="78%">
-          <stop offset="0.02" stopColor="#FFFFFF" stopOpacity="0.82" /> {/* accent */}
-          <stop offset="0.54" stopColor="#4e5355" stopOpacity="1" /> {/* primary */}
-          <stop offset="1" stopColor="#001eff" stopOpacity="1" /> {/* secondary */}
+          <stop offset="0.02" stopColor="#FFFFFF" stopOpacity="0.82" />
+          <stop offset="0.54" stopColor="#4e5355" stopOpacity="1" />
+          <stop offset="1" stopColor="#001eff" stopOpacity="1" />
         </radialGradient>
         <linearGradient id="ts-roof" x1="42" y1="16" x2="220" y2="9" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#4e5355" /> {/* primary */}
-          <stop offset="0.8" stopColor="#001eff" /> {/* secondary */}
+          <stop stopColor="#4e5355" />
+          <stop offset="0.8" stopColor="#001eff" />
         </linearGradient>
         <radialGradient id="ts-wheel-dark" cx="49%" cy="48%" r="51%">
           <stop offset="0.29" stopColor="#4e5355" />
@@ -42,7 +42,7 @@ function TyreSenseLogoCarSVG({ style, ...props }) {
           <stop offset="0.96" stopColor="#001eff" stopOpacity="0.05" />
         </radialGradient>
       </defs>
-      {/* Shadow - strict palette usage */}
+      {/* Shadow (strict ColorCraft) */}
       <ellipse cx="160" cy="88" rx="92" ry="5.5" fill="#001eff" opacity="0.14" />
       {/* Rear wheel */}
       <g>
@@ -50,7 +50,6 @@ function TyreSenseLogoCarSVG({ style, ...props }) {
         <circle cx="60" cy="71" r="13" fill="#4e5355" />
         <circle cx="60" cy="71" r="17" fill="url(#ts-wheel-gloss)" />
         <circle cx="60" cy="71" r="5.8" fill="#FFFFFF" opacity="0.10" />
-        {/* Muted highlight; palette only, all opacity values kept for visual effect */}
         <ellipse cx="56" cy="61" rx="6" ry="2.6" fill="#001eff" opacity="0.085" />
       </g>
       {/* Front wheel */}
@@ -95,10 +94,10 @@ function TyreSenseLogoCarSVG({ style, ...props }) {
       <rect x="41.3" y="54" width="7.1" height="15" rx="3.5" fill="#001eff" opacity="0.07" />
       {/* Antenna */}
       <rect x="137" y="12" width="2.9" height="13" rx="1.7" fill="#FFFFFF" opacity="0.08" />
-      {/* Speedlines - only palette */}
+      {/* Speedline highlights - palette only */}
       <rect x="86" y="41" width="33" height="2" rx="1" fill="#4e5355" opacity="0.07" />
       <rect x="220" y="21" width="23" height="2" rx="1" fill="#4e5355" opacity="0.09" />
-      {/* Badge */}
+      {/* TyreSense badge */}
       <g>
         <circle cx="242.5" cy="62.5" r="8" fill="#001eff" stroke="#001eff" strokeWidth="1.1" opacity="0.7"/>
         <path d="M237 63 Q242.7 56 248 63 Q243 67 237 65 Z" fill="#FFFFFF" opacity="0.21" />
@@ -109,13 +108,13 @@ function TyreSenseLogoCarSVG({ style, ...props }) {
 
 /**
  * AnimatedCarIntro:
- * - Animates a detailed Porsche-style car and "TyreSense" brand name to the center.
+ * - Animates a detailed car and "TyreSense" brand name using only ColorCraft palette.
  * - After the animation, both persist, always parked and centered in the viewport.
  *
  * Props:
  *   - visible: boolean, controls whether the animation runs
  *   - onAnimationComplete: function, fired once intro finishes
- *   - asLogo: boolean, render as header logo style (persistent mini)
+ *   - asLogo: boolean, render as header logo
  */
 // PUBLIC_INTERFACE
 function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
@@ -159,7 +158,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
             height: 31,
             marginRight: 13,
             marginLeft: 2,
-            // Brand shadow using secondary (blue) - strict ColorCraft palette only
+            // ColorCraft shadow (secondary)
             filter: "drop-shadow(0 0 9px #001eff55)",
             flex: "0 0 auto",
           }}
@@ -174,7 +173,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
             letterSpacing: "0.13em",
             filter: "brightness(1.10) blur(.01px)",
             color: "#FFFFFF", // accent
-            textShadow: "0 0 8px #001eff, 0 2px 12px #4e5355", // Only palette secondary/primary solid
+            textShadow: "0 0 8px #001eff, 0 2px 12px #4e5355", // Only ColorCraft colors
             fontWeight: 800,
             flex: "0 0 auto",
             display: "inline-block",
@@ -205,7 +204,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              // Updated background using ColorCraft's official palette
+              // ColorCraft gradient
               background: "linear-gradient(140deg, #4e5355 68%, #001eff 100%)",
             }}
           >
@@ -256,8 +255,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                   minHeight: 38,
                   maxHeight: 92,
                   marginRight: "3vw",
-                  // Primary and secondary palette for shadow (no yellow/neon/red)
-                  filter: "drop-shadow(0 0 31px #001eff44)",
+                  filter: "drop-shadow(0 0 26px #001eff55)", // palette only
                   display: "inline-block",
                   verticalAlign: "middle",
                 }}
@@ -279,8 +277,8 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                     whiteSpace: "nowrap",
                     letterSpacing: "0.13em",
                     filter: "brightness(1.08) blur(.01px)",
-                    color: "#FFFFFF", // accent (ColorCraft palette)
-                    textShadow: "0 0 14px #001eff, 0 2px 14px #4e5355", // Only strict palette, no opacity
+                    color: "#FFFFFF", // accent
+                    textShadow: "0 0 14px #001eff, 0 2px 14px #4e5355", // Only palette, no opacity tokens
                     fontWeight: 800,
                     lineHeight: 1,
                     display: "inline-block",
