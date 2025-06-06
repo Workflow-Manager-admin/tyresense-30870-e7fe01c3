@@ -1,11 +1,11 @@
 .ts-animated-car-intro-bg {
-  /* Updated for TyreSense main container palette */
+  /* ColorCraft palette only: primary, secondary, accent */
   background: linear-gradient(140deg, #4e5355 68%, #001eff 100%);
   width: 100vw;
   height: 100vh;
   display: flex;
-  align-items: center; /* Vertically center car+text in intro */
-  justify-content: center; /* Horizontally center them */
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0; left: 0;
   z-index: 1200;
