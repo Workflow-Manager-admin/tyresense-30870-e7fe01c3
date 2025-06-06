@@ -136,3 +136,6 @@
 .ts-animated-car-navbar {
   gap: 0;
 }
+
+/* Remove legacy/neon/yellow styles for this brand component */
+/* No yellow, neon, legacy accent colors anywhere in this file or component. */
