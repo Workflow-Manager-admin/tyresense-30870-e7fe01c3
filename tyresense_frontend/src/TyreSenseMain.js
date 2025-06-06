@@ -11,30 +11,59 @@ import TyreRecommendations from "./TyreRecommendations";
 
 /* Placeholder SVG logo is no longer required; replaced with AnimatedCarIntro asLogo */
 
-// Tyre-themed SVG logo component for direct use in nav/header
+/**
+ * TyreLogoSVG
+ * Bold, visually distinctive tyre SVG logo for nav/header.
+ * Used as the main mark beside TyreSense wordmark.
+ */
+// PUBLIC_INTERFACE
 function TyreLogoSVG({ style = {}, ...props }) {
-  // Minimal, bold tyre SVG with a sense of tread/rubber, scalable
+  // Modern, round tyre: thick sidewall, accent tread, subtle gradient for depth.
   return (
     <svg
-      width={style.width || 36}
-      height={style.height || 36}
-      viewBox="0 0 36 36"
+      width={style.width || 44}
+      height={style.height || 44}
+      viewBox="0 0 44 44"
       fill="none"
-      style={style}
+      style={{
+        display: "inline-block",
+        verticalAlign: "middle",
+        ...style
+      }}
       xmlns="http://www.w3.org/2000/svg"
-      aria-label="TyreSense round tyre logo"
+      aria-label="TyreSense tyre logo"
+      role="img"
       {...props}
     >
-      <circle cx="18" cy="18" r="16.5" stroke="#232327" strokeWidth="2.5" fill="#edeef0"/>
-      {/* Tyre tread pattern (simplified) */}
-      <circle cx="18" cy="18" r="11.7" stroke="#b4081b" strokeWidth="2.5" fill="#fff" />
-      {/* Tyre side 'cuts' */}
-      <path d="M7.9 10.2c2.2-1.4 3.6-3.7 9-2.75" stroke="#7d7d85" strokeWidth="1.2" fill="none"/>
-      <path d="M28.1 10.2c-2.2-1.4-3.6-3.7-9-2.75" stroke="#7d7d85" strokeWidth="1.2" fill="none"/>
-      <path d="M7.9 25.8c2.2 1.4 3.6 3.7 9 2.75" stroke="#7d7d85" strokeWidth="1.2" fill="none"/>
-      <path d="M28.1 25.8c-2.2 1.4-3.6 3.7-9 2.75" stroke="#7d7d85" strokeWidth="1.2" fill="none"/>
-      {/* Center dot for "hub" */}
-      <circle cx="18" cy="18" r="2.5" fill="#b4081b"/>
+      <defs>
+        <radialGradient id="tyre-tread-bg" cx="50%" cy="54%" r="54%">
+          <stop offset="0.18" stopColor="#edeef0" />
+          <stop offset="0.77" stopColor="#cdcfd4" />
+          <stop offset="1" stopColor="#b0b1b7" />
+        </radialGradient>
+        <linearGradient id="tyre-sidewall" x1="0" y1="0" x2="44" y2="38" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#4e5355" />
+          <stop offset="1" stopColor="#18181c" />
+        </linearGradient>
+        <radialGradient id="tyre-red-accent" cx="54%" cy="50%" r="67%">
+          <stop offset="0.20" stopColor="#e10600" />
+          <stop offset="0.95" stopColor="#b4081b" />
+        </radialGradient>
+      </defs>
+      {/* Main tyre sidewall */}
+      <circle cx="22" cy="22" r="21" fill="url(#tyre-sidewall)" stroke="#18181c" strokeWidth="2.6"/>
+      {/* Tyre tread area (lighter inside ring) */}
+      <circle cx="22" cy="22" r="15.1" fill="url(#tyre-tread-bg)" stroke="#7d7d85" strokeWidth="2.1"/>
+      {/* "Tread" arcs – bold red, hinting sport/performance */}
+      <path d="M9 17.5 Q22 7 35 17.5" stroke="url(#tyre-red-accent)" strokeWidth="2.5" fill="none" />
+      <path d="M13 26 Q22 36 31 26" stroke="url(#tyre-red-accent)" strokeWidth="2.25" fill="none" />
+      {/* Stylized chevron marks (hinting slick tread) */}
+      <path d="M18 13 L22 17 L26 13" stroke="#b4081b" strokeWidth="1.4" fill="none"/>
+      <path d="M18 32 L22 28 L26 32" stroke="#b4081b" strokeWidth="1.2" fill="none"/>
+      {/* Centre hub accent */}
+      <circle cx="22" cy="22" r="3.2" fill="#e10600" stroke="#fff" strokeWidth="0.7" />
+      {/* Tiny center dot */}
+      <circle cx="22" cy="22" r="1.07" fill="#b4081b" />
     </svg>
   );
 }
