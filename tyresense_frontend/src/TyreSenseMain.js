@@ -196,21 +196,21 @@ function MainTyreSenseRoutes(props) {
             boxShadow: "0 2px 11px #11111417"
           }}
         >
-          {/* Tyre-themed logo with consistent Porsche-inspired sizing, always visually centered */}
+          {/* TyreSense tyre-themed logo in header/main navbar */}
           <div
             className="ts-animated-car-navbar"
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              gap: 8,
               height: "100%",
               minWidth: 123,
               maxWidth: 390,
-              padding: "0 14px"
+              padding: "0 14px",
+              gap: 10
             }}
           >
-            {/* Use tyre logo SVG for consistent branding */}
+            {/* Tyre-themed logo inline for branding */}
             <TyreLogoSVG
               style={{
                 width: 34,
@@ -219,7 +219,7 @@ function MainTyreSenseRoutes(props) {
                 marginRight: 10,
                 verticalAlign: "middle",
                 flex: "0 0 auto",
-                filter: "drop-shadow(0 0 8px #b4081b28)",
+                filter: "drop-shadow(0 0 8px #b4081b28)"
               }}
             />
             <span
