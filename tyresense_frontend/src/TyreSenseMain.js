@@ -9,44 +9,7 @@ import TyreBrandDetail from "./TyreBrandDetail";
 import AnimatedCarIntro from "./AnimatedCarIntro";
 import TyreRecommendations from "./TyreRecommendations";
 
-// Placeholder SVG logo for TyreSense - simple "TS" emblem, centered (for main logo in navbar)
-// You may replace this SVG with a real logo asset per branding
-function TyreSensePlaceholderLogo({ width = 72, height = 34, style = {} }) {
-  return (
-    <svg
-      width={width}
-      height={height}
-      viewBox="0 0 72 34"
-      fill="none"
-      aria-label="TyreSense Placeholder Logo"
-      role="img"
-      style={{
-        ...style,
-        display: "inline-block",
-        verticalAlign: "middle"
-      }}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <linearGradient id="redGrad" x1="0" y1="0" x2="72" y2="0" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#D41414"/>
-          <stop offset="1" stopColor="#b4081b"/>
-        </linearGradient>
-      </defs>
-      <rect x="2" y="2" width="68" height="30" rx="11" fill="url(#redGrad)" opacity="0.10"/>
-      <text
-        x="50%"
-        y="62%"
-        textAnchor="middle"
-        fontSize="22"
-        fontFamily="'Inter','Roboto','Helvetica Neue',Arial,sans-serif"
-        fontWeight="900"
-        fill="url(#redGrad)"
-        style={{dominantBaseline: "middle"}}
-      >TS</text>
-    </svg>
-  );
-}
+/* Placeholder SVG logo is no longer required; replaced with AnimatedCarIntro asLogo */
 
 /**
  * Remove all neon styling, use only Porsche.com palette and minimalist structure.
