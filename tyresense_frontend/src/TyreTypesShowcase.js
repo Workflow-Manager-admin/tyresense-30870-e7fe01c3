@@ -23,8 +23,7 @@ const TYRE_IMAGES = {
   bridgestone: getPublicUrl() + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
 };
 
-// This is now the only source of navigation; four large premium containers.
-// No small/legacy containers or legacy grid logic remain here.
+// FINAL LIST: Porsche-style premium containers only, no small/legacy brands
 const TYRE_BRANDS = [
   {
     id: "pirelli",
@@ -54,7 +53,7 @@ const TYRE_BRANDS = [
 
 // PUBLIC_INTERFACE
 function TyreTypesShowcase({ onBrandSelect }) {
-  // All other code/markup for smaller brands is removed – only premium Porsche-style containers remain.
+  // Render only four premium-style containers, no legacy/small brands.
   return (
     <section className="ts-section ts-tyre-brands-showcase">
       <header className="tyre-showcase-header">
@@ -64,7 +63,10 @@ function TyreTypesShowcase({ onBrandSelect }) {
         </p>
       </header>
       <div className="tyre-brands-grid">
-        {TYRE_BRANDS.map((brand) => (
+        {/* Porsche-style large premium brand containers, hardcoded; no other brand cards */}
+        {TYRE_BRANDS.filter(b =>
+          ["pirelli", "michelin", "continental", "bridgestone"].includes(b.id)
+        ).map((brand) => (
           <button
             key={brand.id}
             className="tyre-brand-card premium-brand-container"
