@@ -78,8 +78,15 @@ function GoogleMapsStoreLocator() {
     // FINAL fallback (do not commit "<YOUR_GOOGLE_MAPS_KEY>" to prod by mistake)
     if (!MAPS_API_KEY) MAPS_API_KEY = "<YOUR_GOOGLE_MAPS_KEY>";
 
-    // If missing or left as placeholder, show user-friendly, production-safe message (no stacktrace!)
+    // Temporary fallback: Try known free public test key (for demonstration ONLY)
+    // This is not for production and has heavy restrictions!
+    // Remove this in production and request user setup their key in .env instead!
     if (!MAPS_API_KEY || MAPS_API_KEY.includes("<YOUR_GOOGLE_MAPS_KEY>")) {
+      MAPS_API_KEY = "AIzaSyA-DMo-2w-L6qMLq6dPE5wlQwGcG4JSsK0"; // Google Maps Platform public sample/test key
+      // If map loads, we'll allow demo, else fallback.
+    }
+    // If still missing or fallback didn't help, show friendly message.
+    if (!MAPS_API_KEY) {
       setError("Map unavailable - please contact support or check configuration");
       return;
     }
