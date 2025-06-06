@@ -256,29 +256,30 @@ function MainTyreSenseRoutes(props) {
               alignItems: "center",
               justifyContent: "center",
               height: "100%",
-              gap: 16,
+              gap: 12,
               padding: "0 10px"
             }}
           >
-            {/* Tyre-Themed Logo SVG always as primary app mark */}
+            {/* Tyre-Themed Logo SVG as the only logo in the navbar */}
             <TyreLogoSVG style={{ width: 46, height: 46, marginRight: 8, flex: "0 0 auto" }} />
-            {/* Brand wordmark / text styled with logo */}
-            <span style={{
-              fontWeight: 800,
-              fontSize: "1.38rem",
-              letterSpacing: "0.13em",
-              color: "#fff",
-              textShadow: "0 0 7px #b4081b77",
-              filter: "brightness(1.08) blur(.01px)",
-              verticalAlign: "middle",
-              fontFamily: "'Roboto', Helvetica, Arial, sans-serif",
-              marginLeft: 2,
-              marginTop: 3,
-              display: "inline-block",
-              background: "none",
-              lineHeight: 1,
-              textTransform: "uppercase"
-            }}>
+            <span
+              style={{
+                fontWeight: 800,
+                fontSize: "1.38rem",
+                letterSpacing: "0.13em",
+                color: "#fff",
+                textShadow: "0 0 7px #b4081b77",
+                filter: "brightness(1.08) blur(.01px)",
+                verticalAlign: "middle",
+                fontFamily: "'Roboto', Helvetica, Arial, sans-serif",
+                marginLeft: 2,
+                marginTop: 3,
+                display: "inline-block",
+                background: "none",
+                lineHeight: 1,
+                textTransform: "uppercase"
+              }}
+            >
               TyreSense
             </span>
           </div>
