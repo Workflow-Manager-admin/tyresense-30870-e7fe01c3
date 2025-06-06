@@ -215,7 +215,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              background: "transparent",
+              background: "linear-gradient(150deg, #18181c 78%, #232327 100%)", // Porsche dark
             }}
           >
             {/* Animated car + logo in center */}
@@ -266,7 +266,8 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                   minHeight: 38,
                   maxHeight: 92,
                   marginRight: "3vw",
-                  filter: "drop-shadow(0 0 58px #ffe60079)",
+                  // drop-shadow for Porsche accent red instead of yellow
+                  filter: "drop-shadow(0 0 31px #b4081b64)",
                   display: "inline-block",
                   verticalAlign: "middle",
                 }}
@@ -287,9 +288,9 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                     fontSize: "clamp(1.7rem, 5vw, 2.9rem)",
                     whiteSpace: "nowrap",
                     letterSpacing: "0.13em",
-                    filter: "brightness(1.34) blur(.015px)",
-                    color: "#ffe600",
-                    textShadow: "0 0 22px #ffe600a4, 0 2px 13px #000",
+                    filter: "brightness(1.17) blur(.01px)",
+                    color: "#edeef0",
+                    textShadow: "0 0 10px #b4081b55, 0 2px 13px #000",
                     fontWeight: 800,
                     lineHeight: 1,
                     display: "inline-block",
