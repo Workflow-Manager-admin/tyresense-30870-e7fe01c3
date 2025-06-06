@@ -5,6 +5,7 @@ import CarDetailsInput from "./CarDetailsInput";
 import GoogleMapsStoreLocator from "./GoogleMapsStoreLocator";
 import TyreTypesShowcase from "./TyreTypesShowcase";
 import TyreBrandDetail from "./TyreBrandDetail";
+import AnimatedCarIntro from "./AnimatedCarIntro";
 
 // Placeholder SVG logo for TyreSense - simple "TS" emblem, centered (for main logo in navbar)
 // You may replace this SVG with a real logo asset per branding
