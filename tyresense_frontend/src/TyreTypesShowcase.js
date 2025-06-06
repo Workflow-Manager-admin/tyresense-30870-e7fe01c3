@@ -4,16 +4,18 @@ import "./TyreTypesShowcase.css";
 /**
  * PUBLIC_INTERFACE
  * TyreTypesShowcase
- * Displays ONLY the four premium/larger brand containers.
+ * Displays only the four Porsche-inspired premium/larger brand containers.
  * Each brand container is a clickable button that routes to a tyre brand page.
  * @param {function} onBrandSelect - function(brand) called when a brand is clicked.
  */
+
+// Helper for public URL
 const getPublicUrl = () =>
   (typeof process !== "undefined" && process.env && process.env.PUBLIC_URL
     ? process.env.PUBLIC_URL
     : window.PUBLIC_URL || "");
 
-// Images for the four premium brands
+// Images for the premium brands
 const TYRE_IMAGES = {
   pirelli: getPublicUrl() + "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
   michelin: getPublicUrl() + "/assets/20250605_071317_michelin-tyres.jpg",
@@ -21,7 +23,8 @@ const TYRE_IMAGES = {
   bridgestone: getPublicUrl() + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
 };
 
-// Four premium brands only - all other brands or code for smaller containers removed
+// This is now the only source of navigation; four large premium containers.
+// No small/legacy containers or legacy grid logic remain here.
 const TYRE_BRANDS = [
   {
     id: "pirelli",
@@ -51,8 +54,7 @@ const TYRE_BRANDS = [
 
 // PUBLIC_INTERFACE
 function TyreTypesShowcase({ onBrandSelect }) {
-  // Only the set of large, Porsche-style cards is rendered.
-  // There are no small brand containers in the UI or code.
+  // All other code/markup for smaller brands is removed – only premium Porsche-style containers remain.
   return (
     <section className="ts-section ts-tyre-brands-showcase">
       <header className="tyre-showcase-header">
@@ -93,17 +95,12 @@ function TyreTypesShowcase({ onBrandSelect }) {
             </div>
             <div className="tyre-brand-info-col premium-info-col">
               <div className="tyre-brand-logo">
-                <span
-                  className="tyre-brand-name"
-                  aria-hidden="true"
-                >
+                <span className="tyre-brand-name" aria-hidden="true">
                   {brand.name}
                 </span>
               </div>
               {brand.tagline && (
-                <span className="tyre-brand-tagline">
-                  {brand.tagline}
-                </span>
+                <span className="tyre-brand-tagline">{brand.tagline}</span>
               )}
             </div>
           </button>
