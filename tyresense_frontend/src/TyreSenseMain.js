@@ -11,6 +11,34 @@ import TyreRecommendations from "./TyreRecommendations";
 
 /* Placeholder SVG logo is no longer required; replaced with AnimatedCarIntro asLogo */
 
+// Tyre-themed SVG logo component for direct use in nav/header
+function TyreLogoSVG({ style = {}, ...props }) {
+  // Minimal, bold tyre SVG with a sense of tread/rubber, scalable
+  return (
+    <svg
+      width={style.width || 36}
+      height={style.height || 36}
+      viewBox="0 0 36 36"
+      fill="none"
+      style={style}
+      xmlns="http://www.w3.org/2000/svg"
+      aria-label="TyreSense round tyre logo"
+      {...props}
+    >
+      <circle cx="18" cy="18" r="16.5" stroke="#232327" strokeWidth="2.5" fill="#edeef0"/>
+      {/* Tyre tread pattern (simplified) */}
+      <circle cx="18" cy="18" r="11.7" stroke="#b4081b" strokeWidth="2.5" fill="#fff" />
+      {/* Tyre side 'cuts' */}
+      <path d="M7.9 10.2c2.2-1.4 3.6-3.7 9-2.75" stroke="#7d7d85" strokeWidth="1.2" fill="none"/>
+      <path d="M28.1 10.2c-2.2-1.4-3.6-3.7-9-2.75" stroke="#7d7d85" strokeWidth="1.2" fill="none"/>
+      <path d="M7.9 25.8c2.2 1.4 3.6 3.7 9 2.75" stroke="#7d7d85" strokeWidth="1.2" fill="none"/>
+      <path d="M28.1 25.8c-2.2 1.4-3.6 3.7-9 2.75" stroke="#7d7d85" strokeWidth="1.2" fill="none"/>
+      {/* Center dot for "hub" */}
+      <circle cx="18" cy="18" r="2.5" fill="#b4081b"/>
+    </svg>
+  );
+}
+
 /**
  * Remove all neon styling, use only Porsche.com palette and minimalist structure.
  * Use a dual card/grid main layout with a looping video background hero,
@@ -193,9 +221,24 @@ function MainTyreSenseRoutes(props) {
             justifyContent: "center",
             alignItems: "center",
             height: 66,
+            padding: 0
           }}
         >
-          <AnimatedCarIntro asLogo />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100%",
+              gap: 16,
+              padding: "0 8px"
+            }}
+          >
+            {/* Tyre-themed round logo always visible */}
+            <TyreLogoSVG style={{ width: 40, height: 40, marginRight: 5, flex: "0 0 auto" }} />
+            {/* AnimatedCarIntro with asLogo renders TyreSense brand next to tyre logo */}
+            <AnimatedCarIntro asLogo />
+          </div>
         </nav>
       )}
       {/* Blackout overlay */}
