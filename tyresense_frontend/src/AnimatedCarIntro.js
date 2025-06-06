@@ -25,23 +25,23 @@ function TyreSenseLogoCarSVG({ style, ...props }) {
       <defs>
         <linearGradient id="ts-main-grad-a" x1="0" y1="0" x2="340" y2="0" gradientUnits="userSpaceOnUse">
           <stop stopColor="#4e5355" />
-          <stop offset="1" stopColor="#001eff" />
+          <stop offset="1" stopColor="#e10600" />
         </linearGradient>
         <radialGradient id="ts-carBody" cx="52%" cy="50%" r="80%">
           <stop offset="0.18" stopColor="#4e5355" stopOpacity="1" />
-          <stop offset="0.85" stopColor="#001eff" stopOpacity="1" />
+          <stop offset="0.85" stopColor="#e10600" stopOpacity="1" />
         </radialGradient>
         <linearGradient id="ts-roof" x1="42" y1="16" x2="236" y2="20" gradientUnits="userSpaceOnUse">
           <stop stopColor="#4e5355" />
-          <stop offset="1" stopColor="#001eff" />
+          <stop offset="1" stopColor="#e10600" />
         </linearGradient>
         <radialGradient id="ts-wheel-dark" cx="49%" cy="48%" r="51%">
           <stop offset="0.24" stopColor="#4e5355" />
-          <stop offset="0.85" stopColor="#001eff" />
+          <stop offset="0.85" stopColor="#e10600" />
         </radialGradient>
         <linearGradient id="ts-badge-grad" x1="234" y1="55" x2="251" y2="70" gradientUnits="userSpaceOnUse">
           <stop stopColor="#4e5355" />
-          <stop offset="1" stopColor="#001eff" />
+          <stop offset="1" stopColor="#e10600" />
         </linearGradient>
       </defs>
       {/* Shadow */}
@@ -158,7 +158,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
             marginRight: 13,
             marginLeft: 2,
             // Soft drop-shadow in secondary
-            filter: "drop-shadow(0 0 12px #001eff88)",
+            filter: "drop-shadow(0 0 12px #e1060088)",
             flex: "0 0 auto",
             background: "none",
           }}
@@ -174,7 +174,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
             filter: "brightness(1.10) blur(.01px)",
             color: "#fff",
             // Subtle double-shadow using main gradient colors
-            textShadow: "0 0 10px #001effa0, 0 0px 12px #4e5355b2",
+            textShadow: "0 0 10px #e10600a0, 0 0px 12px #4e5355b2",
             fontWeight: 800,
             flex: "0 0 auto",
             display: "inline-block",
