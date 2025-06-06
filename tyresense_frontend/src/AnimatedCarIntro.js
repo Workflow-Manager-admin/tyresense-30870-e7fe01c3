@@ -3,20 +3,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import "./AnimatedCarIntro.css";
 
 /**
- * TyreSense Animated Intro now uses the tyre-themed logo instead of a car.
- * Remove the inlined car SVG and use TyreLogoSVG for both animated intro and asLogo.
+ * TyreSense Animated Tyre Intro: This component provides a full-screen animated intro that
+ * uses ONLY the TyreLogoSVG tyre motif, with NO car elements remaining.
+ * 
+ * All animations and styles are consistent with the TyreSense brand: bold, dark background,
+ * accented by vibrant performance red and cool white.
+ * 
+ * - In "intro" mode, the tyre logo spins/rolls in from the left, then reveals the TyreSense title.
+ * - In asLogo mode, a static tyre and TyreSense wordmark are used for nav/topbars.
+ * 
+ * Usage is consistent across all references. All car-themed language in code and CSS is vestigial.
  */
 
-/**
- * AnimatedCarIntro:
- * - Animates a detailed car and "TyreSense" brand name using only ColorCraft palette.
- * - After the animation, both persist, always parked and centered in the viewport.
- *
- * Props:
- *   - visible: boolean, controls whether the animation runs
- *   - onAnimationComplete: function, fired once intro finishes
- *   - asLogo: boolean, render as header logo
- */
 import TyreLogoSVG from "./TyreLogoSVG";
 
 // PUBLIC_INTERFACE
