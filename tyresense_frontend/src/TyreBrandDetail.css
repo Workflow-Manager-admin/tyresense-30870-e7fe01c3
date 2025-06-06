@@ -11,7 +11,7 @@
   --porsche-card-shadow: 0 12px 34px 2px #11111423, 0 3.5px 21px #18181c08;
   --porsche-card-radius: 32px;
   --porsche-card-radius-sm: 16px;
-  --porsche-font-main: 'Helvetica Neue', Arial, sans-serif;
+  --porsche-font-main: 'Roboto', Helvetica, Arial, sans-serif !important;
   --porsche-header-bg: #edeef0;
   --porsche-bg-canvas: #f5f6f7;
 }

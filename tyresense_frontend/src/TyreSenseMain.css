@@ -16,7 +16,7 @@
   --porsche-overlay-bg: rgba(18,18,19,0.72);
 
   /* Text */
-  --porsche-font-main: 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --porsche-font-main: 'Roboto', Helvetica, Arial, sans-serif !important;
   --porsche-text: #fff;
   --porsche-text-secondary: #ececec;
   --porsche-text-grey: #a9aaae;
