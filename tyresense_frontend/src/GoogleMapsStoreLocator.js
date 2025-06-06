@@ -54,11 +54,29 @@ function GoogleMapsStoreLocator() {
   // Load Google Maps JS API (idempotent for SPA)
   useEffect(() => {
     // In production build, env vars like REACT_APP_GOOGLE_MAPS_API_KEY are replaced at build time.
-    const MAPS_API_KEY =
-      (typeof process !== "undefined" && process.env && process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
-        ? process.env.REACT_APP_GOOGLE_MAPS_API_KEY
-        : window.REACT_APP_GOOGLE_MAPS_API_KEY // fallback in case it's injected globally
-        || "<YOUR_GOOGLE_MAPS_KEY>";
+    let MAPS_API_KEY = undefined;
+    if (typeof process !== "undefined" && process.env && process.env.REACT_APP_GOOGLE_MAPS_API_KEY) {
+      MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+    } else if (typeof window !== "undefined" && window.REACT_APP_GOOGLE_MAPS_API_KEY) {
+      MAPS_API_KEY = window.REACT_APP_GOOGLE_MAPS_API_KEY;
+    } else if (window.location && window.location.hostname === "localhost") {
+      // For local dev, support loading from .env at runtime (support hot reload/dev mode)
+      try {
+        MAPS_API_KEY = require("../.env").REACT_APP_GOOGLE_MAPS_API_KEY;
+      } catch (e) {
+        MAPS_API_KEY = undefined;
+      }
+    }
+    if (!MAPS_API_KEY) {
+      // Try loading from environment variable (development context, e.g. via shell)
+      MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+    }
+    if (!MAPS_API_KEY) {
+      // Optional: Try to read global or inline script
+      MAPS_API_KEY = document.documentElement.getAttribute('data-maps-key');
+    }
+    // FINAL fallback (do not commit "<YOUR_GOOGLE_MAPS_KEY>" to prod by mistake)
+    if (!MAPS_API_KEY) MAPS_API_KEY = "<YOUR_GOOGLE_MAPS_KEY>";
 
     // If missing or left as placeholder, show user-friendly, production-safe message (no stacktrace!)
     if (!MAPS_API_KEY || MAPS_API_KEY.includes("<YOUR_GOOGLE_MAPS_KEY>")) {
