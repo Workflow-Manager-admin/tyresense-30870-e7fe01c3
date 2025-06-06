@@ -181,12 +181,10 @@ function TyreBrandDetail({ brand, onBack }) {
           gap: 8,
           height: "100%"
         }}>
-          {/* Use primary TyreLogoSVG everywhere for consistency */}
-          {/* eslint-disable-next-line */}
-          {require('./TyreSenseMain').TyreLogoSVG
-            ? React.createElement(require('./TyreSenseMain').TyreLogoSVG, { style: { width: 32, height: 32, marginRight: 7, minWidth: 22 } })
-            : null
-          }
+          {(() => {
+            const TyreLogoSVG = require('./TyreLogoSVG').default;
+            return <TyreLogoSVG style={{ width: 32, height: 32, marginRight: 7, minWidth: 22 }}/>
+          })()}
           <span
             className="ts-animated-car-title"
             style={{
