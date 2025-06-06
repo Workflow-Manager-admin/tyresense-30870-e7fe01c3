@@ -49,9 +49,10 @@
 .ts-animated-car-title {
   font-size: 2.25rem;
   font-weight: 700;
-  color: #FFFFFF; /* Only accent */
+  color: #FFFFFF; /* accent */
   letter-spacing: 0.13em;
-  text-shadow: 0 0 14px #001effcc, 0 2px 14px #4e5355bb;
+  /* Unified shadow with main container: Blue and primary only (no yellow/neon) */
+  text-shadow: 0 0 14px #001effbb, 0 2px 14px #4e5355b5;
   margin-top: 0;
   font-family: 'Inter', 'Roboto', Arial, sans-serif;
   filter: brightness(1.09) blur(0.01px);
