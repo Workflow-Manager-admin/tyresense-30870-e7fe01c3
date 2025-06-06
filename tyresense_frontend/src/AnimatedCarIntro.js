@@ -282,7 +282,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                     letterSpacing: "0.13em",
                     filter: "brightness(1.08) blur(.01px)",
                     color: "#FFFFFF", // accent (ColorCraft palette)
-                    textShadow: "0 0 16px #001eff88, 0 2px 19px #4e5355cc", // secondary & primary only, ColorCraft
+                    textShadow: "0 0 14px #001eff, 0 2px 14px #4e5355", // Only strict palette, no opacity
                     fontWeight: 800,
                     lineHeight: 1,
                     display: "inline-block",
