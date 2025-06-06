@@ -4,8 +4,8 @@ import "./TyreTypesShowcase.css";
 /**
  * PUBLIC_INTERFACE
  * TyreTypesShowcase
- * Displays only the four Porsche-style premium brand containers, with all legacy/small brand logic removed.
- * Each brand container is a clickable button that routes to a tyre brand page.
+ * Only displays the four Porsche-style premium brand containers (Pirelli, Michelin, Continental, Bridgestone).
+ * Any legacy/extra/small brand logic or mapping mechanisms have been removed.
  * @param {function} onBrandSelect - function(brand) called when a brand is clicked.
  */
 
@@ -15,45 +15,37 @@ const getPublicUrl = () =>
     ? process.env.PUBLIC_URL
     : window.PUBLIC_URL || "");
 
-// Only the four confirmed premium brands and their official showcase images
-const TYRE_IMAGES = {
-  pirelli: getPublicUrl() + "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
-  michelin: getPublicUrl() + "/assets/20250605_071317_michelin-tyres.jpg",
-  continental: getPublicUrl() + "/assets/20250605_071316_continental_pp_conti_cityplus.jpg",
-  bridgestone: getPublicUrl() + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
-};
-
-// FINAL and ONLY list of brands for Porsche-style showcase
+// Strictly only the four Porsche-premium brands with image data
 const TYRE_BRANDS = [
   {
     id: "pirelli",
     name: "Pirelli",
     tagline: "Performance meets Innovation",
-    logo: null,
+    image: getPublicUrl() + "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
   },
   {
     id: "michelin",
     name: "Michelin",
     tagline: "Motion for Life",
-    logo: null,
+    image: getPublicUrl() + "/assets/20250605_071317_michelin-tyres.jpg",
   },
   {
     id: "continental",
     name: "Continental",
     tagline: "The Future in Motion",
-    logo: null,
+    image: getPublicUrl() + "/assets/20250605_071316_continental_pp_conti_cityplus.jpg",
   },
   {
     id: "bridgestone",
     name: "Bridgestone",
     tagline: "Solutions for your journey",
-    logo: null,
+    image: getPublicUrl() + "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
   },
 ];
 
 // PUBLIC_INTERFACE
 function TyreTypesShowcase({ onBrandSelect }) {
-  // Only the four premium brands are rendered, with NO filtering/mapping legacy logic.
+  // Only the four premium brands are present with all mapping/filtering for others removed.
   return (
     <section className="ts-section ts-tyre-brands-showcase">
       <header className="tyre-showcase-header">
@@ -74,7 +66,7 @@ function TyreTypesShowcase({ onBrandSelect }) {
           >
             <div className="tyre-brand-cover-bg" aria-hidden="true">
               <img
-                src={TYRE_IMAGES[brand.id]}
+                src={brand.image}
                 alt={
                   brand.id === "pirelli"
                     ? "Pirelli Cinturato P7 tyre photo, full detail"
