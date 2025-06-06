@@ -60,12 +60,8 @@ function GoogleMapsStoreLocator() {
     } else if (typeof window !== "undefined" && window.REACT_APP_GOOGLE_MAPS_API_KEY) {
       MAPS_API_KEY = window.REACT_APP_GOOGLE_MAPS_API_KEY;
     } else if (window.location && window.location.hostname === "localhost") {
-      // For local dev, support loading from .env at runtime (support hot reload/dev mode)
-      try {
-        MAPS_API_KEY = require("../.env").REACT_APP_GOOGLE_MAPS_API_KEY;
-      } catch (e) {
-        MAPS_API_KEY = undefined;
-      }
+      // For local dev, .env should be loaded by react-scripts automatically.
+      MAPS_API_KEY = undefined;
     }
     if (!MAPS_API_KEY) {
       // Try loading from environment variable (development context, e.g. via shell)
