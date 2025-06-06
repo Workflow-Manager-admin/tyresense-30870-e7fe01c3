@@ -439,25 +439,13 @@ function MainTyreSenseRoutes(props) {
   );
 }
 
+import { useParams } from "react-router-dom";
 // Helper: Renders TyreBrandDetail using route param
 function BrandDetailRoute({ onBackToList }) {
-  const { brandId } = useLocation().pathname.match(/\/brand\/([a-z0-9\-]+)/)?.groups || {};
-  // If react-router v6: useParams:
-  // const { brandId } = useParams();
-  // For best compatibility with future changes, use useParams:
-  let brandParamVal = "";
-  try {
-    // try useParams if available
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const params = require("react-router-dom").useParams();
-    brandParamVal = params.brandId;
-  } catch {
-    // fallback: extract from url
-    const m = (window.location.pathname || "").match(/\/brand\/([a-z0-9\-]+)/);
-    brandParamVal = m ? m[1] : "";
-  }
-  // Create minimal brand object for TyreBrandDetail component
-  const brand = brandParamVal ? { id: brandParamVal } : undefined;
+  // PUBLIC_INTERFACE
+  // Proper useParams usage: ensures SPA navigation and back/forward work correctly.
+  const { brandId } = useParams();
+  const brand = brandId ? { id: brandId } : undefined;
   return (
     <TyreBrandDetail
       brand={brand}
