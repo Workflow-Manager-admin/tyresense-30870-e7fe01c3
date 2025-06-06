@@ -254,37 +254,46 @@ function MainTyreSenseRoutes(props) {
             boxShadow: "0 2px 11px #11111417"
           }}
         >
+          {/* Tyre-themed logo with consistent Porsche-inspired sizing, always visually centered */}
           <div
             className="ts-animated-car-navbar"
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              height: "100%",
               gap: 8,
-              padding: "0 11px",
+              height: "100%",
               minWidth: 123,
-              maxWidth: 390
+              maxWidth: 390,
+              padding: "0 14px"
             }}
           >
-            {/* Tyre-Themed Logo SVG - visual sizing and accessibility for header */}
-            <TyreLogoSVG style={{ width: 38, height: 38, minWidth: 28, marginRight: 9, flex: "0 0 auto", filter: "drop-shadow(0 0 7px #b4081b41)" }} />
+            {/* TyreLogoSVG: always use the tyre-themed SVG as branding mark */}
+            <TyreLogoSVG
+              style={{
+                width: 36,
+                height: 36,
+                minWidth: 28,
+                marginRight: 10,
+                flex: "0 0 auto",
+                filter: "drop-shadow(0 0 7px #b4081b25)"
+              }}
+            />
             <span
               className="ts-animated-car-title"
               style={{
                 fontWeight: 800,
-                fontSize: "1.4rem",
+                fontSize: "1.28rem",
                 letterSpacing: "0.13em",
                 color: "#fff",
                 textShadow: "0 0 7px #b4081b77",
                 filter: "brightness(1.09) blur(.01px)",
                 verticalAlign: "middle",
                 fontFamily: "'Roboto', Helvetica, Arial, sans-serif",
-                marginLeft: 3,
-                marginTop: 1,
+                marginLeft: 2,
                 display: "inline-block",
                 background: "none",
-                lineHeight: 1.08,
+                lineHeight: 1.12,
                 textTransform: "uppercase"
               }}
             >
