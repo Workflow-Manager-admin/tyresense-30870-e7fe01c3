@@ -195,54 +195,7 @@ function MainTyreSenseRoutes(props) {
             height: 66,
           }}
         >
-          <div style={{display:"flex", alignItems:"center", gap:18}}>
-            {/* Placeholder logo: You may wish to move this to a separate component */}
-            <svg
-              width={62}
-              height={30}
-              viewBox="0 0 72 34"
-              fill="none"
-              aria-label="TyreSense Placeholder Logo"
-              role="img"
-              style={{
-                display: "inline-block",
-                verticalAlign: "middle"
-              }}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <linearGradient id="redGrad" x1="0" y1="0" x2="72" y2="0" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#D41414"/>
-                  <stop offset="1" stopColor="#b4081b"/>
-                </linearGradient>
-              </defs>
-              <rect x="2" y="2" width="68" height="30" rx="11" fill="url(#redGrad)" opacity="0.10"/>
-              <text
-                x="50%"
-                y="62%"
-                textAnchor="middle"
-                fontSize="22"
-                fontFamily="'Inter','Roboto','Helvetica Neue',Arial,sans-serif"
-                fontWeight="900"
-                fill="url(#redGrad)"
-                style={{dominantBaseline: "middle"}}
-              >TS</text>
-            </svg>
-            <span className="tyresense-brand-gradient-text"
-              style={{
-                fontWeight: 900,
-                fontSize: "2.0rem",
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                background: "linear-gradient(90deg, #D41414 22%, #b4081b 66%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text"
-              }}
-            >
-              TyreSense
-            </span>
-          </div>
+          <AnimatedCarIntro asLogo />
         </nav>
       )}
       {/* Blackout overlay */}
