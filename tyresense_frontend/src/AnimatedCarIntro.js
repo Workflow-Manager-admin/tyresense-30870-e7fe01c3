@@ -175,7 +175,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
             letterSpacing: "0.13em",
             filter: "brightness(1.10) blur(.01px)",
             color: "#FFFFFF", // accent (ColorCraft palette)
-            textShadow: "0 0 8px #001eff99, 0 2px 12px #4e5355b8", // secondary and primary
+            textShadow: "0 0 8px #001eff99, 0 2px 12px #4e5355b8", // secondary and primary, ColorCraft only
             fontWeight: 800,
             flex: "0 0 auto",
             display: "inline-block",
@@ -281,7 +281,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                     letterSpacing: "0.13em",
                     filter: "brightness(1.08) blur(.01px)",
                     color: "#FFFFFF", // accent (ColorCraft palette)
-                    textShadow: "0 0 16px #001eff88, 0 2px 19px #4e5355cc", // Only secondary/primary, bold for highlight
+                    textShadow: "0 0 16px #001eff88, 0 2px 19px #4e5355cc", // secondary & primary only, ColorCraft
                     fontWeight: 800,
                     lineHeight: 1,
                     display: "inline-block",
