@@ -206,7 +206,7 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              // Updated background using main palette primary/secondary
+              // Updated background using ColorCraft's official palette
               background: "linear-gradient(140deg, #4e5355 68%, #001eff 100%)",
             }}
           >
@@ -257,7 +257,8 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                   minHeight: 38,
                   maxHeight: 92,
                   marginRight: "3vw",
-                  filter: "drop-shadow(0 0 31px #b4081b64)",
+                  // Primary and secondary palette for shadow (no yellow/neon/red)
+                  filter: "drop-shadow(0 0 31px #001eff44)",
                   display: "inline-block",
                   verticalAlign: "middle",
                 }}
@@ -278,9 +279,9 @@ function AnimatedCarIntro({ visible, onAnimationComplete, asLogo = false }) {
                     fontSize: "clamp(1.7rem, 5vw, 2.9rem)",
                     whiteSpace: "nowrap",
                     letterSpacing: "0.13em",
-                    filter: "brightness(1.17) blur(.01px)",
+                    filter: "brightness(1.08) blur(.01px)",
                     color: "#FFFFFF", // accent (ColorCraft palette)
-                    textShadow: "0 0 12px #001eff, 0 2px 16px #4e5355", // enhanced secondary+primary (Cleaner)
+                    textShadow: "0 0 16px #001eff88, 0 2px 19px #4e5355cc", // Only secondary/primary, bold for highlight
                     fontWeight: 800,
                     lineHeight: 1,
                     display: "inline-block",
