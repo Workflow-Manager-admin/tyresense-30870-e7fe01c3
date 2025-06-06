@@ -181,9 +181,21 @@ function TyreBrandDetail({ brand, onBack }) {
           gap: 8,
           height: "100%"
         }}>
+          {/* Use the tyre-themed logo for consistency */}
           {(() => {
             const TyreLogoSVG = require('./TyreLogoSVG').default;
-            return <TyreLogoSVG style={{ width: 32, height: 32, marginRight: 7, minWidth: 22 }}/>
+            return (
+              <TyreLogoSVG
+                style={{
+                  width: 34,
+                  height: 34,
+                  marginRight: 10,
+                  minWidth: 22,
+                  verticalAlign: "middle",
+                  flex: "0 0 auto"
+                }}
+              />
+            );
           })()}
           <span
             className="ts-animated-car-title"
@@ -195,7 +207,7 @@ function TyreBrandDetail({ brand, onBack }) {
               textShadow: "none",
               filter: "brightness(1.03) blur(.01px)",
               verticalAlign: "middle",
-              marginLeft: 1,
+              marginLeft: 0,
               display: "inline-block",
               background: "none",
               lineHeight: 1,
