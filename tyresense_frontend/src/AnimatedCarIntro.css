@@ -81,8 +81,9 @@
 }
 .ts-animated-car-navbar .ts-animated-car-title {
   font-size: 1.53rem !important;
-  color: #FFFFFF !important; /* Only accent */
-  text-shadow: 0 0 8px #001eff9f, 0 2px 11px #4e5355a0;
+  color: #FFFFFF !important; /* accent */
+  /* Only palette shadows: secondary and primary */
+  text-shadow: 0 0 8px #001eff99, 0 2px 11px #4e5355a0;
   letter-spacing: 0.13em;
   line-height: 1;
   font-weight: 800;
