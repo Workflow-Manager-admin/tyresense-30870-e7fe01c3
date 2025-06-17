@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -26,34 +26,33 @@ const TYRE_STORES = [
   { name: "City Tyre Pros", position: [51.514, -0.122] },
 ];
 
-// PUBLIC_INTERFACE
-/**
- * LeafletStoreLocator: Renders a react-leaflet slippy map centered on London (or user's geolocation, if available).
- * Renders tyre store markers with leaflets popups showing the store name.
- * Uses OpenStreetMap tiles.
- */
-function LocateUser() {
-  // Component that pans/zooms to user's location if available
+// Component that pans/zooms to user's location if available and places a marker
+function LocateUser({ setUserPosition }) {
   const map = useMap();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!navigator.geolocation) return;
+
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        map.setView([pos.coords.latitude, pos.coords.longitude], 15);
+        const userPos = [pos.coords.latitude, pos.coords.longitude];
+        map.setView(userPos, 15);
+        setUserPosition(userPos);
       },
       (err) => {
-        // Could handle error, but will just fallback to default
-        // Optionally you could show a user marker/error alert here
-        // (silent fallback is most accessible for demo)
+        // Could handle error here if you want to notify user
+        // For now, just fallback silently to default center
+        console.warn("Geolocation failed or denied", err);
       }
     );
-  }, [map]);
+  }, [map, setUserPosition]);
 
   return null;
 }
 
 export default function LeafletStoreLocator() {
+  const [userPosition, setUserPosition] = useState(null);
+
   return (
     <div style={{ height: "400px", width: "100%" }}>
       <MapContainer
@@ -66,7 +65,12 @@ export default function LeafletStoreLocator() {
           attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <LocateUser />
+        <LocateUser setUserPosition={setUserPosition} />
+        {userPosition && (
+          <Marker position={userPosition}>
+            <Popup>You are here</Popup>
+          </Marker>
+        )}
         {TYRE_STORES.map((store, idx) => (
           <Marker key={idx} position={store.position}>
             <Popup>{store.name}</Popup>
