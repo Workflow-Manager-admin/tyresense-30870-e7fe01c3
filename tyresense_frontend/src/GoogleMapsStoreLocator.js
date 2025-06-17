@@ -1,338 +1,70 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
 
-// PUBLIC_INTERFACE
-/**
- * GoogleMapsStoreLocator
- * Displays an interactive Google Map centered on user's current position, with markers for nearby tyre stores.
- * Fallbacks to London if geolocation is unavailable/denied.
- * Markers are displayed for several mock tyre store locations.
- *
- * --- API KEY SETUP ---
- * You MUST provide your own Google Maps JavaScript API key for this to work.
- *  - Recommended: add REACT_APP_GOOGLE_MAPS_API_KEY=<your-key> to your .env file in project root.
- *  - The component will load the script using process.env.REACT_APP_GOOGLE_MAPS_API_KEY.
- *  - Alternatively, replace the string in the code directly for testing ONLY (not for production).
- *
- * This component does not use any external dependencies beyond the base Google Maps web JS API.
- */
-function GoogleMapsStoreLocator() {
-  const mapRef = useRef();
-  const [scriptLoaded, setScriptLoaded] = useState(false);
-  const [error, setError] = useState(null);
+// Fix default icon issue in React Leaflet
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png",
+  iconUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
+});
 
-  // DIAGNOSTIC: Log what key is found (DEV ONLY: Remove after fix)
-  useEffect(() => {
-    // eslint-disable-next-line
-    // Only for debugging API key issue in dev: log to console
-    // Check if REACT_APP_GOOGLE_MAPS_API_KEY is injected as a global variable (replace at build time)
-    const injectedKey = typeof process !== "undefined" && process.env && process.env.REACT_APP_GOOGLE_MAPS_API_KEY
-      ? process.env.REACT_APP_GOOGLE_MAPS_API_KEY
-      : undefined;
-    // Masked key for console, if present
-    const maskedKey =
-      injectedKey
-        ? injectedKey.substr(0, 5) + '...'
-        : String(injectedKey);
-    // Friendly browser console note (will show 'undefined...' if not injected)
-    // eslint-disable-next-line no-console
-    console.log('[TyreSense] REACT_APP_GOOGLE_MAPS_API_KEY from env:', maskedKey);
-  }, []);
+const DEFAULT_CENTER = [51.5081, -0.1281]; // London
+const DEFAULT_ZOOM = 13;
 
-  // Default to Central London if no location found (Trafalgar Square)
-  const DEFAULT_CENTER = { lat: 51.5081, lng: -0.1281 };
-  const DEFAULT_ZOOM = 13;
+const TYRE_STORES = [
+  { name: "QuickFit Tyres", position: [51.511, -0.1208] },
+  { name: "Urban Tyre Centre", position: [51.503, -0.1357] },
+  { name: "Prestige Wheels", position: [51.51, -0.142] },
+  { name: "Rapid Tyre Services", position: [51.506, -0.129] },
+  { name: "City Tyre Pros", position: [51.514, -0.122] },
+];
 
-  // Example (mock) nearby tyre stores, relative to London
-  const TYRE_STORES = [
-    { name: "QuickFit Tyres", lat: 51.511, lng: -0.1208 },
-    { name: "Urban Tyre Centre", lat: 51.503, lng: -0.1357 },
-    { name: "Prestige Wheels", lat: 51.51, lng: -0.142 },
-    { name: "Rapid Tyre Services", lat: 51.506, lng: -0.129 },
-    { name: "City Tyre Pros", lat: 51.514, lng: -0.122 },
-  ];
+// Component to center map on user's geolocation
+function LocateUser() {
+  const map = useMap();
 
-  // Load Google Maps JS API (idempotent for SPA)
-  useEffect(() => {
-    // In production build, env vars like REACT_APP_GOOGLE_MAPS_API_KEY are replaced at build time.
-    let MAPS_API_KEY = undefined;
-    if (typeof process !== "undefined" && process.env && process.env.REACT_APP_GOOGLE_MAPS_API_KEY) {
-      MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-    } else if (typeof window !== "undefined" && window.REACT_APP_GOOGLE_MAPS_API_KEY) {
-      MAPS_API_KEY = window.REACT_APP_GOOGLE_MAPS_API_KEY;
-    } else if (window.location && window.location.hostname === "localhost") {
-      // For local dev, .env should be loaded by react-scripts automatically.
-      MAPS_API_KEY = undefined;
-    }
-    if (!MAPS_API_KEY) {
-      // Try loading from environment variable (development context, e.g. via shell)
-      MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-    }
-    if (!MAPS_API_KEY) {
-      // Optional: Try to read global or inline script
-      MAPS_API_KEY = document.documentElement.getAttribute('data-maps-key');
-    }
-    // FINAL fallback (do not commit "<YOUR_GOOGLE_MAPS_KEY>" to prod by mistake)
-    if (!MAPS_API_KEY) MAPS_API_KEY = "<YOUR_GOOGLE_MAPS_KEY>";
-
-    // Temporary fallback: Try known free public test key (for demonstration ONLY)
-    // This is not for production and has heavy restrictions!
-    // Remove this in production and request user setup their key in .env instead!
-    if (!MAPS_API_KEY || MAPS_API_KEY.includes("<YOUR_GOOGLE_MAPS_KEY>")) {
-      MAPS_API_KEY = "AIzaSyA-DMo-2w-L6qMLq6dPE5wlQwGcG4JSsK0"; // Google Maps Platform public sample/test key
-      // If map loads, we'll allow demo, else fallback.
-    }
-    // If still missing or fallback didn't help, show friendly message.
-    if (!MAPS_API_KEY) {
-      setError("Map unavailable - please contact support or check configuration");
-      return;
-    }
-
-    // If maps already loaded (SPA hot reload defense)
-    if (window.google && window.google.maps) {
-      setScriptLoaded(true);
-      return;
-    }
-    if (document.getElementById("google-maps-js")) {
-      // Already loading elsewhere, still set up error catch handler
-      window.gm_authFailure = () =>
-        setError("Map unavailable - please contact support or check configuration");
-      return;
-    }
-    const script = document.createElement("script");
-    script.id = "google-maps-js";
-    script.async = true;
-    script.defer = true;
-    script.type = "text/javascript";
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${MAPS_API_KEY}&callback=initMapGoogleTyreSense&libraries=places`;
-    window.gm_authFailure = () =>
-      setError("Map unavailable - please contact support or check configuration");
-    window.initMapGoogleTyreSense = () => setScriptLoaded(true);
-    script.onerror = () =>
-      setError("Map unavailable - please contact support or check configuration");
-    document.body.appendChild(script);
-    // Clean up on unmount so no lingering handlers
-    return () => {
-      window.initMapGoogleTyreSense = undefined;
-      window.gm_authFailure = undefined;
-    };
-  }, []);
-
-  // On mount + scriptLoaded: initialize map, request geolocation
-  useEffect(() => {
-    if (!scriptLoaded || !mapRef.current) return;
-    let center = DEFAULT_CENTER;
-    let userMarker = null;
-
-    // Map options
-    const map = new window.google.maps.Map(mapRef.current, {
-      center,
-      zoom: DEFAULT_ZOOM,
-      styles: [
-        // Porsche-inspired muted dark mode
-        { elementType: "geometry", stylers: [{ color: "#18181c" }] },
-        { elementType: "labels.text.stroke", stylers: [{ color: "#232327" }] },
-        { elementType: "labels.text.fill", stylers: [{ color: "#edeef0" }] },
-        {
-          featureType: "poi.business",
-          stylers: [{ visibility: "off" }],
-        },
-        {
-          featureType: "poi.park",
-          elementType: "geometry",
-          stylers: [{ color: "#232327" }]
-        },
-        {
-          featureType: "road",
-          elementType: "geometry",
-          stylers: [{ color: "#222226" }]
-        },
-        {
-          featureType: "road",
-          elementType: "geometry.stroke",
-          stylers: [{ color: "#2f2f33" }]
-        },
-        {
-          featureType: "water",
-          elementType: "geometry",
-          stylers: [{ color: "#7d7d85" }]
-        }
-      ],
-      disableDefaultUI: true,
-      zoomControl: true,
-      mapTypeControl: false,
-      streetViewControl: false,
-      fullscreenControl: false
-    });
-
-    // Try geolocation
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          center = {
-            lat: pos.coords.latitude,
-            lng: pos.coords.longitude
-          };
-          map.setCenter(center);
-          map.setZoom(15);
-
-          // Marker for user's location
-          userMarker = new window.google.maps.Marker({
-            position: center,
-            map,
-            title: "You are here",
-            icon: {
-              url:
-                "data:image/svg+xml;utf-8," +
-                encodeURIComponent(
-                  `<svg height="34" width="34" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="17" cy="17" r="13" fill="#edeef0" stroke="#b4081b" stroke-width="2.4"/>
-                    <circle cx="17" cy="17" r="5.9" fill="#7d7d85"/>
-                  </svg>`
-                ),
-              scaledSize: new window.google.maps.Size(34, 34),
-              anchor: new window.google.maps.Point(17, 17)
-            }
-          });
-        },
-        (err) => {
-          setError("Geolocation unavailable. Showing default area.");
-        },
-        { enableHighAccuracy: true, timeout: 5000 }
-      );
-    } else {
-      setError("Geolocation not supported by this browser.");
-    }
-
-    // Add mock store markers
-    TYRE_STORES.forEach((store, idx) => {
-      new window.google.maps.Marker({
-        position: { lat: store.lat, lng: store.lng },
-        map,
-        title: store.name,
-        icon: {
-          url:
-            "data:image/svg+xml;utf-8," +
-            encodeURIComponent(
-              `<svg height="30" width="30" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="15" cy="20" rx="10" ry="6.4" fill="#232327" stroke="#b4081b" stroke-width="2.2"/>
-                <ellipse cx="15" cy="20" rx="4.5" ry="2.7" fill="#edeef0"/>
-                <circle cx="15" cy="11.5" r="7" fill="#edeef0" stroke="#b4081b" stroke-width="2.2"/>
-                <circle cx="15" cy="11.5" r="3.5" fill="#232327" />
-              </svg>`
-            ),
-          scaledSize: new window.google.maps.Size(30, 30),
-          anchor: new window.google.maps.Point(15, 20)
-        }
-      });
-    });
-
-    // Clean up old map instance on unmount
-    return () => {
-      if (userMarker) userMarker.setMap(null);
-    };
-  }, [scriptLoaded]);
-
-  // Hide the entire map container and only show the friendly error if API key is missing
-  const isAPIKeyMissing =
-    error === "Map unavailable - please contact support or check configuration";
-
-  if (isAPIKeyMissing) {
-    return (
-      <div
-        className="ts-map-error"
-        style={{
-          color: "#ffe600",
-          background: "#191932",
-          border: "2px solid #ffe600",
-          borderRadius: "14px",
-          padding: "22px 18px",
-          fontWeight: 600,
-          minHeight: "110px",
-          fontSize: "1.14rem",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          margin: 0,
-          textAlign: "center",
-          width: "100%",
-        }}
-        aria-live="polite"
-      >
-        Map unavailable - please contact support or check configuration
-      </div>
+  React.useEffect(() => {
+    if (!navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        map.setView([pos.coords.latitude, pos.coords.longitude], 15);
+      },
+      (err) => {
+        // Could handle error or fallback
+        console.warn("Geolocation unavailable, using default location");
+      }
     );
-  }
+  }, [map]);
 
-  // If showing some other error (e.g., geolocation) or map, show map container as usual
+  return null;
+}
+
+export default function LeafletStoreLocator() {
   return (
-    <div className="ts-map-container">
-      {/* DEV/DEMO Key warning notice - only appears if public test key is in use */}
-      {typeof process !== "undefined" &&
-        process.env &&
-        (process.env.REACT_APP_GOOGLE_MAPS_API_KEY === undefined ||
-          process.env.REACT_APP_GOOGLE_MAPS_API_KEY === "<YOUR_GOOGLE_MAPS_KEY>") && (
-        <div
-          style={{
-            color: "#ffe600",
-            background: "#241e42",
-            border: "1.5px solid #ffe600",
-            borderRadius: "9px",
-            padding: "7px 13px",
-            fontWeight: 560,
-            fontSize: "0.97rem",
-            marginBottom: 6,
-            marginTop: 4,
-            textAlign: "center",
-            opacity: 0.89,
-          }}
-        >
-          <b>DEMO:</b> Displaying map using Google Maps public test key. <br />
-          <span style={{ color: "#c6a280" }}>
-            For production, set <code>REACT_APP_GOOGLE_MAPS_API_KEY</code> in your <b>.env</b> file!
-          </span>
-        </div>
-      )}
-      {error ? (
-        // Show only the user-friendly message WITHOUT any error detail
-        <div
-          className="ts-map-error"
-          style={{
-            color: "#ffe600",
-            background: "#191932",
-            border: "2px solid #ffe600",
-            borderRadius: "14px",
-            padding: "22px 18px",
-            fontWeight: 600,
-            minHeight: "110px",
-            fontSize: "1.14rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            margin: 0,
-            textAlign: "center",
-          }}
-          aria-live="polite"
-        >
-          Map unavailable - please contact support or check configuration
-        </div>
-      ) : (
-        <div
-          ref={mapRef}
-          className="ts-map-canvas"
-          style={{
-            width: "100%",
-            height: "100%",
-            minHeight: "170px",
-            borderRadius: "13px",
-            boxShadow: "0 5px 22px #b4081b14, 0 1px 16px #edeef013",
-            background: "#18181c",
-          }}
-          aria-label="Nearby tyre stores map"
-          tabIndex={0}
-        ></div>
-      )}
+    <div style={{ height: "400px", width: "100%" }}>
+      <MapContainer
+        center={DEFAULT_CENTER}
+        zoom={DEFAULT_ZOOM}
+        style={{ height: "100%", width: "100%" }}
+        scrollWheelZoom={true}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a>'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <LocateUser />
+        {TYRE_STORES.map((store, idx) => (
+          <Marker key={idx} position={store.position}>
+            <Popup>{store.name}</Popup>
+          </Marker>
+        ))}
+      </MapContainer>
     </div>
   );
 }
-
-export default GoogleMapsStoreLocator;
