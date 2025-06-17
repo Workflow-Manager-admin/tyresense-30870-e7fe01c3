@@ -1,5 +1,5 @@
+// src/TyreSenseMain.js -- This file should ONLY contain this code.
 import React, { useEffect, useRef, useState } from "react";
-// Only import APIs present in react-router-dom v6
 import { Routes, Route, useNavigate, useLocation, useParams } from "react-router-dom";
 import "./TyreSenseMain.css";
 import ReminderPopup from "./ReminderPopup";
@@ -11,25 +11,33 @@ import AnimatedCarIntro from "./AnimatedCarIntro";
 import TyreRecommendations from "./TyreRecommendations";
 import TyreLogoSVG from "./TyreLogoSVG";
 
+// Correct import path for TawkToChatWidget (assuming it's in src)
+import TawkToChatWidget from './TawkToChatWidget'; // <-- Corrected path
 
-import TawkToChatWidget from './TawkToChatWidget'; // <-- Import it
+// IMPORTANT: The `App` component definition below is likely a leftover
+// from a previous example. Your main app component is `MainTyreSenseRoutes`
+// which is then exported as `TyreSenseMain`.
+// You should *remove* this `function App() { ... }` block entirely
+// if `MainTyreSenseRoutes` is indeed your main component.
+// If you intend `App` to be your main root, then the `MainTyreSenseRoutes`
+// component below needs to be integrated into it, or `App` needs to be removed.
+// Given your `export default TyreSenseMain;` at the end, I suspect this
+// `function App()` block should be removed.
 
-// ... other imports for your app components (header, routes, etc.)
-
+/* REMOVE THIS BLOCK IF MainTyreSenseRoutes is your true app root:
 function App() {
   return (
     <div className="App">
-      {/* Your existing app content goes here */}
-      {/* Example: <Header /> <Routes /> <Footer /> */}
-
-      {/* Place the Tawk.to chat widget component here */}
-      {/* It will render a floating icon usually in the bottom right */}
-      <TawkToChatWidget /> {/* <-- Add this line */}
+      {/* Your existing app content goes here *}
+      {/* Example: <Header /> <Routes /> <Footer /> *}
+      <TawkToChatWidget />
     </div>
   );
 }
+*/
 
-/** 
+
+/**
  * MAIN_TYRES - main grid source for Porsche-style cards.
  * Replace/augment with real data as needed.
  */
@@ -398,7 +406,7 @@ function MainTyreSenseRoutes(props) {
                             src={tyre.img || tyre.image || ""}
                             alt={
                               tyre.img_alt ||
-                              `${tyre.brand} ${tyre.model} premium tyre${tyre.type ? ", " + tyre.type : ""}`
+                              `${tyre.brand} <span class="math-inline">\{tyre\.model\} premium tyre</span>{tyre.type ? ", " + tyre.type : ""}`
                             }
                             className="porsche-tyre-card-image"
                             loading="lazy"
@@ -519,11 +527,13 @@ function MainTyreSenseRoutes(props) {
         />
         {/* Fallback - could add 404 here */}
       </Routes>
+      {/* Place the Tawk.to chat widget component here */}
+      <TawkToChatWidget />
     </div>
   );
 }
 
- 
+
 // Helper: Renders TyreBrandDetail using route param
 function BrandDetailRoute({ onBackToList }) {
   // PUBLIC_INTERFACE
