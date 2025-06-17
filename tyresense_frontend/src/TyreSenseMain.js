@@ -318,67 +318,56 @@ function MainTyreSenseRoutes(props) {
                   <TyreTypesShowcase
                     onBrandSelect={handleBrandSelect}
                   />
-                  {/* Card/grid section */}
-                  <section className="porsche-dual-grid" aria-label="TyreGrid">
-                    {/* Render the first four main tyre cards, each navigates to the brand page on click or Enter */}
-                    {MAIN_TYRES.slice(0, 4).map((tyre) => (
+                  {/* Porsche-style grid for all main tyres */}
+                  <section
+                    className="porsche-dual-grid"
+                    aria-label="TyreGrid"
+                    style={{ marginBottom: 0 }}
+                  >
+                    {MAIN_TYRES.map((tyre) => (
                       <div
                         key={tyre.id}
                         className="porsche-tyre-card"
                         tabIndex={0}
                         role="button"
                         aria-label={`Navigate to ${tyre.brand} brand page (${tyre.model})`}
-                        onClick={() => handleBrandSelect({ id: tyre.brand.toLowerCase() })}
+                        onClick={() => {
+                          handleBrandSelect({ id: tyre.brand.toLowerCase() });
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
                         onKeyDown={(e) => {
                           if (e.key === "Enter" || e.key === " ") {
                             e.preventDefault();
                             handleBrandSelect({ id: tyre.brand.toLowerCase() });
+                            window.scrollTo({ top: 0, behavior: "smooth" });
                           }
                         }}
                         style={{ cursor: "pointer" }}
                       >
                         <div className="porsche-tyre-card-img-wrapper">
-                          <img src={tyre.img} alt={`${tyre.brand} ${tyre.model} tyre`} className="porsche-tyre-card-image" draggable={false} />
+                          <img
+                            src={tyre.img}
+                            alt={`${tyre.brand} ${tyre.model} tyre`}
+                            className="porsche-tyre-card-image"
+                            draggable={false}
+                          />
                         </div>
                         <div className="porsche-tyre-card-content">
                           <div className="porsche-tyre-brand">{tyre.brand}</div>
                           <div className="porsche-tyre-details">
-                            {tyre.model} • {tyre.type} <br />Size: {tyre.size}
+                            {tyre.model} • {tyre.type} <br />
+                            Size: {tyre.size}
                           </div>
                           <div className="porsche-accent-red">£{tyre.price}</div>
                         </div>
                         <div className="porsche-card-gradient-hover" />
                       </div>
                     ))}
-                    {/* 'All tyres' special card - the only primary action */}
-                    <div
-                      className="porsche-tyre-card porsche-tyre-card-all"
-                      tabIndex={0}
-                      role="button"
-                      aria-label="Show all tyres"
-                      onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" })}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-                        }
-                      }}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <div className="porsche-tyre-card-all-content">
-                        <span className="porsche-tyre-card-all-title">All Tyres</span>
-                        <span className="porsche-tyre-card-all-desc">
-                          Explore the complete collection. Browse all brands, sizes, and performance profiles.
-                        </span>
-                        <button className="porsche-tyre-card-btn" style={{ marginTop: 16 }} tabIndex={0} aria-label="View all tyres">View all tyres</button>
-                      </div>
-                      <div className="porsche-card-gradient-hover" />
-                    </div>
                   </section>
-                  {/* Remove buy now or other buttons from grid cells below */}
-                  <div style={{ margin: "48px 0 0 0" }} />
-                  {/* Filters & user info could go here; main input form below */}
+                  {/* Spacing for visual balance */}
+                  <div style={{ margin: "50px 0 0 0" }} />
                   <div style={{ margin: "58px 0 0 0" }} />
+                  {/* Filters & user info could go here; main input form below */}
                   <section style={{ maxWidth: 930, margin: "0 auto", padding: "24px 0" }}>
                     <CarDetailsInput onSubmit={car => { setUserCar(car); saveCarToLS(car); }} initialCar={userCar} persistCar={saveCarToLS} />
                   </section>
