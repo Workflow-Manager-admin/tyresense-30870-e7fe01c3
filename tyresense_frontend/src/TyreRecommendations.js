@@ -84,7 +84,11 @@ function TyreRecommendations({
   useEffect(() => {
     if (!userLocation?.lat || !userLocation?.lng) return;
 
-    const API_KEY = process.env.REACT_APP_OWM_KEY || window.REACT_APP_OWM_KEY || "<YOUR_OPENWEATHERMAP_KEY>";
+    // Use window.REACT_APP_OWM_KEY if available, else fallback to hardcoded string
+    const API_KEY =
+      (typeof window !== "undefined" && window.REACT_APP_OWM_KEY)
+        ? window.REACT_APP_OWM_KEY
+        : "<YOUR_OPENWEATHERMAP_KEY>";
     setWeatherLoading(true);
     setWeatherError(null);
 
