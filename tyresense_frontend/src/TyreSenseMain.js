@@ -321,8 +321,7 @@ function MainTyreSenseRoutes(props) {
                   {/* Porsche-style grid for all main tyres */}
                   <section
                     className="porsche-dual-grid"
-                    aria-label="TyreGrid"
-                    style={{ marginBottom: 0 }}
+                    aria-label="Brand Grid"
                   >
                     {MAIN_TYRES.map((tyre) => (
                       <div
@@ -330,16 +329,16 @@ function MainTyreSenseRoutes(props) {
                         className="porsche-tyre-card"
                         tabIndex={0}
                         role="button"
-                        aria-label={`Navigate to ${tyre.brand} brand page (${tyre.model})`}
+                        aria-label={`Go to ${tyre.brand} brand page (${tyre.model})`}
                         onClick={() => {
                           handleBrandSelect({ id: tyre.brand.toLowerCase() });
-                          window.scrollTo({ top: 0, behavior: "smooth" });
+                          window.scrollTo({top: 0, behavior: "smooth"});
                         }}
                         onKeyDown={(e) => {
                           if (e.key === "Enter" || e.key === " ") {
                             e.preventDefault();
                             handleBrandSelect({ id: tyre.brand.toLowerCase() });
-                            window.scrollTo({ top: 0, behavior: "smooth" });
+                            window.scrollTo({top: 0, behavior: "smooth"});
                           }
                         }}
                         style={{ cursor: "pointer" }}
@@ -355,10 +354,22 @@ function MainTyreSenseRoutes(props) {
                         <div className="porsche-tyre-card-content">
                           <div className="porsche-tyre-brand">{tyre.brand}</div>
                           <div className="porsche-tyre-details">
-                            {tyre.model} • {tyre.type} <br />
-                            Size: {tyre.size}
+                            <strong>{tyre.model}</strong> &bull; {tyre.type}
+                            <br />
+                            <span>Size: {tyre.size}</span>
                           </div>
                           <div className="porsche-accent-red">£{tyre.price}</div>
+                          <button
+                            type="button"
+                            className="porsche-tyre-card-btn"
+                            tabIndex={0}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleBrandSelect({ id: tyre.brand.toLowerCase() });
+                            }}
+                          >
+                            View Brand
+                          </button>
                         </div>
                         <div className="porsche-card-gradient-hover" />
                       </div>

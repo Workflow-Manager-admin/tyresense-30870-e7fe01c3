@@ -124,9 +124,10 @@
 }
 .porsche-tyre-card:focus,
 .porsche-tyre-card:hover {
-  border: 1.8px solid var(--porsche-accent-red);
-  box-shadow: 0 12px 41px 2.5px #b4081b1a, 0 11px 34px 14px #2f2f330a;
-  transform: translateY(-4px) scale(1.012);
+  border: 1.9px solid var(--porsche-accent-red);
+  box-shadow: 0 13px 42px 2.5px #b4081b18, 0 12px 35px 14px #2f2f330a;
+  transform: translateY(-4px) scale(1.015);
+  outline: none;
 }
 
 .porsche-tyre-card-img-wrapper {
@@ -151,6 +152,7 @@
   display: block;
   filter: brightness(0.98) contrast(1.09);
   box-shadow: 0 6px 21.5px 0 #22222433;
+  background: #18181b;
 }
 .porsche-tyre-card-content {
   padding: 30px 27px 24px 27px;
@@ -193,12 +195,28 @@
   transition: border .14s, color .14s, background .19s;
   cursor: pointer;
   box-shadow: none;
+  outline: none;
 }
 .porsche-tyre-card-btn:focus,
 .porsche-tyre-card-btn:hover {
   color: var(--porsche-accent-red);
-  border: 1.8px solid var(--porsche-accent-red);
+  border: 1.9px solid var(--porsche-accent-red);
   background: #21111320;
+}
+
+.porsche-card-gradient-hover {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--porsche-card-radius);
+  background: linear-gradient(142deg, #b4081b28 6%, transparent 86%);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 3;
+  transition: opacity 0.18s;
+}
+.porsche-tyre-card:focus .porsche-card-gradient-hover,
+.porsche-tyre-card:hover .porsche-card-gradient-hover {
+  opacity: 1;
 }
 
 .porsche-tyre-card-all {
