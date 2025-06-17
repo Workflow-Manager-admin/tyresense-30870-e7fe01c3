@@ -17,49 +17,7 @@ import TyreLogoSVG from "./TyreLogoSVG";
  * prominent 'All tyres' option, and understated Porsche-inspired typography/colors.
  */
 
-// SAMPLE TYRES for demonstration (can be extended)
-const MAIN_TYRES = [
-  {
-    id: "p7",
-    brand: "Pirelli",
-    model: "Cinturato P7",
-    type: "Summer",
-    size: "225/45R17",
-    price: 118,
-    img: "/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg",
-    url: "https://www.pirelli.com/tyres/en-ww/cinturato/p7"
-  },
-  {
-    id: "primacy4",
-    brand: "Michelin",
-    model: "Primacy 4",
-    type: "All-Season",
-    size: "205/55R16",
-    price: 109,
-    img: "/assets/20250605_071317_michelin-tyres.jpg",
-    url: "https://www.michelin.co.uk/auto/tyres/michelin-primacy-4"
-  },
-  {
-    id: "contisport",
-    brand: "Continental",
-    model: "SportContact 6",
-    type: "Performance",
-    size: "225/40R18",
-    price: 127,
-    img: "/assets/20250605_071316_continental_pp_conti_cityplus.jpg",
-    url: "https://www.continental-tires.com/uk/en/b2c/car/tires/contisportcontact-6.html"
-  },
-  {
-    id: "turanza",
-    brand: "Bridgestone",
-    model: "Turanza T005",
-    type: "Touring",
-    size: "195/65R15",
-    price: 103,
-    img: "/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg",
-    url: "https://www.bridgestone.co.uk/our-products/car-tyres/turanza-t005"
-  }
-];
+
 
 // LocalStorage helpers (unchanged, minimal)
 function saveCarToLS(car) {
@@ -318,63 +276,7 @@ function MainTyreSenseRoutes(props) {
                   <TyreTypesShowcase
                     onBrandSelect={handleBrandSelect}
                   />
-                  {/* Porsche-style grid for all main tyres */}
-                  <section
-                    className="porsche-dual-grid"
-                    aria-label="Brand Grid"
-                  >
-                    {MAIN_TYRES.map((tyre) => (
-                      <div
-                        key={tyre.id}
-                        className="porsche-tyre-card"
-                        tabIndex={0}
-                        role="button"
-                        aria-label={`Go to ${tyre.brand} brand page (${tyre.model})`}
-                        onClick={() => {
-                          handleBrandSelect({ id: tyre.brand.toLowerCase() });
-                          window.scrollTo({top: 0, behavior: "smooth"});
-                        }}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            e.preventDefault();
-                            handleBrandSelect({ id: tyre.brand.toLowerCase() });
-                            window.scrollTo({top: 0, behavior: "smooth"});
-                          }
-                        }}
-                        style={{ cursor: "pointer" }}
-                      >
-                        <div className="porsche-tyre-card-img-wrapper">
-                          <img
-                            src={tyre.img}
-                            alt={`${tyre.brand} ${tyre.model} tyre`}
-                            className="porsche-tyre-card-image"
-                            draggable={false}
-                          />
-                        </div>
-                        <div className="porsche-tyre-card-content">
-                          <div className="porsche-tyre-brand">{tyre.brand}</div>
-                          <div className="porsche-tyre-details">
-                            <strong>{tyre.model}</strong> &bull; {tyre.type}
-                            <br />
-                            <span>Size: {tyre.size}</span>
-                          </div>
-                          <div className="porsche-accent-red">£{tyre.price}</div>
-                          <button
-                            type="button"
-                            className="porsche-tyre-card-btn"
-                            tabIndex={0}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleBrandSelect({ id: tyre.brand.toLowerCase() });
-                            }}
-                          >
-                            View Brand
-                          </button>
-                        </div>
-                        <div className="porsche-card-gradient-hover" />
-                      </div>
-                    ))}
-                  </section>
+                  {/* Porsche-style grid: all legacy/MAIN_TYRES grids removed. Only new Porsche-style brand showcase present. */}
                   {/* Spacing for visual balance */}
                   <div style={{ margin: "50px 0 0 0" }} />
                   <div style={{ margin: "58px 0 0 0" }} />
