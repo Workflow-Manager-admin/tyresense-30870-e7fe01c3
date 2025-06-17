@@ -346,11 +346,11 @@ function MainTyreSenseRoutes(props) {
                         aria-label={`${tyre.brand} ${tyre.model} main tyre card`}
                         aria-pressed="false"
                         onClick={() => {
-                          // Navigate to brand page and scroll to top
+                          // Navigate to /brand/:brandId and scroll to top
                           if (typeof handleBrandSelect === "function") {
                             handleBrandSelect({
                               id: tyre.brandId || (typeof tyre.brand === "string" ? tyre.brand.toLowerCase() : tyre.brand),
-                              name: tyre.brand
+                              name: tyre.brand,
                             });
                           }
                           window.scrollTo({ top: 0, behavior: "smooth" });
@@ -366,13 +366,17 @@ function MainTyreSenseRoutes(props) {
                             if (typeof handleBrandSelect === "function") {
                               handleBrandSelect({
                                 id: tyre.brandId || (typeof tyre.brand === "string" ? tyre.brand.toLowerCase() : tyre.brand),
-                                name: tyre.brand
+                                name: tyre.brand,
                               });
                             }
                             window.scrollTo({ top: 0, behavior: "smooth" });
                           }
                         }}
                         style={{ cursor: "pointer", outline: "none" }}
+                        role="button"
+                        tabIndex={0}
+                        aria-haspopup="dialog"
+                        aria-label={`View ${tyre.brand} ${tyre.model} tyre details`}
                       >
                         <div className="porsche-tyre-card-img-wrapper">
                           <img
