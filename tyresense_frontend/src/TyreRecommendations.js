@@ -184,9 +184,9 @@ function TyreRecommendations({
         {car && (
           <div
             style={{ color: "#7d7d85", fontWeight: 600 }}
-            aria-label={`Selected car: ${car.year} ${car.make} ${car.model}`}
+            aria-label={`Selected car: ${car?.year ?? ""} ${car?.make ?? ""} ${car?.model ?? ""}`}
           >
-            {car.year} {car.make} {car.model}
+            {car?.year ?? ""} {car?.make ?? ""} {car?.model ?? ""}
           </div>
         )}
         {weatherLoading && (

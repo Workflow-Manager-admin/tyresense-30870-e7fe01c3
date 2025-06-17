@@ -45,12 +45,15 @@ const fallbackCarSVG = (
   </svg>
 );
 
-export default function CarDetailsInput({ onSubmit, initialCar = {}, persistCar }) {
-  const [manufacturer, setManufacturer] = useState(initialCar.make || "");
-  const [model, setModel] = useState(initialCar.model || "");
-  const [year, setYear] = useState(initialCar.year || "");
+export default function CarDetailsInput({ onSubmit, initialCar = {}, persistCar, car = {} }) {
+  // Support both legacy "initialCar" and new "car" prop for flexibility, with default fallbacks.
+  const safeCar = car && typeof car === "object" ? car : {};
+  const effectiveCar = Object.keys(initialCar).length ? initialCar : safeCar;
+  const [manufacturer, setManufacturer] = useState(effectiveCar.make || "");
+  const [model, setModel] = useState(effectiveCar.model || "");
+  const [year, setYear] = useState(effectiveCar.year || "");
   const [lastTyreChange, setLastTyreChange] = useState(
-    initialCar.lastTyreChange ||
+    effectiveCar.lastTyreChange ||
       (() => {
         const d = new Date();
         d.setFullYear(d.getFullYear() - 4);
@@ -58,7 +61,7 @@ export default function CarDetailsInput({ onSubmit, initialCar = {}, persistCar 
       })()
   );
 
-  const [carImg, setCarImg] = useState(initialCar.carImg || null);
+  const [carImg, setCarImg] = useState(effectiveCar.carImg || null);
   const [errors, setErrors] = useState({});
 
   const currentYear = new Date().getFullYear();
