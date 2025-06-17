@@ -330,7 +330,9 @@ function MainTyreSenseRoutes(props) {
                     >
                       Premium tyres. Engineered for performance. Select your vehicle and explore leading brands.
                     </div>
-                  </div>                  {/* --- Porsche-style full-width main tyres grid (replacing old grid, using MAIN_TYRES) --- */}
+                  </div>
+
+                  {/* --- Porsche-style full-width main tyres grid (the ONLY grid/card section here, per guide) --- */}
                   <section
                     className="porsche-dual-grid"
                     aria-label="TyreSense all recommended main tyres grid"
@@ -343,21 +345,29 @@ function MainTyreSenseRoutes(props) {
                         aria-label={`${tyre.brand} ${tyre.model} main tyre card`}
                         tabIndex={0}
                         onClick={() => {
-                          if (handleBrandSelect)
-                            handleBrandSelect({ id: tyre.brandId || tyre.brand?.toLowerCase?.() || tyre.brand, name: tyre.brand });
+                          // Navigate to brand page and scroll to top
+                          if (handleBrandSelect) {
+                            handleBrandSelect({
+                              id: tyre.brandId || tyre.brand?.toLowerCase?.() || tyre.brand,
+                              name: tyre.brand
+                            });
+                          }
                           window.scrollTo({ top: 0, behavior: "smooth" });
                         }}
                         onKeyDown={e => {
                           if (e.key === "Enter" || e.key === " ") {
                             e.preventDefault();
-                            if (handleBrandSelect)
-                              handleBrandSelect({ id: tyre.brandId || tyre.brand?.toLowerCase?.() || tyre.brand, name: tyre.brand });
+                            if (handleBrandSelect) {
+                              handleBrandSelect({
+                                id: tyre.brandId || tyre.brand?.toLowerCase?.() || tyre.brand,
+                                name: tyre.brand
+                              });
+                            }
                             window.scrollTo({ top: 0, behavior: "smooth" });
                           }
                         }}
                         style={{ cursor: "pointer", outline: "none" }}
                         aria-pressed="false"
-                        tabIndex={0}
                       >
                         <div className="porsche-tyre-card-img-wrapper" style={{ position: "relative" }}>
                           <img
@@ -369,20 +379,40 @@ function MainTyreSenseRoutes(props) {
                             className="porsche-tyre-card-image"
                             loading="lazy"
                             draggable={false}
-                            style={{ width: "98%", height: "98%", maxWidth: 246, maxHeight: 186, objectFit: "cover", background: "#18181b", margin: "0 auto", borderRadius: "var(--porsche-card-radius-sm)" }}
+                            style={{
+                              width: "98%",
+                              height: "98%",
+                              maxWidth: 246,
+                              maxHeight: 186,
+                              objectFit: "cover",
+                              background: "#18181b",
+                              margin: "0 auto",
+                              borderRadius: "var(--porsche-card-radius-sm)"
+                            }}
                           />
                           <div className="porsche-card-gradient-hover" />
                         </div>
                         <div className="porsche-tyre-card-content">
                           <span className="porsche-tyre-brand">{tyre.brand}</span>
-                          <span className="porsche-accent-red" style={{ fontWeight: 700, margin: "3px 0 4px 0" }}>{tyre.model}</span>
-                          <span className="porsche-tyre-details" style={{margin: "0 0 2px 0", fontSize: "0.97rem"}}>
+                          <span
+                            className="porsche-accent-red"
+                            style={{ fontWeight: 700, margin: "3px 0 4px 0" }}
+                          >
+                            {tyre.model}
+                          </span>
+                          <span
+                            className="porsche-tyre-details"
+                            style={{ margin: "0 0 2px 0", fontSize: "0.97rem" }}
+                          >
                             {tyre.type ? <><b>{tyre.type}</b> · </> : null}
                             {tyre.size}
                             {tyre.price ? <> · £{tyre.price}</> : null}
                           </span>
                           {tyre.desc && (
-                            <span className="porsche-tyre-details" style={{ color: "#a9aaae", fontSize: "0.96rem" }}>
+                            <span
+                              className="porsche-tyre-details"
+                              style={{ color: "#a9aaae", fontSize: "0.96rem" }}
+                            >
                               {tyre.desc}
                             </span>
                           )}
@@ -406,7 +436,8 @@ function MainTyreSenseRoutes(props) {
                       </article>
                     ))}
                   </section>
-                  {/* --- End modern Porsche-style grid --- */}
+                  {/* --- END Porsche-style grid/card block -- this is the ONLY main grid/card section --- */}
+
                   {/* Spacing for visual balance */}
                   <div style={{ margin: "58px 0 0 0" }} />
                   <section style={{ maxWidth: 930, margin: "0 auto", padding: "24px 0" }}>
