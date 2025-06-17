@@ -332,30 +332,30 @@ function MainTyreSenseRoutes(props) {
                     </div>
                   </div>
 
-                  {/* --- Porsche-style full-width main tyres grid (the ONLY grid/card section here) --- */}
+                  {/* --- Porsche-style full-width main tyres grid: replaces ALL previous grid/card JSX --- */}
                   <section
                     className="porsche-dual-grid"
-                    aria-label="TyreSense all recommended main tyres grid"
+                    aria-label="TyreSense main Porsche-style tyre grid"
                   >
                     {MAIN_TYRES.map((tyre, idx) => (
                       <article
                         key={tyre.id || idx}
                         className="porsche-tyre-card"
-                        role="button"
                         tabIndex={0}
-                        aria-label={`View ${tyre.brand} ${tyre.model} tyre details`}
+                        role="button"
+                        aria-label={`View details for ${tyre.brand} ${tyre.model}`}
                         style={{ cursor: "pointer", outline: "none" }}
                         onClick={() => {
-                          // On click: navigate to brand, scroll to top
+                          // Scroll to top on card click, navigate to brand
+                          window.scrollTo({ top: 0, behavior: "smooth" });
                           if (typeof handleBrandSelect === "function") {
                             handleBrandSelect({
                               id: tyre.brandId || (typeof tyre.brand === "string" ? tyre.brand.toLowerCase() : tyre.brand),
                               name: tyre.brand,
                             });
                           }
-                          window.scrollTo({ top: 0, behavior: "smooth" });
                         }}
-                        onKeyDown={e => {
+                        onKeyDown={(e) => {
                           if (
                             e.key === "Enter" ||
                             e.key === " " ||
@@ -363,24 +363,25 @@ function MainTyreSenseRoutes(props) {
                             e.keyCode === 32
                           ) {
                             e.preventDefault();
+                            window.scrollTo({ top: 0, behavior: "smooth" });
                             if (typeof handleBrandSelect === "function") {
                               handleBrandSelect({
                                 id: tyre.brandId || (typeof tyre.brand === "string" ? tyre.brand.toLowerCase() : tyre.brand),
                                 name: tyre.brand,
                               });
                             }
-                            window.scrollTo({ top: 0, behavior: "smooth" });
                           }
                         }}
                         aria-pressed="false"
                         aria-haspopup="dialog"
+                        tabIndex={0}
                       >
                         <div className="porsche-tyre-card-img-wrapper">
                           <img
                             src={tyre.img || tyre.image || ""}
                             alt={
                               tyre.img_alt ||
-                              `${tyre.brand} ${tyre.model} premium tyre${tyre.type ? ', ' + tyre.type : ''}`
+                              `${tyre.brand} ${tyre.model} premium tyre${tyre.type ? ", " + tyre.type : ""}`
                             }
                             className="porsche-tyre-card-image"
                             loading="lazy"
@@ -396,7 +397,7 @@ function MainTyreSenseRoutes(props) {
                               borderRadius: "var(--porsche-card-radius-sm)"
                             }}
                           />
-                          <div className="porsche-card-gradient-hover" />
+                          <div className="porsche-card-gradient-hover" aria-hidden="true" />
                         </div>
                         <div className="porsche-tyre-card-content">
                           <span className="porsche-tyre-brand">{tyre.brand}</span>
@@ -443,7 +444,7 @@ function MainTyreSenseRoutes(props) {
                       </article>
                     ))}
                   </section>
-                  {/* --- END Porsche-style grid/card block; this is the main grid/card section --- */}
+                  {/* --- END Porsche-style Porsche-dual-grid block --- */}
 
                   {/* Spacing for visual balance */}
                   <div style={{ margin: "58px 0 0 0" }} />
