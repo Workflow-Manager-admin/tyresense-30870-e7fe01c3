@@ -341,12 +341,14 @@ function MainTyreSenseRoutes(props) {
                       <article
                         key={tyre.id || idx}
                         className="porsche-tyre-card"
-                        tabIndex={0}
                         role="button"
+                        tabIndex={0}
                         aria-label={`View details for ${tyre.brand} ${tyre.model}`}
+                        aria-pressed="false"
+                        aria-haspopup="dialog"
                         style={{ cursor: "pointer", outline: "none" }}
                         onClick={() => {
-                          // Scroll to top on card click, navigate to brand
+                          // Accessible scroll-to-top on card click and in-app navigation
                           window.scrollTo({ top: 0, behavior: "smooth" });
                           if (typeof handleBrandSelect === "function") {
                             handleBrandSelect({
@@ -372,9 +374,6 @@ function MainTyreSenseRoutes(props) {
                             }
                           }
                         }}
-                        aria-pressed="false"
-                        aria-haspopup="dialog"
-                        tabIndex={0}
                       >
                         <div className="porsche-tyre-card-img-wrapper">
                           <img
