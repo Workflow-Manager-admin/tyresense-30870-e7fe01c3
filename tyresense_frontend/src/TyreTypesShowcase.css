@@ -22,7 +22,7 @@
   color: #b4081b;
   font-size: 2.19rem;
   font-weight: 800;
-  letter-spacing: .025em;
+  letter-spacing: 0.025em;
   font-family: 'Roboto', Helvetica, Arial, sans-serif !important;
   text-shadow: none;
 }
@@ -42,6 +42,7 @@
   width: 100%;
 }
 
+/* Button cards */
 .tyre-brand-card,
 .premium-brand-container {
   background: #232327;
@@ -58,23 +59,37 @@
   min-height: 235px;
   min-width: 230px;
   max-width: 620px;
-  transition: box-shadow 0.16s, border 0.14s, background 0.12s;
+  transition:
+    box-shadow 0.16s ease,
+    border 0.14s ease,
+    background 0.12s ease,
+    transform 0.22s cubic-bezier(.68,-0.35,.32,1.35);
   cursor: pointer;
-  outline: none;
+  outline-offset: 4px;
   border-bottom: 3px solid transparent;
   filter: none;
   position: relative;
   z-index: 1;
+  user-select: none;
 }
 
-.tyre-brand-card:focus,
+/* Focus & Hover: improved visible focus with outline */
+.tyre-brand-card:focus-visible,
+.premium-brand-container:focus-visible,
 .tyre-brand-card:hover,
-.premium-brand-container:focus,
 .premium-brand-container:hover {
   background: #232327;
   border: 2.7px solid #b4081b;
   box-shadow: 0 13px 48px 8px #b4081b1b, 0 7px 84px 11px #b4081b21;
   border-bottom: 7px solid #b4081b;
+  transform: scale(1.02);
+  outline: none; /* We use :focus-visible with outline-offset instead */
+}
+
+.tyre-brand-card:focus-visible,
+.premium-brand-container:focus-visible {
+  outline: 3px solid #b4081b;
+  outline-offset: 6px;
 }
 
 /* Cover background for full image impact */
@@ -104,9 +119,17 @@
   border-radius: inherit;
   background: #191932;
   filter: brightness(1.08) contrast(1.04) drop-shadow(0 0 14px #b4081b40);
-  transition: transform .22s cubic-bezier(.68,-0.35,.32,1.35);
+  transition: transform 0.22s cubic-bezier(.68,-0.35,.32,1.35);
   image-rendering: -webkit-optimize-contrast;
   user-select: none;
+}
+
+/* Slightly scale image on hover/focus for dynamic effect */
+.tyre-brand-card:hover .tyre-brand-img,
+.premium-brand-container:hover .tyre-brand-img,
+.tyre-brand-card:focus-visible .tyre-brand-img,
+.premium-brand-container:focus-visible .tyre-brand-img {
+  transform: scale(1.04);
 }
 
 .tyre-brand-img-overlay {
@@ -115,7 +138,7 @@
   z-index: 3;
   border-radius: inherit;
   background: linear-gradient(145deg, #18181fda 22%, #232327cc 64%, #0c0c0e99 98%);
-  transition: background 0.12s;
+  transition: background 0.12s ease;
   pointer-events: none;
   box-shadow: none;
 }
@@ -146,7 +169,7 @@
   font-size: 2.1rem;
   color: #b4081b;
   font-weight: 800;
-  letter-spacing: .11em;
+  letter-spacing: 0.11em;
   text-shadow: none;
   line-height: 1.05;
   font-family: 'Roboto', Helvetica, Arial, sans-serif !important;
@@ -172,7 +195,8 @@
     padding-right: 3px;
     border-radius: 20px;
   }
-  .tyre-brand-card, .premium-brand-container {
+  .tyre-brand-card,
+  .premium-brand-container {
     min-width: 0;
     max-width: 99vw;
     min-height: 209px;
@@ -182,7 +206,8 @@
     gap: 2px;
     padding: 0;
   }
-  .tyre-brand-info-col, .premium-info-col {
+  .tyre-brand-info-col,
+  .premium-info-col {
     padding: 23px 16px 20px 22px;
     width: 100%;
   }

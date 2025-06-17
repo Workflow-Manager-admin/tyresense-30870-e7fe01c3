@@ -4,8 +4,10 @@ import "./TyreTypesShowcase.css";
 /**
  * PUBLIC_INTERFACE
  * TyreTypesShowcase
- * Displays the four Porsche-style premium brand containers (Pirelli, Michelin, Continental, Bridgestone) as vertically-long cards.
- * @param {function} onBrandSelect - function(brand) called when a brand is clicked.
+ * Displays premium tyre brand cards styled in a Porsche-like vertical container.
+ * 
+ * @param {function} onBrandSelect - Called when a brand is clicked, receives brand object.
+ * @param {Array} brands - Optional list of tyre brands to show. Defaults to preset premium brands.
  */
 
 const getPublicUrl = () =>
@@ -13,8 +15,7 @@ const getPublicUrl = () =>
     ? process.env.PUBLIC_URL
     : window.PUBLIC_URL || "");
 
-// Only the four Porsche-style premium brands: vertical "long" containers
-const TYRE_BRANDS = [
+const DEFAULT_BRANDS = [
   {
     id: "pirelli",
     name: "Pirelli",
@@ -41,18 +42,15 @@ const TYRE_BRANDS = [
   },
 ];
 
-// PUBLIC_INTERFACE
-function TyreTypesShowcase({ onBrandSelect }) {
+function TyreTypesShowcase({ onBrandSelect, brands = DEFAULT_BRANDS }) {
   return (
-    <section className="ts-section ts-tyre-brands-showcase">
+    <section className="ts-section ts-tyre-brands-showcase" aria-label="Tyre brands showcase">
       <header className="tyre-showcase-header">
         <h2>Explore Tyre Brands</h2>
-        <p className="tyre-showcase-desc">
-          Premium, trusted choices for every journey.
-        </p>
+        <p className="tyre-showcase-desc">Premium, trusted choices for every journey.</p>
       </header>
       <div className="tyre-brands-grid">
-        {TYRE_BRANDS.map((brand) => (
+        {brands.map((brand) => (
           <button
             key={brand.id}
             className="tyre-brand-card premium-brand-container"
