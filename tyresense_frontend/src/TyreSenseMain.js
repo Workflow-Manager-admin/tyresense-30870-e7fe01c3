@@ -332,7 +332,7 @@ function MainTyreSenseRoutes(props) {
                     </div>
                   </div>
 
-                  {/* --- Porsche-style full-width main tyres grid (the ONLY grid/card section here, per guide) --- */}
+                  {/* --- Porsche-style full-width main tyres grid (the ONLY grid/card section here) --- */}
                   <section
                     className="porsche-dual-grid"
                     aria-label="TyreSense all recommended main tyres grid"
@@ -341,12 +341,12 @@ function MainTyreSenseRoutes(props) {
                       <article
                         key={tyre.id || idx}
                         className="porsche-tyre-card"
-                        role="group"
+                        role="button"
                         tabIndex={0}
-                        aria-label={`${tyre.brand} ${tyre.model} main tyre card`}
-                        aria-pressed="false"
+                        aria-label={`View ${tyre.brand} ${tyre.model} tyre details`}
+                        style={{ cursor: "pointer", outline: "none" }}
                         onClick={() => {
-                          // Navigate to /brand/:brandId and scroll to top
+                          // On click: navigate to brand, scroll to top
                           if (typeof handleBrandSelect === "function") {
                             handleBrandSelect({
                               id: tyre.brandId || (typeof tyre.brand === "string" ? tyre.brand.toLowerCase() : tyre.brand),
@@ -372,11 +372,8 @@ function MainTyreSenseRoutes(props) {
                             window.scrollTo({ top: 0, behavior: "smooth" });
                           }
                         }}
-                        style={{ cursor: "pointer", outline: "none" }}
-                        role="button"
-                        tabIndex={0}
+                        aria-pressed="false"
                         aria-haspopup="dialog"
-                        aria-label={`View ${tyre.brand} ${tyre.model} tyre details`}
                       >
                         <div className="porsche-tyre-card-img-wrapper">
                           <img
@@ -446,7 +443,7 @@ function MainTyreSenseRoutes(props) {
                       </article>
                     ))}
                   </section>
-                  {/* --- END Porsche-style grid/card block -- this is the ONLY main grid/card section --- */}
+                  {/* --- END Porsche-style grid/card block; this is the main grid/card section --- */}
 
                   {/* Spacing for visual balance */}
                   <div style={{ margin: "58px 0 0 0" }} />
