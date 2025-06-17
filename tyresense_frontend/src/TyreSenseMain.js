@@ -342,24 +342,30 @@ function MainTyreSenseRoutes(props) {
                         key={tyre.id || idx}
                         className="porsche-tyre-card"
                         role="group"
-                        aria-label={`${tyre.brand} ${tyre.model} main tyre card`}
                         tabIndex={0}
+                        aria-label={`${tyre.brand} ${tyre.model} main tyre card`}
+                        aria-pressed="false"
                         onClick={() => {
                           // Navigate to brand page and scroll to top
-                          if (handleBrandSelect) {
+                          if (typeof handleBrandSelect === "function") {
                             handleBrandSelect({
-                              id: tyre.brandId || tyre.brand?.toLowerCase?.() || tyre.brand,
+                              id: tyre.brandId || (typeof tyre.brand === "string" ? tyre.brand.toLowerCase() : tyre.brand),
                               name: tyre.brand
                             });
                           }
                           window.scrollTo({ top: 0, behavior: "smooth" });
                         }}
                         onKeyDown={e => {
-                          if (e.key === "Enter" || e.key === " ") {
+                          if (
+                            e.key === "Enter" ||
+                            e.key === " " ||
+                            e.keyCode === 13 ||
+                            e.keyCode === 32
+                          ) {
                             e.preventDefault();
-                            if (handleBrandSelect) {
+                            if (typeof handleBrandSelect === "function") {
                               handleBrandSelect({
-                                id: tyre.brandId || tyre.brand?.toLowerCase?.() || tyre.brand,
+                                id: tyre.brandId || (typeof tyre.brand === "string" ? tyre.brand.toLowerCase() : tyre.brand),
                                 name: tyre.brand
                               });
                             }
@@ -367,9 +373,8 @@ function MainTyreSenseRoutes(props) {
                           }
                         }}
                         style={{ cursor: "pointer", outline: "none" }}
-                        aria-pressed="false"
                       >
-                        <div className="porsche-tyre-card-img-wrapper" style={{ position: "relative" }}>
+                        <div className="porsche-tyre-card-img-wrapper">
                           <img
                             src={tyre.img || tyre.image || ""}
                             alt={
@@ -419,12 +424,13 @@ function MainTyreSenseRoutes(props) {
                           <button
                             className="porsche-tyre-card-btn"
                             aria-label={`Buy ${tyre.brand} ${tyre.model} now`}
+                            tabIndex={0}
                             onClick={e => {
                               e.stopPropagation();
                               if (tyre.url) window.open(tyre.url, "_blank", "noopener,noreferrer");
                             }}
                             onKeyDown={e => {
-                              if (e.key === "Enter" || e.key === " ") {
+                              if (e.key === "Enter" || e.key === " " || e.keyCode === 13 || e.keyCode === 32) {
                                 e.stopPropagation();
                                 if (tyre.url) window.open(tyre.url, "_blank", "noopener,noreferrer");
                               }
