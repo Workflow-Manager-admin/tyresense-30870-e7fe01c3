@@ -11,6 +11,65 @@ import AnimatedCarIntro from "./AnimatedCarIntro";
 import TyreRecommendations from "./TyreRecommendations";
 import TyreLogoSVG from "./TyreLogoSVG";
 
+/** 
+ * MAIN_TYRES - main grid source for Porsche-style cards.
+ * Replace/augment with real data as needed.
+ */
+const MAIN_TYRES = [
+  {
+    id: "pirelli_p7",
+    brand: "Pirelli",
+    model: "Cinturato P7",
+    type: "Summer",
+    size: "225/45R17",
+    price: 118,
+    url: "https://www.pirelli.com/tyres/en-ww/cinturato/p7",
+    img: `${process.env.PUBLIC_URL || ""}/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg`,
+    desc: "Performance meets Innovation.",
+    brandId: "pirelli",
+    img_alt: "Pirelli Cinturato P7 tyre photo"
+  },
+  {
+    id: "michelin_ps4",
+    brand: "Michelin",
+    model: "Pilot Sport 4",
+    type: "Performance",
+    size: "225/40R18",
+    price: 127,
+    url: "https://www.michelin.co.uk/auto/tyres/michelin-pilot-sport-4",
+    img: `${process.env.PUBLIC_URL || ""}/assets/20250605_071317_michelin-tyres.jpg`,
+    desc: "Motion for Life.",
+    brandId: "michelin",
+    img_alt: "Michelin Pilot Sport 4 tyre photo"
+  },
+  {
+    id: "continental_sport",
+    brand: "Continental",
+    model: "SportContact 6",
+    type: "Performance",
+    size: "225/40R18",
+    price: 127,
+    url: "https://www.continental-tires.com/uk/en/b2c/car/tires/contisportcontact-6.html",
+    img: `${process.env.PUBLIC_URL || ""}/assets/20250605_071316_continental_pp_conti_cityplus.jpg`,
+    desc: "The Future in Motion.",
+    brandId: "continental",
+    img_alt: "Continental SportContact 6 tyre photo"
+  },
+  {
+    id: "bridgestone_turanza",
+    brand: "Bridgestone",
+    model: "Turanza T005",
+    type: "Touring",
+    size: "195/65R15",
+    price: 103,
+    url: "https://www.bridgestone.co.uk/our-products/car-tyres/turanza-t005",
+    img: `${process.env.PUBLIC_URL || ""}/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg`,
+    desc: "Solutions for your journey.",
+    brandId: "bridgestone",
+    img_alt: "Bridgestone Turanza T005 tyre photo"
+  }
+];
+
 /**
  * Remove all neon styling, use only Porsche.com palette and minimalist structure.
  * Use a dual card/grid main layout with a looping video background hero,
@@ -272,178 +331,80 @@ function MainTyreSenseRoutes(props) {
                       Premium tyres. Engineered for performance. Select your vehicle and explore leading brands.
                     </div>
                   </div>
-                  {/* --- Porsche-style clickable 4-tile brand grid (responsive, modern) --- */}
+                  {/* --- Porsche-style full-width main tyres grid (replacing old grid, using MAIN_TYRES) --- */}
                   <section
-                    aria-label="Premium tyre brands Porsche-style grid"
-                    style={{
-                      maxWidth: 1080,
-                      margin: "0 auto",
-                      padding: "28px 8vw 38px 8vw",
-                      width: "100%",
-                      background: "linear-gradient(129deg, #232327 12%, #18181b 94%)",
-                      borderRadius: 24,
-                      boxShadow: "0 7px 27px 3px #18181c2a",
-                      minHeight: 360
-                    }}
+                    className="porsche-dual-grid"
+                    aria-label="TyreSense all recommended main tyres grid"
                   >
-                    <header style={{ marginBottom: 38, textAlign: "left" }}>
-                      <h2 style={{
-                        margin: 0,
-                        color: "#b4081b",
-                        fontSize: "2.19rem",
-                        fontWeight: 800,
-                        letterSpacing: ".025em",
-                        fontFamily: "'Roboto', Helvetica, Arial, sans-serif"
-                      }}>
-                        Explore Tyre Brands
-                      </h2>
-                      <div style={{ color: "#c4d8ff", fontSize: "1.13rem", opacity: 0.83, fontWeight: 500 }}>Premium, trusted choices for every journey.</div>
-                    </header>
-                    {/* Responsive Porsche-grid: 2 column on desktop, 1 column on mobile */}
-                    <div
-                      className="porsche-dual-grid"
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns: "1fr 1fr",
-                        gap: "44px 36px",
-                        maxWidth: 1040,
-                        width: "100%",
-                        margin: "0 auto"
-                      }}
-                    >
-                      {[
-                        {
-                          id: "pirelli",
-                          name: "Pirelli",
-                          tagline: "Performance meets Innovation",
-                          image: `${process.env.PUBLIC_URL || ""}/assets/20250605_071317_Pirelli-Cintaurato-P7.jpg`
-                        },
-                        {
-                          id: "michelin",
-                          name: "Michelin",
-                          tagline: "Motion for Life",
-                          image: `${process.env.PUBLIC_URL || ""}/assets/20250605_071317_michelin-tyres.jpg`
-                        },
-                        {
-                          id: "continental",
-                          name: "Continental",
-                          tagline: "The Future in Motion",
-                          image: `${process.env.PUBLIC_URL || ""}/assets/20250605_071316_continental_pp_conti_cityplus.jpg`
-                        },
-                        {
-                          id: "bridgestone",
-                          name: "Bridgestone",
-                          tagline: "Solutions for your journey",
-                          image: `${process.env.PUBLIC_URL || ""}/assets/20250605_071315_Bridgestone-Turanza-T005-1.jpg`
-                        }
-                      ].map((brand) => (
-                        <button
-                          key={brand.id}
-                          className="porsche-tyre-card"
-                          aria-label={`View details for ${brand.name}`}
-                          tabIndex={0}
-                          style={{
-                            background: "#232327",
-                            border: "1.7px solid #2f2f33",
-                            borderRadius: 18,
-                            boxShadow: "0 6px 23px 2.5px #18181c22",
-                            minHeight: 235,
-                            minWidth: 210,
-                            maxWidth: 620,
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "flex-end",
-                            justifyContent: "flex-end",
-                            outline: "none",
-                            cursor: "pointer",
-                            position: "relative",
-                            overflow: "hidden",
-                            transition: "box-shadow 0.16s, border 0.14s, background 0.12s, transform 0.22s"
-                          }}
-                          onClick={() => handleBrandSelect({ id: brand.id, name: brand.name })}
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter" || e.key === " ") handleBrandSelect({ id: brand.id, name: brand.name });
-                          }}
-                          type="button"
-                        >
-                          {/* Tyre image */}
-                          <div
-                            className="porsche-tyre-card-img-wrapper"
-                            aria-hidden="true"
-                            style={{
-                              width: "100%",
-                              paddingTop: "60%",
-                              background: "#18181b",
-                              borderBottom: "1.5px solid #cfd2d6",
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              overflow: "hidden"
-                            }}
-                          >
-                            <img
-                              src={brand.image}
-                              alt={`${brand.name} tyre example photo`}
-                              className="porsche-tyre-card-image"
-                              style={{
-                                width: "98%",
-                                height: "98%",
-                                maxWidth: 246,
-                                objectFit: "cover",
-                                borderRadius: 16,
-                                margin: "0 auto",
-                                background: "#18181b"
-                              }}
-                              loading="lazy"
-                              draggable={false}
-                            />
-                            {/* Subtle gradient overlay for contrast */}
-                            <div
-                              style={{
-                                position: "absolute",
-                                inset: 0,
-                                borderRadius: "inherit",
-                                background: "linear-gradient(145deg, #18181fda 22%, #232327cc 64%, #0c0c0e99 98%)",
-                                pointerEvents: "none",
-                                zIndex: 3
-                              }}
-                              className="porsche-card-gradient-hover"
-                            />
-                          </div>
-                          {/* Card content/info */}
-                          <div
-                            className="porsche-tyre-card-content"
-                            style={{
-                              padding: "30px 27px 24px 27px",
-                              display: "flex",
-                              flexDirection: "column",
-                              alignItems: "flex-start",
-                              gap: 12,
-                              background: "none"
-                            }}
-                          >
-                            <div className="porsche-tyre-brand" style={{
-                              fontSize: "1.43rem", fontWeight: 700, letterSpacing: ".12em", color: "#fff"
-                            }}>
-                              {brand.name}
-                            </div>
-                            <div className="porsche-tyre-details" style={{ color: "#c4d8ff", fontSize: "1.11rem", fontWeight: 500 }}>
-                              {brand.tagline}
-                            </div>
-                            <span style={{
-                              marginTop: 10,
-                              display: "flex",
-                              alignItems: "center",
-                              fontWeight: 590,
-                              fontSize: "1.02rem",
-                              color: "#b4081b"
-                            }}>
-                              Discover →
+                    {MAIN_TYRES.map((tyre, idx) => (
+                      <article
+                        key={tyre.id || idx}
+                        className="porsche-tyre-card"
+                        tabIndex={0}
+                        role="group"
+                        aria-label={`${tyre.brand} ${tyre.model} main tyre card`}
+                        onClick={() => {
+                          handleBrandSelect &&
+                            handleBrandSelect({ id: tyre.brandId || tyre.brand?.toLowerCase?.() || tyre.brand, name: tyre.brand });
+                          window.scrollTo({top: 0, behavior: "smooth"});
+                        }}
+                        onKeyDown={e => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            if (handleBrandSelect)
+                              handleBrandSelect({ id: tyre.brandId || tyre.brand?.toLowerCase?.() || tyre.brand, name: tyre.brand });
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                          }
+                        }}
+                        style={{ cursor: "pointer", outline: "none" }}
+                        tabIndex={0}
+                      >
+                        <div className="porsche-tyre-card-img-wrapper" style={{ position: "relative" }}>
+                          <img
+                            src={tyre.img || tyre.image || ""}
+                            alt={
+                              tyre.img_alt ||
+                              `${tyre.brand} ${tyre.model} premium tyre${tyre.type ? ', ' + tyre.type : ''}`
+                            }
+                            className="porsche-tyre-card-image"
+                            loading="lazy"
+                            draggable={false}
+                            style={{ width: "98%", height: "98%", maxWidth: 246, maxHeight: 186, objectFit: "cover", background: "#18181b", margin: "0 auto" }}
+                          />
+                          <div className="porsche-card-gradient-hover" />
+                        </div>
+                        <div className="porsche-tyre-card-content">
+                          <span className="porsche-tyre-brand">{tyre.brand}</span>
+                          <span className="porsche-accent-red" style={{ fontWeight: 700, margin: "3px 0 4px 0" }}>{tyre.model}</span>
+                          <span className="porsche-tyre-details" style={{margin: "0 0 2px 0", fontSize: "0.97rem"}}>
+                            {tyre.type ? <><b>{tyre.type}</b> · </> : null}
+                            {tyre.size}
+                            {tyre.price ? <> · £{tyre.price}</> : null}
+                          </span>
+                          {tyre.desc && (
+                            <span className="porsche-tyre-details" style={{ color: "#a9aaae", fontSize: "0.96rem" }}>
+                              {tyre.desc}
                             </span>
-                          </div>
-                        </button>
-                      ))}
-                    </div>
+                          )}
+                          <button
+                            className="porsche-tyre-card-btn"
+                            aria-label={`Buy ${tyre.brand} ${tyre.model} now`}
+                            onClick={e => {
+                              e.stopPropagation();
+                              if (tyre.url) window.open(tyre.url, "_blank", "noopener,noreferrer");
+                            }}
+                            onKeyDown={e => {
+                              if (e.key === "Enter" || e.key === " ") {
+                                e.stopPropagation();
+                                if (tyre.url) window.open(tyre.url, "_blank", "noopener,noreferrer");
+                              }
+                            }}
+                          >
+                            Buy Now
+                          </button>
+                        </div>
+                      </article>
+                    ))}
                   </section>
                   {/* --- End modern Porsche-style grid --- */}
                   {/* Spacing for visual balance */}
