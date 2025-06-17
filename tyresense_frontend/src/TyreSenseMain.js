@@ -320,9 +320,23 @@ function MainTyreSenseRoutes(props) {
                   />
                   {/* Card/grid section */}
                   <section className="porsche-dual-grid" aria-label="TyreGrid">
-                    {/* Main tyre cards */}
-                    {MAIN_TYRES.slice(0, 2).map((tyre) => (
-                      <div key={tyre.id} className="porsche-tyre-card" tabIndex={0} role="region" aria-label={`Brand: ${tyre.brand}`}>
+                    {/* Render the first four main tyre cards, each navigates to the brand page on click or Enter */}
+                    {MAIN_TYRES.slice(0, 4).map((tyre) => (
+                      <div
+                        key={tyre.id}
+                        className="porsche-tyre-card"
+                        tabIndex={0}
+                        role="button"
+                        aria-label={`Navigate to ${tyre.brand} brand page (${tyre.model})`}
+                        onClick={() => handleBrandSelect({ id: tyre.brand.toLowerCase() })}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            handleBrandSelect({ id: tyre.brand.toLowerCase() });
+                          }
+                        }}
+                        style={{ cursor: "pointer" }}
+                      >
                         <div className="porsche-tyre-card-img-wrapper">
                           <img src={tyre.img} alt={`${tyre.brand} ${tyre.model} tyre`} className="porsche-tyre-card-image" draggable={false} />
                         </div>
@@ -337,7 +351,20 @@ function MainTyreSenseRoutes(props) {
                       </div>
                     ))}
                     {/* 'All tyres' special card - the only primary action */}
-                    <div className="porsche-tyre-card porsche-tyre-card-all" tabIndex={0} role="button" aria-label="Show all tyres" onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" })}>
+                    <div
+                      className="porsche-tyre-card porsche-tyre-card-all"
+                      tabIndex={0}
+                      role="button"
+                      aria-label="Show all tyres"
+                      onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" })}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+                        }
+                      }}
+                      style={{ cursor: "pointer" }}
+                    >
                       <div className="porsche-tyre-card-all-content">
                         <span className="porsche-tyre-card-all-title">All Tyres</span>
                         <span className="porsche-tyre-card-all-desc">
@@ -350,26 +377,6 @@ function MainTyreSenseRoutes(props) {
                   </section>
                   {/* Remove buy now or other buttons from grid cells below */}
                   <div style={{ margin: "48px 0 0 0" }} />
-                  {/* Next grid row: more tyres (no primary action/buttons) */}
-                  <section className="porsche-dual-grid" style={{ marginTop: 0 }}>
-                    {MAIN_TYRES.slice(2, 4).map((tyre) => (
-                      <div key={tyre.id} className="porsche-tyre-card" tabIndex={0} role="region" aria-label={`Brand: ${tyre.brand}`}>
-                        <div className="porsche-tyre-card-img-wrapper">
-                          <img src={tyre.img} alt={`${tyre.brand} ${tyre.model} tyre`} className="porsche-tyre-card-image" draggable={false} />
-                        </div>
-                        <div className="porsche-tyre-card-content">
-                          <div className="porsche-tyre-brand">{tyre.brand}</div>
-                          <div className="porsche-tyre-details">
-                            {tyre.model} • {tyre.type} <br />Size: {tyre.size}
-                          </div>
-                          <div className="porsche-accent-red">£{tyre.price}</div>
-                        </div>
-                        <div className="porsche-card-gradient-hover" />
-                      </div>
-                    ))}
-                    {/* The fourth grid cell: empty for balancing if odd number */}
-                    <div />
-                  </section>
                   {/* Filters & user info could go here; main input form below */}
                   <div style={{ margin: "58px 0 0 0" }} />
                   <section style={{ maxWidth: 930, margin: "0 auto", padding: "24px 0" }}>
