@@ -2,9 +2,9 @@
 > react-kavia@0.1.0 start
 > react-scripts start
 
-(node:48003) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:48745) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-(node:48003) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:48745) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
 Starting the development server...
 
 Compiled successfully!
@@ -19,28 +19,6 @@ To create a production build, use npm run build.
 
 webpack compiled successfully
 Compiling...
-Failed to compile.
-
-[eslint] 
-src/TyreSenseMain.js
-  Line 280:22:  'MAIN_TYRES' is not defined  no-undef
-
-Search for the keywords to learn more about each error.
-WARNING in [eslint] 
-src/TyreSenseMain.js
-  Line 8:8:     'TyreTypesShowcase' is defined but never used                                                                         no-unused-vars
-  Line 81:6:    React Hook useEffect has a missing dependency: 'showReminderPopup'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
-  Line 121:9:   'isMainPage' is assigned a value but never used                                                                       no-unused-vars
-  Line 301:25:  No duplicate props allowed                                                                                            react/jsx-no-duplicate-props
-
-ERROR in [eslint] 
-src/TyreSenseMain.js
-  Line 280:22:  'MAIN_TYRES' is not defined  no-undef
-
-Search for the keywords to learn more about each error.
-
-webpack compiled with 1 error and 1 warning
-Compiling...
 Compiled with warnings.
 
 [eslint] 
@@ -48,6 +26,7 @@ src/TyreSenseMain.js
   Line 8:8:     'TyreTypesShowcase' is defined but never used                                                                         no-unused-vars
   Line 140:6:   React Hook useEffect has a missing dependency: 'showReminderPopup'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
   Line 180:9:   'isMainPage' is assigned a value but never used                                                                       no-unused-vars
+  Line 339:23:  The attribute aria-pressed is not supported by the role group                                                         jsx-a11y/role-supports-aria-props
   Line 360:25:  No duplicate props allowed                                                                                            react/jsx-no-duplicate-props
 
 Search for the keywords to learn more about each warning.
@@ -58,6 +37,7 @@ src/TyreSenseMain.js
   Line 8:8:     'TyreTypesShowcase' is defined but never used                                                                         no-unused-vars
   Line 140:6:   React Hook useEffect has a missing dependency: 'showReminderPopup'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
   Line 180:9:   'isMainPage' is assigned a value but never used                                                                       no-unused-vars
+  Line 339:23:  The attribute aria-pressed is not supported by the role group                                                         jsx-a11y/role-supports-aria-props
   Line 360:25:  No duplicate props allowed                                                                                            react/jsx-no-duplicate-props
 
 webpack compiled with 1 warning

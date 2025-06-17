@@ -330,8 +330,7 @@ function MainTyreSenseRoutes(props) {
                     >
                       Premium tyres. Engineered for performance. Select your vehicle and explore leading brands.
                     </div>
-                  </div>
-                  {/* --- Porsche-style full-width main tyres grid (replacing old grid, using MAIN_TYRES) --- */}
+                  </div>                  {/* --- Porsche-style full-width main tyres grid (replacing old grid, using MAIN_TYRES) --- */}
                   <section
                     className="porsche-dual-grid"
                     aria-label="TyreSense all recommended main tyres grid"
@@ -340,13 +339,13 @@ function MainTyreSenseRoutes(props) {
                       <article
                         key={tyre.id || idx}
                         className="porsche-tyre-card"
-                        tabIndex={0}
                         role="group"
                         aria-label={`${tyre.brand} ${tyre.model} main tyre card`}
+                        tabIndex={0}
                         onClick={() => {
-                          handleBrandSelect &&
+                          if (handleBrandSelect)
                             handleBrandSelect({ id: tyre.brandId || tyre.brand?.toLowerCase?.() || tyre.brand, name: tyre.brand });
-                          window.scrollTo({top: 0, behavior: "smooth"});
+                          window.scrollTo({ top: 0, behavior: "smooth" });
                         }}
                         onKeyDown={e => {
                           if (e.key === "Enter" || e.key === " ") {
@@ -357,6 +356,7 @@ function MainTyreSenseRoutes(props) {
                           }
                         }}
                         style={{ cursor: "pointer", outline: "none" }}
+                        aria-pressed="false"
                         tabIndex={0}
                       >
                         <div className="porsche-tyre-card-img-wrapper" style={{ position: "relative" }}>
@@ -369,7 +369,7 @@ function MainTyreSenseRoutes(props) {
                             className="porsche-tyre-card-image"
                             loading="lazy"
                             draggable={false}
-                            style={{ width: "98%", height: "98%", maxWidth: 246, maxHeight: 186, objectFit: "cover", background: "#18181b", margin: "0 auto" }}
+                            style={{ width: "98%", height: "98%", maxWidth: 246, maxHeight: 186, objectFit: "cover", background: "#18181b", margin: "0 auto", borderRadius: "var(--porsche-card-radius-sm)" }}
                           />
                           <div className="porsche-card-gradient-hover" />
                         </div>
