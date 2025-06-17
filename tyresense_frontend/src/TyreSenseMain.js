@@ -276,7 +276,7 @@ function MainTyreSenseRoutes(props) {
                   <TyreTypesShowcase
                     onBrandSelect={handleBrandSelect}
                   />
-                  {/* Porsche-style grid: all legacy/MAIN_TYRES grids removed. Only new Porsche-style brand showcase present. */}
+                  {/* Porsche-style grid is the sole card/grid—legacy/MAIN_TYRES grids are removed. */}
                   {/* Spacing for visual balance */}
                   <div style={{ margin: "50px 0 0 0" }} />
                   <div style={{ margin: "58px 0 0 0" }} />
