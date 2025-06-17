@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+// Only import APIs present in react-router-dom v6
 import { Routes, Route, useNavigate, useLocation, useParams } from "react-router-dom";
 import "./TyreSenseMain.css";
 import ReminderPopup from "./ReminderPopup";
