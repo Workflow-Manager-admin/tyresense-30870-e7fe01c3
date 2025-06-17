@@ -11,6 +11,24 @@ import AnimatedCarIntro from "./AnimatedCarIntro";
 import TyreRecommendations from "./TyreRecommendations";
 import TyreLogoSVG from "./TyreLogoSVG";
 
+
+import TawkToChatWidget from './TawkToChatWidget'; // <-- Import it
+
+// ... other imports for your app components (header, routes, etc.)
+
+function App() {
+  return (
+    <div className="App">
+      {/* Your existing app content goes here */}
+      {/* Example: <Header /> <Routes /> <Footer /> */}
+
+      {/* Place the Tawk.to chat widget component here */}
+      {/* It will render a floating icon usually in the bottom right */}
+      <TawkToChatWidget /> {/* <-- Add this line */}
+    </div>
+  );
+}
+
 /** 
  * MAIN_TYRES - main grid source for Porsche-style cards.
  * Replace/augment with real data as needed.
