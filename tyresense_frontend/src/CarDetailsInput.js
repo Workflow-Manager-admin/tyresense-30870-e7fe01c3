@@ -23,7 +23,7 @@ const carBrands = Object.keys(carImages);
 
 const getModelsForBrand = (brand) => {
   if (!brand) return [];
-  return Object.keys(carImages[brand] || {});
+  return Object.keys((carImages[brand] || {}));
 };
 
 const fallbackCarSVG = (
@@ -45,10 +45,16 @@ const fallbackCarSVG = (
   </svg>
 );
 
+// PUBLIC_INTERFACE
+/**
+ * CarDetailsInput: Input form for car details (make/model/year/last tyre change).
+ * Defensive: always uses a default empty object for 'car' prop.
+ */
+
 export default function CarDetailsInput({ onSubmit, initialCar = {}, persistCar, car = {} }) {
-  // Support both legacy "initialCar" and new "car" prop for flexibility, with default fallbacks.
-  const safeCar = car && typeof car === "object" ? car : {};
-  const effectiveCar = Object.keys(initialCar).length ? initialCar : safeCar;
+  // Always call hooks at the top level!
+  const safeCar = car && typeof car === "object" && !Array.isArray(car) ? car : {};
+  const effectiveCar = Object.keys(initialCar || {}).length ? initialCar : safeCar;
   const [manufacturer, setManufacturer] = useState(effectiveCar.make || "");
   const [model, setModel] = useState(effectiveCar.model || "");
   const [year, setYear] = useState(effectiveCar.year || "");
@@ -66,25 +72,25 @@ export default function CarDetailsInput({ onSubmit, initialCar = {}, persistCar,
 
   const currentYear = new Date().getFullYear();
 
-  // Update model options when manufacturer changes, reset model & image
   useEffect(() => {
     setModel("");
     setCarImg(null);
     setErrors((e) => ({ ...e, manufacturer: null, model: null }));
   }, [manufacturer]);
 
-  // Update car image whenever manufacturer/model/year changes
   useEffect(() => {
     setErrors((e) => ({ ...e, year: null }));
 
     if (manufacturer && model && year) {
-      // Use your existing images
       const imgUrl = carImages[manufacturer]?.[model] || null;
       setCarImg(imgUrl);
     } else {
       setCarImg(null);
     }
   }, [manufacturer, model, year]);
+
+  // Early return if "car" isn't an object or is an array
+  if (!car || typeof car !== "object" || Array.isArray(car)) return null;
 
   // Validation logic
   const validate = () => {
@@ -110,7 +116,7 @@ export default function CarDetailsInput({ onSubmit, initialCar = {}, persistCar,
     }
 
     setErrors(errs);
-    return Object.keys(errs).length === 0;
+    return Object.keys(errs || {}).length === 0;
   };
 
   const handleSubmit = (e) => {
