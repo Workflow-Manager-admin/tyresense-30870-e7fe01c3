@@ -1,549 +1,258 @@
 import React, { useState, useEffect } from "react";
 import "./CarDetailsInput.css";
 
-/**
- * PUBLIC_INTERFACE
- * CarDetailsInput:
- *  - User enters car details: Manufacturer, Model, Year, gets a contextual car image.
- *  - NEW: User enters date of last tyre change, used for reminder popup logic ("when tyres are due").
- *  - Refined UX: clearer field labels, helpful instructions and hints.
- *  - Persists car info in LocalStorage (or Firebase if available).
- */
-function CarDetailsInput({ onSubmit, initialCar, persistCar }) {
-  const [manufacturer, setManufacturer] = useState(initialCar?.make || "");
-  const [model, setModel] = useState(initialCar?.model || "");
-  const [year, setYear] = useState(initialCar?.year || "");
+const carImages = {
+  Toyota: {
+    Corolla: "https://cdn.motor1.com/images/mgl/0AN2x/s1/toyota-corolla.webp",
+    Camry: "https://cdn.motor1.com/images/mgl/68Zrp/s1/2022-toyota-camry.webp",
+    RAV4: "https://cdn.motor1.com/images/mgl/G47vJ/s1/2023-toyota-rav4.webp",
+  },
+  Honda: {
+    Civic: "https://cdn.motor1.com/images/mgl/kEdYL/s1/2022-honda-civic.webp",
+    Accord: "https://cdn.motor1.com/images/mgl/4elwL/s1/2023-honda-accord.webp",
+    CRV: "https://cdn.motor1.com/images/mgl/NYm2A/s1/2023-honda-cr-v.webp",
+  },
+  Ford: {
+    Focus: "https://cdn.motor1.com/images/mgl/QPzvK/s1/ford-focus.webp",
+    Mustang: "https://cdn.motor1.com/images/mgl/vbWvA/s1/ford-mustang.webp",
+    Explorer: "https://cdn.motor1.com/images/mgl/91lKM/s1/ford-explorer.webp",
+  },
+};
+
+const carBrands = Object.keys(carImages);
+
+const getModelsForBrand = (brand) => {
+  if (!brand) return [];
+  return Object.keys(carImages[brand] || {});
+};
+
+const fallbackCarSVG = (
+  <svg
+    aria-label="Default car silhouette"
+    role="img"
+    width="280"
+    height="180"
+    viewBox="0 0 280 180"
+    xmlns="http://www.w3.org/2000/svg"
+    style={{ maxWidth: "100%", height: "auto" }}
+  >
+    <path
+      d="M11.375 94.39h7.5L35 74l5 10 5 5v6.5l-2 5-3 2-3.5 1-8.5 1-6.5-5-2-5-2-4zM42 80l3-5h20l5 5v7l-5 5-7 3h-13l-5-3v-12zM66 100v7l-1 5-2 5-4 3-3 2-5 2-5-1-3-2-2-3-1-4v-6l2-4 3-3 5-1h14l3 2zM170 94l7-10 8-3h30l5 6 2 9-2 9-5 3-6 3-5-2-6-6-4-5-10-5zM188 89v-6l-3-4-3-2-3 1-3 4v5l2 4 2 2 4 3 4-2 1-5zM188 100l-5 4-7 5-5 3-7-1-5-5-2-6v-6l2-4 4-3 7-1 9 3 5 5 1 7z"
+      fill="#b4081b"
+    />
+    <circle cx="45" cy="150" r="15" fill="#b4081b" />
+    <circle cx="90" cy="150" r="15" fill="#b4081b" />
+  </svg>
+);
+
+export default function CarDetailsInput({ onSubmit, initialCar = {}, persistCar }) {
+  const [manufacturer, setManufacturer] = useState(initialCar.make || "");
+  const [model, setModel] = useState(initialCar.model || "");
+  const [year, setYear] = useState(initialCar.year || "");
   const [lastTyreChange, setLastTyreChange] = useState(
-    initialCar?.lastTyreChange ||
-      // Default to 4 years ago (for first-timers, demo purposes: not overdue)
+    initialCar.lastTyreChange ||
       (() => {
         const d = new Date();
         d.setFullYear(d.getFullYear() - 4);
-        return d.toISOString().substr(0, 10);
+        return d.toISOString().slice(0, 10);
       })()
   );
-  const [carImg, setCarImg] = useState(initialCar?.carImg || null);
-  const [loadingImg, setLoadingImg] = useState(false);
-  // New state to force fallback UI if the fetched image source is broken
-  const [carImgError, setCarImgError] = useState(false);
 
-  // When manufacturer changes, reset model unless it is valid for the selected brand.
+  const [carImg, setCarImg] = useState(initialCar.carImg || null);
+  const [errors, setErrors] = useState({});
+
+  const currentYear = new Date().getFullYear();
+
+  // Update model options when manufacturer changes, reset model & image
   useEffect(() => {
-    if (
-      manufacturer &&
-      CAR_MODELS_BY_BRAND[manufacturer] &&
-      !CAR_MODELS_BY_BRAND[manufacturer].includes(model)
-    ) {
-      setModel("");
-    }
-    // eslint-disable-next-line
+    setModel("");
+    setCarImg(null);
+    setErrors((e) => ({ ...e, manufacturer: null, model: null }));
   }, [manufacturer]);
 
-  // Popular car brands list (expansive, includes global brands; can be extended further)
-  const CAR_BRANDS = [
-    "Toyota", "Honda", "Ford", "Chevrolet", "Volkswagen", "BMW", "Mercedes-Benz", "Audi", "Nissan", "Hyundai",
-    "Kia", "Mazda", "Subaru", "Tesla", "Jeep", "Lexus", "Porsche", "Mini", "Jaguar", "Land Rover", "Volvo", "Renault", "Peugeot",
-    "Skoda", "Fiat", "Citroen", "Mitsubishi", "Dacia", "Suzuki", "Alfa Romeo", "Seat", "Bentley", "Bugatti", 
-    "Cadillac", "Chrysler", "Dodge", "Genesis", "Infiniti", "Maserati", "RAM", "Saab", "Smart", "SsangYong", "Rolls-Royce", "Opel", 
-    "Vauxhall", "Acura", "Aston Martin", "Buick", "GMC", "Hummer", "Isuzu", "Lincoln", "Lotus", "Pagani", "Polestar", "Proton", "Rivian"
-  ];
-
-  // Car brand to car models map (partial, demo-level coverage for main manufacturers)
-  const CAR_MODELS_BY_BRAND = {
-    Toyota: ["Corolla", "Camry", "Yaris", "Prius", "RAV4", "Land Cruiser", "Hilux", "Supra"],
-    Honda: ["Civic", "Accord", "CR-V", "Fit", "Odyssey", "Pilot", "HR-V", "Jazz"],
-    Ford: ["F-150", "Focus", "Fiesta", "Mustang", "Explorer", "Escape", "Edge", "Ranger"],
-    Chevrolet: ["Silverado", "Malibu", "Equinox", "Camaro", "Spark", "Tahoe", "Colorado"],
-    Volkswagen: ["Golf", "Passat", "Polo", "Tiguan", "Jetta", "Touareg", "Atlas"],
-    BMW: ["3 Series", "5 Series", "7 Series", "X3", "X5", "X1", "X7"],
-    "Mercedes-Benz": ["C-Class", "E-Class", "S-Class", "GLA", "GLC", "GLE", "A-Class"],
-    Audi: ["A3", "A4", "A6", "Q3", "Q5", "Q7", "Q8", "A8"],
-    Nissan: ["Altima", "Sentra", "Leaf", "Rogue", "Qashqai", "X-Trail", "Juke"],
-    Hyundai: ["Elantra", "i30", "Tucson", "Santa Fe", "Sonata", "Kona", "Venue"],
-    Kia: ["Sportage", "Sorento", "Rio", "Seltos", "Stinger", "Ceed", "Niro"],
-    Mazda: ["Mazda3", "Mazda6", "CX-5", "CX-3", "MX-5", "CX-9"],
-    Subaru: ["Impreza", "Forester", "Outback", "Legacy", "Crosstrek", "XV"],
-    Tesla: ["Model S", "Model 3", "Model X", "Model Y", "Cybertruck"],
-    Jeep: ["Wrangler", "Grand Cherokee", "Compass", "Renegade", "Cherokee"],
-    Lexus: ["RX", "ES", "NX", "IS", "UX", "LS"],
-    Porsche: ["911", "Cayenne", "Panamera", "Macan", "Taycan"],
-    Mini: ["Cooper", "Clubman", "Countryman", "Convertible"],
-    Jaguar: ["XE", "XF", "XJ", "F-PACE", "E-PACE", "I-PACE", "F-TYPE"],
-    "Land Rover": ["Discovery", "Defender", "Range Rover", "Range Rover Evoque"],
-    Volvo: ["S60", "XC40", "XC60", "XC90", "V60", "V90"],
-    Renault: ["Clio", "Megane", "Kadjar", "Captur", "ZOE"],
-    Peugeot: ["208", "308", "3008", "2008", "5008"],
-    Skoda: ["Octavia", "Superb", "Fabia", "Kodiaq", "Karoq"],
-    Fiat: ["500", "Panda", "Tipo", "Punto", "Doblo"],
-    Citroen: ["C3", "C4", "C5 Aircross", "Berlingo"],
-    Mitsubishi: ["Lancer", "Outlander", "ASX", "Eclipse Cross", "Pajero"],
-    Suzuki: ["Swift", "Vitara", "Ignis", "S-Cross", "Jimny"],
-    "Alfa Romeo": ["Giulia", "Stelvio", "Giulietta"],
-    Seat: ["Ibiza", "Leon", "Ateca", "Arona"],
-    Bentley: ["Continental GT", "Flying Spur", "Bentayga"],
-    Bugatti: ["Chiron", "Veyron"],
-    Cadillac: ["Escalade", "CT5", "XT5", "ATS"],
-    Chrysler: ["300", "Pacifica", "Voyager"],
-    Dodge: ["Charger", "Challenger", "Durango", "Journey"],
-    Genesis: ["G70", "G80", "G90"],
-    Infiniti: ["Q50", "QX60", "QX50", "QX80"],
-    Maserati: ["Ghibli", "Levante", "Quattroporte"],
-    RAM: ["1500", "2500", "3500"],
-    Saab: ["9-3", "9-5"],
-    Smart: ["Fortwo", "Forfour"],
-    SsangYong: ["Rexton", "Tivoli", "Korando", "Musso"],
-    "Rolls-Royce": ["Phantom", "Ghost", "Cullinan", "Wraith"],
-    Opel: ["Astra", "Corsa", "Insignia", "Mokka"],
-    Vauxhall: ["Astra", "Corsa", "Insignia", "Mokka"],
-    Acura: ["MDX", "RDX", "ILX", "TLX"],
-    "Aston Martin": ["DB11", "Vantage", "DBS Superleggera", "Rapide"],
-    Buick: ["Enclave", "Encore", "Regal", "LaCrosse"],
-    GMC: ["Sierra", "Terrain", "Acadia", "Canyon"],
-    Hummer: ["H2", "H3"],
-    Isuzu: ["D-Max", "MU-X"],
-    Lincoln: ["Navigator", "Aviator", "Corsair", "Continental"],
-    Lotus: ["Elise", "Evora", "Exige"],
-    Pagani: ["Huayra", "Zonda"],
-    Polestar: ["1", "2", "3"],
-    Proton: ["Saga", "Persona", "Iriz"],
-    Rivian: ["R1T", "R1S"],
-    Dacia: ["Duster", "Sandero", "Logan"],
-  };
-
-  // Fetch car image for preview based on manufacturer/model/year
+  // Update car image whenever manufacturer/model/year changes
   useEffect(() => {
-    // Whenever a new search happens, clear error state
-    setCarImgError(false);
+    setErrors((e) => ({ ...e, year: null }));
 
-    let isMounted = true;
     if (manufacturer && model && year) {
-      setLoadingImg(true);
-
-      const searchQuery = `${year} ${manufacturer} ${model} car`;
-
-      // Helper to set error state and carImg for all downstream error cases
-      const failImage = () => {
-        if (isMounted) {
-          setCarImg(null);
-          setCarImgError(true);
-          setLoadingImg(false);
-        }
-      };
-
-      // Use DuckDuckGo for API search first
-      fetch(
-        `https://api.duckduckgo.com/?q=${encodeURIComponent(searchQuery)}&format=json&no_redirect=1`,
-        { method: "GET", mode: "cors" }
-      )
-        .then((r) => r.json())
-        .then((data) => {
-          let img =
-            data.Image && data.Image.startsWith("http")
-              ? data.Image
-              : null;
-          // If DuckDuckGo API gives blank (common for lesser-known cars), fallback to Unsplash (do not call Bing, limits)
-          if (!img) {
-            fetch(
-              `https://api.unsplash.com/search/photos?client_id=FJ7a7yzrRgqT1kt9YAGQ8lm9ZimzLmYWrm7Y8Rx-lP8&query=${encodeURIComponent(searchQuery)}`,
-              { method: "GET" }
-            )
-              .then((res) => res.json())
-              .then((json) => {
-                if (
-                  json.results &&
-                  json.results.length > 0 &&
-                  json.results[0].urls &&
-                  json.results[0].urls.small
-                ) {
-                  if (isMounted) {
-                    setCarImg(json.results[0].urls.small);
-                    setCarImgError(false);
-                  }
-                } else {
-                  failImage();
-                }
-                if (isMounted) setLoadingImg(false);
-              })
-              .catch(() => {
-                failImage();
-              });
-          } else {
-            if (isMounted) {
-              setCarImg(img);
-              setCarImgError(false);
-              setLoadingImg(false);
-            }
-          }
-        })
-        .catch(() => {
-          failImage();
-        });
-
-      return () => {
-        isMounted = false;
-      };
+      // Use your existing images
+      const imgUrl = carImages[manufacturer]?.[model] || null;
+      setCarImg(imgUrl);
     } else {
-      // reset if details cleared
       setCarImg(null);
-      setCarImgError(false);
     }
   }, [manufacturer, model, year]);
 
-  function handleSubmit(e) {
+  // Validation logic
+  const validate = () => {
+    const errs = {};
+
+    if (!manufacturer) errs.manufacturer = "Please select a manufacturer";
+    if (!model) errs.model = "Please select a model";
+    if (!year) errs.year = "Please select a year";
+    else if (year < 1980 || year > currentYear)
+      errs.year = `Year must be between 1980 and ${currentYear}`;
+
+    if (!lastTyreChange) errs.lastTyreChange = "Please enter last tyre change date";
+    else {
+      const d = new Date(lastTyreChange);
+      const maxDate = new Date();
+      const minDate = new Date();
+      minDate.setFullYear(minDate.getFullYear() - 20);
+
+      if (d > maxDate || d < minDate)
+        errs.lastTyreChange = `Date must be between ${minDate.toISOString().slice(0, 10)} and ${maxDate
+          .toISOString()
+          .slice(0, 10)}`;
+    }
+
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const car = {
+    if (!validate()) return;
+
+    const carDetails = {
       make: manufacturer,
       model,
       year,
-      carImg,
       lastTyreChange,
-      // Support other fields (e.g., email in the future) if needed
+      carImg,
     };
-    onSubmit(car);
-    if (persistCar) persistCar(car);
-  }
 
-  // Generate years list (descending, newest to oldest)
-  const getYearOptions = () => {
-    const yearList = [];
-    const curr = new Date().getFullYear();
-    for (let y = curr; y >= 1990; y--) {
-      yearList.push(y);
-    }
-    return yearList;
+    if (persistCar) persistCar(carDetails);
+    if (onSubmit) onSubmit(carDetails);
   };
-
-  // UX: Instructions block
-  const uxInstruction = (
-    <div className="ts-car-input-instruction">
-      <span className="ts-car-input-instruction-title">
-        Enter your car details for <span style={{ color: "#b4081b", fontWeight: 800 }}>personalized tyre recommendations</span>
-      </span>
-      <span className="ts-car-input-instruction-desc">
-        Save your car to preview, and get a live image demo.
-      </span>
-    </div>
-  );
-
-  // --- Porsche-style minimal summary section ---
-  const hasEssentials = manufacturer && model;
-  // Inline SVG fallback silhouette (simple side car icon)
-  const fallbackCarSVG = (
-    <svg width="71" height="49" viewBox="0 0 90 49" fill="none" style={{display: 'block'}}
-      aria-label="Default car silhouette">
-      <rect x="0" y="24" width="90" height="24" rx="9" fill="#18181b"/>
-      <ellipse cx="25" cy="41" rx="8" ry="6.5" fill="#7d7d85"/>
-      <ellipse cx="66" cy="41" rx="8" ry="6.5" fill="#7d7d85"/>
-      <rect x="11" y="13" width="68" height="17" rx="7" fill="#232327" />
-      <rect x="29" y="9" width="33" height="12" rx="5.5" fill="#232327" />
-      <rect x="41" y="4" width="11" height="7" rx="3.2" fill="#b4081b" />
-    </svg>
-  );
-  // Helper for conditional preview (carImg, loading, fallback)
-  const renderCarImage = (altText = "Car", imgStyle = {}) => {
-    if (loadingImg) {
-      return <span className="ts-car-img-loading">Loading…</span>;
-    }
-    if (carImg && !carImgError) {
-      // "key" ensures failed URLs don't get reused for re-renders
-      return (
-        <img
-          src={carImg}
-          alt={altText}
-          style={imgStyle}
-          draggable={false}
-          key={carImg}
-          // If image fails to load, trigger fallback
-          onError={e => {
-            e.target.onerror = null;
-            setCarImgError(true);
-          }}
-        />
-      );
-    }
-    // Either no image or error on image: always render fallback
-    return fallbackCarSVG;
-  };
-
-  const minimalSummary = hasEssentials && (
-    <section
-      className="car-details-minimal-summary"
-      aria-live="polite"
-    >
-      <div
-        style={{
-          width: 77,
-          height: 54,
-          borderRadius: 9,
-          background: "#232327",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          overflow: "hidden",
-          border: "1.2px solid #cfd2d6",
-          marginRight: 24,
-        }}
-        aria-hidden={carImg ? "false" : "true"}
-      >
-        {renderCarImage(
-          `Preview: ${year ? year + " " : ""}${manufacturer} ${model}`,
-          {
-            width: 71,
-            height: 49,
-            objectFit: "cover",
-            borderRadius: 8,
-            background: "#19181b",
-          }
-        )}
-      </div>
-      <div>
-        <div
-          className="car-details-summary-title"
-        >
-          {manufacturer}
-          <span className="car-details-summary-model">{model}</span>
-          {year && (
-            <span className="car-details-summary-year">{year}</span>
-          )}
-        </div>
-        {lastTyreChange && (
-          <div style={{ color: "#b4081b", fontWeight: 700, fontSize: "1.01rem", marginTop: 6 }}>
-            Last Tyre Change: {lastTyreChange}
-          </div>
-        )}
-      </div>
-    </section>
-  );
 
   return (
-    <>
-      <form
-        className="ts-car-input-form ts-premium modern-car-form"
-        onSubmit={handleSubmit}
-        autoComplete="on"
-        aria-label="Car details entry form"
+    <form className="car-details-form" onSubmit={handleSubmit} noValidate>
+      <h2>Enter your car details</h2>
+
+      {/* Manufacturer */}
+      <label htmlFor="manufacturer-select" className="form-label">
+        Manufacturer <span aria-hidden="true" style={{ color: "red" }}>*</span>
+      </label>
+      <select
+        id="manufacturer-select"
+        aria-describedby="manufacturer-error"
+        value={manufacturer}
+        onChange={(e) => setManufacturer(e.target.value)}
+        required
+        aria-invalid={!!errors.manufacturer}
       >
-        {uxInstruction}
-        <div className="ts-car-form-fields-container">
-          {/* Car Brand */}
-          <fieldset className="ts-car-form-group modern-form-group" style={{ marginTop: 72 }}>
-            <label htmlFor="car-manufacturer">
-              <span className="car-label-title">
-                Car <span style={{ color: "#b4081b", fontWeight: 800 }}>Manufacturer</span>
-              </span>
-              <span className="ts-label-sub">(brand)</span>
-            </label>
-            <select
-              className="ts-input"
-              id="car-manufacturer"
-              value={CAR_BRANDS.includes(manufacturer) ? manufacturer : (manufacturer ? "Other" : "")}
-              onChange={e => setManufacturer(e.target.value === "Other" ? "" : e.target.value)}
-              required
-              autoComplete="on"
-              aria-label="Car manufacturer (brand)"
-            >
-              <option value="">Select manufacturer...</option>
-              {CAR_BRANDS.map((brand) => (
-                <option key={brand} value={brand}>{brand}</option>
-              ))}
-              <option value="Other">Other (enter manually)</option>
-            </select>
-            {/* Show manual input if "Other" or not in list */}
-            {(manufacturer === "" || !CAR_BRANDS.includes(manufacturer)) && (
-              <input
-                className="ts-input"
-                id="car-manufacturer-other"
-                type="text"
-                placeholder="Type manufacturer name"
-                value={manufacturer}
-                onChange={e => setManufacturer(e.target.value)}
-                required
-                autoComplete="on"
-                aria-label="Car manufacturer (other)"
-                inputMode="text"
-                style={{ border: "2.1px solid #b4081b" }}
-              />
-            )}
-            <span className="ts-label-instruction">
-              <span style={{ color: "#b4081b", fontWeight: 700 }}>Select car brand</span> or <span style={{ color: "#b4081b", fontWeight: 600 }}>type manually</span>.
-            </span>
-          </fieldset>
+        <option value="">Select Manufacturer</option>
+        {carBrands.map((brand) => (
+          <option key={brand} value={brand}>
+            {brand}
+          </option>
+        ))}
+      </select>
+      {errors.manufacturer && (
+        <p id="manufacturer-error" className="error-msg" role="alert">
+          {errors.manufacturer}
+        </p>
+      )}
 
-          {/* Car Model */}
-          <fieldset className="ts-car-form-group ts-car-model-group modern-form-group" style={{ marginTop: 72 }}>
-            <label htmlFor="car-model">
-              <span className="car-label-title" style={{ color: "#b4081b", fontWeight: 800 }}>Model</span>
-            </label>
-            {/* Model as dropdown if brand is known, else input */}
-            {manufacturer && CAR_MODELS_BY_BRAND[manufacturer] ? (
-              <select
-                className="ts-input"
-                id="car-model"
-                key={manufacturer}
-                value={
-                  model && CAR_MODELS_BY_BRAND[manufacturer].includes(model)
-                    ? model
-                    : ""
-                }
-                onChange={e => setModel(e.target.value === "Other" ? "" : e.target.value)}
-                required
-                autoComplete="on"
-                aria-label="Car model"
-              >
-                <option value="">Select model...</option>
-                {CAR_MODELS_BY_BRAND[manufacturer].map((mod) => (
-                  <option key={mod} value={mod}>
-                    {mod}
-                  </option>
-                ))}
-                <option value="Other">Other (enter manually)</option>
-              </select>
-            ) : null}
-            {/* If user selects "Other", or brand has no models, show a manual model input */}
-            {(!manufacturer ||
-              !CAR_MODELS_BY_BRAND[manufacturer] ||
-              (manufacturer && CAR_MODELS_BY_BRAND[manufacturer] &&
-                (model === "Other" ||
-                  !CAR_MODELS_BY_BRAND[manufacturer].includes(model)))) && (
-              <input
-                className="ts-input"
-                id="car-model-other"
-                type="text"
-                placeholder={
-                  manufacturer && CAR_MODELS_BY_BRAND[manufacturer]
-                    ? "Type model name (if not listed above)"
-                    : "e.g. Civic, F-150, Model 3"
-                }
-                value={model === "Other" ? "" : model}
-                onChange={e => setModel(e.target.value)}
-                required
-                autoComplete="on"
-                aria-label="Car model"
-                inputMode="text"
-                style={{ border: "2.1px solid #b4081b" }}
-              />
-            )}
-            <span className="ts-label-instruction">
-              {manufacturer && CAR_MODELS_BY_BRAND[manufacturer]
-                ? <span><span style={{ color: "#b4081b", fontWeight: 700 }}>Choose your model</span> or <span style={{ color: "#b4081b", fontWeight: 600 }}>type manually</span>.</span>
-                : <span>Enter your car's <span style={{ color: "#b4081b", fontWeight: 700 }}>model</span>, e.g. "Corolla", "Mustang", "A-Class".</span>
-              }
-            </span>
-          </fieldset>
+      {/* Model */}
+      <label htmlFor="model-select" className="form-label">
+        Model <span aria-hidden="true" style={{ color: "red" }}>*</span>
+      </label>
+      <select
+        id="model-select"
+        aria-describedby="model-error"
+        value={model}
+        onChange={(e) => setModel(e.target.value)}
+        required
+        disabled={!manufacturer}
+        aria-invalid={!!errors.model}
+      >
+        <option value="">{manufacturer ? "Select Model" : "Select Manufacturer First"}</option>
+        {getModelsForBrand(manufacturer).map((modelName) => (
+          <option key={modelName} value={modelName}>
+            {modelName}
+          </option>
+        ))}
+      </select>
+      {errors.model && (
+        <p id="model-error" className="error-msg" role="alert">
+          {errors.model}
+        </p>
+      )}
 
-          {/* Year */}
-          <fieldset className="ts-car-form-group modern-form-group" style={{ maxWidth: 170, marginTop: 72 }}>
-            <label htmlFor="car-year">
-              <span className="car-label-title" style={{ color: "#edeef0", fontWeight: 800 }}>Year</span>
-            </label>
-            <select
-              className="ts-input"
-              id="car-year"
-              value={year}
-              onChange={e => setYear(e.target.value)}
-              required
-              autoComplete="on"
-              aria-label="Car model year"
-            >
-              <option value="">Year…</option>
-              {getYearOptions().map((y) => (
-                <option key={y} value={String(y)}>{y}</option>
-              ))}
-            </select>
-            <span className="ts-label-instruction">
-              <span style={{ color: "#7d7d85", fontWeight: 700 }}>Registration year</span>
-            </span>
-          </fieldset>
+      {/* Year */}
+      <label htmlFor="year-select" className="form-label">
+        Year <span aria-hidden="true" style={{ color: "red" }}>*</span>
+      </label>
+      <select
+        id="year-select"
+        aria-describedby="year-error"
+        value={year}
+        onChange={(e) => setYear(e.target.value)}
+        required
+        aria-invalid={!!errors.year}
+      >
+        <option value="">Select Year</option>
+        {Array.from({ length: currentYear - 1979 }, (_, i) => currentYear - i).map((yr) => (
+          <option key={yr} value={yr}>
+            {yr}
+          </option>
+        ))}
+      </select>
+      {errors.year && (
+        <p id="year-error" className="error-msg" role="alert">
+          {errors.year}
+        </p>
+      )}
 
-          {/* Last Tyre Change Date */}
-          <fieldset className="ts-car-form-group modern-form-group" style={{ maxWidth: 220, marginTop: 72 }}>
-            <label htmlFor="car-last-tyre-change">
-              <span className="car-label-title" style={{ color: "#b4081b", fontWeight: 800 }}>Last Tyre Change</span>
-            </label>
-            <input
-              className="ts-input"
-              type="date"
-              id="car-last-tyre-change"
-              value={lastTyreChange}
-              onChange={e => setLastTyreChange(e.target.value)}
-              required
-              aria-label="Date of last tyre replacement"
-              style={{ border: "2.1px solid #b4081b" }}
-              max={new Date().toISOString().substr(0, 10)}
-            />
-            <span className="ts-label-instruction">
-              <span style={{ color: "#b4081b", fontWeight: 700 }}>When did you last replace your tyres?</span>
-            </span>
-          </fieldset>
-        </div>
+      {/* Last Tyre Change */}
+      <label htmlFor="last-tyre-change" className="form-label">
+        Last Tyre Change Date <span aria-hidden="true" style={{ color: "red" }}>*</span>
+      </label>
+      <input
+        id="last-tyre-change"
+        type="date"
+        min={new Date(new Date().setFullYear(new Date().getFullYear() - 20))
+          .toISOString()
+          .slice(0, 10)}
+        max={new Date().toISOString().slice(0, 10)}
+        aria-describedby="tyre-change-error tyre-change-hint"
+        value={lastTyreChange}
+        onChange={(e) => setLastTyreChange(e.target.value)}
+        required
+        aria-invalid={!!errors.lastTyreChange}
+      />
+      <small id="tyre-change-hint" className="hint">
+        Date must be within the last 20 years
+      </small>
+      {errors.lastTyreChange && (
+        <p id="tyre-change-error" className="error-msg" role="alert">
+          {errors.lastTyreChange}
+        </p>
+      )}
 
-        <div className="modern-car-form-row">
-          {/* Car image preview */}
-          <div className="ts-car-img-preview modern-img-preview">
-            <div className="ts-car-img-preview-box modern-img-preview-box">
-              {renderCarImage(
-                "Auto-fetched preview illustration of your car",
-                {
-                  width: 133,
-                  height: 81,
-                  objectFit: "cover",
-                  borderRadius: 10,
-                  background: "#19181b",
-                }
-              )}
-            </div>
-            <span className="ts-car-img-preview-label modern-preview-label">
-              <span style={{ color: "#b4081b", fontWeight: 800 }}>Live visual:</span> based on your details.
-            </span>
-          </div>
-          {/* Save Button */}
-          <div className="ts-car-form-submit modern-form-submit">
-            <button
-              type="submit"
-              className="btn btn-large"
-              aria-label="Save car details"
-              style={{
-                background: "#b4081b",
-                color: "#fff",
-                fontWeight: 800,
-                borderRadius: "18px",
-                padding: "15px 45px",
-                boxShadow: "none",
-                minWidth: "110px",
-                minHeight: "46px",
-                fontSize: "1.13rem",
-                letterSpacing: "0.13em",
-                border: "1.4px solid #b4081b",
-                outline: "none",
-                transition: "background 0.18s, box-shadow 0.13s, filter 0.08s, color 0.10s",
-                fontFamily: "inherit",
-                filter: "none",
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
-              <span style={{
-                letterSpacing: "0.13em",
-                fontWeight: 900,
-                color: "#fff"
-              }}>Save Car</span>
-              <span style={{
-                color: "#fff",
-                fontWeight: 800,
-                paddingLeft: 8,
-                fontSize: "1.42em",
-                verticalAlign: "middle"
-              }}>
-                →
-              </span>
-            </button>
-          </div>
-        </div>
-      </form>
-      {minimalSummary}
-    </>
+      {/* Car Image preview */}
+      <fieldset
+        className="car-image-container"
+        aria-live="polite"
+        aria-label="Car image preview"
+      >
+        {carImg ? (
+          <img
+            src={carImg}
+            alt={`${manufacturer} ${model} ${year}`}
+            className="car-image"
+            onError={() => setCarImg(null)}
+          />
+        ) : (
+          fallbackCarSVG
+        )}
+      </fieldset>
+
+      <button type="submit" className="btn-submit">
+        Submit
+      </button>
+    </form>
   );
 }
-
-export default CarDetailsInput;
