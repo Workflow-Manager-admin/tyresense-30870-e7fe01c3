@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./TyreBrandDetail.css";
 import TyreLogoSVG from "./TyreLogoSVG";
+// LeafletStoreLocator import for map rendering
+import LeafletStoreLocator from "./LeafletStoreLocator";
 
 /*
   MODERNIZED BLACK/RED THEME: This brand detail page now uses a dark canvas, deep-black containers, and red accents—in sync with homepage.
@@ -171,7 +173,7 @@ const TYRE_BRAND_DATA = {
         name: "Sottozero 3",
         image_url:
           "https://www.pirelli.com/globalassets/tyres/prodotti-auto/cinturato-winter/cinturato-winter-hero-mobile.png",
-        product_url: "https://www.pirelli.com/tyres/en-ww/cinturato-winter",
+        product_url: "https://www.pirelli.com/tyres/en-ww/cinturato/winter",
       },
     ],
   },
@@ -511,6 +513,49 @@ function TyreBrandDetail({ brand, onBack }) {
           </AnimatePresence>
         </section>
       </main>
+
+      {/* Modern, minimal, bold brand detail with dark/red accent (MATCHES HOMEPAGE) */}
+      {/* Insert LeafletStoreLocator (map) at the page bottom for flagship tyre store locations */}
+      <section
+        style={{
+          width: "100%",
+          maxWidth: 900,
+          margin: "38px auto 0 auto",
+          padding: "0 18px 28px 18px",
+          borderRadius: 22,
+          boxShadow: "0 3px 15px #2f2f3322",
+          background: "#141418",
+          minHeight: 410,
+          zIndex: 8,
+          overflow: "hidden",
+        }}
+        aria-label="Nearby Tyre Stores Map"
+      >
+        <h2
+          style={{
+            color: "#b4081b",
+            fontWeight: 600,
+            letterSpacing: "0.08em",
+            fontSize: "1.18rem",
+            margin: "0 0 13px 0",
+          }}
+        >
+          Find Tyre Stores Near You
+        </h2>
+        <div
+          style={{
+            borderRadius: 13,
+            overflow: "hidden",
+            border: "1.5px solid #2f2f33",
+            boxShadow: "0 2px 14px #11111422",
+            background: "#18181f",
+            height: 400,
+          }}
+        >
+          <LeafletStoreLocator />
+        </div>
+      </section>
+
     </div>
   );
 }
