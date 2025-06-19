@@ -200,7 +200,7 @@ function TyreBrandDetail({ brand, onBack }) {
 
   return (
     <div className="ts-brand-detail-outer" data-testid="brand-detail-view">
-      {/* Header */}
+      {/* Topbar Header */}
       <header
         className="ts-brand-detail-topbar"
         role="banner"
@@ -224,12 +224,10 @@ function TyreBrandDetail({ brand, onBack }) {
       <main className="ts-brand-detail-container">
         <nav aria-label="Breadcrumb">
           <p className="brand-detail-breadcrumb">
-            Explore Tyre Brands &nbsp;/&nbsp; {name}
+            <span style={{ fontWeight: 600 }}>Explore Tyre Brands</span> <span style={{ color: "#b4081b" }}>/</span> {name}
           </p>
         </nav>
-
         <h1 className="brand-detail-headline">{name} – Featured Tyres</h1>
-
         <section className="porsche-type-card-grid" aria-label={`${name} tyre models`}>
           <AnimatePresence>
             {tyres.map((tyre, i) => (
@@ -237,7 +235,8 @@ function TyreBrandDetail({ brand, onBack }) {
                 key={tyre.name}
                 className={`porsche-type-card${selected === tyre.name ? " selected" : ""}`}
                 tabIndex={0}
-                role="group"
+                role="region"
+                aria-label={`${tyre.name} tyre card`}
                 initial="hidden"
                 animate="visible"
                 exit="exit"
@@ -245,12 +244,11 @@ function TyreBrandDetail({ brand, onBack }) {
                 custom={i}
                 onClick={() => setSelected(tyre.name)}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
+                  if (["Enter", " "].includes(e.key)) {
                     e.preventDefault();
                     setSelected(tyre.name);
                   }
                 }}
-                aria-label={`${tyre.name} tyre card`}
               >
                 <div className="porsche-type-card-img-row">
                   <img
@@ -263,6 +261,7 @@ function TyreBrandDetail({ brand, onBack }) {
                 </div>
                 <div className="porsche-type-card-info-row">
                   <h2 className="porsche-type-model">{tyre.name}</h2>
+                  {/* Description or feature block can be added here, if available */}
                   <a
                     href={tyre.product_url}
                     target="_blank"
@@ -270,7 +269,7 @@ function TyreBrandDetail({ brand, onBack }) {
                     className="porsche-type-select-btn"
                     tabIndex={0}
                     aria-label={`Buy ${name} ${tyre.name} on official site`}
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={e => e.stopPropagation()}
                   >
                     Buy Now
                   </a>

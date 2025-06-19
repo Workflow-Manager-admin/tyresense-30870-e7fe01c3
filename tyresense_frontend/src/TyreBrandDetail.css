@@ -1,16 +1,16 @@
+/* Modernized Porsche-style brand detail page (white & minimalist) */
+
 :root {
-  --porsche-black: #0c0c0e;
-  --porsche-deep-black: #18181c;
+  --porsche-black: #111216;
   --porsche-grey-dark: #232327;
-  --porsche-grey-mid: #7d7d85;
+  --porsche-grey-mid: #5d6266;
   --porsche-grey-light: #edeef0;
   --porsche-white: #fff;
   --porsche-accent-red: #b4081b;
   --porsche-border-light: #cfd2d6;
-  --porsche-border-soft: #222226;
-  --porsche-card-shadow: 0 12px 34px 2px #11111423, 0 3.5px 21px #18181c08;
-  --porsche-card-radius: 32px;
-  --porsche-card-radius-sm: 16px;
+  --porsche-card-shadow: 0 12px 36px 2px #b5b5bc1a, 0 2.5px 19px #b4081b10;
+  --porsche-card-radius: 2rem;
+  --porsche-card-radius-sm: 15px;
   --porsche-font-main: 'Roboto', Helvetica, Arial, sans-serif !important;
   --porsche-header-bg: #edeef0;
   --porsche-bg-canvas: #f5f6f7;
@@ -23,66 +23,70 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  font-family: var(--porsche-font-main);
 }
 
+/* Topbar */
 .ts-brand-detail-topbar {
   width: 100%;
   display: flex;
-  flex-direction: row;
   align-items: center;
   background: var(--porsche-header-bg);
-  min-height: 58px;
-  padding: 0;
+  min-height: 60px;
+  box-shadow: 0 1px 2.5px #b5b5bc30;
   border-bottom: 1px solid var(--porsche-border-light);
   position: relative;
   z-index: 120;
 }
 
+/* Back link btn */
 .ts-detail-back-btn {
   margin-left: 2.5vw;
   background: none;
   border: none;
   color: var(--porsche-grey-mid);
-  font-size: 1.01rem;
+  font-size: 1.08rem;
   font-family: var(--porsche-font-main);
   font-weight: 500;
-  padding: 6px 21px 6px 0;
-  letter-spacing: 0.05em;
+  padding: 8px 28px 8px 5px;
+  letter-spacing: 0.11em;
   cursor: pointer;
+  border-bottom: 2px solid transparent;
   border-radius: 0;
+  text-decoration: none;
   outline: none;
-  border-bottom: 1.9px solid transparent;
-  text-decoration: underline;
-  transition: color 0.14s, border 0.14s;
+  transition: color 0.18s, border 0.17s, background 0.16s;
   box-shadow: none;
   position: relative;
   z-index: 121;
-  min-width: 66px;
-  min-height: 37px;
-  align-self: flex-start;
+  min-width: 68px;
+  min-height: 39px;
 }
 .ts-detail-back-btn:hover, .ts-detail-back-btn:focus-visible {
   color: var(--porsche-accent-red);
-  border-bottom: 1.9px solid var(--porsche-accent-red);
+  border-bottom: 2px solid var(--porsche-accent-red);
+  background: #faf0f1;
   outline: none;
+  text-decoration: underline;
 }
 
+/* Centered logo wordmark in header */
 .ts-brand-detail-topbar .ts-animated-car-navbar {
-  /* Centered logo inside header bar */
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -45%);
-  min-width: 100px;
-  max-width: 328px;
+  transform: translate(-50%, -49%);
+  min-width: 120px;
+  max-width: 320px;
   height: 40px;
   z-index: 110;
   pointer-events: none;
+  background: none;
 }
 
 .ts-brand-detail-topbar .ts-animated-car-title {
-  color: #111216 !important;
-  font-size: 1.08rem !important;
+  color: var(--porsche-black) !important;
+  font-size: 1.15rem !important;
   letter-spacing: 0.21em;
   font-family: var(--porsche-font-main) !important;
   font-weight: 800 !important;
@@ -91,19 +95,19 @@
 
 @media (max-width: 700px) {
   .ts-brand-detail-topbar .ts-animated-car-navbar {
-    min-width: 57px;
-    max-width: 120px;
-    height: 18px;
+    min-width: 70px;
+    max-width: 126px;
+    height: 21px;
   }
   .ts-brand-detail-topbar {
-    min-height: 41px;
+    min-height: 40px;
   }
   .ts-detail-back-btn {
-    font-size: 0.93rem;
-    min-width: 44px;
-    min-height: 27px;
+    font-size: 0.97rem;
+    min-width: 40px;
+    min-height: 26px;
     margin-left: 1vw;
-    padding: 2px 9px 2px 0;
+    padding: 3px 6px 3px 0;
   }
 }
 
@@ -111,12 +115,12 @@
 .ts-brand-detail-container {
   margin: 0 auto;
   width: 100%;
-  max-width: 1080px;
-  min-height: 73vh;
+  max-width: 1110px;
+  min-height: 69vh;
   background: var(--porsche-white);
   border-radius: var(--porsche-card-radius);
-  box-shadow: 0 18px 38px 2px #cfd2d62b, 0 3.5px 19px #18181c0a;
-  padding: 52px 0 38px 0;
+  box-shadow: var(--porsche-card-shadow);
+  padding: 5vw 0 2.5vw 0;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -124,10 +128,10 @@
   position: relative;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
   .ts-brand-detail-container {
     border-radius: 17px;
-    padding: 13px 0 5px 0;
+    padding: 15px 0 8px 0;
     min-width: 0;
     max-width: 99vw;
   }
@@ -135,46 +139,54 @@
 
 /* === Headings and Breadcrumb === */
 .brand-detail-headline {
-  font-size: 2.18rem;
+  font-size: 2.32rem;
   font-family: var(--porsche-font-main);
   font-weight: 800;
   color: var(--porsche-black);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.045em;
   margin-left: 4vw;
-  margin-top: 0;
-  margin-bottom: 1.1em;
-  line-height: 1.09;
+  margin-top: 0.5em;
+  margin-bottom: 1.25em;
+  line-height: 1.11;
   text-shadow: none;
 }
+
 .brand-detail-breadcrumb {
   font-size: 1.07rem;
   color: var(--porsche-grey-mid);
   font-family: var(--porsche-font-main);
   margin-left: 4vw;
   font-weight: 500;
-  margin-bottom: 8px;
-  margin-top: 0.5em;
-  opacity: 0.95;
+  margin-bottom: 10px;
+  margin-top: 0.25em;
+  opacity: 0.94;
   letter-spacing: 0.03em;
 }
 
+@media (max-width: 600px) {
+  .brand-detail-headline, .brand-detail-breadcrumb {
+    margin-left: 18px;
+  }
+}
+
+/* === Grid layout === */
 .porsche-type-card-grid {
   margin: 0 auto;
   width: 100%;
   max-width: 1020px;
   display: grid;
   grid-template-columns: repeat(3, minmax(266px, 1fr));
-  gap: 38px 36px;
+  gap: 2.8rem 2.5rem;
   align-items: stretch;
   justify-items: center;
-  padding: 2px 42px 39px 42px;
+  padding: 0 2vw 2.3vw 2vw;
 }
 
 @media (max-width: 1040px) {
   .porsche-type-card-grid {
-    grid-template-columns: repeat(2, minmax(235px, 1fr));
-    gap: 31px 24px;
-    padding: 8px 8vw 27px 8vw;
+    grid-template-columns: repeat(2, minmax(230px, 1fr));
+    gap: 2.1rem 1.8rem;
+    padding: 9px 5vw 1.5vw 5vw;
   }
 }
 @media (max-width: 800px) {
@@ -189,33 +201,36 @@
 .porsche-type-card {
   background: var(--porsche-white);
   border-radius: var(--porsche-card-radius);
-  box-shadow: 0 11px 40px 0 #cfd2d62a, 0 2.3px 13px #cccccc12;
-  border: 1.19px solid var(--porsche-border-light);
+  box-shadow: 0 12px 34px #e9ebef36, 0 1.5px 10px #11111409;
+  border: 1.6px solid var(--porsche-border-light);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  transition: box-shadow .17s, border .15s, transform .12s;
+  transition: box-shadow .20s, border .16s, transform .17s;
   cursor: pointer;
-  min-height: 329px;
+  min-height: 330px;
   max-width: 355px;
   width: 100%;
   position: relative;
+  will-change: transform, box-shadow;
 }
+
 .porsche-type-card.selected,
 .porsche-type-card:focus,
 .porsche-type-card:hover {
-  border: 2.3px solid var(--porsche-accent-red);
-  box-shadow: 0 17px 54px 7px #b4081b0d, 0 8px 22px 8px #2424290c;
-  transform: translateY(-2.5px) scale(1.011);
-  z-index: 7;
+  border: 2.2px solid var(--porsche-accent-red);
+  box-shadow: 0 21px 62px 3px #b4081b10, 0 9px 22px 8px #24242909;
+  transform: translateY(-6px) scale(1.022);
+  z-index: 8;
 }
 
+/* Card image area */
 .porsche-type-card-img-row {
   width: 100%;
-  height: 154px;
+  height: 160px;
   background: var(--porsche-grey-light);
-  border-bottom: 1.2px solid var(--porsche-border-light);
+  border-bottom: 1.4px solid var(--porsche-border-light);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -225,12 +240,12 @@
 .porsche-type-card-img {
   width: 90%;
   height: 88%;
-  min-height: 81px;
-  max-width: 204px;
+  min-height: 80px;
+  max-width: 220px;
   object-fit: cover;
-  border-radius: 22px;
-  filter: brightness(1.06) contrast(1.16);
-  box-shadow: 0 2px 11px #aaa4a712;
+  border-radius: 21px;
+  filter: brightness(1.08) contrast(1.13);
+  box-shadow: 0 2px 10px #cfd2d67e;
   background: #f5f6f7;
   margin: 0 auto;
   display: block;
@@ -240,40 +255,29 @@
 }
 
 .porsche-type-card-info-row {
-  padding: 19px 14px 16px 17px;
+  padding: 26px 18px 18px 22px;
   display: flex;
   flex-direction: column;
-  gap: 7.5px;
+  gap: 10px;
   background: none;
+  min-height: 110px;
 }
 
 /* Model title */
 .porsche-type-model {
   color: var(--porsche-black);
-  font-size: 1.12rem;
+  font-size: 1.23rem;
   font-weight: 700;
   font-family: var(--porsche-font-main);
-  letter-spacing: 0.06em;
-  margin-bottom: 0;
+  letter-spacing: 0.089em;
+  margin-bottom: 0.3em;
   line-height: 1.09;
-  text-shadow: none;
-}
-
-.porsche-type-kind {
-  color: var(--porsche-accent-red);
-  font-size: 0.98rem;
-  font-weight: 700;
-  letter-spacing: 0.075em;
-  margin-bottom: 0;
-  margin-left: 5px;
-  margin-top: 0;
-  line-height: 1.01;
   text-shadow: none;
 }
 
 .porsche-type-desc {
   color: var(--porsche-grey-mid);
-  font-size: 0.97rem;
+  font-size: 1rem;
   font-weight: 430;
   line-height: 1.41;
   margin-bottom: 2px;
@@ -281,83 +285,91 @@
   text-shadow: none;
 }
 
-/* Tyre sizes, subtle highlight */
-.porsche-type-sizes {
-  color: var(--porsche-grey-dark);
-  font-size: 0.97rem;
-  font-weight: 500;
-  line-height: 1.25;
-  padding-left: 0.6em;
-  text-shadow: none;
-  margin-bottom: 3px;
-}
-
+/* Buy Now Button - outlined, bold, interactive */
 .porsche-type-select-btn {
-  margin-top: 11px;
-  font-size: 0.98rem;
+  margin-top: 18px;
+  font-size: 1.01rem;
   font-family: var(--porsche-font-main);
-  border-radius: 0.47rem;
+  border-radius: 0.55rem;
   background: #fff;
-  color: #111216;
-  border: 1.19px solid var(--porsche-black);
-  font-weight: 650;
-  letter-spacing: 0.09em;
-  padding: 7px 18px;
+  color: var(--porsche-black);
+  border: 1.5px solid var(--porsche-black);
+  font-weight: 700;
+  letter-spacing: 0.19em;
+  padding: 11px 30px;
   outline: none;
   text-transform: uppercase;
-  transition: border 0.13s, color .15s, background 0.16s;
+  transition: border 0.17s, color .15s, background 0.13s, box-shadow .15s;
   cursor: pointer;
-  box-shadow: none;
+  box-shadow: 0 3.5px 18px #b4081b13;
+  display: inline-block;
+  align-self: flex-start;
 }
 .porsche-type-select-btn:focus,
 .porsche-type-select-btn:hover,
 .porsche-type-card.selected .porsche-type-select-btn {
   color: var(--porsche-accent-red);
-  border: 1.7px solid var(--porsche-accent-red);
+  border: 2px solid var(--porsche-accent-red);
   background: #faf0f1;
+  box-shadow: 0 7px 26px #b4081b17;
+  outline: 2px solid #b4081b44;
+}
+.porsche-type-select-btn:active {
+  background: #f3eaea;
+  color: #b4081b;
+  border-color: #b4081b;
 }
 
-.porsche-type-buy-btn {
-  margin-top: 15px;
-  font-family: var(--porsche-font-main);
-  font-weight: 700;
-  color: var(--porsche-grey-mid);
-  background: none;
-  border: none;
-  border-radius: 22px;
-  pointer-events: none;
-  font-size: 1.09rem;
-  text-align: left;
-  display: inline-block;
-  opacity: 0.76;
-  letter-spacing: 0.08em;
+/* Subtle card active shadow/scale effect */
+.porsche-type-card:active {
+  transform: scale(0.986) translateY(-2px);
+  box-shadow: 0 2px 5px #b4081b22;
 }
 
 @media (max-width: 600px) {
   .ts-brand-detail-container {
     border-radius: 12px;
-    padding: 8px 0 6px 0;
+    padding: 4px 0 10px 0;
   }
   .porsche-type-card-grid {
     grid-template-columns: 1fr;
-    gap: 15px 0;
-    padding: 3vw 2vw;
+    gap: 21px 0;
+    padding: 2vw 1vw 12vw 1vw;
+  }
+  .porsche-type-card-info-row {
+    padding: 15px 7px 11px 10px;
   }
   .brand-detail-headline, .brand-detail-breadcrumb {
-    margin-left: 16px;
+    margin-left: 14px;
+  }
+  .porsche-type-select-btn {
+    padding: 10px 19px;
+    font-size: 1rem;
   }
 }
 
-/* --- REMOVE ALL LEGACY/DEPRECATED/NEON CLASSES --- */
+@media (max-width: 470px) {
+  .porsche-type-card-info-row {
+    padding: 10px 2vw 6px 2vw;
+  }
+  .brand-detail-headline {
+    font-size: 1.31rem;
+    margin-left: 8px;
+  }
+  .brand-detail-breadcrumb {
+    margin-left: 8px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Remove all legacy/neon blocks */
 .ts-brand-info-block,
 .ts-brand-info-panes,
 .ts-brand-block-title,
 .ts-brand-block-content,
 .ts-detail-buy-btn {
-  all: unset !important;
   display: none !important;
 }
 .neon-accent, .neon-premium-btn, .neon-gold, .ts-btn, .ts-card-placeholder {
-  all: unset !important;
   display: none !important;
 }
