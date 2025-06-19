@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./TyreBrandDetail.css";
 import TyreLogoSVG from "./TyreLogoSVG";
@@ -197,6 +197,16 @@ const gridVariants = {
 function TyreBrandDetail({ brand, onBack }) {
   const { name, tyres } = getBrandData(brand);
   const [selected, setSelected] = useState(null);
+
+  // Ensure the brand page always enforces a white background on the <body>
+  useEffect(() => {
+    // Force white background when mounted
+    const prev = document.body.style.background;
+    document.body.style.background = "#f5f6f7";
+    return () => {
+      document.body.style.background = prev || "";
+    };
+  }, []);
 
   return (
     <div className="ts-brand-detail-outer" data-testid="brand-detail-view">

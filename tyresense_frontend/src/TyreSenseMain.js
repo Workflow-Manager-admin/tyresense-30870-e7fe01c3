@@ -520,7 +520,10 @@ function MainTyreSenseRoutes(props) {
           element={
             stage === "SHOW_MAIN" && (
               <BrandDetailRoute
-                onBackToList={() => navigate(-1)}
+                onBackToList={() => {
+                  // Go "home" rather than browser goBack to force rerender
+                  navigate("/");
+                }}
               />
             )
           }
@@ -534,16 +537,19 @@ function MainTyreSenseRoutes(props) {
 }
 
 
-// Helper: Renders TyreBrandDetail using route param
+/**
+ * Wrapper for TyreBrandDetail that remounts on brand change (keyed by brandId)
+ * This solves any React mount issues if <TyreBrandDetail /> was not updating on navigation
+ */
 function BrandDetailRoute({ onBackToList }) {
   // PUBLIC_INTERFACE
-  // Proper useParams usage: ensures SPA navigation and back/forward work correctly.
   const { brandId } = useParams();
   const brand = brandId ? { id: brandId } : undefined;
   return (
     <TyreBrandDetail
       brand={brand}
       onBack={onBackToList}
+      key={brandId}
     />
   );
 }
